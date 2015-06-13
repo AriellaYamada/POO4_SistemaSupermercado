@@ -48,12 +48,11 @@ public class Connection {
 	//Método que envia mensagem para o servidor
 	public void SendSignal(String response) {
 		signalOut.println(response);
-		System.out.println(response);
+		//System.out.println(response);
 	}
 
 	//Método que recebe mensagem do servidor
 	public String ReceiveSignal() {
-
 		return signalIn.nextLine();
 	}
 }
