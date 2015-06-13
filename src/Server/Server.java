@@ -4,7 +4,6 @@ import java.io.IOException;
 import java.io.PrintWriter;
 import java.net.*;
 import java.util.Enumeration;
-import java.util.List;
 import java.util.Scanner;
 
 import static java.lang.System.out;
