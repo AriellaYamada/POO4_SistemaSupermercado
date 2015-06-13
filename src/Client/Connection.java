@@ -54,7 +54,6 @@ public class Connection {
 	public String ReceiveSignal() {
 		Scanner scan = new Scanner(signalIn);
 		String message = scan.nextLine();
-		out.println(message);
 
 		return message;
 	}
