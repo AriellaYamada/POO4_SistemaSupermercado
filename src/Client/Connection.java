@@ -13,7 +13,7 @@ public class Connection {
 
 	public Socket sock;
 	public PrintWriter signalOut;
-	public InputStream signalIn;
+	public Scanner signalIn;
 
 	public Connection () {
 		try {
@@ -22,6 +22,7 @@ public class Connection {
 			e.printStackTrace();
 		}
 	}
+
 
 	public void ConnectServer () throws IOException {
 
@@ -35,7 +36,7 @@ public class Connection {
 		//"Porta" de saida de mensagens para o servidor
 		signalOut = new PrintWriter(sock.getOutputStream(), true);
 		//"Porta" de entrada de mensagens do servidor
-		signalIn = sock.getInputStream();
+		signalIn = new Scanner(sock.getInputStream());
 
 	}
 
@@ -52,9 +53,7 @@ public class Connection {
 
 	//Método que recebe mensagem do servidor
 	public String ReceiveSignal() {
-		Scanner scan = new Scanner(signalIn);
-		String message = scan.nextLine();
 
-		return message;
+		return signalIn.nextLine();
 	}
 }
