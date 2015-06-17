@@ -1,54 +1,116 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.geometry.*?>
 <?import javafx.scene.text.*?>
 <?import javafx.scene.control.*?>
 <?import java.lang.*?>
 <?import javafx.scene.layout.*?>
 
-<TitledPane prefHeight="444.0" prefWidth="734.0" text="Login" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
-   <content>
-      <SplitPane dividerPositions="0.3549920760697306" prefHeight="160.0" prefWidth="200.0">
-        <items>
-          <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="493.0" prefWidth="333.0">
+
+<fx:root type="HBox" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="loginController">
+   <children>
+    <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="493.0" prefWidth="257.0" style="-fx-border-color: black;">
+         <children>
+            <PasswordField fx:id="f_userpassword" layoutX="47.0" layoutY="212.0" />
+            <TextField fx:id="f_userlogin" layoutX="47.0" layoutY="154.0" />
+            <Label layoutX="47.0" layoutY="132.0" text="ID:" />
+            <Label layoutX="47.0" layoutY="190.0" text="Senha:" />
+            <Button fx:id="b_login" layoutX="100.0" layoutY="260.0" mnemonicParsing="false" onAction="#handleSendLogin" text="Entrar" />
+            <Label layoutX="79.0" layoutY="14.0" text="Entrar">
+               <font>
+                  <Font size="36.0" />
+               </font>
+            </Label>
+         </children>
+      </AnchorPane>
+    <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="493.0" prefWidth="438.0" style="-fx-border-color: black;">
+         <children>
+            <Label layoutX="144.0" layoutY="14.0" text="Cadastrar" textAlignment="CENTER">
+               <font>
+                  <Font size="36.0" />
+               </font>
+            </Label>
+            <VBox layoutX="14.0" layoutY="104.0" prefHeight="288.0" prefWidth="100.0">
                <children>
-                  <PasswordField fx:id="f_userpassword" layoutX="47.0" layoutY="212.0" />
-                  <TextField fx:id="f_userlogin" layoutX="47.0" layoutY="154.0" />
-                  <Label layoutX="47.0" layoutY="132.0" text="ID:" />
-                  <Label layoutX="47.0" layoutY="190.0" text="Senha:" />
-                  <Button fx:id="b_login" layoutX="100.0" layoutY="260.0" mnemonicParsing="false" text="Entrar" />
-                  <Label layoutX="79.0" layoutY="14.0" text="Entrar">
-                     <font>
-                        <Font size="36.0" />
-                     </font>
+                  <Label contentDisplay="TOP" maxWidth="1.7976931348623157E308" minHeight="25.0" nodeOrientation="RIGHT_TO_LEFT" text="Nome:" textAlignment="RIGHT">
+                     <VBox.margin>
+                        <Insets top="8.0" />
+                     </VBox.margin>
+                  </Label>
+                  <Label maxWidth="1.7976931348623157E308" minHeight="65.0" nodeOrientation="RIGHT_TO_LEFT" text="Endereço:" textAlignment="RIGHT">
+                     <VBox.margin>
+                        <Insets top="8.0" />
+                     </VBox.margin>
+                  </Label>
+                  <Label maxWidth="1.7976931348623157E308" minHeight="25.0" nodeOrientation="RIGHT_TO_LEFT" text="Telefone:" textAlignment="RIGHT">
+                     <VBox.margin>
+                        <Insets top="8.0" />
+                     </VBox.margin>
+                  </Label>
+                  <Label maxWidth="1.7976931348623157E308" minHeight="25.0" nodeOrientation="RIGHT_TO_LEFT" text="E-mail:" textAlignment="RIGHT">
+                     <VBox.margin>
+                        <Insets top="8.0" />
+                     </VBox.margin>
+                  </Label>
+                  <Label maxWidth="1.7976931348623157E308" minHeight="25.0" nodeOrientation="RIGHT_TO_LEFT" text="ID:" textAlignment="RIGHT">
+                     <VBox.margin>
+                        <Insets top="8.0" />
+                     </VBox.margin>
+                  </Label>
+                  <Label maxWidth="1.7976931348623157E308" minHeight="25.0" nodeOrientation="RIGHT_TO_LEFT" text="Senha:" textAlignment="RIGHT">
+                     <VBox.margin>
+                        <Insets top="8.0" />
+                     </VBox.margin>
+                  </Label>
+                  <Label maxWidth="1.7976931348623157E308" minHeight="25.0" nodeOrientation="RIGHT_TO_LEFT" text="Confirmar Senha:" textAlignment="RIGHT">
+                     <VBox.margin>
+                        <Insets top="8.0" />
+                     </VBox.margin>
                   </Label>
                </children>
-            </AnchorPane>
-          <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="243.0" prefWidth="211.0">
+            </VBox>
+            <VBox layoutX="119.0" layoutY="104.0" prefHeight="289.0" prefWidth="272.0">
                <children>
-                  <TextField fx:id="f_name" layoutX="171.0" layoutY="74.0" />
-                  <TextField fx:id="f_address" layoutX="172.0" layoutY="110.0" prefHeight="65.0" prefWidth="163.0" />
-                  <TextField fx:id="f_tel" layoutX="171.0" layoutY="181.0" />
-                  <TextField fx:id="f_id" layoutX="171.0" layoutY="261.0" />
-                  <TextField fx:id="f_email" layoutX="171.0" layoutY="221.0" />
-                  <Label layoutX="114.0" layoutY="79.0" text="Nome:" />
-                  <Label layoutX="97.0" layoutY="116.0" text="Endereço:" />
-                  <Label layoutX="100.0" layoutY="186.0" text="Telefone:" />
-                  <Label layoutX="113.0" layoutY="226.0" text="E-mail:" />
-                  <Label layoutX="134.0" layoutY="267.0" text="ID:" />
-                  <PasswordField fx:id="f_password" layoutX="171.0" layoutY="298.0" />
-                  <PasswordField fx:id="f_confirmp" layoutX="171.0" layoutY="339.0" />
-                  <Label layoutX="112.0" layoutY="303.0" text="Senha:" />
-                  <Label layoutX="51.0" layoutY="344.0" text="Confirmar Senha:" />
-                  <Button fx:id="b_cleanFields" layoutX="172.0" layoutY="377.0" mnemonicParsing="false" text="Limpar" />
-                  <Button fx:id="b_addUser" layoutX="257.0" layoutY="377.0" mnemonicParsing="false" text="Cadastrar" />
-                  <Label layoutX="167.0" layoutY="14.0" text="Cadastrar" textAlignment="CENTER">
-                     <font>
-                        <Font size="36.0" />
-                     </font>
-                  </Label>
+                  <TextField fx:id="f_name">
+                     <VBox.margin>
+                        <Insets top="8.0" />
+                     </VBox.margin>
+                  </TextField>
+                  <TextField fx:id="f_address" prefHeight="65.0">
+                     <VBox.margin>
+                        <Insets top="8.0" />
+                     </VBox.margin>
+                  </TextField>
+                  <TextField fx:id="f_tel">
+                     <VBox.margin>
+                        <Insets top="8.0" />
+                     </VBox.margin>
+                  </TextField>
+                  <TextField fx:id="f_email">
+                     <VBox.margin>
+                        <Insets top="8.0" />
+                     </VBox.margin>
+                  </TextField>
+                  <TextField fx:id="f_id">
+                     <VBox.margin>
+                        <Insets top="8.0" />
+                     </VBox.margin>
+                  </TextField>
+                  <PasswordField fx:id="f_password">
+                     <VBox.margin>
+                        <Insets top="8.0" />
+                     </VBox.margin>
+                  </PasswordField>
+                  <PasswordField fx:id="f_confirmp">
+                     <VBox.margin>
+                        <Insets top="8.0" />
+                     </VBox.margin>
+                  </PasswordField>
                </children>
-            </AnchorPane>
-        </items>
-      </SplitPane>
-   </content>
-</TitledPane>
+            </VBox>
+            <Button fx:id="b_cleanFields" layoutX="143.0" layoutY="414.0" mnemonicParsing="false" onAction="#handleCleanBtn" text="Limpar" />
+            <Button fx:id="b_addUser" layoutX="228.0" layoutY="414.0" mnemonicParsing="false" onAction="#handleAddUserBtn" text="Cadastrar" />
+         </children>
+      </AnchorPane>
+   </children>
+</fx:root>
