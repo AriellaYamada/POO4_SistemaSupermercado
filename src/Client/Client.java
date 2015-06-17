@@ -11,16 +11,10 @@ public class Client {
 		conn = new Connection();
 	}
 
-	public void SendSignal () {
-		out.println("Mensagem a ser enviada para o servidor: ");
-		Scanner scan = new Scanner(in);
-		String message = scan.nextLine();
+	public void AddNewUser (String name, String address, String tel, String email, String id, String password) {
+		String split = ",";
+		String signal = "newuser" + name + split + address + split + tel + split + email + split + id + split + password;
 
-		conn.SendSignal(message);
+		conn.SendSignal(signal);
 	}
-
-	public void ReceiveSignal () {
-		out.println("Mensagem recebida do servidor: " + conn.ReceiveSignal());
-	}
-
 }
