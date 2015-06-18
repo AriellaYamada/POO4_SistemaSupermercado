@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.*?>
+<?import javafx.scene.text.*?>
+<?import javafx.scene.shape.*?>
+<?import java.lang.*?>
+<?import javafx.scene.layout.*?>
+
+
+<VBox alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
+   <children>
+      <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Estamos tentando conectar com o servidor..." textAlignment="CENTER" wrappingWidth="656.134765625">
+         <font>
+            <Font size="18.0" />
+         </font>
+      </Text>
+      <Text layoutX="82.0" layoutY="317.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Por favor, não desconecte. Essa ligação é muito importante para nós." textAlignment="CENTER" wrappingWidth="656.134765625">
+         <font>
+            <Font size="18.0" />
+         </font>
+      </Text>
+   </children>
+</VBox>

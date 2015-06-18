@@ -1,3 +1,17 @@
 .border-black {
 	-fx-border-color: black;
 }
+
+.red-field {
+	-fx-background-color: #FEE;
+	-fx-border-color: #F33;
+	-fx-border-radius: 3;
+	-fx-border-width: 1;
+	-fx-border-insets: -1;
+}
+
+.red-field:focused {
+	-fx-border-color: #FAA, #F33;
+	-fx-border-width: 3, 1;
+	-fx-border-insets: -2, -1;
+}
