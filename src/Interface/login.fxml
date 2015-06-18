@@ -17,19 +17,19 @@
                   <SVGPath content="M1184 640q0 -26 -19 -45l-544 -544q-19 -19 -45 -19t-45 19t-19 45v288h-448q-26 0 -45 19t-19 45v384q0 26 19 45t45 19h448v288q0 26 19 45t45 19t45 -19l544 -544q19 -19 19 -45zM1536 992v-704q0 -119 -84.5 -203.5t-203.5 -84.5h-320q-13 0 -22.5 9.5t-9.5 22.5 q0 4 -1 20t-0.5 26.5t3 23.5t10 19.5t20.5 6.5h320q66 0 113 47t47 113v704q0 66 -47 113t-113 47h-288h-11h-13t-11.5 1t-11.5 3t-8 5.5t-7 9t-2 13.5q0 4 -1 20t-0.5 26.5t3 23.5t10 19.5t20.5 6.5h320q119 0 203.5 -84.5t84.5 -203.5z" scaleX="0.05" scaleY="0.05" scaleZ="0.05" />
                </children>
             </Group>
-            <Label layoutX="107.0" layoutY="14.0" text="Entrar">
+            <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Entrar" textAlignment="CENTER">
                <font>
                   <Font size="36.0" />
                </font>
                <VBox.margin>
                   <Insets bottom="80.0" />
                </VBox.margin>
-            </Label>
+            </Text>
             <Label layoutX="80.0" layoutY="132.0" text="ID:" />
-            <TextField fx:id="f_userlogin" layoutX="80.0" layoutY="154.0" />
+            <TextField fx:id="f_userlogin" layoutX="80.0" layoutY="154.0" styleClass="default-field" />
             <Label layoutX="80.0" layoutY="190.0" text="Senha:" />
-            <PasswordField fx:id="f_userpassword" layoutX="80.0" layoutY="212.0" />
-            <Button fx:id="b_login" layoutX="133.0" layoutY="260.0" mnemonicParsing="false" onAction="#handleSendLogin" prefWidth="100.0" text="Entrar">
+            <PasswordField fx:id="f_userpassword" layoutX="80.0" layoutY="212.0" styleClass="default-field" />
+            <Button fx:id="b_login" layoutX="133.0" layoutY="260.0" mnemonicParsing="false" onAction="#handleSendLogin" prefWidth="100.0" styleClass="default-btn" text="Entrar">
                <VBox.margin>
                   <Insets top="80.0" />
                </VBox.margin>
@@ -52,14 +52,14 @@
                   <SVGPath content="M704 640q-159 0 -271.5 112.5t-112.5 271.5t112.5 271.5t271.5 112.5t271.5 -112.5t112.5 -271.5t-112.5 -271.5t-271.5 -112.5zM1664 512h352q13 0 22.5 -9.5t9.5 -22.5v-192q0 -13 -9.5 -22.5t-22.5 -9.5h-352v-352q0 -13 -9.5 -22.5t-22.5 -9.5h-192q-13 0 -22.5 9.5 t-9.5 22.5v352h-352q-13 0 -22.5 9.5t-9.5 22.5v192q0 13 9.5 22.5t22.5 9.5h352v352q0 13 9.5 22.5t22.5 9.5h192q13 0 22.5 -9.5t9.5 -22.5v-352zM928 288q0 -52 38 -90t90 -38h256v-238q-68 -50 -171 -50h-874q-121 0 -194 69t-73 190q0 53 3.5 103.5t14 109t26.5 108.5 t43 97.5t62 81t85.5 53.5t111.5 20q19 0 39 -17q79 -61 154.5 -91.5t164.5 -30.5t164.5 30.5t154.5 91.5q20 17 39 17q132 0 217 -96h-223q-52 0 -90 -38t-38 -90v-192z" rotate="180.0" scaleX="0.05" scaleY="0.05" scaleZ="0.05" />
                </children>
             </Group>
-            <Label alignment="CENTER" contentDisplay="CENTER" layoutX="170.0" nodeOrientation="LEFT_TO_RIGHT" prefHeight="53.0" text="Cadastrar" textAlignment="RIGHT">
+            <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Cadastrar" textAlignment="CENTER">
                <font>
                   <Font size="36.0" />
                </font>
                <VBox.margin>
                   <Insets bottom="30.0" />
                </VBox.margin>
-            </Label>
+            </Text>
             <HBox alignment="TOP_CENTER" layoutX="14.0" layoutY="104.0" prefHeight="289.0" prefWidth="370.0" spacing="15.0">
                <children>
                   <VBox layoutX="14.0" layoutY="104.0" prefWidth="100.0" spacing="6.0">
@@ -103,37 +103,37 @@
                   </VBox>
                   <VBox layoutX="119.0" layoutY="104.0" prefWidth="365.0" spacing="6.0">
                      <children>
-                        <TextField fx:id="f_name">
+                        <TextField fx:id="f_name" styleClass="default-field">
                            <VBox.margin>
                               <Insets />
                            </VBox.margin>
                         </TextField>
-                        <TextArea fx:id="f_address" minHeight="100.0" prefHeight="100.0" prefWidth="200.0">
+                        <TextArea fx:id="f_address" minHeight="100.0" prefHeight="100.0" prefWidth="200.0" styleClass="default-field">
                            <VBox.margin>
                               <Insets />
                            </VBox.margin>
                         </TextArea>
-                        <TextField fx:id="f_tel">
+                        <TextField fx:id="f_tel" styleClass="default-field">
                            <VBox.margin>
                               <Insets />
                            </VBox.margin>
                         </TextField>
-                        <TextField fx:id="f_email">
+                        <TextField fx:id="f_email" styleClass="default-field">
                            <VBox.margin>
                               <Insets />
                            </VBox.margin>
                         </TextField>
-                        <TextField fx:id="f_id">
+                        <TextField fx:id="f_id" styleClass="default-field">
                            <VBox.margin>
                               <Insets />
                            </VBox.margin>
                         </TextField>
-                        <PasswordField fx:id="f_password">
+                        <PasswordField fx:id="f_password" styleClass="default-field">
                            <VBox.margin>
                               <Insets />
                            </VBox.margin>
                         </PasswordField>
-                        <PasswordField fx:id="f_confirmp">
+                        <PasswordField fx:id="f_confirmp" styleClass="default-field">
                            <VBox.margin>
                               <Insets />
                            </VBox.margin>
@@ -147,12 +147,12 @@
             </HBox>
             <HBox alignment="CENTER" layoutX="170.0" layoutY="413.0" prefHeight="25.0" prefWidth="269.0" spacing="50.0">
                <children>
-                  <Button fx:id="b_cleanFields" layoutX="170.0" layoutY="413.0" mnemonicParsing="false" onAction="#handleCleanBtn" prefWidth="100.0" text="Limpar">
+                  <Button fx:id="b_cleanFields" layoutX="170.0" layoutY="413.0" mnemonicParsing="false" onAction="#handleCleanBtn" prefWidth="100.0" styleClass="default-btn" text="Limpar">
                      <font>
                         <Font size="16.0" />
                      </font>
                   </Button>
-                  <Button fx:id="b_addUser" layoutX="255.0" layoutY="413.0" mnemonicParsing="false" onAction="#handleAddUserBtn" prefWidth="100.0" text="Cadastrar">
+                  <Button fx:id="b_addUser" layoutX="255.0" layoutY="413.0" mnemonicParsing="false" onAction="#handleAddUserBtn" prefWidth="100.0" styleClass="default-btn" text="Cadastrar">
                      <font>
                         <Font size="16.0" />
                      </font>

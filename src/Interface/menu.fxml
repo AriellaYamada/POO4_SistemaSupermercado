@@ -9,7 +9,6 @@
 <?import java.lang.*?>
 <?import javafx.scene.layout.*?>
 
-
 <VBox alignment="CENTER" prefHeight="600.0" prefWidth="800.0" spacing="20.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
    <children>
       <Label text="Olá, &lt;nome da pessoa&gt;">
@@ -17,7 +16,7 @@
             <Font size="18.0" />
          </font>
       </Label>
-      <Button layoutX="80.0" layoutY="257.0" mnemonicParsing="false" prefHeight="100.0" prefWidth="300.0">
+      <Button layoutX="80.0" layoutY="257.0" mnemonicParsing="false" prefHeight="100.0" prefWidth="300.0" styleClass="default-btn" stylesheets="@style.css">
          <font>
             <Font size="18.0" />
          </font>
@@ -47,7 +46,7 @@
             <Insets bottom="15.0" left="15.0" right="15.0" top="15.0" />
          </padding>
       </Button>
-      <Button mnemonicParsing="false" prefHeight="100.0" prefWidth="300.0">
+      <Button mnemonicParsing="false" prefHeight="100.0" prefWidth="300.0" styleClass="default-btn" stylesheets="@style.css">
          <font>
             <Font size="18.0" />
          </font>
@@ -77,7 +76,7 @@
             <Insets bottom="15.0" left="15.0" right="15.0" top="15.0" />
          </padding>
       </Button>
-      <Button layoutX="540.0" layoutY="257.0" mnemonicParsing="false" prefHeight="100.0" prefWidth="300.0">
+      <Button layoutX="540.0" layoutY="257.0" mnemonicParsing="false" prefHeight="100.0" prefWidth="300.0" styleClass="default-btn" stylesheets="@style.css">
          <font>
             <Font size="18.0" />
          </font>
