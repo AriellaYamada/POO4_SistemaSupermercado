@@ -27,7 +27,20 @@ public class loginController {
 
 	@FXML
 	void handleSendLogin(ActionEvent event) {
+		if (f_userlogin.getText().isEmpty() || f_userpassword.getText().isEmpty()) {
 
+		} else {
+			int response = client.Login(f_userlogin.getText(), f_userpassword.getText());
+			if (response == 1) {
+				//ERRO - Usuario inexistente
+			} else if (response == 2) {
+				//ERRO - Senha incorreta
+			} else if (response == 0) {
+				//Carrega menu do cliente
+			} else {
+				//Algum outro erro
+			}
+		}
 	}
 
 	@FXML
