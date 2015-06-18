@@ -1,18 +1,82 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.scene.text.*?>
+<?import javafx.geometry.*?>
 <?import javafx.scene.effect.*?>
 <?import javafx.scene.control.*?>
 <?import java.lang.*?>
 <?import javafx.scene.layout.*?>
 
-
-<TitledPane text="Sistema Supermercado" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
-   <content>
-      <Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0">
+<HBox prefHeight="600.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
+   <children>
+      <VBox prefHeight="600.0" prefWidth="400.0" styleClass="border-black" stylesheets="@style.css">
          <children>
-            <Button layoutX="172.0" layoutY="174.0" mnemonicParsing="false" text="Servidor" />
-            <Button layoutX="357.0" layoutY="174.0" mnemonicParsing="false" text="Cliente" />
+            <Label alignment="TOP_CENTER" contentDisplay="CENTER" layoutX="31.0" layoutY="36.0" nodeOrientation="LEFT_TO_RIGHT" prefHeight="40.0" prefWidth="392.0" text="Conectar como Servidor" textAlignment="CENTER">
+               <font>
+                  <Font size="28.0" />
+               </font>
+               <VBox.margin>
+                  <Insets bottom="100.0" />
+               </VBox.margin>
+            </Label>
+            <Label layoutX="11.0" layoutY="11.0" text="Porta:">
+               <VBox.margin>
+                  <Insets top="5.0" />
+               </VBox.margin>
+            </Label>
+            <TextField fx:id="serverPort" layoutX="11.0" layoutY="11.0">
+               <VBox.margin>
+                  <Insets bottom="82.0" top="5.0" />
+               </VBox.margin>
+            </TextField>
+            <Button fx:id="connectServerBtn" alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" prefHeight="25.0" prefWidth="394.0" text="Servidor" textAlignment="CENTER">
+               <VBox.margin>
+                  <Insets top="5.0" />
+               </VBox.margin></Button>
          </children>
-      </Pane>
-   </content>
-</TitledPane>
+         <padding>
+            <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
+         </padding>
+      </VBox>
+      <VBox layoutX="10.0" layoutY="10.0" prefHeight="600.0" prefWidth="400.0" styleClass="border-black" stylesheets="@style.css">
+         <children>
+            <Label alignment="TOP_CENTER" contentDisplay="CENTER" layoutX="31.0" layoutY="36.0" nodeOrientation="LEFT_TO_RIGHT" prefHeight="40.0" prefWidth="392.0" text="Conectar como Cliente" textAlignment="CENTER">
+               <font>
+                  <Font size="28.0" />
+               </font>
+               <VBox.margin>
+                  <Insets bottom="100.0" />
+               </VBox.margin>
+            </Label>
+            <Label text="IP:">
+               <VBox.margin>
+                  <Insets top="5.0" />
+               </VBox.margin>
+            </Label>
+            <TextField fx:id="clientIP">
+               <VBox.margin>
+                  <Insets bottom="15.0" top="5.0" />
+               </VBox.margin>
+            </TextField>
+            <Label layoutX="11.0" layoutY="11.0" text="Porta:">
+               <VBox.margin>
+                  <Insets top="5.0" />
+               </VBox.margin>
+            </Label>
+            <TextField fx:id="clientPort" layoutX="11.0" layoutY="11.0">
+               <VBox.margin>
+                  <Insets bottom="15.0" top="5.0" />
+               </VBox.margin>
+            </TextField>
+            <Button fx:id="connectClientBtn" alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" prefHeight="25.0" prefWidth="395.0" text="Cliente" textAlignment="CENTER">
+               <VBox.margin>
+                  <Insets top="5.0" />
+               </VBox.margin>
+            </Button>
+         </children>
+         <padding>
+            <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
+         </padding>
+      </VBox>
+   </children>
+</HBox>
