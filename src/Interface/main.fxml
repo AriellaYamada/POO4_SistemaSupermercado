@@ -1,5 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.scene.shape.*?>
+<?import javafx.scene.*?>
 <?import javafx.scene.text.*?>
 <?import javafx.geometry.*?>
 <?import javafx.scene.effect.*?>
@@ -9,37 +11,50 @@
 
 <HBox prefHeight="600.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
    <children>
-      <VBox prefHeight="600.0" prefWidth="400.0" styleClass="border-black" stylesheets="@style.css">
+      <VBox alignment="TOP_CENTER" prefHeight="600.0" prefWidth="400.0" styleClass="border-black" stylesheets="@style.css">
          <children>
+            <Group>
+               <children>
+                  <SVGPath content="M128 128h1024v128h-1024v-128zM128 640h1024v128h-1024v-128zM1696 192q0 40 -28 68t-68 28t-68 -28t-28 -68t28 -68t68 -28t68 28t28 68zM128 1152h1024v128h-1024v-128zM1696 704q0 40 -28 68t-68 28t-68 -28t-28 -68t28 -68t68 -28t68 28t28 68zM1696 1216 q0 40 -28 68t-68 28t-68 -28t-28 -68t28 -68t68 -28t68 28t28 68zM1792 384v-384h-1792v384h1792zM1792 896v-384h-1792v384h1792zM1792 1408v-384h-1792v384h1792z" scaleX="0.05" scaleY="0.05" scaleZ="0.05" />
+               </children>
+            </Group>
             <Label alignment="TOP_CENTER" contentDisplay="CENTER" layoutX="31.0" layoutY="36.0" nodeOrientation="LEFT_TO_RIGHT" prefHeight="40.0" prefWidth="392.0" text="Conectar como Servidor" textAlignment="CENTER">
                <font>
                   <Font size="28.0" />
                </font>
                <VBox.margin>
-                  <Insets bottom="100.0" />
+                  <Insets bottom="105.0" />
                </VBox.margin>
             </Label>
-            <Label layoutX="11.0" layoutY="11.0" text="Porta:">
+            <Label layoutX="11.0" layoutY="11.0" text="Porta">
                <VBox.margin>
                   <Insets top="5.0" />
                </VBox.margin>
             </Label>
-            <TextField fx:id="serverPort" layoutX="11.0" layoutY="11.0">
+            <TextField fx:id="serverPort" maxWidth="200.0" prefWidth="200.0">
                <VBox.margin>
                   <Insets bottom="82.0" top="5.0" />
                </VBox.margin>
             </TextField>
-            <Button fx:id="connectServerBtn" alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" prefHeight="25.0" prefWidth="394.0" text="Servidor" textAlignment="CENTER">
+            <Button fx:id="connectServerBtn" alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" prefHeight="25.0" prefWidth="200.0" text="Servidor" textAlignment="CENTER">
                <VBox.margin>
-                  <Insets top="5.0" />
-               </VBox.margin></Button>
+                  <Insets top="60.0" />
+               </VBox.margin>
+               <font>
+                  <Font size="16.0" />
+               </font></Button>
          </children>
          <padding>
             <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
          </padding>
       </VBox>
-      <VBox layoutX="10.0" layoutY="10.0" prefHeight="600.0" prefWidth="400.0" styleClass="border-black" stylesheets="@style.css">
+      <VBox alignment="TOP_CENTER" layoutX="10.0" layoutY="10.0" prefHeight="600.0" prefWidth="400.0" styleClass="border-black" stylesheets="@style.css">
          <children>
+            <Group>
+               <children>
+                  <SVGPath content="M1408 131q0 -120 -73 -189.5t-194 -69.5h-874q-121 0 -194 69.5t-73 189.5q0 53 3.5 103.5t14 109t26.5 108.5t43 97.5t62 81t85.5 53.5t111.5 20q9 0 42 -21.5t74.5 -48t108 -48t133.5 -21.5t133.5 21.5t108 48t74.5 48t42 21.5q61 0 111.5 -20t85.5 -53.5t62 -81 t43 -97.5t26.5 -108.5t14 -109t3.5 -103.5zM1088 1024q0 -159 -112.5 -271.5t-271.5 -112.5t-271.5 112.5t-112.5 271.5t112.5 271.5t271.5 112.5t271.5 -112.5t112.5 -271.5z" rotate="180.0" scaleX="0.05" scaleY="0.05" scaleZ="0.05" />
+               </children>
+            </Group>
             <Label alignment="TOP_CENTER" contentDisplay="CENTER" layoutX="31.0" layoutY="36.0" nodeOrientation="LEFT_TO_RIGHT" prefHeight="40.0" prefWidth="392.0" text="Conectar como Cliente" textAlignment="CENTER">
                <font>
                   <Font size="28.0" />
@@ -48,30 +63,33 @@
                   <Insets bottom="100.0" />
                </VBox.margin>
             </Label>
-            <Label text="IP:">
+            <Label text="IP">
                <VBox.margin>
                   <Insets top="5.0" />
                </VBox.margin>
             </Label>
-            <TextField fx:id="clientIP">
+            <TextField fx:id="clientIP" maxWidth="200.0" prefWidth="200.0">
                <VBox.margin>
                   <Insets bottom="15.0" top="5.0" />
                </VBox.margin>
             </TextField>
-            <Label layoutX="11.0" layoutY="11.0" text="Porta:">
+            <Label layoutX="11.0" layoutY="11.0" text="Porta">
                <VBox.margin>
                   <Insets top="5.0" />
                </VBox.margin>
             </Label>
-            <TextField fx:id="clientPort" layoutX="11.0" layoutY="11.0">
+            <TextField fx:id="clientPort" maxWidth="200.0" prefWidth="200.0">
                <VBox.margin>
                   <Insets bottom="15.0" top="5.0" />
                </VBox.margin>
             </TextField>
-            <Button fx:id="connectClientBtn" alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" prefHeight="25.0" prefWidth="395.0" text="Cliente" textAlignment="CENTER">
+            <Button fx:id="connectClientBtn" alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" prefHeight="25.0" prefWidth="200.0" text="Cliente" textAlignment="CENTER">
                <VBox.margin>
-                  <Insets top="5.0" />
+                  <Insets top="60.0" />
                </VBox.margin>
+               <font>
+                  <Font size="16.0" />
+               </font>
             </Button>
          </children>
          <padding>

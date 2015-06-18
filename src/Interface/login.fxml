@@ -1,5 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.scene.shape.*?>
+<?import javafx.scene.*?>
 <?import javafx.geometry.*?>
 <?import javafx.scene.text.*?>
 <?import javafx.scene.control.*?>
@@ -8,108 +10,162 @@
 
 <fx:root prefHeight="600.0" prefWidth="800.0" type="HBox" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="loginController">
    <children>
-    <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="493.0" prefWidth="257.0" styleClass="border-black" stylesheets="@style.css" HBox.hgrow="ALWAYS">
+      <VBox alignment="TOP_CENTER" prefWidth="250.0" spacing="5.0" styleClass="border-black" stylesheets="@style.css">
          <children>
-            <PasswordField fx:id="f_userpassword" layoutX="80.0" layoutY="212.0" />
-            <TextField fx:id="f_userlogin" layoutX="80.0" layoutY="154.0" />
-            <Label layoutX="80.0" layoutY="132.0" text="ID:" />
-            <Label layoutX="80.0" layoutY="190.0" text="Senha:" />
-            <Button fx:id="b_login" layoutX="133.0" layoutY="260.0" mnemonicParsing="false" onAction="#handleSendLogin" text="Entrar" />
+            <Group>
+               <children>
+                  <SVGPath content="M1184 640q0 -26 -19 -45l-544 -544q-19 -19 -45 -19t-45 19t-19 45v288h-448q-26 0 -45 19t-19 45v384q0 26 19 45t45 19h448v288q0 26 19 45t45 19t45 -19l544 -544q19 -19 19 -45zM1536 992v-704q0 -119 -84.5 -203.5t-203.5 -84.5h-320q-13 0 -22.5 9.5t-9.5 22.5 q0 4 -1 20t-0.5 26.5t3 23.5t10 19.5t20.5 6.5h320q66 0 113 47t47 113v704q0 66 -47 113t-113 47h-288h-11h-13t-11.5 1t-11.5 3t-8 5.5t-7 9t-2 13.5q0 4 -1 20t-0.5 26.5t3 23.5t10 19.5t20.5 6.5h320q119 0 203.5 -84.5t84.5 -203.5z" scaleX="0.05" scaleY="0.05" scaleZ="0.05" />
+               </children>
+            </Group>
             <Label layoutX="107.0" layoutY="14.0" text="Entrar">
                <font>
                   <Font size="36.0" />
                </font>
+               <VBox.margin>
+                  <Insets bottom="80.0" />
+               </VBox.margin>
             </Label>
+            <Label layoutX="80.0" layoutY="132.0" text="ID:" />
+            <TextField fx:id="f_userlogin" layoutX="80.0" layoutY="154.0" />
+            <Label layoutX="80.0" layoutY="190.0" text="Senha:" />
+            <PasswordField fx:id="f_userpassword" layoutX="80.0" layoutY="212.0" />
+            <Button fx:id="b_login" layoutX="133.0" layoutY="260.0" mnemonicParsing="false" onAction="#handleSendLogin" prefWidth="100.0" text="Entrar">
+               <VBox.margin>
+                  <Insets top="80.0" />
+               </VBox.margin>
+               <font>
+                  <Font size="16.0" />
+               </font>
+            </Button>
          </children>
-      </AnchorPane>
-    <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="493.0" prefWidth="438.0" styleClass="border-black" stylesheets="@style.css" HBox.hgrow="ALWAYS">
+         <HBox.margin>
+            <Insets />
+         </HBox.margin>
+         <padding>
+            <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
+         </padding>
+      </VBox>
+      <VBox alignment="TOP_CENTER" layoutX="14.0" prefWidth="550.0" spacing="5.0" styleClass="border-black" stylesheets="@style.css">
          <children>
+            <Group>
+               <children>
+                  <SVGPath content="M704 640q-159 0 -271.5 112.5t-112.5 271.5t112.5 271.5t271.5 112.5t271.5 -112.5t112.5 -271.5t-112.5 -271.5t-271.5 -112.5zM1664 512h352q13 0 22.5 -9.5t9.5 -22.5v-192q0 -13 -9.5 -22.5t-22.5 -9.5h-352v-352q0 -13 -9.5 -22.5t-22.5 -9.5h-192q-13 0 -22.5 9.5 t-9.5 22.5v352h-352q-13 0 -22.5 9.5t-9.5 22.5v192q0 13 9.5 22.5t22.5 9.5h352v352q0 13 9.5 22.5t22.5 9.5h192q13 0 22.5 -9.5t9.5 -22.5v-352zM928 288q0 -52 38 -90t90 -38h256v-238q-68 -50 -171 -50h-874q-121 0 -194 69t-73 190q0 53 3.5 103.5t14 109t26.5 108.5 t43 97.5t62 81t85.5 53.5t111.5 20q19 0 39 -17q79 -61 154.5 -91.5t164.5 -30.5t164.5 30.5t154.5 91.5q20 17 39 17q132 0 217 -96h-223q-52 0 -90 -38t-38 -90v-192z" rotate="180.0" scaleX="0.05" scaleY="0.05" scaleZ="0.05" />
+               </children>
+            </Group>
             <Label alignment="CENTER" contentDisplay="CENTER" layoutX="170.0" nodeOrientation="LEFT_TO_RIGHT" prefHeight="53.0" text="Cadastrar" textAlignment="RIGHT">
                <font>
                   <Font size="36.0" />
                </font>
+               <VBox.margin>
+                  <Insets bottom="30.0" />
+               </VBox.margin>
             </Label>
-            <VBox layoutX="14.0" layoutY="104.0" prefHeight="288.0" prefWidth="100.0">
+            <HBox alignment="TOP_CENTER" layoutX="14.0" layoutY="104.0" prefHeight="289.0" prefWidth="370.0" spacing="15.0">
                <children>
-                  <Label contentDisplay="TOP" maxWidth="1.7976931348623157E308" minHeight="25.0" nodeOrientation="RIGHT_TO_LEFT" text="Nome:" textAlignment="RIGHT">
-                     <VBox.margin>
-                        <Insets top="8.0" />
-                     </VBox.margin>
-                  </Label>
-                  <Label maxWidth="1.7976931348623157E308" minHeight="65.0" nodeOrientation="RIGHT_TO_LEFT" text="Endereço:" textAlignment="RIGHT">
-                     <VBox.margin>
-                        <Insets top="8.0" />
-                     </VBox.margin>
-                  </Label>
-                  <Label maxWidth="1.7976931348623157E308" minHeight="25.0" nodeOrientation="RIGHT_TO_LEFT" text="Telefone:" textAlignment="RIGHT">
-                     <VBox.margin>
-                        <Insets top="8.0" />
-                     </VBox.margin>
-                  </Label>
-                  <Label maxWidth="1.7976931348623157E308" minHeight="25.0" nodeOrientation="RIGHT_TO_LEFT" text="E-mail:" textAlignment="RIGHT">
-                     <VBox.margin>
-                        <Insets top="8.0" />
-                     </VBox.margin>
-                  </Label>
-                  <Label maxWidth="1.7976931348623157E308" minHeight="25.0" nodeOrientation="RIGHT_TO_LEFT" text="ID:" textAlignment="RIGHT">
-                     <VBox.margin>
-                        <Insets top="8.0" />
-                     </VBox.margin>
-                  </Label>
-                  <Label maxWidth="1.7976931348623157E308" minHeight="25.0" nodeOrientation="RIGHT_TO_LEFT" text="Senha:" textAlignment="RIGHT">
-                     <VBox.margin>
-                        <Insets top="8.0" />
-                     </VBox.margin>
-                  </Label>
-                  <Label maxWidth="1.7976931348623157E308" minHeight="25.0" nodeOrientation="RIGHT_TO_LEFT" text="Confirmar Senha:" textAlignment="RIGHT">
-                     <VBox.margin>
-                        <Insets top="8.0" />
-                     </VBox.margin>
-                  </Label>
+                  <VBox layoutX="14.0" layoutY="104.0" prefWidth="100.0" spacing="6.0">
+                     <children>
+                        <Label contentDisplay="TOP" maxWidth="1.7976931348623157E308" minHeight="25.0" nodeOrientation="RIGHT_TO_LEFT" text="Nome:" textAlignment="RIGHT">
+                           <VBox.margin>
+                              <Insets />
+                           </VBox.margin>
+                        </Label>
+                        <Label maxWidth="1.7976931348623157E308" minHeight="100.0" nodeOrientation="RIGHT_TO_LEFT" prefHeight="100.0" text="Endereço:" textAlignment="RIGHT">
+                           <VBox.margin>
+                              <Insets />
+                           </VBox.margin>
+                        </Label>
+                        <Label maxWidth="1.7976931348623157E308" minHeight="25.0" nodeOrientation="RIGHT_TO_LEFT" text="Telefone:" textAlignment="RIGHT">
+                           <VBox.margin>
+                              <Insets />
+                           </VBox.margin>
+                        </Label>
+                        <Label maxWidth="1.7976931348623157E308" minHeight="25.0" nodeOrientation="RIGHT_TO_LEFT" text="E-mail:" textAlignment="RIGHT">
+                           <VBox.margin>
+                              <Insets />
+                           </VBox.margin>
+                        </Label>
+                        <Label maxWidth="1.7976931348623157E308" minHeight="25.0" nodeOrientation="RIGHT_TO_LEFT" text="ID:" textAlignment="RIGHT">
+                           <VBox.margin>
+                              <Insets />
+                           </VBox.margin>
+                        </Label>
+                        <Label maxWidth="1.7976931348623157E308" minHeight="25.0" nodeOrientation="RIGHT_TO_LEFT" text="Senha:" textAlignment="RIGHT">
+                           <VBox.margin>
+                              <Insets />
+                           </VBox.margin>
+                        </Label>
+                        <Label maxWidth="1.7976931348623157E308" minHeight="25.0" nodeOrientation="RIGHT_TO_LEFT" text="Confirmar Senha:" textAlignment="RIGHT">
+                           <VBox.margin>
+                              <Insets />
+                           </VBox.margin>
+                        </Label>
+                     </children>
+                  </VBox>
+                  <VBox layoutX="119.0" layoutY="104.0" prefWidth="365.0" spacing="6.0">
+                     <children>
+                        <TextField fx:id="f_name">
+                           <VBox.margin>
+                              <Insets />
+                           </VBox.margin>
+                        </TextField>
+                        <TextArea fx:id="f_address" minHeight="100.0" prefHeight="100.0" prefWidth="200.0">
+                           <VBox.margin>
+                              <Insets />
+                           </VBox.margin>
+                        </TextArea>
+                        <TextField fx:id="f_tel">
+                           <VBox.margin>
+                              <Insets />
+                           </VBox.margin>
+                        </TextField>
+                        <TextField fx:id="f_email">
+                           <VBox.margin>
+                              <Insets />
+                           </VBox.margin>
+                        </TextField>
+                        <TextField fx:id="f_id">
+                           <VBox.margin>
+                              <Insets />
+                           </VBox.margin>
+                        </TextField>
+                        <PasswordField fx:id="f_password">
+                           <VBox.margin>
+                              <Insets />
+                           </VBox.margin>
+                        </PasswordField>
+                        <PasswordField fx:id="f_confirmp">
+                           <VBox.margin>
+                              <Insets />
+                           </VBox.margin>
+                        </PasswordField>
+                     </children>
+                     <padding>
+                        <Insets right="113.0" />
+                     </padding>
+                  </VBox>
                </children>
-            </VBox>
-            <VBox layoutX="119.0" layoutY="104.0" prefHeight="289.0" prefWidth="272.0">
+            </HBox>
+            <HBox alignment="CENTER" layoutX="170.0" layoutY="413.0" prefHeight="25.0" prefWidth="269.0" spacing="50.0">
                <children>
-                  <TextField fx:id="f_name">
-                     <VBox.margin>
-                        <Insets top="8.0" />
-                     </VBox.margin>
-                  </TextField>
-                  <TextField fx:id="f_address" prefHeight="65.0">
-                     <VBox.margin>
-                        <Insets top="8.0" />
-                     </VBox.margin>
-                  </TextField>
-                  <TextField fx:id="f_tel">
-                     <VBox.margin>
-                        <Insets top="8.0" />
-                     </VBox.margin>
-                  </TextField>
-                  <TextField fx:id="f_email">
-                     <VBox.margin>
-                        <Insets top="8.0" />
-                     </VBox.margin>
-                  </TextField>
-                  <TextField fx:id="f_id">
-                     <VBox.margin>
-                        <Insets top="8.0" />
-                     </VBox.margin>
-                  </TextField>
-                  <PasswordField fx:id="f_password">
-                     <VBox.margin>
-                        <Insets top="8.0" />
-                     </VBox.margin>
-                  </PasswordField>
-                  <PasswordField fx:id="f_confirmp">
-                     <VBox.margin>
-                        <Insets top="8.0" />
-                     </VBox.margin>
-                  </PasswordField>
+                  <Button fx:id="b_cleanFields" layoutX="170.0" layoutY="413.0" mnemonicParsing="false" onAction="#handleCleanBtn" prefWidth="100.0" text="Limpar">
+                     <font>
+                        <Font size="16.0" />
+                     </font>
+                  </Button>
+                  <Button fx:id="b_addUser" layoutX="255.0" layoutY="413.0" mnemonicParsing="false" onAction="#handleAddUserBtn" prefWidth="100.0" text="Cadastrar">
+                     <font>
+                        <Font size="16.0" />
+                     </font>
+                  </Button>
                </children>
-            </VBox>
-            <Button fx:id="b_cleanFields" layoutX="170.0" layoutY="413.0" mnemonicParsing="false" onAction="#handleCleanBtn" text="Limpar" />
-            <Button fx:id="b_addUser" layoutX="255.0" layoutY="413.0" mnemonicParsing="false" onAction="#handleAddUserBtn" text="Cadastrar" />
+               <VBox.margin>
+                  <Insets top="30.0" />
+               </VBox.margin>
+            </HBox>
          </children>
-      </AnchorPane>
+         <padding>
+            <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
+         </padding>
+      </VBox>
    </children>
 </fx:root>
