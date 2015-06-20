@@ -12,8 +12,8 @@ public class Client {
 	private boolean logged;
 	private String id;
 
-	public Client () {
-		conn = new Connection();
+	public Client (String ip, int port) {
+		conn = new Connection(ip, port);
 		logged = false;
 	}
 
