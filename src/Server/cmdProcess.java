@@ -20,9 +20,19 @@ public class cmdProcess {
 		switch (cmd[0]){
 			case "newuser":
 				response = Users.getInstance().Register(cmd[1], cmd[2], cmd[3], cmd[4], cmd[5], cmd[6]);
+				if (response == 0)
+					line = "ok";
+				else
+					line = "fail|f_id|este login ja esta sendo utilizado";
 				break;
 			case "login":
 				response = Users.getInstance().Login(cmd[1], cmd[2]);
+				if (response == 0)
+					line = "ok";
+				else if (response == 1)
+					line = "fail|f_userlogin|usuario nao encontrado";
+				else
+					line = "fail|f_userpassword|senha incorreta";
 				break;
 			case "search":
 				break;
@@ -39,7 +49,6 @@ public class cmdProcess {
 			default:
 				break;
 		}
-		line = "" + response;
 		return line;
 	}
 }
