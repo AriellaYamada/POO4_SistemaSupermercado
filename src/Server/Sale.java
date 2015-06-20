@@ -11,4 +11,8 @@ public class Sale {
 		this.product = product;
 		this.quantity = quantity;
 	}
+
+	public String getClientId() { return clientId; }
+	public String getProduct() { return product; }
+	public int getQuantity() { return quantity; }
 }
