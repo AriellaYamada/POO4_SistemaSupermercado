@@ -29,7 +29,7 @@ public class Users {
 	public List<User> ListAll() { return users; }
 
 	public int Register (String name, String address, String tel, String email, String id, String password) {
-		if (CheckId(id) == true) {
+		if (checkId(id) == true) {
 			User new_user = new User(name, address, tel, email, id, password);
 			users.add(new_user);
 
@@ -38,7 +38,7 @@ public class Users {
 		return 1;
 	}
 
-	public boolean CheckId (String id) {
+	public boolean checkId (String id) {
 
 		filtered.filter(u -> u.getId().equals(id));
 		if (filtered.count() == 0)
