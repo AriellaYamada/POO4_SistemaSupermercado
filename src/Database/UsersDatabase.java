@@ -17,6 +17,18 @@ public class UsersDatabase extends Database {
 			fw.append(HEADER);
 			fw.append(ENDLINE);
 			fw.flush();
+			
+
+			while(//lista não vazia) {
+				fw.append(Users.getInstance().getName());
+				fw.append(SEPARATOR);
+				fw.append(Users.getInstance().getAdress());
+				fw.append(SEPARATOR);
+				fw.append(Users.getInstance().getTel());
+				fw.append(SEPARATOR);
+				fw.append(Users.getInstance().getName());
+				fw.append(SEPARATOR);
+			}
 
 
 			fw.flush();
