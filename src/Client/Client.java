@@ -1,7 +1,6 @@
 package Client;
 
-import java.util.Scanner;
-import static java.lang.System.*;
+import java.io.IOException;
 
 public class Client {
 
@@ -12,7 +11,7 @@ public class Client {
 	private boolean logged;
 	private String id;
 
-	public Client (String ip, int port) {
+	public Client (String ip, int port) throws IOException {
 		conn = new Connection(ip, port);
 		logged = false;
 	}
