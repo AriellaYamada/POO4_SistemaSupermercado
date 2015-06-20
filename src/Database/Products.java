@@ -27,9 +27,10 @@ public class Products {
 		return productsDB;
 	}
 
+	public List<Product> ListAll() { return products; }
+
 	public void Register(String name, float price, GregorianCalendar expiration, String provider, int quantity) {
 		Product new_product = new Product(name, price, expiration, provider, quantity);
 		products.add(new_product);
 	}
-
 }

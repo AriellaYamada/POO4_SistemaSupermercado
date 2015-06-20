@@ -1,6 +1,7 @@
 package Server;
 
 import javax.xml.soap.SAAJResult;
+import java.util.Calendar;
 import java.util.GregorianCalendar;
 
 public class Product {
@@ -24,5 +25,11 @@ public class Product {
 	public GregorianCalendar getExpiration() { return expiration; }
 	public String getProvider() { return provider; }
 	public int getQuantity() { return quantity; }
+
+	public static String CalendarToStr (GregorianCalendar date) {
+		return date.get(Calendar.DAY_OF_MONTH) + "/"
+				+(date.get(Calendar.MONTH)+1) + "/"
+				+date.get(Calendar.YEAR);
+	}
 
 }

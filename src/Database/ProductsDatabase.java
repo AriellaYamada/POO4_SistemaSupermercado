@@ -6,38 +6,35 @@ import java.io.IOException;
 
 import static java.lang.System.out;
 
-public class UsersDatabase extends Database {
+public class ProductsDatabase extends Database {
 
 
 	public void WriteFile() {
 		OpenWriter(false);
 		final String SEPARATOR = ",";
 		final String ENDLINE = "\n";
-		final String HEADER = "name, address, telephone, email, id, password";
+		final String HEADER = "name, price, expiration, provider, quantity";
 
 		try {
 			fw.append(HEADER);
 			fw.append(ENDLINE);
 			fw.flush();
 
-			for (User u : Users.getInstance().ListAll()) {
+			for (Product p : Products.getInstance().ListAll()) {
 
-				fw.append(u.getName());
+				fw.append(p.getName());
 				fw.append(SEPARATOR);
 
-				fw.append(u.getAddress());
+				fw.append(Float.valueOf(p.getPrice()).toString());
 				fw.append(SEPARATOR);
 
-				fw.append(u.getTel());
+				fw.append(p.CalendarToStr(p.getExpiration()));
 				fw.append(SEPARATOR);
 
-				fw.append(u.getEmail());
+				fw.append(p.getProvider());
 				fw.append(SEPARATOR);
 
-				fw.append(u.getId());
-				fw.append(SEPARATOR);
-
-				fw.append(u.getPassword());
+				fw.append(Integer.valueOf(p.getQuantity()).toString());
 				fw.append(ENDLINE);
 
 				fw.flush();
@@ -58,7 +55,7 @@ public class UsersDatabase extends Database {
 			br.readLine();
 			while ((line = br.readLine()) != null) {
 				String[] splited = line.split(splitSign);
-				Users.getInstance().Register(splited[0], splited[1], splited[2], splited[3], splited[4], splited[5]);
+				Products.getInstance().Register(splited[0], splited[1], splited[2], splited[3], splited[4]);
 			}
 		} catch (IOException e) {
 			out.println("Erro na leitura do arquivo.");
