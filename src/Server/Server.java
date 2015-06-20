@@ -18,7 +18,7 @@ public class Server implements Runnable {
 	Server(int port) {
 		try {
 			ss = new ServerSocket(port);
-			showPossibleIPs();
+			//showPossibleIPs();
 			System.out.println("* Porta " + port + " aberta!\n");
 			acceptConnections = true;
 		} catch (IOException e) {
@@ -52,7 +52,7 @@ public class Server implements Runnable {
 		try {
 			conect = ss.accept();
 		} catch (IOException e){
-			out.println("Erro ao criar conexão.");
+			out.println("Erro ao criar conexï¿½o.");
 		}
 		return conect;
 	}

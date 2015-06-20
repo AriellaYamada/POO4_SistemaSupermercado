@@ -58,7 +58,6 @@ public class mainController {
 					e1.printStackTrace();
 				}
 			}
-
 		}
 	}
 }
