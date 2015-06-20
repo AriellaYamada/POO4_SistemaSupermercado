@@ -3,6 +3,7 @@ package Database;
 import Server.Product;
 import Server.User;
 
+import java.util.GregorianCalendar;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.stream.Stream;
@@ -26,8 +27,9 @@ public class Products {
 		return productsDB;
 	}
 
-	/*public void Register(String name, float price, ) {
-
-	}*/
+	public void Register(String name, float price, GregorianCalendar expiration, String provider, int quantity) {
+		Product new_product = new Product(name, price, expiration, provider, quantity);
+		products.add(new_product);
+	}
 
 }
