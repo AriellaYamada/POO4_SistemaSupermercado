@@ -110,18 +110,18 @@ public class loginController {
 			} else {
 				response = client.AddNewUser(f_name.getText(), f_address.getText(), f_tel.getText(), f_email.getText(),
 						f_id.getText(), f_password.getText());
-			}
-		}
 
-		if (response.equals("ok")){
-			try {
-				MainInterface.changeScene("menu.fxml");
-			} catch (IOException e) {
-				System.out.println("Erro ao exibir a tela");
+				if (response.equals("ok")){
+					try {
+						MainInterface.changeScene("menu.fxml");
+					} catch (IOException e) {
+						System.out.println("Erro ao exibir a tela");
+					}
+				}
+				else {
+					System.out.println(response);
+				}
 			}
-		}
-		else {
-			System.out.println(response);
 		}
 	}
 }
