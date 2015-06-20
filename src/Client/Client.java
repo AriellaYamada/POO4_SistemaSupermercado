@@ -16,11 +16,13 @@ public class Client {
 		logged = false;
 	}
 
-	public void AddNewUser (String name, String address, String tel, String email, String id, String password) {
+	public String AddNewUser (String name, String address, String tel, String email, String id, String password) {
 
 		signal = "newuser" + split + name + split + address + split + tel + split + email + split + id + split + password;
 
 		conn.SendSignal(signal);
+
+		return conn.ReceiveSignal();
 	}
 
 	public String Login (String id, String password) {
