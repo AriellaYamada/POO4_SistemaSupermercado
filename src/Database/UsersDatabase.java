@@ -1,5 +1,7 @@
 package Database;
 
+import Server.*;
+
 import java.io.IOException;
 
 import static java.lang.System.out;
@@ -11,33 +13,34 @@ public class UsersDatabase extends Database {
 		OpenWriter(false);
 		final String SEPARATOR = ",";
 		final String ENDLINE = "\n";
-		final String HEADER = "name,adress, telephone, email, id, password";
+		final String HEADER = "name, address, telephone, email, id, password";
 
 		try {
 			fw.append(HEADER);
 			fw.append(ENDLINE);
 			fw.flush();
 
+			for (User u : Users.getInstance().ListAll()) {
 
-			for (User u : Users.getInstance().) {
-				fw.append(Users.getInstance().getName());
+				fw.append(u.getName());
 				fw.append(SEPARATOR);
-				fw.append(Users.getInstance().getAdress());
+				fw.append(u.getAddress());
 				fw.append(SEPARATOR);
-				fw.append(Users.getInstance().getTel());
+				fw.append(u.getTel());
 				fw.append(SEPARATOR);
-				fw.append(Users.getInstance().getName());
+				fw.append(u.getEmail());
 				fw.append(SEPARATOR);
+				fw.append(u.getId());
+				fw.append(SEPARATOR);
+				fw.append(u.getPassword());
+				fw.append(ENDLINE);
 			}
-
-
 			fw.flush();
 
 		} catch (IOException e){
 			out.println("Erro na escrita do arquivo.");
 			e.printStackTrace();
 		}
-
 	}
 
 	public void ReadFile() {
