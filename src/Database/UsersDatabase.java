@@ -17,9 +17,9 @@ public class UsersDatabase extends Database {
 			fw.append(HEADER);
 			fw.append(ENDLINE);
 			fw.flush();
-			
 
-			while(//lista não vazia) {
+
+			for (User u : Users.getInstance().) {
 				fw.append(Users.getInstance().getName());
 				fw.append(SEPARATOR);
 				fw.append(Users.getInstance().getAdress());
