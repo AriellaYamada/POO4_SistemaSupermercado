@@ -12,6 +12,7 @@ public class Conection implements Runnable{
 	public Scanner scan = null;
 	public PrintWriter pw = null;
 
+	//Estabelece conexao com o cliente
 	Conection(Socket s){
 		try {
 			sock = s;
@@ -23,6 +24,7 @@ public class Conection implements Runnable{
 		}
 	}
 
+	//Thread que espera comando do cliente
 	public void run(){
 		while (scan.hasNextLine()){
 			String line = scan.nextLine();

@@ -1,11 +1,10 @@
 package Database;
 
 import Server.Product;
-import Server.User;
 
-import java.util.GregorianCalendar;
 import java.util.LinkedList;
 import java.util.List;
+import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
 public class Products {
@@ -29,9 +28,28 @@ public class Products {
 
 	public List<Product> ListAll() { return products; }
 
-	public void Register(String name, float price, String expiration, String provider, int quantity) {
+	public int Register(String name, float price, String expiration, String provider, int quantity) {
 
-		Product new_product = new Product(name, price, expiration, provider, quantity);
-		products.add(new_product);
+		if(checkProduct(name) == true) {
+			Product new_product = new Product(name, price, expiration, provider, quantity);
+			products.add(new_product);
+			return 0;
+		}
+		return 1;
+	}
+
+	public boolean checkProduct(String name) {
+		filtered.filter(p -> p.getName().equals(name));
+		if (filtered.count() == 0)
+			return true;
+		return false;
+	}
+
+	public Product searchProduct(String productName) {
+
+		filtered.filter(p -> p.getName().equals(productName));
+		List<Product> collector = filtered.collect(Collectors.toList());
+
+		return collector.get(0);
 	}
 }

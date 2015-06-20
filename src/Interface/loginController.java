@@ -1,47 +1,73 @@
 package Interface;
 
 import Client.Client;
-import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
 
+import javafx.event.ActionEvent;
+
+import java.io.IOException;
+
 public class loginController {
-	@FXML public Button b_login;
-	@FXML public Button b_cleanFields;
-	@FXML public Button b_addUser;
-	@FXML public TextField f_userlogin;
-	@FXML public TextField f_userpassword;
-	@FXML public TextField f_name;
-	@FXML public TextField f_address;
-	@FXML public TextField f_tel;
-	@FXML public TextField f_email;
-	@FXML public TextField f_id;
-	@FXML public TextField f_password;
-	@FXML public TextField f_confirmp;
+	@FXML private Button b_login;
+	@FXML private Button b_cleanFields;
+	@FXML private Button b_addUser;
+	@FXML private TextField f_userlogin;
+	@FXML private TextField f_userpassword;
+	@FXML private TextField f_name;
+	@FXML private TextArea f_address;
+	@FXML private TextField f_tel;
+	@FXML private TextField f_email;
+	@FXML private TextField f_id;
+	@FXML private TextField f_password;
+	@FXML private TextField f_confirmp;
 
 	public Client client;
 
 
 	@FXML
-	void handleSendLogin(ActionEvent event) {
-		if (f_userlogin.getText().isEmpty() || f_userpassword.getText().isEmpty()) {
+	public void handleSendLogin(ActionEvent event) {
+		f_userlogin.getStyleClass().remove("red-field");
+		f_userpassword.getStyleClass().remove("red-field");
 
-		} else {
-			int response = client.Login(f_userlogin.getText(), f_userpassword.getText());
-			if (response == 1) {
-				//ERRO - Usuario inexistente
-			} else if (response == 2) {
-				//ERRO - Senha incorreta
-			} else if (response == 0) {
-				//Carrega menu do cliente
+		String userlogin = f_userlogin.getText();
+		String userpassword = f_userpassword.getText();
+
+		if (userlogin.isEmpty()){
+			f_userlogin.getStyleClass().add("red-field");
+		}
+
+		if (userpassword.isEmpty()) {
+			f_userpassword.getStyleClass().add("red-field");
+		}
+
+		if (!userlogin.isEmpty() && !userlogin.isEmpty()) {
+			String response = client.Login(f_userlogin.getText(), f_userpassword.getText());
+			String[] splited = response.split("|");
+
+			if (splited[0].equals("ok")) {
+				try {
+					MainInterface.changeScene("menu.fxml");
+				} catch (IOException e) {
+					e.printStackTrace();
+				}
 			} else {
-				//Algum outro erro
+				String[] error = splited[1].split("&");
+
+				switch (error[0]){
+					case "f_userlogin":
+						f_userlogin.getStyleClass().add("red-field");
+						break;
+					case "f_userpassword":
+						f_userpassword.getStyleClass().add("red-field");
+						break;
+				}
 			}
 		}
 	}
 
 	@FXML
-	void handleCleanBtn(ActionEvent event) {
+	public void handleCleanBtn(ActionEvent event) {
 		f_name.clear();
 		f_address.clear();
 		f_tel.clear();
@@ -52,7 +78,7 @@ public class loginController {
 	}
 
 	@FXML
-	void handleAddUserBtn(ActionEvent event) {
+	public void handleAddUserBtn(ActionEvent event) {
 
 		if(f_name.getText().isEmpty() || f_address.getText().isEmpty() || f_tel.getText().isEmpty()
 				|| f_email.getText().isEmpty() || f_id.getText().isEmpty()|| f_password.getText().isEmpty()

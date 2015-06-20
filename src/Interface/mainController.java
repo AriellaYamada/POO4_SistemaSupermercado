@@ -7,6 +7,8 @@ import javafx.scene.control.*;
 
 import javafx.event.ActionEvent;
 
+import java.io.IOException;
+
 public class mainController {
 
 	@FXML private Button connectClientBtn;
@@ -19,7 +21,7 @@ public class mainController {
 	public void connectAsServer(ActionEvent event) {
 		String port = serverPort.getText();
 
-		if (!port.equals("")) {
+		if (!port.isEmpty()) {
 			String[] str = new String[1];
 			str[0] = port;
 			ServerMain.main(str);
@@ -34,19 +36,28 @@ public class mainController {
 		String ip = clientIP.getText();
 		String port = clientPort.getText();
 
-		if (port.equals("")){
+		if (port.isEmpty()){
 			clientPort.getStyleClass().add("red-field");
 		}
 
-		if (ip.equals("")){
+		if (ip.isEmpty()){
 			clientIP.getStyleClass().add("red-field");
 		}
 
-		if (!port.equals("") && !ip.equals("")){
+		if (!port.isEmpty() && !ip.isEmpty()){
 			String[] str = new String[2];
 			str[0] = ip;
 			str[1] = port;
-			ClientMain.main(str);
+			try {
+				MainInterface.changeScene("waitingConnection.fxml");
+				ClientMain.main(str);
+			} catch (IOException e) {
+				try {
+					MainInterface.changeScene("main.fxml");
+				} catch (IOException e1) {
+					e1.printStackTrace();
+				}
+			}
 		}
 	}
 }
