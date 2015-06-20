@@ -55,7 +55,7 @@ public class ProductsDatabase extends Database {
 			br.readLine();
 			while ((line = br.readLine()) != null) {
 				String[] splited = line.split(splitSign);
-				Products.getInstance().Register(splited[0], splited[1], splited[2], splited[3], splited[4]);
+				Products.getInstance().Register(splited[0], Float.parseFloat(splited[1]), splited[2], splited[3], Integer.parseInt(splited[4]));
 			}
 		} catch (IOException e) {
 			out.println("Erro na leitura do arquivo.");
