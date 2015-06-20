@@ -24,23 +24,21 @@ public class Client {
 		conn.SendSignal(signal);
 	}
 
-	public int Login (String id, String password) {
-		signal = "login" + split + id + split + password;
+	public String Login (String id, String password) {
 
+		//Comando a ser enviado ao servidor
+		signal = "login" + split + id + split + password;
 		conn.SendSignal(signal);
 
+		//Resposta recebida do servidor
 		String response = conn.ReceiveSignal();
-		if (response.equals("wrong_user")) {
-			return 1;
-		} else if (response.equals("wrong_password")) {
-				return 2;
-		} else if (response.equals("true")) {
+
+		//Login efetuado com sucesso
+		if (response.equals("ok")) {
 			logged = true;
 			this.id = id;
-			return 0;
-		} else {
-			return -1;
 		}
+		return response;
 	}
 
 	public void Logout () {
