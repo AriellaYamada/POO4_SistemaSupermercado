@@ -20,9 +20,11 @@ public class Client {
 
 		signal = "newuser" + split + name + split + address + split + tel + split + email + split + id + split + password;
 
+		System.out.println(signal);
 		conn.SendSignal(signal);
 
-		return conn.ReceiveSignal();
+		String response = conn.ReceiveSignal();
+		return response;
 	}
 
 	public String Login (String id, String password) {
