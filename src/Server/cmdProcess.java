@@ -2,21 +2,21 @@ package Server;
 
 import Database.*;
 
-public class Database {
-	private Database instance = null;
+public class cmdProcess {
+	private cmdProcess instance = null;
 
-	public Database getDB(){
+	public cmdProcess getDB(){
 		if (instance == null){
-			instance = new Database();
+			instance = new cmdProcess();
 		}
 		return instance;
 	}
 
-	private Database (){}
+	private cmdProcess(){}
 
 	public static String process (String line){
 		String[] cmd = line.split(",");
-		int response;
+		int response = -2;
 		switch (cmd[0]){
 			case "newuser":
 				response = Users.getInstance().Register(cmd[1], cmd[2], cmd[3], cmd[4], cmd[5], cmd[6]);
@@ -39,6 +39,7 @@ public class Database {
 			default:
 				break;
 		}
+		line = "" + response;
 		return line;
 	}
 }
