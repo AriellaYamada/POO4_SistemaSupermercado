@@ -7,6 +7,8 @@ import javafx.scene.control.*;
 import javafx.event.ActionEvent;
 
 import java.io.IOException;
+import java.util.LinkedList;
+import java.util.List;
 
 public class loginController {
 	@FXML private Button b_login;
@@ -79,17 +81,47 @@ public class loginController {
 
 	@FXML
 	public void handleAddUserBtn(ActionEvent event) {
+		boolean validateFields = true;
+		String response;
 
-		if(f_name.getText().isEmpty() || f_address.getText().isEmpty() || f_tel.getText().isEmpty()
-				|| f_email.getText().isEmpty() || f_id.getText().isEmpty()|| f_password.getText().isEmpty()
-				|| f_confirmp.getText().isEmpty()) {
+		List<TextInputControl> controls = new LinkedList<>();
+		controls.add(f_name);
+		controls.add(f_address);
+		controls.add(f_tel);
+		controls.add(f_email);
+		controls.add(f_id);
+		controls.add(f_password);
+		controls.add(f_confirmp);
 
-		} else if(f_password.getText() != f_confirmp.getText()) {
-
-		} else {
-			client.AddNewUser(f_name.getText(), f_address.getText(), f_tel.getText(), f_email.getText(),
-					f_id.getText(), f_password.getText());
+		for (TextInputControl c : controls){
+			if (c.getText().isEmpty()){
+				validateFields = false;
+				c.getStyleClass().add("red-field");
+				c.setTooltip(new Tooltip("Este campo é obrigatório"));
+			}
 		}
 
+		if (validateFields) {
+			if (!f_password.getText().equals(f_confirmp.getText())) {
+				f_password.getStyleClass().add("red-field");
+				f_confirmp.getStyleClass().add("red-field");
+				f_password.setTooltip(new Tooltip("As senhas digitadas não são iguais"));
+				f_confirmp.setTooltip(new Tooltip("As senhas digitadas não são iguais"));
+			} else {
+				response = client.AddNewUser(f_name.getText(), f_address.getText(), f_tel.getText(), f_email.getText(),
+						f_id.getText(), f_password.getText());
+			}
+		}
+
+		if (response.equals("ok")){
+			try {
+				MainInterface.changeScene("menu.fxml");
+			} catch (IOException e) {
+				System.out.println("Erro ao exibir a tela");
+			}
+		}
+		else {
+			System.out.println(response);
+		}
 	}
 }
