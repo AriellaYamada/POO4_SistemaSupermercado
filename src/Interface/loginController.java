@@ -21,9 +21,6 @@ public class loginController {
 
 	public Client client;
 
-	public loginController () {
-		client = new Client();
-	}
 
 	@FXML
 	void handleSendLogin(ActionEvent event) {
