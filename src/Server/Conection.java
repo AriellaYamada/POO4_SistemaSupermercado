@@ -26,7 +26,7 @@ public class Conection implements Runnable{
 	public void run(){
 		while (scan.hasNextLine()){
 			String line = scan.nextLine();
-			String result = Database.process(line);
+			String result = cmdProcess.process(line);
 			pw.println(result);
 		}
 	}
