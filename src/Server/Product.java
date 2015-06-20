@@ -12,10 +12,10 @@ public class Product {
 	private String provider;
 	private int quantity;
 
-	public Product (String name, float price, GregorianCalendar date, String provider, int quantity) {
+	public Product (String name, float price, String date, String provider, int quantity) {
 		this.name = name;
 		this.price = price;
-		this.expiration = date;
+		this.expiration = StrToCalendar(date);
 		this.provider = provider;
 		this.quantity = quantity;
 	}
@@ -32,4 +32,11 @@ public class Product {
 				+date.get(Calendar.YEAR);
 	}
 
+	public static GregorianCalendar StrToCalendar (String date) {
+		String[] split_date = date.split("/");
+
+		return new GregorianCalendar(Integer.parseInt(split_date[2]),
+				Integer.parseInt(split_date[1])-1,
+				Integer.parseInt(split_date[0]));
+	}
 }
