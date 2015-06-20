@@ -1,0 +1,121 @@
+.border-black {
+	-fx-border-color: black;
+}
+
+.red-field {
+	-fx-background-color: #FEE;
+	-fx-border-color: #F33;
+	-fx-border-radius: 3;
+	-fx-border-width: 1;
+	-fx-border-insets: -1;
+}
+
+.red-field:focused {
+	-fx-border-color: #FAA, #F33;
+	-fx-border-width: 3, 1;
+	-fx-border-insets: -2, -1;
+}
+
+.title-bar {
+	-fx-background-color: #DDD;
+	-fx-border-color: #AAA;
+	-fx-border-width: 0 0 1 0;
+}
+
+.default-btn {
+	-fx-background-color: #CCC;
+	-fx-border-radius: 0;
+	-fx-background-radius: 0;
+}
+
+.default-btn:pressed {
+	-fx-background-color: #BBB;
+}
+
+.default-btn:hover {
+	-fx-border-color: #BBB;
+	-fx-border-width: 2;
+	-fx-border-insets: -2;
+}
+
+.default-field {
+	-fx-background-radius: 0;
+}
+
+.table-line {
+	-fx-background-color: #EEE;
+}
+
+.table-line:hover {
+	-fx-background-color: #CCC;
+}
+
+.col-id {
+	-fx-pref-width: 100;
+	-fx-text-alignment: right;
+	-fx-alignment: center_right;
+}
+
+.col-product {
+	-fx-pref-width: 500;
+}
+
+.col-price {
+	-fx-pref-width: 100;
+	-fx-text-alignment: right;
+	-fx-alignment: center_right;
+}
+
+.col-amount {
+	-fx-pref-width: 50;
+	-fx-text-alignment: right;
+	-fx-alignment: center_right;
+}
+
+.col-amount-cart {
+	-fx-pref-width: 40;
+	-fx-text-alignment: right;
+	-fx-alignment: center_right;
+}
+
+.col-add {
+	-fx-pref-width: 22;
+	-fx-text-alignment: center;
+	-fx-alignment: center;
+	-fx-background-color: rgba(50,225,50,0.5);
+	-fx-cursor: hand;
+}
+
+.col-add:pressed {
+	-fx-background-color: rgba(20, 133, 20, 0.5);
+}
+
+.col-sub {
+	-fx-pref-width: 22;
+	-fx-text-alignment: center;
+	-fx-alignment: center;
+	-fx-background-color: rgba(255,0,0,0.5);
+	-fx-cursor: hand;
+}
+
+.col-sub:pressed {
+	-fx-background-color: rgba(153, 0, 0, 0.5);
+}
+
+.table-header {
+	-fx-border-width: 1;
+	-fx-border-color: #AAA;
+	-fx-font-size: 14;
+	-fx-background-color: #444;
+	-fx-text-fill: #FFF;
+	-fx-text-alignment: center;
+	-fx-alignment: center;
+}
+
+.table-cell {
+	-fx-border-width: 1;
+	-fx-border-color: #AAA;
+	-fx-font-size: 14;
+	-fx-min-height: 25;
+	-fx-padding: 2 5 2 5;
+}
