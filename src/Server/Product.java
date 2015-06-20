@@ -25,6 +25,11 @@ public class Product {
 	public String getProvider() { return provider; }
 	public int getQuantity() { return quantity; }
 
+
+	public void refreshStock(int qtd) {
+		quantity = qtd;
+	}
+
 	public static String CalendarToStr (GregorianCalendar date) {
 		return date.get(Calendar.DAY_OF_MONTH) + "/"
 				+(date.get(Calendar.MONTH)+1) + "/"
