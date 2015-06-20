@@ -7,7 +7,7 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-<HBox prefHeight="600.0" prefWidth="800.0" type="HBox" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="loginController">
+<HBox prefHeight="600.0" prefWidth="800.0" type="HBox" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Interface.loginController">
    <children>
       <VBox alignment="TOP_CENTER" prefWidth="250.0" spacing="5.0" styleClass="border-black" stylesheets="@style.css">
          <children>
