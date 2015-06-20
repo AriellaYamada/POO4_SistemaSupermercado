@@ -9,7 +9,7 @@
 <?import java.lang.*?>
 <?import javafx.scene.layout.*?>
 
-<HBox prefHeight="600.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
+<HBox prefHeight="600.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Interface.mainController">
    <children>
       <VBox alignment="TOP_CENTER" prefHeight="600.0" prefWidth="400.0" styleClass="border-black" stylesheets="@style.css">
          <children>
@@ -36,7 +36,7 @@
                   <Insets bottom="82.0" top="5.0" />
                </VBox.margin>
             </TextField>
-            <Button fx:id="connectServerBtn" alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" prefHeight="25.0" prefWidth="200.0" styleClass="default-btn" text="Servidor" textAlignment="CENTER">
+            <Button fx:id="connectServerBtn" alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" onAction="#connectAsServer" prefHeight="25.0" prefWidth="200.0" styleClass="default-btn" text="Servidor" textAlignment="CENTER">
                <VBox.margin>
                   <Insets top="60.0" />
                </VBox.margin>
@@ -83,7 +83,7 @@
                   <Insets bottom="15.0" top="5.0" />
                </VBox.margin>
             </TextField>
-            <Button fx:id="connectClientBtn" alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" prefHeight="25.0" prefWidth="200.0" styleClass="default-btn" text="Cliente" textAlignment="CENTER">
+            <Button fx:id="connectClientBtn" alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" onAction="#connectAsClient" prefHeight="25.0" prefWidth="200.0" styleClass="default-btn" text="Cliente" textAlignment="CENTER">
                <VBox.margin>
                   <Insets top="60.0" />
                </VBox.margin>
