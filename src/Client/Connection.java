@@ -15,29 +15,13 @@ public class Connection {
 	public PrintWriter signalOut;
 	public Scanner signalIn;
 
-	public Connection () {
-		try {
-			ConnectServer();
-		} catch (IOException e) {
-			e.printStackTrace();
-		}
-	}
-
-
-	public void ConnectServer () throws IOException {
-
-		Scanner scan = new Scanner(in);
-		out.println("Digite o IP: ");
-		String ip = scan.nextLine();
-		out.println("Digite a porta: ");
-		int port = Integer.parseInt(scan.nextLine());
+	public Connection (String ip, int port) throws IOException{
 		//Conectar com servidor
 		sock = new Socket(ip, port);
 		//"Porta" de saida de mensagens para o servidor
 		signalOut = new PrintWriter(sock.getOutputStream(), true);
 		//"Porta" de entrada de mensagens do servidor
 		signalIn = new Scanner(sock.getInputStream());
-
 	}
 
 	//Método que encerra a conexão com o servidor
