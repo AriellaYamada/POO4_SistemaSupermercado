@@ -49,6 +49,7 @@ public class productListController {
 			add.setOnMouseClicked(c -> {
 				int am = Integer.parseInt(amount.getText());
 				amount.setText(Integer.valueOf(am--).toString());
+				//Subtrair a quantidade de produtos disponiveis
 			});
 
 			// Cria um HBox pra linha e adiciona tudo nela
