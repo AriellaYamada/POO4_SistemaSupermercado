@@ -5,7 +5,6 @@ import java.io.IOException;
 public class Client {
 
 	private static Client client;
-	public Connection conn;
 	String split = ",";
 	String signal;
 
@@ -20,7 +19,7 @@ public class Client {
 	}
 
 	public void Connect (String ip, int port) throws IOException {
-		conn = new Connection(ip, port);
+		Connection.getInstance().Connect(ip, port);
 		logged = false;
 	}
 
@@ -29,9 +28,9 @@ public class Client {
 		signal = "newuser" + split + name + split + address + split + tel + split + email + split + id + split + password;
 
 		System.out.println(signal);
-		conn.SendSignal(signal);
+		Connection.getInstance().SendSignal(signal);
 
-		String response = conn.ReceiveSignal();
+		String response = Connection.getInstance().ReceiveSignal();
 		return response;
 	}
 
@@ -39,10 +38,10 @@ public class Client {
 
 		//Comando a ser enviado ao servidor
 		signal = "login" + split + id + split + password;
-		conn.SendSignal(signal);
+		Connection.getInstance().SendSignal(signal);
 
 		//Resposta recebida do servidor
-		String response = conn.ReceiveSignal();
+		String response = Connection.getInstance().ReceiveSignal();
 
 		//Login efetuado com sucesso
 		if (response.equals("ok")) {
