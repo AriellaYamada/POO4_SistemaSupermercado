@@ -31,7 +31,7 @@ public class cmdProcess {
 			case "login":
 				response = Users.getInstance().Login(cmd[1], cmd[2]);
 				if (response == 0)
-					line = "ok";
+					line = "ok|" + cmd[1];
 				else if (response == 1)
 					line = "fail|f_userlogin&Usuario nao encontrado";
 				else
