@@ -13,10 +13,7 @@ public class Users {
 	private List<User> users;
 	private Stream<User> filtered;
 
-	public Users () {
-		users = new LinkedList<User>();
-		filtered = users.stream();
-	}
+	public Users () { users = new LinkedList<User>(); }
 
 	//Singleton
 	public static Users getInstance() {
@@ -32,14 +29,13 @@ public class Users {
 		if (checkId(id) == true) {
 			User new_user = new User(name, address, tel, email, id, password);
 			users.add(new_user);
-
 			return 0;
 		}
 		return 1;
 	}
 
 	public boolean checkId (String id) {
-
+		filtered = users.stream();
 		filtered = filtered.filter(u -> u.getId().equals(id));
 		if (filtered.count() == 0)
 			return true;
@@ -47,12 +43,11 @@ public class Users {
 	}
 
 	public int Login (String id, String password) {
-		filtered.filter(u -> u.getId().equals(id));
-		if (filtered.count() == 0) {
+		filtered = users.stream();
+		filtered = filtered.filter(u -> u.getId().equals(id));
+		if (filtered.count() == 0)
 			return 1;
-		}
-		filtered.findFirst();
-		if (filtered.collect(Collectors.toList()).get(0).getPassword().equals(password))
+		if (filtered.collect(Collectors.toList()).get(1).getPassword().equals(password))
 			return 0;
 		return 2;
 	}

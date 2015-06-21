@@ -8,12 +8,23 @@ import static java.lang.System.out;
 
 public class UsersDatabase extends Database {
 
+	private static UsersDatabase usersDB;
+
+	public static UsersDatabase getInstance() {
+		if(usersDB == null)
+			usersDB = new UsersDatabase();
+		return usersDB;
+	}
+
+	public UsersDatabase() {
+		OpenFile("users.csv");
+	}
 
 	public void WriteFile() {
 		OpenWriter(false);
 		final String SEPARATOR = ",";
 		final String ENDLINE = "\n";
-		final String HEADER = "name, address, telephone, email, id, password";
+		final String HEADER = "name,address,telephone,email,id,password";
 
 		try {
 			fw.append(HEADER);
@@ -53,7 +64,6 @@ public class UsersDatabase extends Database {
 
 		String line;
 		String splitSign = ",";
-
 		try {
 			br.readLine();
 			while ((line = br.readLine()) != null) {

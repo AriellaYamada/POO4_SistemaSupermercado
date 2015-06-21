@@ -110,11 +110,12 @@ public class loginController {
 						f_id.getText(), f_password.getText());
 
 				if (response.equals("ok")){
-					try {
+					handleCleanBtn(event);
+					/*try {
 						MainInterface.changeScene("menu.fxml");
 					} catch (IOException e) {
 						System.out.println("Erro ao exibir a tela");
-					}
+					}*/
 				}
 				else {
 					System.out.println(response);
