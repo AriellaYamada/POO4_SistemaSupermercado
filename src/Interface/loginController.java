@@ -24,8 +24,6 @@ public class loginController {
 	@FXML private TextField f_password;
 	@FXML private TextField f_confirmp;
 
-	public Client client;
-
 
 	@FXML
 	public void handleSendLogin(ActionEvent event) {
@@ -44,7 +42,7 @@ public class loginController {
 		}
 
 		if (!userlogin.isEmpty() && !userlogin.isEmpty()) {
-			String response = client.Login(f_userlogin.getText(), f_userpassword.getText());
+			String response = Client.getInstance().Login(f_userlogin.getText(), f_userpassword.getText());
 			String[] splited = response.split("|");
 
 			if (splited[0].equals("ok")) {
@@ -108,7 +106,7 @@ public class loginController {
 				f_password.setTooltip(new Tooltip("As senhas digitadas não são iguais"));
 				f_confirmp.setTooltip(new Tooltip("As senhas digitadas não são iguais"));
 			} else {
-				response = client.AddNewUser(f_name.getText(), f_address.getText(), f_tel.getText(), f_email.getText(),
+				response = Client.getInstance().AddNewUser(f_name.getText(), f_address.getText(), f_tel.getText(), f_email.getText(),
 						f_id.getText(), f_password.getText());
 
 				if (response.equals("ok")){

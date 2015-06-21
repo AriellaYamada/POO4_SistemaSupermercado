@@ -4,6 +4,7 @@ import java.io.IOException;
 
 public class Client {
 
+	private static Client client;
 	public Connection conn;
 	String split = ",";
 	String signal;
@@ -11,7 +12,14 @@ public class Client {
 	private boolean logged;
 	private String id;
 
-	public Client (String ip, int port) throws IOException {
+	public static Client getInstance() {
+		if (client == null) {
+			client = new Client();
+		}
+		return client;
+	}
+
+	public void Connect (String ip, int port) throws IOException {
 		conn = new Connection(ip, port);
 		logged = false;
 	}
