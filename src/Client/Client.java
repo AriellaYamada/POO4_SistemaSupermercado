@@ -64,6 +64,7 @@ public class Client {
 
 	public void Logout () {
 		logged = false;
-		this.id = null;
+		id = null;
+		name = null;
 	}
 }

@@ -52,4 +52,15 @@ public class Products {
 
 		return collector.get(0);
 	}
+
+	public String AllProducts(){
+		String response = "";
+		String splitField = "|";
+		String splitRegister = ";";
+		for(Product p : products) {
+			response += p.getName() + splitField + Float.valueOf(p.getPrice()).toString() + splitField
+					+ Integer.valueOf(p.getQuantity()).toString() + splitRegister;
+		}
+		return response;
+	}
 }

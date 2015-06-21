@@ -44,6 +44,10 @@ public class cmdProcess {
 			case "getname":
 				line = Users.getInstance().GetUserName(cmd[1]);
 				break;
+			//Busca todos os produtos cadastrados no sistema
+			case "listall":
+
+				break;
 			case "search":
 				break;
 			case "startsell":
