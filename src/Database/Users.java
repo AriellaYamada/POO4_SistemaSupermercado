@@ -47,8 +47,17 @@ public class Users {
 		filtered = filtered.filter(u -> u.getId().equals(id));
 		if (filtered.count() == 0)
 			return 1;
-		if (filtered.collect(Collectors.toList()).get(1).getPassword().equals(password))
+		System.out.println("teste filter 1");
+		filtered = users.stream();
+		filtered = filtered.filter(u -> u.getId().equals(id));
+		if (filtered.collect(Collectors.toList()).get(0).getPassword().equals(password))
 			return 0;
 		return 2;
+	}
+
+	public String GetUserName(String id) {
+		filtered = users.stream()
+				.filter(u -> u.getId().equals(id));
+		return filtered.collect(Collectors.toList()).get(0).getName();
 	}
 }

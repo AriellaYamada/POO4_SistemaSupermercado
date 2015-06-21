@@ -31,11 +31,14 @@ public class cmdProcess {
 			case "login":
 				response = Users.getInstance().Login(cmd[1], cmd[2]);
 				if (response == 0)
-					line = "ok|" + cmd[1];
+					line = "ok|";
 				else if (response == 1)
 					line = "fail|f_userlogin&Usuario nao encontrado";
 				else
 					line = "fail|f_userpassword&Senha incorreta";
+				break;
+			case "getname":
+				line = Users.getInstance().GetUserName(cmd[1]);
 				break;
 			case "search":
 				break;

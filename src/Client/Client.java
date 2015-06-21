@@ -5,12 +5,15 @@ import java.io.IOException;
 public class Client {
 
 	private static Client client;
+
 	String split = ",";
 	String signal;
 
 	private boolean logged;
 	private String id;
+	private String name;
 
+	//Singleton
 	public static Client getInstance() {
 		if (client == null) {
 			client = new Client();
@@ -47,8 +50,16 @@ public class Client {
 		if (response.equals("ok")) {
 			logged = true;
 			this.id = id;
+			GetUserName();
 		}
 		return response;
+	}
+
+	public void GetUserName() {
+		signal = "getname" + split + id;
+		Connection.getInstance().SendSignal(signal);
+
+		name = Connection.getInstance().ReceiveSignal();
 	}
 
 	public void Logout () {
