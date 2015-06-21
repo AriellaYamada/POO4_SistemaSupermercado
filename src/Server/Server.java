@@ -62,7 +62,7 @@ public class Server implements Runnable {
 		while (acceptConnections){
 			s = waitConnection();
 			if (s != null){
-				Conection c = new Conection(s);
+				Connection c = new Connection(s);
 				Thread t = new Thread(c);
 				t.run();
 			}

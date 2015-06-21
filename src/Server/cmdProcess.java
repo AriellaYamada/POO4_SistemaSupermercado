@@ -30,13 +30,17 @@ public class cmdProcess {
 			//Efetuar login
 			case "login":
 				response = Users.getInstance().Login(cmd[1], cmd[2]);
+				//Se o login foi efetuado corretamente
 				if (response == 0)
-					line = "ok|";
+					line = "ok";
+				//Caso o usuario nao seja encontrado
 				else if (response == 1)
 					line = "fail|f_userlogin&Usuario nao encontrado";
+				//Caso a senha digitada for incorreta
 				else
 					line = "fail|f_userpassword&Senha incorreta";
 				break;
+				//Busca o nome do usuario logado
 			case "getname":
 				line = Users.getInstance().GetUserName(cmd[1]);
 				break;

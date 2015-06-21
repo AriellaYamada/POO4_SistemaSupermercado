@@ -45,11 +45,12 @@ public class Users {
 	public int Login (String id, String password) {
 		filtered = users.stream();
 		filtered = filtered.filter(u -> u.getId().equals(id));
+		//Verifica se o usuario existe
 		if (filtered.count() == 0)
 			return 1;
-		System.out.println("teste filter 1");
-		filtered = users.stream();
-		filtered = filtered.filter(u -> u.getId().equals(id));
+		filtered = users.stream()
+				.filter(u -> u.getId().equals(id));
+		//Verifica se a senha digitada é a correta
 		if (filtered.collect(Collectors.toList()).get(0).getPassword().equals(password))
 			return 0;
 		return 2;
