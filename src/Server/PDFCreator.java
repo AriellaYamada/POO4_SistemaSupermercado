@@ -2,10 +2,12 @@ package Server;
 
 import java.io.FileOutputStream;
 import java.io.OutputStream;
+
 import com.itextpdf.text.Document;
 import com.itextpdf.text.PageSize;
 import com.itextpdf.text.Paragraph;
 import com.itextpdf.text.pdf.PdfWriter;
+
 import java.io.IOException;
 import com.itextpdf.text.DocumentException;
 
@@ -14,7 +16,6 @@ import static java.lang.System.err;
 public class PDFCreator {
 
 	public void CreatePDF( String date, String msg ) {
-
 		Document doc = null;
 		OutputStream os = null;
 
@@ -39,7 +40,6 @@ public class PDFCreator {
 			err.println(ioe.getMessage());
 		}
 		doc.close();
-
 	}
 }
 

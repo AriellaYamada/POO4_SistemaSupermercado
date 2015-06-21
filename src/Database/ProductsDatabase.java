@@ -8,6 +8,16 @@ import static java.lang.System.out;
 
 public class ProductsDatabase extends Database {
 
+	private static ProductsDatabase productsDB;
+
+	//Singleton
+	public static ProductsDatabase getInstance(){
+		if(productsDB == null)
+			productsDB = new ProductsDatabase();
+		return productsDB;
+	}
+
+	public ProductsDatabase() { OpenFile("products.csv"); }
 
 	public void WriteFile() {
 		OpenWriter(false);
@@ -39,6 +49,7 @@ public class ProductsDatabase extends Database {
 
 				fw.flush();
 			}
+			CloseFile();
 		} catch (IOException e){
 			out.println("Erro na escrita do arquivo.");
 			e.printStackTrace();

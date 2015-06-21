@@ -7,13 +7,13 @@ import java.util.Scanner;
 
 import static java.lang.System.out;
 
-public class Conection implements Runnable{
+public class Connection implements Runnable{
 	private Socket sock = null;
 	public Scanner scan = null;
 	public PrintWriter pw = null;
 
 	//Estabelece conexao com o cliente
-	Conection(Socket s){
+	Connection(Socket s){
 		try {
 			sock = s;
 			scan = new Scanner(sock.getInputStream());
