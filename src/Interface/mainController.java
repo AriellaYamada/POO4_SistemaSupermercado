@@ -55,7 +55,7 @@ public class mainController {
 				try {
 					MainInterface.changeScene("main.fxml");
 				} catch (IOException e1) {
-					e1.printStackTrace();
+					System.err.println("Erro ao exibir tela");
 				}
 			}
 		}

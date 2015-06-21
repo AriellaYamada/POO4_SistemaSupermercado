@@ -5,11 +5,9 @@ import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 
 import java.io.IOException;
-import java.net.URL;
-import java.util.ResourceBundle;
 
 public class menuController {
-	
+
 	@FXML private Label l_greetings;
 
 	@FXML
@@ -24,7 +22,7 @@ public class menuController {
 		try {
 			MainInterface.changeScene("productList.fxml");
 		} catch (IOException e) {
-			System.err.println("Erro ao carregar a tela");
+			System.err.println("Erro ao exibir a tela");
 		}
 	}
 
@@ -33,7 +31,7 @@ public class menuController {
 		try {
 			MainInterface.changeScene("cartList.fxml");
 		} catch (IOException e) {
-			System.err.println("Erro ao carregar a tela");
+			System.err.println("Erro ao exibir a tela");
 		}
 	}
 
