@@ -16,9 +16,7 @@ public class UsersDatabase extends Database {
 		return usersDB;
 	}
 
-	public UsersDatabase() {
-		OpenFile("users.csv");
-	}
+	public UsersDatabase() { OpenFile("users.csv"); }
 
 	public void WriteFile() {
 		OpenWriter(false);
@@ -53,6 +51,7 @@ public class UsersDatabase extends Database {
 
 				fw.flush();
 			}
+			CloseFile();
 		} catch (IOException e){
 			out.println("Erro na escrita do arquivo.");
 			e.printStackTrace();

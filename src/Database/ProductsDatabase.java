@@ -17,9 +17,7 @@ public class ProductsDatabase extends Database {
 		return productsDB;
 	}
 
-	public ProductsDatabase() {
-		OpenFile("products.csv");
-	}
+	public ProductsDatabase() { OpenFile("products.csv"); }
 
 	public void WriteFile() {
 		OpenWriter(false);
@@ -51,6 +49,7 @@ public class ProductsDatabase extends Database {
 
 				fw.flush();
 			}
+			CloseFile();
 		} catch (IOException e){
 			out.println("Erro na escrita do arquivo.");
 			e.printStackTrace();
