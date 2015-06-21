@@ -40,7 +40,7 @@ public class Users {
 
 	public boolean checkId (String id) {
 
-		filtered.filter(u -> u.getId().equals(id));
+		filtered = filtered.filter(u -> u.getId().equals(id));
 		if (filtered.count() == 0)
 			return true;
 		return false;
