@@ -8,6 +8,18 @@ import static java.lang.System.out;
 
 public class ProductsDatabase extends Database {
 
+	private static ProductsDatabase productsDB;
+
+	//Singleton
+	public static ProductsDatabase getInstance(){
+		if(productsDB == null)
+			productsDB = new ProductsDatabase();
+		return productsDB;
+	}
+
+	public ProductsDatabase() {
+		OpenFile("products.csv");
+	}
 
 	public void WriteFile() {
 		OpenWriter(false);
