@@ -4,16 +4,11 @@ import Client.Client;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
 
-import javafx.event.ActionEvent;
-
 import java.io.IOException;
 import java.util.LinkedList;
 import java.util.List;
 
 public class loginController {
-	@FXML private Button b_login;
-	@FXML private Button b_cleanFields;
-	@FXML private Button b_addUser;
 	@FXML private TextField f_userlogin;
 	@FXML private TextField f_userpassword;
 	@FXML private TextField f_name;
@@ -26,7 +21,7 @@ public class loginController {
 
 
 	@FXML
-	public void handleSendLogin(ActionEvent event) {
+	public void handleSendLogin() {
 		f_userlogin.getStyleClass().remove("red-field");
 		f_userpassword.getStyleClass().remove("red-field");
 
@@ -54,7 +49,7 @@ public class loginController {
 	}
 
 	@FXML
-	public void handleCleanBtn(ActionEvent event) {
+	public void handleCleanBtn() {
 		f_name.clear();
 		f_address.clear();
 		f_tel.clear();
@@ -65,7 +60,7 @@ public class loginController {
 	}
 
 	@FXML
-	public void handleAddUserBtn(ActionEvent event) {
+	public void handleAddUserBtn() {
 		boolean validateFields = true;
 
 		// Creates a list with all fields

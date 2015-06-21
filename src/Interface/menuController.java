@@ -1,6 +1,5 @@
 package Interface;
 
-import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 
@@ -18,7 +17,7 @@ public class menuController {
 	}
 
 	@FXML
-	void listProducts(ActionEvent event) {
+	void listProducts() {
 		try {
 			MainInterface.changeScene("productList.fxml");
 		} catch (IOException e) {
@@ -27,7 +26,7 @@ public class menuController {
 	}
 
 	@FXML
-	void salesCart(ActionEvent event) {
+	void salesCart() {
 		try {
 			MainInterface.changeScene("cartList.fxml");
 		} catch (IOException e) {
@@ -36,7 +35,7 @@ public class menuController {
 	}
 
 	@FXML
-	void logOut(ActionEvent event) {
+	void logOut() {
 
 	}
 }
