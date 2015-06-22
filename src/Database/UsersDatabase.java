@@ -51,7 +51,7 @@ public class UsersDatabase extends Database {
 
 				fw.flush();
 			}
-			CloseFile();
+			//CloseFile();
 		} catch (IOException e){
 			out.println("Erro na escrita do arquivo.");
 			e.printStackTrace();

@@ -25,6 +25,7 @@ public class cmdProcess {
 			//Cadastro de novo usuario
 			case "newuser":
 				response = Users.getInstance().Register(cmd[1], cmd[2], cmd[3], cmd[4], cmd[5], cmd[6]);
+				UsersDatabase.getInstance().WriteFile();
 				if (response == 0)
 					line = "ok";
 				else
