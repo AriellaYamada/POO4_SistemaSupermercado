@@ -28,14 +28,16 @@ public class productListController implements Initializable{
 	final ObservableList<Product> data = FXCollections.observableArrayList();
 
 	public void initialize(URL location, ResourceBundle resources){
+		System.out.println("01");
 		// Configura TableView
 		c_name.setCellValueFactory(new PropertyValueFactory<>("name"));
-		c_price.setCellValueFactory(new PropertyValueFactory<>("p_price"));
+		c_price.setCellValueFactory(new PropertyValueFactory<>("price"));
 		//c_expiration.setCellValueFactory(new PropertyValueFactory<>("expiration"));
 		//c_provider.setCellValueFactory(new PropertyValueFactory<>("provider"));
-		c_amount.setCellValueFactory(new PropertyValueFactory<>("p_amount"));
+		c_amount.setCellValueFactory(new PropertyValueFactory<>("quantity"));
 
 		tv_table.setItems(data);
+		System.out.println("02");
 
 		// Requisitar a lista de produtos para o servidor
 		Connection.getInstance().SendSignal("listall");
@@ -43,12 +45,15 @@ public class productListController implements Initializable{
 		String response = Connection.getInstance().ReceiveSignal();
 		String splitField = "!";
 		String splitRegister = ";";
+		System.out.println("03");
 
 		String[] products = response.split(splitRegister);
 		for (String s : products){
+			System.out.println(s);
 			String[] splited = s.split(splitField);
-
-			data.add(new Product(splited[0], Float.parseFloat(splited[1]), "21/06/2015", "Ades", Integer.parseInt(splited[3])));
+			System.out.println("04");
+			data.add(new Product(splited[0], Float.parseFloat(splited[1]), "21/06/2015", "Ades", Integer.parseInt(splited[2])));
+			System.out.println("\t add");
 
 			// Se o produto não estiver disponível é aqui que será incluída
 			// uma classe indicando que o produto está zerado no estoque.
