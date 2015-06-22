@@ -1,15 +1,14 @@
 package Server;
 
 import java.io.FileOutputStream;
-import java.io.OutputStream;
-import com.itextpdf.text.Document;
+import java.io.OutputStream;port com.itextpdf.text.Document;
 import com.itextpdf.text.PageSize;
 import com.itextpdf.text.Paragraph;
 import com.itextpdf.text.pdf.PdfWriter;
 
 public class PDFCreator {
 
-		Document doc = null;
+		Docunt doc = null;
 		OutputStream os = null;
 
 		try {
