@@ -2,6 +2,9 @@ package Server;
 
 import Database.*;
 
+import java.util.Calendar;
+import java.util.GregorianCalendar;
+
 public class cmdProcess {
 	private cmdProcess instance = null;
 
@@ -64,5 +67,19 @@ public class cmdProcess {
 				break;
 		}
 		return line;
+	}
+
+	public static String CalendarToString (GregorianCalendar date) {
+		return date.get(Calendar.DAY_OF_MONTH) + "/"
+				+(date.get(Calendar.MONTH)+1) + "/"
+				+date.get(Calendar.YEAR);
+	}
+
+	public static GregorianCalendar StringToCalendar (String date) {
+		String[] split_date = date.split("/");
+
+		return new GregorianCalendar(Integer.parseInt(split_date[2]),
+				Integer.parseInt(split_date[1])-1,
+				Integer.parseInt(split_date[0]));
 	}
 }

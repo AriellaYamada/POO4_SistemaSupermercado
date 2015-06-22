@@ -23,7 +23,7 @@ public class SalesDatabase extends Database {
 		OpenWriter(false);
 		final String SEPARATOR = ",";
 		final String ENDLINE = "\n";
-		final String HEADER = "clientID, product, quantity";
+		final String HEADER = "clientID,product,quantity,date";
 
 		try {
 			fw.append(HEADER);
@@ -39,6 +39,9 @@ public class SalesDatabase extends Database {
 				fw.append(SEPARATOR);
 
 				fw.append(Integer.valueOf(s.getQuantity()).toString());
+				fw.append(SEPARATOR);
+
+				fw.append(cmdProcess.CalendarToString(s.getDate()));
 				fw.append(ENDLINE);
 
 				fw.flush();
@@ -60,7 +63,7 @@ public class SalesDatabase extends Database {
 			br.readLine();
 			while ((line = br.readLine()) != null) {
 				String[] splited = line.split(splitSign);
-				Sales.getInstance().Register(splited[0], splited[1], Integer.parseInt(splited[2]));
+				Sales.getInstance().Register(splited[0], splited[1], Integer.parseInt(splited[2]), splited[3]);
 			}
 		} catch (IOException e) {
 			out.println("Erro na leitura do arquivo.");

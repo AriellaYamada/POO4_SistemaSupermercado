@@ -38,7 +38,7 @@ public class ProductsDatabase extends Database {
 				fw.append(Float.valueOf(p.getPrice()).toString());
 				fw.append(SEPARATOR);
 
-				fw.append(p.CalendarToStr(p.getExpiration()));
+				fw.append(cmdProcess.CalendarToString(p.getExpiration()));
 				fw.append(SEPARATOR);
 
 				fw.append(p.getProvider());

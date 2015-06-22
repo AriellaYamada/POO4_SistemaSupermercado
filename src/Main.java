@@ -1,5 +1,6 @@
 
 import Client.ClientMain;
+import Server.PDFCreator;
 import Server.ServerMain;
 import javafx.stage.Stage;
 
@@ -23,5 +24,8 @@ public class Main {
 		else {
 			ClientMain.main(null);
 		}*/
+
+		PDFCreator p = new PDFCreator();
+		p.CreatePDF("2015maio", "olar");
 	}
 }
