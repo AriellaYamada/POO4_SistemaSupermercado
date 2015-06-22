@@ -1,6 +1,6 @@
 package Database;
 
-import Server.*;
+import Structure.User;
 
 import java.io.IOException;
 

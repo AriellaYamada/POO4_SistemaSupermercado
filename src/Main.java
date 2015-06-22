@@ -25,7 +25,7 @@ public class Main {
 			ClientMain.main(null);
 		}*/
 
-		PDFCreator p = new PDFCreator();
-		p.CreatePDF("2015maio", "olar");
+		//PDFCreator p = new PDFCreator();
+		//p.CreatePDF("2015maio", "olar");
 	}
 }

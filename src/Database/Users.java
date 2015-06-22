@@ -5,7 +5,7 @@ import java.util.List;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
-import Server.User;
+import Structure.User;
 
 public class Users {
 

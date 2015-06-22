@@ -1,6 +1,7 @@
 package Database;
 
 import Server.*;
+import Structure.Product;
 
 import java.io.IOException;
 

@@ -1,6 +1,6 @@
 package Database;
 
-import Server.Product;
+import Structure.Product;
 
 import java.util.LinkedList;
 import java.util.List;

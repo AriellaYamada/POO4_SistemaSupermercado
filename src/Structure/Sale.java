@@ -1,4 +1,6 @@
-package Server;
+package Structure;
+
+import Server.cmdProcess;
 
 import java.util.GregorianCalendar;
 

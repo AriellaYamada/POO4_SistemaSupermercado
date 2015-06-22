@@ -1,5 +1,6 @@
 package Interface;
 
+import Client.Cart;
 import Client.Connection;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
@@ -48,6 +49,8 @@ public class productListController {
 			add.setOnMouseClicked(c -> {
 				int am = Integer.parseInt(amount.getText());
 				amount.setText(Integer.valueOf(am--).toString());
+				//Adiciona ao carrinho
+				Cart.getInstance().AddToCart(product.getText(), Float.parseFloat(price.getText()));
 				//Subtrair a quantidade de produtos disponiveis
 			});
 

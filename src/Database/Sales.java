@@ -1,6 +1,7 @@
 package Database;
 
-import Server.*;
+import Structure.Sale;
+
 import java.util.*;
 import java.util.stream.Stream;
 
