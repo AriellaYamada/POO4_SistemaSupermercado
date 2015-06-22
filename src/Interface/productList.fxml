@@ -52,11 +52,11 @@
       </HBox>
       <TableView fx:id="tv_table" prefHeight="600.0" prefWidth="800.0" stylesheets="@style.css" tableMenuButtonVisible="true">
          <columns>
-            <TableColumn fx:id="c_name" editable="false" prefWidth="75.0" styleClass="col-name" text="Produto" />
+            <TableColumn fx:id="c_name" editable="false" prefWidth="500.0" styleClass="col-name" text="Produto" />
             <TableColumn fx:id="c_price" editable="false" prefWidth="100.0" styleClass="col-price" text="Preco" />
             <TableColumn fx:id="c_amount" editable="false" prefWidth="75.0" styleClass="col-amount" text="Qtd" />
-            <!--<TableColumn fx:id="c_provider" editable="false" prefWidth="500.0" styleClass="col-provider" text="Fornecedor" />
-            <TableColumn fx:id="c_expiration" editable="false" prefWidth="100.0" styleClass="col-expiration" text="Validade" />-->
+            <TableColumn fx:id="c_provider" editable="false" prefWidth="75.0" styleClass="col-provider" text="Fornecedor" visible="false" />
+            <TableColumn fx:id="c_expiration" editable="false" prefWidth="100.0" styleClass="col-expiration" text="Validade" visible="false" />
          </columns>
       </TableView>
    </children>
