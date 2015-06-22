@@ -33,15 +33,14 @@ public class loginController {
 
 		if (!userlogin.isEmpty() && !userlogin.isEmpty()) {
 			String response = Client.getInstance().Login(f_userlogin.getText(), f_userpassword.getText());
-			String[] splited = response.split("|");
-
-			if (splited[0].equals("ok")) {
+			if (response.equals("ok")) {
 				try {
 					MainInterface.changeScene("menu.fxml");
 				} catch (IOException e) {
 					System.err.println("Erro ao carregar a tela");
 				}
 			} else {
+				String[] splited = response.split("|");
 				String[] error = splited[1].split("&");
 				setError(getField(error[0]), error[1]);
 			}
@@ -91,7 +90,6 @@ public class loginController {
 				setError(f_password, "As senhas digitadas não são iguais");
 				setError(f_confirmp, "As senhas digitadas não são iguais");
 			} else {
-
 				// Send the data to server and read the answer from server
 				String answer = Client.getInstance().AddNewUser(f_name.getText(),
 																f_address.getText(),

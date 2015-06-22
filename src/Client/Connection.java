@@ -11,11 +11,19 @@ import static java.lang.System.out;
 
 public class Connection {
 
-	public Socket sock;
-	public PrintWriter signalOut;
-	public Scanner signalIn;
+	private static Connection connection;
 
-	public Connection (String ip, int port) throws IOException{
+	private Socket sock;
+	private PrintWriter signalOut;
+	private Scanner signalIn;
+
+	public static Connection getInstance() {
+		if (connection == null)
+			connection = new Connection();
+		return connection;
+	}
+
+	public void Connect (String ip, int port) throws IOException{
 		//Conectar com servidor
 		sock = new Socket(ip, port);
 		//"Porta" de saida de mensagens para o servidor

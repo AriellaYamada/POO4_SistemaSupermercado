@@ -1,4 +1,4 @@
-package Server;
+package Structure;
 
 public class User {
 

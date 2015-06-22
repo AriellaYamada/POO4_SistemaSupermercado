@@ -1,6 +1,7 @@
 package Database;
 
-import Server.*;
+import Structure.Sale;
+
 import java.util.*;
 import java.util.stream.Stream;
 
@@ -25,8 +26,8 @@ public class Sales {
 
 	public List<Sale> ListAll() { return sales; }
 
-	public void Register(String clientId, String product, int quantity) {
-		Sale new_sale = new Sale(clientId, product, quantity);
+	public void Register(String clientId, String product, int quantity, String date) {
+		Sale new_sale = new Sale(clientId, product, quantity, date);
 		sales.add(new_sale);
 	}
 }

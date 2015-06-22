@@ -1,6 +1,6 @@
 package Database;
 
-import Server.Product;
+import Structure.Product;
 
 import java.util.LinkedList;
 import java.util.List;
@@ -15,7 +15,6 @@ public class Products {
 
 	public Products () {
 		products = new LinkedList<Product>();
-		filtered = products.stream();
 	}
 
 	//Singleton
@@ -39,7 +38,8 @@ public class Products {
 	}
 
 	public boolean checkProduct(String name) {
-		filtered.filter(p -> p.getName().equals(name));
+		filtered = products.stream();
+		filtered = filtered.filter(p -> p.getName().equals(name));
 		if (filtered.count() == 0)
 			return true;
 		return false;
@@ -47,9 +47,21 @@ public class Products {
 
 	public Product searchProduct(String productName) {
 
-		filtered.filter(p -> p.getName().equals(productName));
+		filtered = products.stream();
+		filtered = filtered.filter(p -> p.getName().equals(productName));
 		List<Product> collector = filtered.collect(Collectors.toList());
 
 		return collector.get(0);
+	}
+
+	public String AllProducts(){
+		String response = "";
+		String splitField = "!";
+		String splitRegister = ";";
+		for(Product p : products) {
+			response += p.getName() + splitField + Float.valueOf(p.getPrice()).toString() + splitField
+					+ Integer.valueOf(p.getQuantity()).toString() + splitRegister;
+		}
+		return response;
 	}
 }
