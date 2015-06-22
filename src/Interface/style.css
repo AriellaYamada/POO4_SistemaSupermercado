@@ -41,7 +41,7 @@
 .default-field {
 	-fx-background-radius: 0;
 }
-
+/*
 .table-line {
 	-fx-background-color: #EEE;
 }
@@ -118,4 +118,11 @@
 	-fx-font-size: 14;
 	-fx-min-height: 25;
 	-fx-padding: 2 5 2 5;
+}
+*/
+#tv_table .col-id, #tv_table .col-amount, #tv_table .col-price {
+	-fx-alignment: center-right;
+}
+#tv_table .col-add, #tv_table .col-sub {
+	-fx-alignment: center;
 }

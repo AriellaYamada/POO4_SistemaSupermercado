@@ -1,15 +1,29 @@
 package Interface;
 
+import Database.Table;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
-import javafx.scene.control.Label;
-import javafx.scene.layout.HBox;
-import javafx.scene.layout.VBox;
+import javafx.fxml.Initializable;
+import javafx.scene.control.TableColumn;
+import javafx.scene.control.TableView;
+import javafx.scene.control.cell.PropertyValueFactory;
 
-public class productListController {
+import java.net.URL;
+import java.util.ResourceBundle;
 
-	@FXML private VBox vbox_list;
+public class productListController implements Initializable{
 
-	public void initialize(){
+	@FXML private TableView<Table> tv_table;
+	@FXML private TableColumn<Table, String> c_product;
+	@FXML private TableColumn<Table, Integer> c_id;
+	@FXML private TableColumn<Table, Float> c_price;
+	@FXML private TableColumn<Table, Integer> c_amount;
+
+	final ObservableList<Table> data = FXCollections.observableArrayList(new Table(2, "nome teste", 20.50f, 70));
+
+	public void initialize(URL location, ResourceBundle resources){
+		/*
 		// Requisitar a lista de produtos para o servidor
 		// answer = getSignalServer()
 
@@ -54,6 +68,18 @@ public class productListController {
 		// Adiciona o HBox na VBox já existente
 		vbox_list.getChildren().add(hb);
 		//} (END FOR)
+		*/
+
+		c_id.setCellValueFactory(new PropertyValueFactory<Table, Integer>("p_id"));
+		c_product.setCellValueFactory(new PropertyValueFactory<Table, String>("p_product"));
+		c_price.setCellValueFactory(new PropertyValueFactory<Table, Float>("p_price"));
+		c_amount.setCellValueFactory(new PropertyValueFactory<Table, Integer>("p_amount"));
+
+		tv_table.setItems(data);
+
+		Table t = new Table(7, "nome teste", 15.50f, 50);
+		Table u = new Table(20, "nome teste", 10.50f, 90);
+		data.addAll(t, u);
 	}
 
 	public void salesCart() {

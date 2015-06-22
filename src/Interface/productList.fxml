@@ -7,7 +7,6 @@
 <?import javafx.scene.*?>
 <?import java.lang.*?>
 <?import javafx.scene.layout.*?>
-
 <?fxml-stylesheet href="Interface/style.css"?>
 
 <VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Interface.productListController">
@@ -51,113 +50,13 @@
             <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
          </padding>
       </HBox>
-      <HBox style="-fx-background-color: #444;">
-         <children>
-            <Label alignment="CENTER" stylesheets="@style.css" text="ID">
-               <styleClass>
-                  <String fx:value="table-header" />
-                  <String fx:value="col-id" />
-               </styleClass></Label>
-            <Label alignment="CENTER" layoutX="10.0" layoutY="10.0" stylesheets="@style.css" text="Produto" textAlignment="CENTER">
-               <styleClass>
-                  <String fx:value="table-header" />
-                  <String fx:value="col-product" />
-               </styleClass>
-            </Label>
-            <Label alignment="CENTER" layoutX="10.0" layoutY="10.0" stylesheets="@style.css" text="Preço" textAlignment="CENTER">
-               <styleClass>
-                  <String fx:value="table-header" />
-                  <String fx:value="col-price" />
-               </styleClass>
-            </Label>
-            <Label alignment="CENTER" layoutX="570.0" layoutY="10.0" stylesheets="@style.css" text="Qtd" textAlignment="CENTER">
-               <styleClass>
-                  <String fx:value="table-header" />
-                  <String fx:value="col-amount" />
-               </styleClass>
-            </Label>
-            <Label alignment="CENTER" layoutX="710.0" layoutY="10.0" stylesheets="@style.css" text="+" textAlignment="CENTER">
-               <styleClass>
-                  <String fx:value="table-header" />
-                  <String fx:value="col-add" />
-               </styleClass>
-            </Label>
-         </children>
-      </HBox>
-      <ScrollPane fitToHeight="true" fitToWidth="true" VBox.vgrow="ALWAYS">
-         <content>
-            <VBox fx:id="vbox_list" prefHeight="200.0" prefWidth="100.0">
-               <children>
-                  <HBox styleClass="table-line" stylesheets="@style.css">
-                     <children>
-                        <Label alignment="CENTER" stylesheets="@style.css" text="12DA7">
-                           <styleClass>
-                              <String fx:value="col-id" />
-                              <String fx:value="table-cell" />
-                           </styleClass>
-                        </Label>
-                        <Label layoutX="10.0" layoutY="10.0" stylesheets="@style.css" text="Nome do Produto (fazer um FOR com essa linha; uma para cada produto)">
-                           <styleClass>
-                              <String fx:value="col-product" />
-                              <String fx:value="table-cell" />
-                           </styleClass>
-                        </Label>
-                        <Label layoutX="10.0" layoutY="10.0" stylesheets="@style.css" text="10,99">
-                           <styleClass>
-                              <String fx:value="col-price" />
-                              <String fx:value="table-cell" />
-                           </styleClass>
-                        </Label>
-                        <Label layoutX="610.0" layoutY="10.0" stylesheets="@style.css" text="7">
-                           <styleClass>
-                              <String fx:value="col-amount" />
-                              <String fx:value="table-cell" />
-                           </styleClass>
-                        </Label>
-                        <Label layoutX="710.0" layoutY="10.0" style="-fx-cursor: hand;" stylesheets="@style.css" text="+">
-                           <styleClass>
-                              <String fx:value="col-add" />
-                              <String fx:value="table-cell" />
-                           </styleClass>
-                        </Label>
-                     </children>
-                  </HBox>
-                  <HBox layoutX="10.0" layoutY="10.0" styleClass="table-line" stylesheets="@style.css">
-                     <children>
-                        <Label alignment="CENTER" stylesheets="@style.css" text="12DA7">
-                           <styleClass>
-                              <String fx:value="col-id" />
-                              <String fx:value="table-cell" />
-                           </styleClass>
-                        </Label>
-                        <Label layoutX="10.0" layoutY="10.0" stylesheets="@style.css" text="Nome do Produto (fazer um FOR com essa linha; uma para cada produto)">
-                           <styleClass>
-                              <String fx:value="col-product" />
-                              <String fx:value="table-cell" />
-                           </styleClass>
-                        </Label>
-                        <Label layoutX="10.0" layoutY="10.0" stylesheets="@style.css" text="10,99">
-                           <styleClass>
-                              <String fx:value="col-price" />
-                              <String fx:value="table-cell" />
-                           </styleClass>
-                        </Label>
-                        <Label layoutX="610.0" layoutY="10.0" stylesheets="@style.css" text="7">
-                           <styleClass>
-                              <String fx:value="col-amount" />
-                              <String fx:value="table-cell" />
-                           </styleClass>
-                        </Label>
-                        <Label layoutX="710.0" layoutY="10.0" stylesheets="@style.css" text="+">
-                           <styleClass>
-                              <String fx:value="col-add" />
-                              <String fx:value="table-cell" />
-                           </styleClass>
-                        </Label>
-                     </children>
-                  </HBox>
-               </children></VBox>
-         </content>
-      </ScrollPane>
+      <TableView fx:id="tv_table" prefHeight="600.0" prefWidth="800.0" stylesheets="@style.css" tableMenuButtonVisible="true">
+         <columns>
+            <TableColumn fx:id="c_id" editable="false" prefWidth="75.0" styleClass="col-id" text="ID" />
+            <TableColumn fx:id="c_product" editable="false" prefWidth="500.0" styleClass="col-product" text="Produto" />
+            <TableColumn fx:id="c_price" editable="false" prefWidth="100.0" styleClass="col-price" text="Preco" />
+            <TableColumn fx:id="c_amount" editable="false" prefWidth="75.0" styleClass="col-amount" text="Qtd" />
+         </columns>
+      </TableView>
    </children>
 </VBox>
