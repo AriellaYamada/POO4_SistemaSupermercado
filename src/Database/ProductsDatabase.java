@@ -23,7 +23,7 @@ public class ProductsDatabase extends Database {
 		OpenWriter(false);
 		final String SEPARATOR = ",";
 		final String ENDLINE = "\n";
-		final String HEADER = "name, price, expiration, provider, quantity";
+		final String HEADER = "name,price,expiration,provider,quantity";
 
 		try {
 			fw.append(HEADER);

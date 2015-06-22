@@ -15,11 +15,10 @@ public class productListController {
 		Connection.getInstance().SendSignal("listall");
 		//Resposta do servidor com todos os produtos
 		String response = Connection.getInstance().ReceiveSignal();
-		String splitField = "|";
+		String splitField = "!";
 		String splitRegister = ";";
 
 		String[] products = response.split(splitRegister);
-
 		for (String s : products){
 			String[] splited = s.split(splitField);
 			Label id = new Label("1");
@@ -49,6 +48,7 @@ public class productListController {
 			add.setOnMouseClicked(c -> {
 				int am = Integer.parseInt(amount.getText());
 				amount.setText(Integer.valueOf(am--).toString());
+				//Subtrair a quantidade de produtos disponiveis
 			});
 
 			// Cria um HBox pra linha e adiciona tudo nela
