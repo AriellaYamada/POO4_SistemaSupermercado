@@ -23,7 +23,7 @@ public class SalesDatabase extends Database {
 		OpenWriter(false);
 		final String SEPARATOR = ",";
 		final String ENDLINE = "\n";
-		final String HEADER = "clientID, product, quantity, date";
+		final String HEADER = "clientID,product,quantity,date";
 
 		try {
 			fw.append(HEADER);
