@@ -1,5 +1,6 @@
 package Server.Database;
 
+import Structure.Def;
 import Structure.Product;
 
 import java.util.LinkedList;
@@ -7,7 +8,7 @@ import java.util.List;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
-public class Products {
+public class Products implements ListRegister {
 
 	private static Products productsDB;
 	private List<Product> products;
@@ -29,8 +30,20 @@ public class Products {
 
 	public int Register(String name, float price, String expiration, String provider, int quantity) {
 
-		if(checkProduct(name) == true) {
+		if(checkProduct(name)) {
 			Product new_product = new Product(name, price, expiration, provider, quantity);
+			products.add(new_product);
+			return 0;
+		}
+		return 1;
+	}
+
+	public int Register(String... value) {
+
+		if(checkProduct(value[0])) {
+			Product new_product = new Product(value[0], Float.parseFloat(value[1]),
+					value[2], value[3], Integer.parseInt(value[4]));
+
 			products.add(new_product);
 			return 0;
 		}
@@ -40,9 +53,7 @@ public class Products {
 	public boolean checkProduct(String name) {
 		filtered = products.stream();
 		filtered = filtered.filter(p -> p.getName().equals(name));
-		if (filtered.count() == 0)
-			return true;
-		return false;
+		return (filtered.count() == 0);
 	}
 
 	public Product searchProduct(String productName) {
@@ -56,11 +67,10 @@ public class Products {
 
 	public String AllProducts(){
 		String response = "";
-		String splitField = "!";
-		String splitRegister = ";";
 		for(Product p : products) {
-			response += p.getName() + splitField + Float.valueOf(p.getPrice()).toString() + splitField
-					+ Integer.valueOf(p.getQuantity()).toString() + splitRegister;
+			response += p.getName() + Def.fieldSep
+					+ Float.valueOf(p.getPrice()).toString() + Def.fieldSep
+					+ Integer.valueOf(p.getQuantity()).toString() + Def.regSep;
 		}
 		return response;
 	}

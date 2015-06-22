@@ -1,14 +1,12 @@
 package Server;
 
-import Server.Database.ProductsDatabase;
-import Server.Database.SalesDatabase;
-import Server.Database.UsersDatabase;
+import Server.Database.*;
 
 public class ServerMain {
 	public static void main (String[] args){
-		UsersDatabase.getInstance().ReadFile();
-		ProductsDatabase.getInstance().ReadFile();
-		SalesDatabase.getInstance().ReadFile();
+		UsersDatabase.getInstance().ReadFile(Users.getInstance());
+		ProductsDatabase.getInstance().ReadFile(Products.getInstance());
+		SalesDatabase.getInstance().ReadFile(Sales.getInstance());
 		Server server = new Server(Integer.parseInt(args[0]));
 		Thread t = new Thread(server);
 		t.run();

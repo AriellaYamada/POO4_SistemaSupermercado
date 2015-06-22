@@ -7,7 +7,7 @@ import java.util.stream.Stream;
 
 import Structure.User;
 
-public class Users {
+public class Users implements ListRegister {
 
 	private static Users usersDB;
 	private List<User> users;
@@ -26,8 +26,17 @@ public class Users {
 	public List<User> ListAll() { return users; }
 
 	public int Register (String name, String address, String tel, String email, String id, String password) {
-		if (checkId(id) == true) {
+		if (checkId(id)) {
 			User new_user = new User(name, address, tel, email, id, password);
+			users.add(new_user);
+			return 0;
+		}
+		return 1;
+	}
+
+	public int Register (String... value) {
+		if (checkId(value[4])) {
+			User new_user = new User(value[0], value[1], value[2], value[3], value[4], value[5]);
 			users.add(new_user);
 			return 0;
 		}
@@ -37,9 +46,7 @@ public class Users {
 	public boolean checkId (String id) {
 		filtered = users.stream();
 		filtered = filtered.filter(u -> u.getId().equals(id));
-		if (filtered.count() == 0)
-			return true;
-		return false;
+		return (filtered.count() == 0);
 	}
 
 	public int Login (String id, String password) {

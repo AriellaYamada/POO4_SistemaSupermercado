@@ -1,6 +1,7 @@
 package Interface.Client.Controller;
 
 import Interface.MainInterface;
+import Structure.Def;
 import Structure.Product;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -43,12 +44,10 @@ public class productListController implements Initializable{
 		Connection.getInstance().SendSignal("listall");
 		//Resposta do servidor com todos os produtos
 		String response = Connection.getInstance().ReceiveSignal();
-		String splitField = "!";
-		String splitRegister = ";";
 
-		String[] products = response.split(splitRegister);
+		String[] products = Def.splitReg(response);
 		for (String s : products){
-			String[] splited = s.split(splitField);
+			String[] splited = Def.splitField(s);
 			data.add(new Product(splited[0], Float.parseFloat(splited[1]), "21/06/2015", "Ades", Integer.parseInt(splited[2])));
 
 			// Se o produto não estiver disponível é aqui que será incluída

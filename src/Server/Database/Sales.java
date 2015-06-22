@@ -5,7 +5,7 @@ import Structure.Sale;
 import java.util.*;
 import java.util.stream.Stream;
 
-public class Sales {
+public class Sales implements ListRegister{
 
 	private static Sales salesDB;
 	private List<Sale> sales;
@@ -29,5 +29,11 @@ public class Sales {
 	public void Register(String clientId, String product, int quantity, String date) {
 		Sale new_sale = new Sale(clientId, product, quantity, date);
 		sales.add(new_sale);
+	}
+
+	public int Register(String... value) {
+		Sale new_sale = new Sale(value[0], value[1], Integer.parseInt(value[2]), value[3]);
+		sales.add(new_sale);
+		return 0;
 	}
 }
