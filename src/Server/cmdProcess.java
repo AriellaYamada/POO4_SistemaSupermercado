@@ -46,7 +46,7 @@ public class cmdProcess {
 				break;
 			//Busca todos os produtos cadastrados no sistema
 			case "listall":
-
+				line = Products.getInstance().AllProducts();
 				break;
 			case "search":
 				break;
