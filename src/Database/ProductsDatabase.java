@@ -1,6 +1,7 @@
 package Database;
 
 import Server.*;
+import Structure.Product;
 
 import java.io.IOException;
 
@@ -8,12 +9,22 @@ import static java.lang.System.out;
 
 public class ProductsDatabase extends Database {
 
+	private static ProductsDatabase productsDB;
+
+	//Singleton
+	public static ProductsDatabase getInstance(){
+		if(productsDB == null)
+			productsDB = new ProductsDatabase();
+		return productsDB;
+	}
+
+	public ProductsDatabase() { OpenFile("products.csv"); }
 
 	public void WriteFile() {
 		OpenWriter(false);
 		final String SEPARATOR = ",";
 		final String ENDLINE = "\n";
-		final String HEADER = "name, price, expiration, provider, quantity";
+		final String HEADER = "name,price,expiration,provider,quantity";
 
 		try {
 			fw.append(HEADER);
@@ -28,7 +39,7 @@ public class ProductsDatabase extends Database {
 				fw.append(Float.valueOf(p.getPrice()).toString());
 				fw.append(SEPARATOR);
 
-				fw.append(p.CalendarToStr(p.getExpiration()));
+				fw.append(cmdProcess.CalendarToString(p.getExpiration()));
 				fw.append(SEPARATOR);
 
 				fw.append(p.getProvider());
@@ -39,6 +50,7 @@ public class ProductsDatabase extends Database {
 
 				fw.flush();
 			}
+			CloseFile();
 		} catch (IOException e){
 			out.println("Erro na escrita do arquivo.");
 			e.printStackTrace();

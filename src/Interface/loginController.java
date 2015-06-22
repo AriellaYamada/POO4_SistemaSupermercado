@@ -4,14 +4,11 @@ import Client.Client;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
 
-import javafx.event.ActionEvent;
-
 import java.io.IOException;
+import java.util.LinkedList;
+import java.util.List;
 
 public class loginController {
-	@FXML private Button b_login;
-	@FXML private Button b_cleanFields;
-	@FXML private Button b_addUser;
 	@FXML private TextField f_userlogin;
 	@FXML private TextField f_userpassword;
 	@FXML private TextField f_name;
@@ -22,52 +19,36 @@ public class loginController {
 	@FXML private TextField f_password;
 	@FXML private TextField f_confirmp;
 
-	public Client client;
-
 
 	@FXML
-	public void handleSendLogin(ActionEvent event) {
+	public void handleSendLogin() {
 		f_userlogin.getStyleClass().remove("red-field");
 		f_userpassword.getStyleClass().remove("red-field");
 
 		String userlogin = f_userlogin.getText();
 		String userpassword = f_userpassword.getText();
 
-		if (userlogin.isEmpty()){
-			f_userlogin.getStyleClass().add("red-field");
-		}
-
-		if (userpassword.isEmpty()) {
-			f_userpassword.getStyleClass().add("red-field");
-		}
+		if (userlogin.isEmpty()){ setError(f_userlogin, "Este campo é obrigatório"); }
+		if (userpassword.isEmpty()) { setError(f_userpassword, "Este campo é obrigatório"); }
 
 		if (!userlogin.isEmpty() && !userlogin.isEmpty()) {
-			String response = client.Login(f_userlogin.getText(), f_userpassword.getText());
-			String[] splited = response.split("|");
-
-			if (splited[0].equals("ok")) {
+			String response = Client.getInstance().Login(f_userlogin.getText(), f_userpassword.getText());
+			if (response.equals("ok")) {
 				try {
 					MainInterface.changeScene("menu.fxml");
 				} catch (IOException e) {
-					e.printStackTrace();
+					System.err.println("Erro ao carregar a tela");
 				}
 			} else {
+				String[] splited = response.split("|");
 				String[] error = splited[1].split("&");
-
-				switch (error[0]){
-					case "f_userlogin":
-						f_userlogin.getStyleClass().add("red-field");
-						break;
-					case "f_userpassword":
-						f_userpassword.getStyleClass().add("red-field");
-						break;
-				}
+				setError(getField(error[0]), error[1]);
 			}
 		}
 	}
 
 	@FXML
-	public void handleCleanBtn(ActionEvent event) {
+	public void handleCleanBtn() {
 		f_name.clear();
 		f_address.clear();
 		f_tel.clear();
@@ -78,18 +59,94 @@ public class loginController {
 	}
 
 	@FXML
-	public void handleAddUserBtn(ActionEvent event) {
+	public void handleAddUserBtn() {
+		boolean validateFields = true;
 
-		if(f_name.getText().isEmpty() || f_address.getText().isEmpty() || f_tel.getText().isEmpty()
-				|| f_email.getText().isEmpty() || f_id.getText().isEmpty()|| f_password.getText().isEmpty()
-				|| f_confirmp.getText().isEmpty()) {
+		// Creates a list with all fields
+		List<TextInputControl> controls = new LinkedList<>();
+		controls.add(f_name);
+		controls.add(f_address);
+		controls.add(f_tel);
+		controls.add(f_email);
+		controls.add(f_id);
+		controls.add(f_password);
+		controls.add(f_confirmp);
 
-		} else if(f_password.getText() != f_confirmp.getText()) {
-
-		} else {
-			client.AddNewUser(f_name.getText(), f_address.getText(), f_tel.getText(), f_email.getText(),
-					f_id.getText(), f_password.getText());
+		// Reset field style then check if its not empty
+		for (TextInputControl c : controls){
+			c.getStyleClass().remove("red-field");
+			c.setTooltip(null);
+			if (c.getText().isEmpty()){
+				validateFields = false;
+				setError(c, "Este campo é obrigatório");
+			}
 		}
 
+		// If all fields have some text...
+		if (validateFields) {
+
+			// Verify if "password" and "confirm password" are the same
+			if (!f_password.getText().equals(f_confirmp.getText())) {
+				setError(f_password, "As senhas digitadas não são iguais");
+				setError(f_confirmp, "As senhas digitadas não são iguais");
+			} else {
+				// Send the data to server and read the answer from server
+				String answer = Client.getInstance().AddNewUser(f_name.getText(),
+																f_address.getText(),
+																f_tel.getText(),
+																f_email.getText(),
+																f_id.getText(),
+																f_password.getText());
+
+				if (!answer.equals("ok")) {  // If the answer is not ok
+					String[] splited = answer.split("|");
+
+					// Ignores the first item of the array (probally a "fail")
+					for (int i = 1; i < splited.length; i++){
+						String[] error = splited[i].split("&");
+						TextInputControl fieldError = getField(error[0]);
+
+						// Mark the errors on screen
+						if (fieldError != null) { setError(fieldError, error[1]);
+						}
+					}
+				} else {// If all data is ok
+					try {
+						MainInterface.changeScene("menu.fxml");
+					} catch (IOException e) {
+						System.err.println("Erro ao exibir a tela");
+					}
+				}
+			}
+		}
+	}
+
+	private void setError (TextInputControl field, String str){
+		field.getStyleClass().add("red-field");
+		field.setTooltip(new Tooltip(str));
+	}
+
+	private TextInputControl getField(String name){
+		switch (name){
+			case "f_userlogin":
+				return f_userlogin;
+			case "f_userpassword":
+				return f_userpassword;
+			case "f_name":
+				return f_name;
+			case "f_address":
+				return f_address;
+			case "f_tel":
+				return f_tel;
+			case "f_email":
+				return f_email;
+			case "f_id":
+				return f_id;
+			case "f_password":
+				return f_password;
+			case "f_confirmp":
+				return f_confirmp;
+		}
+		return null;
 	}
 }

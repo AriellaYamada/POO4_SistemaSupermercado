@@ -1,6 +1,7 @@
-package Server;
+package Structure;
 
-import java.util.Calendar;
+import Server.cmdProcess;
+
 import java.util.GregorianCalendar;
 
 public class Product {
@@ -14,7 +15,7 @@ public class Product {
 	public Product (String name, float price, String date, String provider, int quantity) {
 		this.name = name;
 		this.price = price;
-		this.expiration = StrToCalendar(date);
+		this.expiration = cmdProcess.StringToCalendar(date);
 		this.provider = provider;
 		this.quantity = quantity;
 	}
@@ -30,17 +31,4 @@ public class Product {
 		quantity = qtd;
 	}
 
-	public static String CalendarToStr (GregorianCalendar date) {
-		return date.get(Calendar.DAY_OF_MONTH) + "/"
-				+(date.get(Calendar.MONTH)+1) + "/"
-				+date.get(Calendar.YEAR);
-	}
-
-	public static GregorianCalendar StrToCalendar (String date) {
-		String[] split_date = date.split("/");
-
-		return new GregorianCalendar(Integer.parseInt(split_date[2]),
-				Integer.parseInt(split_date[1])-1,
-				Integer.parseInt(split_date[0]));
-	}
 }

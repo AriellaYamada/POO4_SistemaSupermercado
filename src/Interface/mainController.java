@@ -5,20 +5,16 @@ import Server.ServerMain;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
 
-import javafx.event.ActionEvent;
-
 import java.io.IOException;
 
 public class mainController {
 
-	@FXML private Button connectClientBtn;
 	@FXML private TextField clientIP;
 	@FXML private TextField clientPort;
 	@FXML private TextField serverPort;
-	@FXML private Button connectServerBtn;
 
 	@FXML
-	public void connectAsServer(ActionEvent event) {
+	public void connectAsServer() {
 		String port = serverPort.getText();
 
 		if (!port.isEmpty()) {
@@ -32,7 +28,7 @@ public class mainController {
 	}
 
 	@FXML
-	public void connectAsClient(ActionEvent event) {
+	public void connectAsClient() {
 		String ip = clientIP.getText();
 		String port = clientPort.getText();
 
@@ -55,7 +51,7 @@ public class mainController {
 				try {
 					MainInterface.changeScene("main.fxml");
 				} catch (IOException e1) {
-					e1.printStackTrace();
+					System.err.println("Erro ao exibir tela");
 				}
 			}
 		}

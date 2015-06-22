@@ -5,7 +5,7 @@ import java.util.List;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
-import Server.User;
+import Structure.User;
 
 public class Users {
 
@@ -13,10 +13,7 @@ public class Users {
 	private List<User> users;
 	private Stream<User> filtered;
 
-	public Users () {
-		users = new LinkedList<User>();
-		filtered = users.stream();
-	}
+	public Users () { users = new LinkedList<User>(); }
 
 	//Singleton
 	public static Users getInstance() {
@@ -32,28 +29,36 @@ public class Users {
 		if (checkId(id) == true) {
 			User new_user = new User(name, address, tel, email, id, password);
 			users.add(new_user);
-
 			return 0;
 		}
 		return 1;
 	}
 
 	public boolean checkId (String id) {
-
-		filtered.filter(u -> u.getId().equals(id));
+		filtered = users.stream();
+		filtered = filtered.filter(u -> u.getId().equals(id));
 		if (filtered.count() == 0)
 			return true;
 		return false;
 	}
 
 	public int Login (String id, String password) {
-		filtered.filter(u -> u.getId().equals(id));
-		if (filtered.count() == 0) {
+		filtered = users.stream();
+		filtered = filtered.filter(u -> u.getId().equals(id));
+		//Verifica se o usuario existe
+		if (filtered.count() == 0)
 			return 1;
-		}
-		filtered.findFirst();
+		filtered = users.stream()
+				.filter(u -> u.getId().equals(id));
+		//Verifica se a senha digitada é a correta
 		if (filtered.collect(Collectors.toList()).get(0).getPassword().equals(password))
 			return 0;
 		return 2;
+	}
+
+	public String GetUserName(String id) {
+		filtered = users.stream()
+				.filter(u -> u.getId().equals(id));
+		return filtered.collect(Collectors.toList()).get(0).getName();
 	}
 }
