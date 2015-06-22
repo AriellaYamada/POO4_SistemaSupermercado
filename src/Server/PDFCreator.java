@@ -3,6 +3,7 @@ package Server;
 import java.io.FileOutputStream;
 import java.io.OutputStream;
 
+import Database.Sales;
 import com.itextpdf.text.Document;
 import com.itextpdf.text.PageSize;
 import com.itextpdf.text.Paragraph;
@@ -20,7 +21,7 @@ import static java.lang.System.err;
 
 public class PDFCreator {
 
-	public void CreatePDF( String filename, String msg, List<Sale> sales ) {
+	public void CreatePDF( String filename, List<Sale> sales ) {
 		Document doc = null;
 
 		try {
@@ -32,7 +33,6 @@ public class PDFCreator {
 
 			doc.open();
 
-			Paragraph p = new Paragraph( msg );
 			doc.add(CreateSalesTable(sales));
 
 		} catch(DocumentException de) {
@@ -47,6 +47,17 @@ public class PDFCreator {
 	private PdfPTable CreateSalesTable( List<Sale> sales ) {
 
 		PdfPTable table = new PdfPTable(4); //4 colunas
+
+		for (Sale s : sales ) {
+
+			table.addCell(s.getClientId());
+
+			table.addCell(s.getProduct());
+
+			table.addCell(Integer.valueOf(s.getQuantity()).toString());
+
+			table.addCell(cmdProcess.CalendarToString(s.getDate()));
+		}
 
 		return table;
 	}
