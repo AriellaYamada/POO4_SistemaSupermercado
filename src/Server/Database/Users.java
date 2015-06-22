@@ -1,4 +1,4 @@
-package Database;
+package Server.Database;
 
 import java.util.LinkedList;
 import java.util.List;

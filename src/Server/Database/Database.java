@@ -1,4 +1,4 @@
-package Database;
+package Server.Database;
 
 import java.io.*;
 import static java.lang.System.out;

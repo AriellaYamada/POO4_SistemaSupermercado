@@ -1,51 +1,48 @@
-package Database;
+package Server.Database;
 
 import Server.*;
-import Structure.Product;
+import Structure.Sale;
 
 import java.io.IOException;
 
 import static java.lang.System.out;
 
-public class ProductsDatabase extends Database {
+public class SalesDatabase extends Database {
 
-	private static ProductsDatabase productsDB;
+	private static SalesDatabase salesDB;
 
 	//Singleton
-	public static ProductsDatabase getInstance(){
-		if(productsDB == null)
-			productsDB = new ProductsDatabase();
-		return productsDB;
+	public static SalesDatabase getInstance() {
+		if(salesDB == null)
+			salesDB = new SalesDatabase();
+		return salesDB;
 	}
 
-	public ProductsDatabase() { OpenFile("products.csv"); }
+	public SalesDatabase() { OpenFile("sales.csv"); }
 
 	public void WriteFile() {
 		OpenWriter(false);
 		final String SEPARATOR = ",";
 		final String ENDLINE = "\n";
-		final String HEADER = "name,price,expiration,provider,quantity";
+		final String HEADER = "clientID,product,quantity,date";
 
 		try {
 			fw.append(HEADER);
 			fw.append(ENDLINE);
 			fw.flush();
 
-			for (Product p : Products.getInstance().ListAll()) {
+			for (Sale s : Sales.getInstance().ListAll()) {
 
-				fw.append(p.getName());
+				fw.append(s.getClientId());
 				fw.append(SEPARATOR);
 
-				fw.append(Float.valueOf(p.getPrice()).toString());
+				fw.append(s.getProduct());
 				fw.append(SEPARATOR);
 
-				fw.append(cmdProcess.CalendarToString(p.getExpiration()));
+				fw.append(Integer.valueOf(s.getQuantity()).toString());
 				fw.append(SEPARATOR);
 
-				fw.append(p.getProvider());
-				fw.append(SEPARATOR);
-
-				fw.append(Integer.valueOf(p.getQuantity()).toString());
+				fw.append(cmdProcess.CalendarToString(s.getDate()));
 				fw.append(ENDLINE);
 
 				fw.flush();
@@ -67,7 +64,7 @@ public class ProductsDatabase extends Database {
 			br.readLine();
 			while ((line = br.readLine()) != null) {
 				String[] splited = line.split(splitSign);
-				Products.getInstance().Register(splited[0], Float.parseFloat(splited[1]), splited[2], splited[3], Integer.parseInt(splited[4]));
+				Sales.getInstance().Register(splited[0], splited[1], Integer.parseInt(splited[2]), splited[3]);
 			}
 		} catch (IOException e) {
 			out.println("Erro na leitura do arquivo.");

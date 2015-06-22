@@ -1,12 +1,4 @@
-
-import Client.ClientMain;
-import Database.Sales;
-import Server.PDFCreator;
-import Server.ServerMain;
-import javafx.stage.Stage;
-
 import java.io.IOException;
-import java.util.Scanner;
 
 import static java.lang.System.out;
 

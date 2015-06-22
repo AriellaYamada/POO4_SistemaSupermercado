@@ -1,6 +1,6 @@
 package Server;
 
-import Database.*;
+import Server.Database.*;
 
 import java.util.Calendar;
 import java.util.GregorianCalendar;
@@ -29,7 +29,7 @@ public class cmdProcess {
 				if (response == 0)
 					line = "ok";
 				else
-					line = "fail|f_id&Este login ja esta sendo utilizado";
+					line = "fail!f_id&Este login ja esta sendo utilizado";
 				break;
 			//Efetuar login
 			case "login":
@@ -39,10 +39,10 @@ public class cmdProcess {
 					line = "ok";
 				//Caso o usuario nao seja encontrado
 				else if (response == 1)
-					line = "fail|f_userlogin&Usuario nao encontrado";
+					line = "fail!f_userlogin&Usuario nao encontrado";
 				//Caso a senha digitada for incorreta
 				else
-					line = "fail|f_userpassword&Senha incorreta";
+					line = "fail!f_userpassword&Senha incorreta";
 				break;
 				//Busca o nome do usuario logado
 			case "getname":

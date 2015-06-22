@@ -1,5 +1,6 @@
-package Interface;
+package Interface.Client.Controller;
 
+import Interface.MainInterface;
 import Structure.Product;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -13,6 +14,7 @@ import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
 
+import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 
@@ -71,5 +73,10 @@ public class productListController implements Initializable{
 
 	@FXML
 	public void backToMenu() {
+		try {
+			MainInterface.changeScene("Client/Model/menu.fxml");
+		} catch (IOException e) {
+			System.err.println("Erro ao exibir tela");
+		}
 	}
 }

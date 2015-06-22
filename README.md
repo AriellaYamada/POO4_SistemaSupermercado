@@ -14,5 +14,5 @@
 ## Se der tempo
 - [ ] Excluir a "reserva" do produto se o cliente demorar mais do que "X Tempo" para concluir a compra (12h, 24h, 48h, 1 semana...)
 - [ ] Permitir pesquisar produtos
-- [ ] Ordenar produtos por uma das colunas ao clicar no cabeçalho da coluna
+- [x] Ordenar produtos por uma das colunas ao clicar no cabeçalho da coluna
 - [ ] Na tela "productList.fxml", fazer o botão do carrinho exibir a quantidade de itens no carrinho.

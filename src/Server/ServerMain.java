@@ -1,9 +1,8 @@
 package Server;
 
-import Database.Products;
-import Database.ProductsDatabase;
-import Database.SalesDatabase;
-import Database.UsersDatabase;
+import Server.Database.ProductsDatabase;
+import Server.Database.SalesDatabase;
+import Server.Database.UsersDatabase;
 
 public class ServerMain {
 	public static void main (String[] args){

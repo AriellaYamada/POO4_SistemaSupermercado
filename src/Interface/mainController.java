@@ -47,6 +47,7 @@ public class mainController {
 			try {
 				MainInterface.changeScene("waitingConnection.fxml");
 				ClientMain.main(str);
+				MainInterface.changeScene("Client/Model/login.fxml");
 			} catch (IOException e) {
 				try {
 					MainInterface.changeScene("main.fxml");

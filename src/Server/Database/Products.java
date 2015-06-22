@@ -1,4 +1,4 @@
-package Database;
+package Server.Database;
 
 import Structure.Product;
 
