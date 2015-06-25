@@ -1,6 +1,8 @@
-package Interface;
+package Interface.Client.Controller;
 
 import Client.Client;
+import Interface.MainInterface;
+import Structure.Def;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
 
@@ -35,16 +37,18 @@ public class loginController {
 			String response = Client.getInstance().Login(f_userlogin.getText(), f_userpassword.getText());
 			if (response.equals("ok")) {
 				try {
-					MainInterface.changeScene("menu.fxml");
+					MainInterface.changeScene("Client/Model/menu.fxml");
 				} catch (IOException e) {
 					System.err.println("Erro ao carregar a tela");
 				}
 			} else {
-				String[] splited = response.split("|");
-				String[] error = splited[1].split("&");
+				String[] splited = Def.splitReg(response);
+				String[] error = Def.splitField(splited[1]);
 				setError(getField(error[0]), error[1]);
 			}
 		}
+
+
 	}
 
 	@FXML
@@ -99,11 +103,11 @@ public class loginController {
 																f_password.getText());
 
 				if (!answer.equals("ok")) {  // If the answer is not ok
-					String[] splited = answer.split("|");
+					String[] splited = Def.splitReg(answer);
 
 					// Ignores the first item of the array (probally a "fail")
 					for (int i = 1; i < splited.length; i++){
-						String[] error = splited[i].split("&");
+						String[] error = Def.splitField(splited[i]);
 						TextInputControl fieldError = getField(error[0]);
 
 						// Mark the errors on screen
@@ -112,7 +116,7 @@ public class loginController {
 					}
 				} else {// If all data is ok
 					try {
-						MainInterface.changeScene("menu.fxml");
+						MainInterface.changeScene("Client/Model/menu.fxml");
 					} catch (IOException e) {
 						System.err.println("Erro ao exibir a tela");
 					}

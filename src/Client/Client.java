@@ -1,12 +1,13 @@
 package Client;
 
+import Structure.Def;
+
 import java.io.IOException;
 
 public class Client {
 
 	private static Client client;
 
-	String split = ",";
 	String signal;
 
 	private boolean logged;
@@ -28,7 +29,13 @@ public class Client {
 
 	public String AddNewUser (String name, String address, String tel, String email, String id, String password) {
 
-		signal = "newuser" + split + name + split + address + split + tel + split + email + split + id + split + password;
+		signal = "newuser"
+				+ Def.regSep   + name
+				+ Def.fieldSep + address
+				+ Def.fieldSep + tel
+				+ Def.fieldSep + email
+				+ Def.fieldSep + id
+				+ Def.fieldSep + password;
 
 		System.out.println(signal);
 		Connection.getInstance().SendSignal(signal);
@@ -40,7 +47,7 @@ public class Client {
 	public String Login (String id, String password) {
 
 		//Comando a ser enviado ao servidor
-		signal = "login" + split + id + split + password;
+		signal = "login" + Def.regSep + id + Def.fieldSep + password;
 		Connection.getInstance().SendSignal(signal);
 
 		//Resposta recebida do servidor
@@ -56,7 +63,7 @@ public class Client {
 	}
 
 	public void GetUserName() {
-		signal = "getname" + split + id;
+		signal = "getname" + Def.regSep + id;
 		Connection.getInstance().SendSignal(signal);
 
 		name = Connection.getInstance().ReceiveSignal();

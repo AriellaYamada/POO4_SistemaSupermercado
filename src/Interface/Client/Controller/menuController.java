@@ -1,5 +1,6 @@
-package Interface;
+package Interface.Client.Controller;
 
+import Interface.MainInterface;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 
@@ -19,7 +20,7 @@ public class menuController {
 	@FXML
 	void listProducts() {
 		try {
-			MainInterface.changeScene("productList.fxml");
+			MainInterface.changeScene("Client/Model/productList.fxml");
 		} catch (IOException e) {
 			System.err.println("Erro ao exibir a tela");
 		}
@@ -28,7 +29,7 @@ public class menuController {
 	@FXML
 	void salesCart() {
 		try {
-			MainInterface.changeScene("cartList.fxml");
+			MainInterface.changeScene("Client/Model/cartList.fxml");
 		} catch (IOException e) {
 			System.err.println("Erro ao exibir a tela");
 		}

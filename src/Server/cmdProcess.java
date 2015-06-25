@@ -1,6 +1,7 @@
 package Server;
 
-import Database.*;
+import Server.Database.*;
+import Structure.Def;
 
 import java.util.Calendar;
 import java.util.GregorianCalendar;
@@ -19,30 +20,33 @@ public class cmdProcess {
 
 	//Processa o comando recebido do cliente
 	public static String process (String line){
-		String[] cmd = line.split(",");
+		String[] cmd = Def.splitReg(line);
+		String[] args;
 		int response = -2;
 		switch (cmd[0]){
 			//Cadastro de novo usuario
 			case "newuser":
-				response = Users.getInstance().Register(cmd[1], cmd[2], cmd[3], cmd[4], cmd[5], cmd[6]);
+				args = Def.splitField(cmd[1]);
+				response = Users.getInstance().Register(args[0], args[1], args[2], args[3], args[4], args[5]);
 				UsersDatabase.getInstance().WriteFile();
 				if (response == 0)
 					line = "ok";
 				else
-					line = "fail|f_id&Este login ja esta sendo utilizado";
+					line = "fail"+ Def.regSep +"f_id"+ Def.fieldSep +"Este login ja esta sendo utilizado";
 				break;
 			//Efetuar login
 			case "login":
-				response = Users.getInstance().Login(cmd[1], cmd[2]);
+				args = Def.splitField(cmd[1]);
+				response = Users.getInstance().Login(args[0], args[1]);
 				//Se o login foi efetuado corretamente
 				if (response == 0)
 					line = "ok";
 				//Caso o usuario nao seja encontrado
 				else if (response == 1)
-					line = "fail|f_userlogin&Usuario nao encontrado";
+					line = "fail"+ Def.regSep +"f_userlogin"+ Def.fieldSep +"Usuario nao encontrado";
 				//Caso a senha digitada for incorreta
 				else
-					line = "fail|f_userpassword&Senha incorreta";
+					line = "fail"+ Def.regSep +"f_userpassword"+ Def.fieldSep +"Senha incorreta";
 				break;
 				//Busca o nome do usuario logado
 			case "getname":

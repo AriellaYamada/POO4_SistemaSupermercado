@@ -1,4 +1,8 @@
-package Database;
+package Server.Database;
+
+import Server.cmdProcess;
+import Structure.Def;
+import Structure.Product;
 
 import java.io.*;
 import static java.lang.System.out;
@@ -57,6 +61,47 @@ abstract public class Database {
 		try {
 			br.close();
 		} catch (IOException e) {
+			e.printStackTrace();
+		}
+	}
+
+	// Use como:
+	// ProductsDatabase.getInstance().ReadFile(Products.getInstance());
+	// [database].getInstance().ReadFile([tipo].getInstance());
+	public void ReadFile(ListRegister db){
+		OpenReader();
+		String line;
+
+		try {
+			br.readLine();
+			while ((line = br.readLine()) != null) {
+				String[] splited = Def.splitComma(line);
+				db.Register(splited);
+			}
+		} catch (IOException e) {
+			System.err.println("Erro na leitura do arquivo.");
+			e.printStackTrace();
+		}
+	}
+
+	// Use como:
+	// [database].getInstance().WriteFile("str 1", "str 2", ... "str x");
+	// Ele irá escrever "str 1,str 2,...,str x'\n'" no arquivo
+	public void WriteFile(String... value) {
+		OpenWriter(false);
+		final String ENDLINE = "\n";
+
+		try {
+			fw.append(value[0]);
+			for (int i = 1; i < value.length; i++){
+				fw.append(Def.comma);
+				fw.append(value[i]);
+			}
+			fw.append(ENDLINE);
+			fw.flush();
+			CloseFile();
+		} catch (IOException e){
+			System.err.println("Erro na escrita do arquivo.");
 			e.printStackTrace();
 		}
 	}
