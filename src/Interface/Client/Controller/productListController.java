@@ -90,11 +90,17 @@ public class productListController implements Initializable {
 	@FXML
 	public void addCart(ActionEvent actionEvent) {
 		// Pegar o elemento que está selecionado no TableView
+		Product p = tv_table.getSelectionModel().getSelectedItem();
+
 		// e chamar o método "addCart" dele
+		// p.addCart();
 	}
 
 	@FXML
 	void dismiss(ActionEvent event) {
 		alert.setVisible(false);
+	}
+
+	public void refresh() {
 	}
 }
