@@ -9,17 +9,20 @@ import javafx.collections.ObservableList;
 import Client.Cart;
 import Client.Connection;
 
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.layout.VBox;
+import javafx.scene.text.Text;
 
 import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 
-public class productListController implements Initializable{
+public class productListController implements Initializable {
 
 	@FXML private TableView<Product> tv_table;
 	@FXML private TableColumn<Product, String> c_name;
@@ -28,9 +31,13 @@ public class productListController implements Initializable{
 	@FXML private TableColumn<Product, String> c_provider;
 	@FXML private TableColumn<Product, Integer> c_amount;
 
+	@FXML private VBox alert;
+	@FXML private Text alert_product_name;
+
 	final ObservableList<Product> data = FXCollections.observableArrayList();
 
-	public void initialize(URL location, ResourceBundle resources){
+	@FXML
+	public void initialize(URL location, ResourceBundle resources) {
 		// Configura TableView
 		c_name.setCellValueFactory(new PropertyValueFactory<>("name"));
 		c_price.setCellValueFactory(new PropertyValueFactory<>("price"));
@@ -46,7 +53,7 @@ public class productListController implements Initializable{
 		String response = Connection.getInstance().ReceiveSignal();
 
 		String[] products = Def.splitReg(response);
-		for (String s : products){
+		for (String s : products) {
 			String[] splited = Def.splitField(s);
 			data.add(new Product(splited[0], Float.parseFloat(splited[1]), "21/06/2015", "Ades", Integer.parseInt(splited[2])));
 
@@ -67,6 +74,7 @@ public class productListController implements Initializable{
 		}
 	}
 
+	@FXML
 	public void salesCart() {
 	}
 
@@ -77,5 +85,16 @@ public class productListController implements Initializable{
 		} catch (IOException e) {
 			System.err.println("Erro ao exibir tela");
 		}
+	}
+
+	@FXML
+	public void addCart(ActionEvent actionEvent) {
+		// Pegar o elemento que está selecionado no TableView
+		// e chamar o método "addCart" dele
+	}
+
+	@FXML
+	void dismiss(ActionEvent event) {
+		alert.setVisible(false);
 	}
 }
