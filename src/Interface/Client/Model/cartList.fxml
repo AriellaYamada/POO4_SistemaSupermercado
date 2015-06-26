@@ -15,7 +15,7 @@
          <children>
             <HBox alignment="CENTER_LEFT" spacing="10.0" styleClass="title-bar" stylesheets="@../../style.css">
                <children>
-                  <Button mnemonicParsing="false" styleClass="default-btn" text="Voltar">
+                  <Button mnemonicParsing="false" onAction="#backToMenu" styleClass="default-btn" text="Voltar">
                      <graphic>
                         <Group>
                            <children>
@@ -38,7 +38,7 @@
                         </Text>
                      </children>
                   </HBox>
-                  <Button layoutX="15.0" layoutY="15.0" mnemonicParsing="false" styleClass="default-btn" text="Limpar">
+                  <Button layoutX="15.0" layoutY="15.0" mnemonicParsing="false" onAction="#showClearDialog" styleClass="default-btn" text="Limpar">
                      <graphic>
                         <Group>
                            <children>
@@ -47,7 +47,7 @@
                         </Group>
                      </graphic>
                   </Button>
-                  <Button layoutX="681.0" layoutY="15.0" mnemonicParsing="false" styleClass="default-btn" text="Concluir compra">
+                  <Button layoutX="681.0" layoutY="15.0" mnemonicParsing="false" onAction="#showConfirmDialog" styleClass="default-btn" text="Concluir compra">
                      <graphic>
                         <Group>
                            <children>
@@ -70,9 +70,22 @@
                   <TableColumn fx:id="c_expiration" editable="false" prefWidth="100.0" styleClass="col-expiration" text="Validade" visible="false" />
                </columns>
             </TableView>
+            <HBox alignment="CENTER_RIGHT" spacing="20.0">
+               <children>
+                  <Label text="Total:" />
+                  <Label fx:id="l_total_value" layoutX="781.0" layoutY="10.0" text="99,99">
+                     <font>
+                        <Font size="18.0" />
+                     </font>
+                  </Label>
+               </children>
+               <VBox.margin>
+                  <Insets left="10.0" right="10.0" />
+               </VBox.margin>
+            </HBox>
          </children>
       </VBox>
-      <VBox fx:id="alert" alignment="CENTER" style="-fx-background-color: rgba(0,0,0,0.2);" visible="false">
+      <VBox fx:id="alertDialog" alignment="CENTER" style="-fx-background-color: rgba(0,0,0,0.2);" visible="false">
          <children>
             <VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" spacing="15.0" style="-fx-background-color: #444;">
                <children>
@@ -123,6 +136,100 @@
                </opaqueInsets>
                <padding>
                   <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+               </padding>
+               <StackPane.margin>
+                  <Insets />
+               </StackPane.margin>
+            </VBox>
+         </children>
+      </VBox>
+      <VBox fx:id="clearDialog" alignment="CENTER" layoutX="10.0" layoutY="10.0" style="-fx-background-color: rgba(0,0,0,0.2);" visible="false">
+         <children>
+            <VBox alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" spacing="15.0" style="-fx-background-color: #444;">
+               <children>
+                  <Group>
+                     <children>
+                        <SVGPath content="M1024 161v190q0 14 -9.5 23.5t-22.5 9.5h-192q-13 0 -22.5 -9.5t-9.5 -23.5v-190q0 -14 9.5 -23.5t22.5 -9.5h192q13 0 22.5 9.5t9.5 23.5zM1022 535l18 459q0 12 -10 19q-13 11 -24 11h-220q-11 0 -24 -11q-10 -7 -10 -21l17 -457q0 -10 10 -16.5t24 -6.5h185 q14 0 23.5 6.5t10.5 16.5zM1008 1469l768 -1408q35 -63 -2 -126q-17 -29 -46.5 -46t-63.5 -17h-1536q-34 0 -63.5 17t-46.5 46q-37 63 -2 126l768 1408q17 31 47 49t65 18t65 -18t47 -49z" fill="#ff3333" rotate="180.0" scaleX="0.03" scaleY="0.03" strokeLineCap="ROUND" strokeLineJoin="ROUND" strokeType="OUTSIDE" strokeWidth="125.0" />
+                     </children>
+                  </Group>
+                  <Text fill="WHITE" layoutY="55.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Você tem certeza que quer limpar o carrinho?" textAlignment="CENTER" wrappingWidth="400.0">
+                     <font>
+                        <Font size="18.0" />
+                     </font>
+                  </Text>
+                  <HBox alignment="CENTER" spacing="20.0">
+                     <children>
+                        <Button layoutX="20.0" layoutY="278.0" mnemonicParsing="false" onAction="#dismiss" stylesheets="@../../style.css" text="Voltar">
+                           <styleClass>
+                              <String fx:value="default-btn" />
+                              <String fx:value="big-btn" />
+                           </styleClass>
+                        </Button>
+                        <Button mnemonicParsing="false" onAction="#confirmClear" stylesheets="@../../style.css" text="Limpar o carrinho">
+                           <styleClass>
+                              <String fx:value="default-btn" />
+                              <String fx:value="big-btn" />
+                              <String fx:value="red" />
+                           </styleClass>
+                        </Button>
+                     </children>
+                  </HBox>
+               </children>
+               <effect>
+                  <DropShadow blurType="TWO_PASS_BOX" />
+               </effect>
+               <opaqueInsets>
+                  <Insets />
+               </opaqueInsets>
+               <padding>
+                  <Insets bottom="30.0" left="30.0" right="30.0" top="30.0" />
+               </padding>
+               <StackPane.margin>
+                  <Insets />
+               </StackPane.margin>
+            </VBox>
+         </children>
+      </VBox>
+      <VBox fx:id="confirmDialog" alignment="CENTER" layoutX="10.0" layoutY="10.0" style="-fx-background-color: rgba(0,0,0,0.2);" visible="false">
+         <children>
+            <VBox alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" spacing="15.0" style="-fx-background-color: #444;">
+               <children>
+                  <Group>
+                     <children>
+                        <SVGPath content="M1280 832q0 26 -19 45t-45 19t-45 -19l-147 -146v293q0 26 -19 45t-45 19t-45 -19t-19 -45v-293l-147 146q-19 19 -45 19t-45 -19t-19 -45t19 -45l256 -256q19 -19 45 -19t45 19l256 256q19 19 19 45zM640 0q0 -53 -37.5 -90.5t-90.5 -37.5t-90.5 37.5t-37.5 90.5 t37.5 90.5t90.5 37.5t90.5 -37.5t37.5 -90.5zM1536 0q0 -53 -37.5 -90.5t-90.5 -37.5t-90.5 37.5t-37.5 90.5t37.5 90.5t90.5 37.5t90.5 -37.5t37.5 -90.5zM1664 1088v-512q0 -24 -16 -42.5t-41 -21.5l-1044 -122q1 -7 4.5 -21.5t6 -26.5t2.5 -22q0 -16 -24 -64h920 q26 0 45 -19t19 -45t-19 -45t-45 -19h-1024q-26 0 -45 19t-19 45q0 14 11 39.5t29.5 59.5t20.5 38l-177 823h-204q-26 0 -45 19t-19 45t19 45t45 19h256q16 0 28.5 -6.5t20 -15.5t13 -24.5t7.5 -26.5t5.5 -29.5t4.5 -25.5h1201q26 0 45 -19t19 -45z" fill="WHITE" nodeOrientation="RIGHT_TO_LEFT" rotate="180.0" scaleX="0.03" scaleY="0.03" strokeLineCap="ROUND" strokeLineJoin="ROUND" strokeType="OUTSIDE" strokeWidth="125.0" />
+                     </children>
+                  </Group>
+                  <Text fill="WHITE" layoutY="55.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Você tem certeza que quer concluir a compra?" textAlignment="CENTER" wrappingWidth="400.0">
+                     <font>
+                        <Font size="18.0" />
+                     </font>
+                  </Text>
+                  <HBox alignment="CENTER" spacing="20.0">
+                     <children>
+                        <Button layoutX="20.0" layoutY="278.0" mnemonicParsing="false" onAction="#dismiss" stylesheets="@../../style.css" text="Voltar">
+                           <styleClass>
+                              <String fx:value="default-btn" />
+                              <String fx:value="big-btn" />
+                           </styleClass>
+                        </Button>
+                        <Button mnemonicParsing="false" onAction="#confirmEndSale" stylesheets="@../../style.css" text="Concluir a compra">
+                           <styleClass>
+                              <String fx:value="default-btn" />
+                              <String fx:value="big-btn" />
+                              <String fx:value="success" />
+                           </styleClass>
+                        </Button>
+                     </children>
+                  </HBox>
+               </children>
+               <effect>
+                  <DropShadow blurType="TWO_PASS_BOX" />
+               </effect>
+               <opaqueInsets>
+                  <Insets />
+               </opaqueInsets>
+               <padding>
+                  <Insets bottom="30.0" left="30.0" right="30.0" top="30.0" />
                </padding>
                <StackPane.margin>
                   <Insets />

@@ -10,7 +10,6 @@
 <?import javafx.scene.layout.*?>
 <?fxml-stylesheet href="Interface/style.css"?>
 
-
 <StackPane xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Interface.Client.Controller.productListController">
    <children>
       <VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="800.0">
@@ -29,7 +28,7 @@
                         <Tooltip text="Voltar para o menu" />
                      </tooltip>
                   </Button>
-                  <Button layoutX="722.0" layoutY="15.0" mnemonicParsing="false" onAction="#salesCart" styleClass="default-btn" text="Atualizar">
+                  <Button layoutX="722.0" layoutY="15.0" mnemonicParsing="false" onAction="#refresh" styleClass="default-btn" text="Atualizar">
                      <graphic>
                         <Group>
                            <children>
