@@ -52,3 +52,8 @@
 #tv_table .col-add, #tv_table .col-sub, #tv_table .col-expiration {
 	-fx-alignment: center;
 }
+
+#msgs .alert {
+	-fx-fill: #FFF;
+	-fx-font-size: 14;
+}

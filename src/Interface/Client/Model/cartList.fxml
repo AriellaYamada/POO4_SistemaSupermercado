@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.scene.effect.*?>
 <?import javafx.scene.text.*?>
 <?import javafx.geometry.*?>
 <?import javafx.scene.control.*?>
@@ -8,261 +9,126 @@
 <?import java.lang.*?>
 <?import javafx.scene.layout.*?>
 
-<VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
+<StackPane alignment="TOP_LEFT" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Interface.Client.Controller.cartListController">
    <children>
-      <HBox spacing="10.0" styleClass="title-bar" stylesheets="@../../style.css">
+      <VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="800.0">
          <children>
-            <Button mnemonicParsing="false" styleClass="default-btn" text="Voltar">
-               <graphic>
-                  <Group>
-                     <children>
-                        <SVGPath content="M1536 640v-128q0 -53 -32.5 -90.5t-84.5 -37.5h-704l293 -294q38 -36 38 -90t-38 -90l-75 -76q-37 -37 -90 -37q-52 0 -91 37l-651 652q-37 37 -37 90q0 52 37 91l651 650q38 38 91 38q52 0 90 -38l75 -74q38 -38 38 -91t-38 -91l-293 -293h704q52 0 84.5 -37.5 t32.5 -90.5z" scaleX="0.008" scaleY="0.008" />
-                     </children>
-                  </Group>
-               </graphic>
-            </Button>
-            <HBox alignment="CENTER" spacing="10.0" HBox.hgrow="ALWAYS">
+            <HBox alignment="CENTER_LEFT" spacing="10.0" styleClass="title-bar" stylesheets="@../../style.css">
                <children>
-                  <Group>
+                  <Button mnemonicParsing="false" styleClass="default-btn" text="Voltar">
+                     <graphic>
+                        <Group>
+                           <children>
+                              <SVGPath content="M1536 640v-128q0 -53 -32.5 -90.5t-84.5 -37.5h-704l293 -294q38 -36 38 -90t-38 -90l-75 -76q-37 -37 -90 -37q-52 0 -91 37l-651 652q-37 37 -37 90q0 52 37 91l651 650q38 38 91 38q52 0 90 -38l75 -74q38 -38 38 -91t-38 -91l-293 -293h704q52 0 84.5 -37.5 t32.5 -90.5z" scaleX="0.008" scaleY="0.008" />
+                           </children>
+                        </Group>
+                     </graphic>
+                  </Button>
+                  <HBox alignment="CENTER" spacing="10.0" HBox.hgrow="ALWAYS">
                      <children>
-                        <SVGPath content="M640 0q0 -52 -38 -90t-90 -38t-90 38t-38 90t38 90t90 38t90 -38t38 -90zM1536 0q0 -52 -38 -90t-90 -38t-90 38t-38 90t38 90t90 38t90 -38t38 -90zM1664 1088v-512q0 -24 -16.5 -42.5t-40.5 -21.5l-1044 -122q13 -60 13 -70q0 -16 -24 -64h920q26 0 45 -19t19 -45 t-19 -45t-45 -19h-1024q-26 0 -45 19t-19 45q0 11 8 31.5t16 36t21.5 40t15.5 29.5l-177 823h-204q-26 0 -45 19t-19 45t19 45t45 19h256q16 0 28.5 -6.5t19.5 -15.5t13 -24.5t8 -26t5.5 -29.5t4.5 -26h1201q26 0 45 -19t19 -45z" nodeOrientation="RIGHT_TO_LEFT" rotate="180.0" scaleX="0.01" scaleY="0.01" />
+                        <Group>
+                           <children>
+                              <SVGPath content="M640 0q0 -52 -38 -90t-90 -38t-90 38t-38 90t38 90t90 38t90 -38t38 -90zM1536 0q0 -52 -38 -90t-90 -38t-90 38t-38 90t38 90t90 38t90 -38t38 -90zM1664 1088v-512q0 -24 -16.5 -42.5t-40.5 -21.5l-1044 -122q13 -60 13 -70q0 -16 -24 -64h920q26 0 45 -19t19 -45 t-19 -45t-45 -19h-1024q-26 0 -45 19t-19 45q0 11 8 31.5t16 36t21.5 40t15.5 29.5l-177 823h-204q-26 0 -45 19t-19 45t19 45t45 19h256q16 0 28.5 -6.5t19.5 -15.5t13 -24.5t8 -26t5.5 -29.5t4.5 -26h1201q26 0 45 -19t19 -45z" nodeOrientation="RIGHT_TO_LEFT" rotate="180.0" scaleX="0.01" scaleY="0.01" />
+                           </children>
+                        </Group>
+                        <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Carrinho de compras" textAlignment="CENTER" HBox.hgrow="ALWAYS">
+                           <font>
+                              <Font size="18.0" />
+                           </font>
+                        </Text>
                      </children>
-                  </Group>
-                  <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Carrinho de compras" textAlignment="CENTER" HBox.hgrow="ALWAYS">
+                  </HBox>
+                  <Button layoutX="15.0" layoutY="15.0" mnemonicParsing="false" styleClass="default-btn" text="Limpar">
+                     <graphic>
+                        <Group>
+                           <children>
+                              <SVGPath content="M1298 214q0 -40 -28 -68l-136 -136q-28 -28 -68 -28t-68 28l-294 294l-294 -294q-28 -28 -68 -28t-68 28l-136 136q-28 28 -28 68t28 68l294 294l-294 294q-28 28 -28 68t28 68l136 136q28 28 68 28t68 -28l294 -294l294 294q28 28 68 28t68 -28l136 -136q28 -28 28 -68 t-28 -68l-294 -294l294 -294q28 -28 28 -68z" scaleX="0.01" scaleY="0.01" />
+                           </children>
+                        </Group>
+                     </graphic>
+                  </Button>
+                  <Button layoutX="681.0" layoutY="15.0" mnemonicParsing="false" styleClass="default-btn" text="Concluir compra">
+                     <graphic>
+                        <Group>
+                           <children>
+                              <SVGPath content="M1280 832q0 26 -19 45t-45 19t-45 -19l-147 -146v293q0 26 -19 45t-45 19t-45 -19t-19 -45v-293l-147 146q-19 19 -45 19t-45 -19t-19 -45t19 -45l256 -256q19 -19 45 -19t45 19l256 256q19 19 19 45zM640 0q0 -53 -37.5 -90.5t-90.5 -37.5t-90.5 37.5t-37.5 90.5 t37.5 90.5t90.5 37.5t90.5 -37.5t37.5 -90.5zM1536 0q0 -53 -37.5 -90.5t-90.5 -37.5t-90.5 37.5t-37.5 90.5t37.5 90.5t90.5 37.5t90.5 -37.5t37.5 -90.5zM1664 1088v-512q0 -24 -16 -42.5t-41 -21.5l-1044 -122q1 -7 4.5 -21.5t6 -26.5t2.5 -22q0 -16 -24 -64h920 q26 0 45 -19t19 -45t-19 -45t-45 -19h-1024q-26 0 -45 19t-19 45q0 14 11 39.5t29.5 59.5t20.5 38l-177 823h-204q-26 0 -45 19t-19 45t19 45t45 19h256q16 0 28.5 -6.5t20 -15.5t13 -24.5t7.5 -26.5t5.5 -29.5t4.5 -25.5h1201q26 0 45 -19t19 -45z" nodeOrientation="RIGHT_TO_LEFT" rotate="180.0" scaleX="0.01" scaleY="0.01" />
+                           </children>
+                        </Group>
+                     </graphic>
+                  </Button>
+               </children>
+               <padding>
+                  <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+               </padding>
+            </HBox>
+            <TableView fx:id="tv_table" prefHeight="600.0" prefWidth="800.0" stylesheets="@../../style.css" tableMenuButtonVisible="true">
+               <columns>
+                  <TableColumn fx:id="c_name" editable="false" prefWidth="500.0" styleClass="col-name" text="Produto" />
+                  <TableColumn fx:id="c_price" editable="false" prefWidth="100.0" styleClass="col-price" text="Preco" />
+                  <TableColumn fx:id="c_amount" onEditCommit="#editAmount" prefWidth="90.0" styleClass="col-amount" text="Qtd Reservada" />
+                  <TableColumn fx:id="c_provider" editable="false" prefWidth="75.0" styleClass="col-provider" text="Fornecedor" visible="false" />
+                  <TableColumn fx:id="c_expiration" editable="false" prefWidth="100.0" styleClass="col-expiration" text="Validade" visible="false" />
+               </columns>
+            </TableView>
+         </children>
+      </VBox>
+      <VBox fx:id="alert" alignment="CENTER" style="-fx-background-color: rgba(0,0,0,0.2);" visible="false">
+         <children>
+            <VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" spacing="15.0" style="-fx-background-color: #444;">
+               <children>
+                  <Button mnemonicParsing="false" onAction="#dismiss" styleClass="default-btn" stylesheets="@../../style.css">
+                     <graphic>
+                        <Group>
+                           <children>
+                              <SVGPath content="M1298 214q0 -40 -28 -68l-136 -136q-28 -28 -68 -28t-68 28l-294 294l-294 -294q-28 -28 -68 -28t-68 28l-136 136q-28 28 -28 68t28 68l294 294l-294 294q-28 28 -28 68t28 68l136 136q28 28 68 28t68 -28l294 -294l294 294q28 28 68 28t68 -28l136 -136q28 -28 28 -68 t-28 -68l-294 -294l294 -294q28 -28 28 -68z" scaleX="0.008" scaleY="0.008" />
+                           </children>
+                        </Group>
+                     </graphic>
+                  </Button>
+                  <HBox alignment="CENTER">
+                     <children>
+                        <Group>
+                           <children>
+                              <SVGPath content="M1024 161v190q0 14 -9.5 23.5t-22.5 9.5h-192q-13 0 -22.5 -9.5t-9.5 -23.5v-190q0 -14 9.5 -23.5t22.5 -9.5h192q13 0 22.5 9.5t9.5 23.5zM1022 535l18 459q0 12 -10 19q-13 11 -24 11h-220q-11 0 -24 -11q-10 -7 -10 -21l17 -457q0 -10 10 -16.5t24 -6.5h185 q14 0 23.5 6.5t10.5 16.5zM1008 1469l768 -1408q35 -63 -2 -126q-17 -29 -46.5 -46t-63.5 -17h-1536q-34 0 -63.5 17t-46.5 46q-37 63 -2 126l768 1408q17 31 47 49t65 18t65 -18t47 -49z" fill="YELLOW" rotate="180.0" scaleX="0.03" scaleY="0.03" strokeLineCap="ROUND" strokeLineJoin="ROUND" strokeType="OUTSIDE" strokeWidth="125.0" />
+                           </children>
+                        </Group>
+                     </children>
+                  </HBox>
+                  <Text fill="WHITE" layoutY="55.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Você está tentando adicionar o seguinte produto no carrinho:" textAlignment="CENTER" wrappingWidth="600.0">
+                     <font>
+                        <Font size="18.0" />
+                     </font>
+                  </Text>
+                  <Text fx:id="alert_product_name" fill="WHITE" layoutX="15.0" layoutY="138.0" strokeType="OUTSIDE" strokeWidth="0.0" text="[nome do produto]" textAlignment="CENTER" wrappingWidth="600.0">
+                     <font>
+                        <Font name="System Bold" size="18.0" />
+                     </font>
+                  </Text>
+                  <Text fill="WHITE" layoutX="15.0" layoutY="225.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Mas parece que nós não temos quantidade suficiente." textAlignment="CENTER" wrappingWidth="600.0">
+                     <font>
+                        <Font size="18.0" />
+                     </font>
+                  </Text>
+                  <Text fill="WHITE" layoutX="15.0" layoutY="216.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Por favor, tente mais tarde." textAlignment="CENTER" wrappingWidth="600.0">
                      <font>
                         <Font size="18.0" />
                      </font>
                   </Text>
                </children>
-            </HBox>
-            <Button layoutX="15.0" layoutY="15.0" mnemonicParsing="false" styleClass="default-btn" text="Limpar">
-               <graphic>
-                  <Group>
-                     <children>
-                        <SVGPath content="M1298 214q0 -40 -28 -68l-136 -136q-28 -28 -68 -28t-68 28l-294 294l-294 -294q-28 -28 -68 -28t-68 28l-136 136q-28 28 -28 68t28 68l294 294l-294 294q-28 28 -28 68t28 68l136 136q28 28 68 28t68 -28l294 -294l294 294q28 28 68 28t68 -28l136 -136q28 -28 28 -68 t-28 -68l-294 -294l294 -294q28 -28 28 -68z" scaleX="0.01" scaleY="0.01" />
-                     </children>
-                  </Group>
-               </graphic>
-            </Button>
-            <Button layoutX="681.0" layoutY="15.0" mnemonicParsing="false" styleClass="default-btn" text="Concluir compra">
-               <graphic>
-                  <Group>
-                     <children>
-                        <SVGPath content="M1280 832q0 26 -19 45t-45 19t-45 -19l-147 -146v293q0 26 -19 45t-45 19t-45 -19t-19 -45v-293l-147 146q-19 19 -45 19t-45 -19t-19 -45t19 -45l256 -256q19 -19 45 -19t45 19l256 256q19 19 19 45zM640 0q0 -53 -37.5 -90.5t-90.5 -37.5t-90.5 37.5t-37.5 90.5 t37.5 90.5t90.5 37.5t90.5 -37.5t37.5 -90.5zM1536 0q0 -53 -37.5 -90.5t-90.5 -37.5t-90.5 37.5t-37.5 90.5t37.5 90.5t90.5 37.5t90.5 -37.5t37.5 -90.5zM1664 1088v-512q0 -24 -16 -42.5t-41 -21.5l-1044 -122q1 -7 4.5 -21.5t6 -26.5t2.5 -22q0 -16 -24 -64h920 q26 0 45 -19t19 -45t-19 -45t-45 -19h-1024q-26 0 -45 19t-19 45q0 14 11 39.5t29.5 59.5t20.5 38l-177 823h-204q-26 0 -45 19t-19 45t19 45t45 19h256q16 0 28.5 -6.5t20 -15.5t13 -24.5t7.5 -26.5t5.5 -29.5t4.5 -25.5h1201q26 0 45 -19t19 -45z" nodeOrientation="RIGHT_TO_LEFT" rotate="180.0" scaleX="0.01" scaleY="0.01" />
-                     </children>
-                  </Group>
-               </graphic>
-            </Button>
+               <effect>
+                  <DropShadow blurType="TWO_PASS_BOX" />
+               </effect>
+               <opaqueInsets>
+                  <Insets />
+               </opaqueInsets>
+               <padding>
+                  <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+               </padding>
+               <StackPane.margin>
+                  <Insets />
+               </StackPane.margin>
+            </VBox>
          </children>
-         <padding>
-            <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
-         </padding>
-      </HBox>
-      <HBox style="-fx-background-color: #444;" stylesheets="@../../style.css">
-         <children>
-            <Label alignment="CENTER" stylesheets="@../../style.css" text="ID">
-               <styleClass>
-                  <String fx:value="table-header" />
-                  <String fx:value="col-id" />
-               </styleClass></Label>
-            <Label alignment="CENTER" layoutX="10.0" layoutY="10.0" stylesheets="@../../style.css" text="Produto" textAlignment="CENTER">
-               <styleClass>
-                  <String fx:value="table-header" />
-                  <String fx:value="col-product" />
-               </styleClass>
-            </Label>
-            <Label alignment="CENTER" layoutX="10.0" layoutY="10.0" stylesheets="@../../style.css" text="Preço" textAlignment="CENTER">
-               <styleClass>
-                  <String fx:value="table-header" />
-                  <String fx:value="col-price" />
-               </styleClass>
-            </Label>
-            <Label alignment="CENTER" layoutX="740.0" layoutY="10.0" stylesheets="@../../style.css" text="-" textAlignment="CENTER">
-               <styleClass>
-                  <String fx:value="table-header" />
-                  <String fx:value="col-add" />
-               </styleClass>
-            </Label>
-            <Label alignment="CENTER" layoutX="570.0" layoutY="10.0" stylesheets="@../../style.css" text="Qtd" textAlignment="CENTER">
-               <styleClass>
-                  <String fx:value="table-header" />
-                  <String fx:value="col-amount-cart" />
-               </styleClass>
-            </Label>
-            <Label alignment="CENTER" layoutX="710.0" layoutY="10.0" stylesheets="@../../style.css" text="+" textAlignment="CENTER">
-               <styleClass>
-                  <String fx:value="table-header" />
-                  <String fx:value="col-add" />
-               </styleClass>
-            </Label>
-         </children>
-      </HBox>
-      <ScrollPane fitToHeight="true" fitToWidth="true" VBox.vgrow="ALWAYS">
-         <content>
-            <VBox prefHeight="200.0" prefWidth="100.0">
-               <children>
-                  <HBox styleClass="table-line" stylesheets="@../../style.css">
-                     <children>
-                        <Label alignment="CENTER" stylesheets="@../../style.css" text="12DA7">
-                           <styleClass>
-                              <String fx:value="col-id" />
-                              <String fx:value="table-cell" />
-                           </styleClass>
-                        </Label>
-                        <Label layoutX="10.0" layoutY="10.0" stylesheets="@../../style.css" text="Nome do Produto (fazer um FOR com essa linha; uma para cada produto)">
-                           <styleClass>
-                              <String fx:value="col-product" />
-                              <String fx:value="table-cell" />
-                           </styleClass>
-                        </Label>
-                        <Label layoutX="10.0" layoutY="10.0" stylesheets="@../../style.css" text="10,99">
-                           <styleClass>
-                              <String fx:value="col-price" />
-                              <String fx:value="table-cell" />
-                           </styleClass>
-                        </Label>
-                        <Label layoutX="710.0" layoutY="10.0" stylesheets="@../../style.css" text="-">
-                           <styleClass>
-                              <String fx:value="col-sub" />
-                              <String fx:value="table-cell" />
-                           </styleClass>
-                        </Label>
-                        <Label layoutX="610.0" layoutY="10.0" stylesheets="@../../style.css" text="7">
-                           <styleClass>
-                              <String fx:value="col-amount-cart" />
-                              <String fx:value="table-cell" />
-                           </styleClass>
-                        </Label>
-                        <Label layoutX="760.0" layoutY="10.0" stylesheets="@../../style.css" text="+">
-                           <styleClass>
-                              <String fx:value="col-add" />
-                              <String fx:value="table-cell" />
-                           </styleClass>
-                        </Label>
-                     </children>
-                  </HBox>
-                  <HBox layoutX="10.0" layoutY="10.0" styleClass="table-line" stylesheets="@../../style.css">
-                     <children>
-                        <Label alignment="CENTER" stylesheets="@../../style.css" text="12DA7">
-                           <styleClass>
-                              <String fx:value="col-id" />
-                              <String fx:value="table-cell" />
-                           </styleClass>
-                        </Label>
-                        <Label layoutX="10.0" layoutY="10.0" stylesheets="@../../style.css" text="Nome do Produto (fazer um FOR com essa linha; uma para cada produto)">
-                           <styleClass>
-                              <String fx:value="col-product" />
-                              <String fx:value="table-cell" />
-                           </styleClass>
-                        </Label>
-                        <Label layoutX="10.0" layoutY="10.0" stylesheets="@../../style.css" text="10,99">
-                           <styleClass>
-                              <String fx:value="col-price" />
-                              <String fx:value="table-cell" />
-                           </styleClass>
-                        </Label>
-                        <Label layoutX="710.0" layoutY="10.0" stylesheets="@../../style.css" text="-">
-                           <styleClass>
-                              <String fx:value="col-sub" />
-                              <String fx:value="table-cell" />
-                           </styleClass>
-                        </Label>
-                        <Label layoutX="610.0" layoutY="10.0" stylesheets="@../../style.css" text="7">
-                           <styleClass>
-                              <String fx:value="col-amount-cart" />
-                              <String fx:value="table-cell" />
-                           </styleClass>
-                        </Label>
-                        <Label layoutX="760.0" layoutY="10.0" stylesheets="@../../style.css" text="+">
-                           <styleClass>
-                              <String fx:value="col-add" />
-                              <String fx:value="table-cell" />
-                           </styleClass>
-                        </Label>
-                     </children>
-                  </HBox>
-                  <HBox layoutX="10.0" layoutY="36.0" styleClass="table-line" stylesheets="@../../style.css">
-                     <children>
-                        <Label alignment="CENTER" stylesheets="@../../style.css" text="12DA7">
-                           <styleClass>
-                              <String fx:value="col-id" />
-                              <String fx:value="table-cell" />
-                           </styleClass>
-                        </Label>
-                        <Label layoutX="10.0" layoutY="10.0" stylesheets="@../../style.css" text="Nome do Produto (fazer um FOR com essa linha; uma para cada produto)">
-                           <styleClass>
-                              <String fx:value="col-product" />
-                              <String fx:value="table-cell" />
-                           </styleClass>
-                        </Label>
-                        <Label layoutX="10.0" layoutY="10.0" stylesheets="@../../style.css" text="10,99">
-                           <styleClass>
-                              <String fx:value="col-price" />
-                              <String fx:value="table-cell" />
-                           </styleClass>
-                        </Label>
-                        <Label layoutX="710.0" layoutY="10.0" stylesheets="@../../style.css" text="-">
-                           <styleClass>
-                              <String fx:value="col-sub" />
-                              <String fx:value="table-cell" />
-                           </styleClass>
-                        </Label>
-                        <Label layoutX="610.0" layoutY="10.0" stylesheets="@../../style.css" text="7">
-                           <styleClass>
-                              <String fx:value="col-amount-cart" />
-                              <String fx:value="table-cell" />
-                           </styleClass>
-                        </Label>
-                        <Label layoutX="760.0" layoutY="10.0" stylesheets="@../../style.css" text="+">
-                           <styleClass>
-                              <String fx:value="col-add" />
-                              <String fx:value="table-cell" />
-                           </styleClass>
-                        </Label>
-                     </children>
-                  </HBox>
-                  <HBox layoutX="10.0" layoutY="62.0" styleClass="table-line" stylesheets="@../../style.css">
-                     <children>
-                        <Label alignment="CENTER" stylesheets="@../../style.css" text="12DA7">
-                           <styleClass>
-                              <String fx:value="col-id" />
-                              <String fx:value="table-cell" />
-                           </styleClass>
-                        </Label>
-                        <Label layoutX="10.0" layoutY="10.0" stylesheets="@../../style.css" text="Nome do Produto (fazer um FOR com essa linha; uma para cada produto)">
-                           <styleClass>
-                              <String fx:value="col-product" />
-                              <String fx:value="table-cell" />
-                           </styleClass>
-                        </Label>
-                        <Label layoutX="10.0" layoutY="10.0" stylesheets="@../../style.css" text="10,99">
-                           <styleClass>
-                              <String fx:value="col-price" />
-                              <String fx:value="table-cell" />
-                           </styleClass>
-                        </Label>
-                        <Label layoutX="710.0" layoutY="10.0" stylesheets="@../../style.css" text="-">
-                           <styleClass>
-                              <String fx:value="col-sub" />
-                              <String fx:value="table-cell" />
-                           </styleClass>
-                        </Label>
-                        <Label layoutX="610.0" layoutY="10.0" stylesheets="@../../style.css" text="7">
-                           <styleClass>
-                              <String fx:value="col-amount-cart" />
-                              <String fx:value="table-cell" />
-                           </styleClass>
-                        </Label>
-                        <Label layoutX="760.0" layoutY="10.0" stylesheets="@../../style.css" text="+">
-                           <styleClass>
-                              <String fx:value="col-add" />
-                              <String fx:value="table-cell" />
-                           </styleClass>
-                        </Label>
-                     </children>
-                  </HBox>
-               </children></VBox>
-         </content>
-      </ScrollPane>
+      </VBox>
    </children>
-</VBox>
+</StackPane>
