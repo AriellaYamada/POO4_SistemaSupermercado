@@ -39,9 +39,9 @@ public class Product {
 		quantity = qtd;
 	}
 
-	public void addToCart(Product product) {
-		if (Cart.getInstance().CheckCart(product))
-			Cart.getInstance().Add(product);
+	public void addToCart() {
+		if (Cart.getInstance().CheckCart(this))
+			Cart.getInstance().Add(this);
 		else
 			quantity++;
 	}
