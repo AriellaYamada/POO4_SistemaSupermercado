@@ -4,6 +4,7 @@ import java.util.List;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 import Structure.Product;
+import Structure.Def;
 
 public class Cart {
 
@@ -21,22 +22,13 @@ public class Cart {
 
 	public boolean CheckCart(Product product) {
 		filtered = products.stream();
-		filtered = filtered.filter(p -> p.equals(product));
+		filtered = filtered.filter(p -> p.getName().equals(product.getName()));
 		return (filtered.count() == 0);
 	}
 
-	public void AddToCart(Product selProduct) {
-		if(CheckCart(selProduct)) {
-			products.add(selProduct);
-		} else {
-
-		}
-	}
-
-	public void AddOne(String product) {
-
-	}
-
-	public void RefreshQtd(String name, int newQtd) {
+	public void Add(Product product) {
+		Product newProduct = new Product(product.getName(), product.getPrice(), product.getExpiration(),
+				product.getProvider(), product.getQuantity());
+		products.add(newProduct);
 	}
 }

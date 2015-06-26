@@ -1,8 +1,8 @@
 package Structure;
 
 import Server.cmdProcess;
-
 import java.util.GregorianCalendar;
+import Client.Cart;
 
 public class Product {
 
@@ -15,7 +15,15 @@ public class Product {
 	public Product (String name, float price, String date, String provider, int quantity) {
 		this.name = name;
 		this.price = price;
-		this.expiration = cmdProcess.StringToCalendar(date);
+		this.expiration = Def.StringToCalendar(date);
+		this.provider = provider;
+		this.quantity = quantity;
+	}
+
+	public Product (String name, float price, GregorianCalendar date, String provider, int quantity) {
+		this.name = name;
+		this.price = price;
+		this.expiration = date;
 		this.provider = provider;
 		this.quantity = quantity;
 	}
@@ -31,4 +39,10 @@ public class Product {
 		quantity = qtd;
 	}
 
+	public void addToCart(Product product) {
+		if (Cart.getInstance().CheckCart(product))
+			Cart.getInstance().Add(product);
+		else
+			quantity++;
+	}
 }
