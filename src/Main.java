@@ -1,18 +1,16 @@
-
-import Client.ClientMain;
-import Database.Sales;
-import Server.PDFCreator;
-import Server.ServerMain;
-import javafx.stage.Stage;
+import Server.Database.Products;
+import Server.Database.ProductsDatabase;
+import Server.Database.SalesDatabase;
 
 import java.io.IOException;
-import java.util.Scanner;
 
 import static java.lang.System.out;
 
 public class Main {
 	public static void main (String[] args) throws IOException {
 		out.println("Como você deseja conectar?");
+
+		ProductsDatabase.getInstance().ReadFile(Products.getInstance());
 /*
 		Screennn scr = new Screennn();
 		Stage stg = new Stage();

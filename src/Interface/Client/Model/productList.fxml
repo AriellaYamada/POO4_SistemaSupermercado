@@ -9,9 +9,9 @@
 <?import javafx.scene.layout.*?>
 <?fxml-stylesheet href="Interface/style.css"?>
 
-<VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Interface.productListController">
+<VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Interface.Client.Controller.productListController">
    <children>
-      <HBox spacing="10.0" styleClass="title-bar" stylesheets="@style.css">
+      <HBox spacing="10.0" styleClass="title-bar" stylesheets="@../../style.css">
          <children>
             <Button mnemonicParsing="false" onAction="#backToMenu" styleClass="default-btn" text="Voltar">
                <graphic>
@@ -50,7 +50,7 @@
             <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
          </padding>
       </HBox>
-      <TableView fx:id="tv_table" prefHeight="600.0" prefWidth="800.0" stylesheets="@style.css" tableMenuButtonVisible="true">
+      <TableView fx:id="tv_table" prefHeight="600.0" prefWidth="800.0" stylesheets="@../../style.css" tableMenuButtonVisible="true">
          <columns>
             <TableColumn fx:id="c_name" editable="false" prefWidth="500.0" styleClass="col-name" text="Produto" />
             <TableColumn fx:id="c_price" editable="false" prefWidth="100.0" styleClass="col-price" text="Preco" />

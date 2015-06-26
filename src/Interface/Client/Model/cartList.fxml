@@ -10,7 +10,7 @@
 
 <VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
    <children>
-      <HBox spacing="10.0" styleClass="title-bar" stylesheets="@style.css">
+      <HBox spacing="10.0" styleClass="title-bar" stylesheets="@../../style.css">
          <children>
             <Button mnemonicParsing="false" styleClass="default-btn" text="Voltar">
                <graphic>
@@ -58,38 +58,38 @@
             <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
          </padding>
       </HBox>
-      <HBox style="-fx-background-color: #444;" stylesheets="@style.css">
+      <HBox style="-fx-background-color: #444;" stylesheets="@../../style.css">
          <children>
-            <Label alignment="CENTER" stylesheets="@style.css" text="ID">
+            <Label alignment="CENTER" stylesheets="@../../style.css" text="ID">
                <styleClass>
                   <String fx:value="table-header" />
                   <String fx:value="col-id" />
                </styleClass></Label>
-            <Label alignment="CENTER" layoutX="10.0" layoutY="10.0" stylesheets="@style.css" text="Produto" textAlignment="CENTER">
+            <Label alignment="CENTER" layoutX="10.0" layoutY="10.0" stylesheets="@../../style.css" text="Produto" textAlignment="CENTER">
                <styleClass>
                   <String fx:value="table-header" />
                   <String fx:value="col-product" />
                </styleClass>
             </Label>
-            <Label alignment="CENTER" layoutX="10.0" layoutY="10.0" stylesheets="@style.css" text="Preço" textAlignment="CENTER">
+            <Label alignment="CENTER" layoutX="10.0" layoutY="10.0" stylesheets="@../../style.css" text="Preço" textAlignment="CENTER">
                <styleClass>
                   <String fx:value="table-header" />
                   <String fx:value="col-price" />
                </styleClass>
             </Label>
-            <Label alignment="CENTER" layoutX="740.0" layoutY="10.0" stylesheets="@style.css" text="-" textAlignment="CENTER">
+            <Label alignment="CENTER" layoutX="740.0" layoutY="10.0" stylesheets="@../../style.css" text="-" textAlignment="CENTER">
                <styleClass>
                   <String fx:value="table-header" />
                   <String fx:value="col-add" />
                </styleClass>
             </Label>
-            <Label alignment="CENTER" layoutX="570.0" layoutY="10.0" stylesheets="@style.css" text="Qtd" textAlignment="CENTER">
+            <Label alignment="CENTER" layoutX="570.0" layoutY="10.0" stylesheets="@../../style.css" text="Qtd" textAlignment="CENTER">
                <styleClass>
                   <String fx:value="table-header" />
                   <String fx:value="col-amount-cart" />
                </styleClass>
             </Label>
-            <Label alignment="CENTER" layoutX="710.0" layoutY="10.0" stylesheets="@style.css" text="+" textAlignment="CENTER">
+            <Label alignment="CENTER" layoutX="710.0" layoutY="10.0" stylesheets="@../../style.css" text="+" textAlignment="CENTER">
                <styleClass>
                   <String fx:value="table-header" />
                   <String fx:value="col-add" />
@@ -101,39 +101,39 @@
          <content>
             <VBox prefHeight="200.0" prefWidth="100.0">
                <children>
-                  <HBox styleClass="table-line" stylesheets="@style.css">
+                  <HBox styleClass="table-line" stylesheets="@../../style.css">
                      <children>
-                        <Label alignment="CENTER" stylesheets="@style.css" text="12DA7">
+                        <Label alignment="CENTER" stylesheets="@../../style.css" text="12DA7">
                            <styleClass>
                               <String fx:value="col-id" />
                               <String fx:value="table-cell" />
                            </styleClass>
                         </Label>
-                        <Label layoutX="10.0" layoutY="10.0" stylesheets="@style.css" text="Nome do Produto (fazer um FOR com essa linha; uma para cada produto)">
+                        <Label layoutX="10.0" layoutY="10.0" stylesheets="@../../style.css" text="Nome do Produto (fazer um FOR com essa linha; uma para cada produto)">
                            <styleClass>
                               <String fx:value="col-product" />
                               <String fx:value="table-cell" />
                            </styleClass>
                         </Label>
-                        <Label layoutX="10.0" layoutY="10.0" stylesheets="@style.css" text="10,99">
+                        <Label layoutX="10.0" layoutY="10.0" stylesheets="@../../style.css" text="10,99">
                            <styleClass>
                               <String fx:value="col-price" />
                               <String fx:value="table-cell" />
                            </styleClass>
                         </Label>
-                        <Label layoutX="710.0" layoutY="10.0" stylesheets="@style.css" text="-">
+                        <Label layoutX="710.0" layoutY="10.0" stylesheets="@../../style.css" text="-">
                            <styleClass>
                               <String fx:value="col-sub" />
                               <String fx:value="table-cell" />
                            </styleClass>
                         </Label>
-                        <Label layoutX="610.0" layoutY="10.0" stylesheets="@style.css" text="7">
+                        <Label layoutX="610.0" layoutY="10.0" stylesheets="@../../style.css" text="7">
                            <styleClass>
                               <String fx:value="col-amount-cart" />
                               <String fx:value="table-cell" />
                            </styleClass>
                         </Label>
-                        <Label layoutX="760.0" layoutY="10.0" stylesheets="@style.css" text="+">
+                        <Label layoutX="760.0" layoutY="10.0" stylesheets="@../../style.css" text="+">
                            <styleClass>
                               <String fx:value="col-add" />
                               <String fx:value="table-cell" />
@@ -141,39 +141,39 @@
                         </Label>
                      </children>
                   </HBox>
-                  <HBox layoutX="10.0" layoutY="10.0" styleClass="table-line" stylesheets="@style.css">
+                  <HBox layoutX="10.0" layoutY="10.0" styleClass="table-line" stylesheets="@../../style.css">
                      <children>
-                        <Label alignment="CENTER" stylesheets="@style.css" text="12DA7">
+                        <Label alignment="CENTER" stylesheets="@../../style.css" text="12DA7">
                            <styleClass>
                               <String fx:value="col-id" />
                               <String fx:value="table-cell" />
                            </styleClass>
                         </Label>
-                        <Label layoutX="10.0" layoutY="10.0" stylesheets="@style.css" text="Nome do Produto (fazer um FOR com essa linha; uma para cada produto)">
+                        <Label layoutX="10.0" layoutY="10.0" stylesheets="@../../style.css" text="Nome do Produto (fazer um FOR com essa linha; uma para cada produto)">
                            <styleClass>
                               <String fx:value="col-product" />
                               <String fx:value="table-cell" />
                            </styleClass>
                         </Label>
-                        <Label layoutX="10.0" layoutY="10.0" stylesheets="@style.css" text="10,99">
+                        <Label layoutX="10.0" layoutY="10.0" stylesheets="@../../style.css" text="10,99">
                            <styleClass>
                               <String fx:value="col-price" />
                               <String fx:value="table-cell" />
                            </styleClass>
                         </Label>
-                        <Label layoutX="710.0" layoutY="10.0" stylesheets="@style.css" text="-">
+                        <Label layoutX="710.0" layoutY="10.0" stylesheets="@../../style.css" text="-">
                            <styleClass>
                               <String fx:value="col-sub" />
                               <String fx:value="table-cell" />
                            </styleClass>
                         </Label>
-                        <Label layoutX="610.0" layoutY="10.0" stylesheets="@style.css" text="7">
+                        <Label layoutX="610.0" layoutY="10.0" stylesheets="@../../style.css" text="7">
                            <styleClass>
                               <String fx:value="col-amount-cart" />
                               <String fx:value="table-cell" />
                            </styleClass>
                         </Label>
-                        <Label layoutX="760.0" layoutY="10.0" stylesheets="@style.css" text="+">
+                        <Label layoutX="760.0" layoutY="10.0" stylesheets="@../../style.css" text="+">
                            <styleClass>
                               <String fx:value="col-add" />
                               <String fx:value="table-cell" />
@@ -181,39 +181,39 @@
                         </Label>
                      </children>
                   </HBox>
-                  <HBox layoutX="10.0" layoutY="36.0" styleClass="table-line" stylesheets="@style.css">
+                  <HBox layoutX="10.0" layoutY="36.0" styleClass="table-line" stylesheets="@../../style.css">
                      <children>
-                        <Label alignment="CENTER" stylesheets="@style.css" text="12DA7">
+                        <Label alignment="CENTER" stylesheets="@../../style.css" text="12DA7">
                            <styleClass>
                               <String fx:value="col-id" />
                               <String fx:value="table-cell" />
                            </styleClass>
                         </Label>
-                        <Label layoutX="10.0" layoutY="10.0" stylesheets="@style.css" text="Nome do Produto (fazer um FOR com essa linha; uma para cada produto)">
+                        <Label layoutX="10.0" layoutY="10.0" stylesheets="@../../style.css" text="Nome do Produto (fazer um FOR com essa linha; uma para cada produto)">
                            <styleClass>
                               <String fx:value="col-product" />
                               <String fx:value="table-cell" />
                            </styleClass>
                         </Label>
-                        <Label layoutX="10.0" layoutY="10.0" stylesheets="@style.css" text="10,99">
+                        <Label layoutX="10.0" layoutY="10.0" stylesheets="@../../style.css" text="10,99">
                            <styleClass>
                               <String fx:value="col-price" />
                               <String fx:value="table-cell" />
                            </styleClass>
                         </Label>
-                        <Label layoutX="710.0" layoutY="10.0" stylesheets="@style.css" text="-">
+                        <Label layoutX="710.0" layoutY="10.0" stylesheets="@../../style.css" text="-">
                            <styleClass>
                               <String fx:value="col-sub" />
                               <String fx:value="table-cell" />
                            </styleClass>
                         </Label>
-                        <Label layoutX="610.0" layoutY="10.0" stylesheets="@style.css" text="7">
+                        <Label layoutX="610.0" layoutY="10.0" stylesheets="@../../style.css" text="7">
                            <styleClass>
                               <String fx:value="col-amount-cart" />
                               <String fx:value="table-cell" />
                            </styleClass>
                         </Label>
-                        <Label layoutX="760.0" layoutY="10.0" stylesheets="@style.css" text="+">
+                        <Label layoutX="760.0" layoutY="10.0" stylesheets="@../../style.css" text="+">
                            <styleClass>
                               <String fx:value="col-add" />
                               <String fx:value="table-cell" />
@@ -221,39 +221,39 @@
                         </Label>
                      </children>
                   </HBox>
-                  <HBox layoutX="10.0" layoutY="62.0" styleClass="table-line" stylesheets="@style.css">
+                  <HBox layoutX="10.0" layoutY="62.0" styleClass="table-line" stylesheets="@../../style.css">
                      <children>
-                        <Label alignment="CENTER" stylesheets="@style.css" text="12DA7">
+                        <Label alignment="CENTER" stylesheets="@../../style.css" text="12DA7">
                            <styleClass>
                               <String fx:value="col-id" />
                               <String fx:value="table-cell" />
                            </styleClass>
                         </Label>
-                        <Label layoutX="10.0" layoutY="10.0" stylesheets="@style.css" text="Nome do Produto (fazer um FOR com essa linha; uma para cada produto)">
+                        <Label layoutX="10.0" layoutY="10.0" stylesheets="@../../style.css" text="Nome do Produto (fazer um FOR com essa linha; uma para cada produto)">
                            <styleClass>
                               <String fx:value="col-product" />
                               <String fx:value="table-cell" />
                            </styleClass>
                         </Label>
-                        <Label layoutX="10.0" layoutY="10.0" stylesheets="@style.css" text="10,99">
+                        <Label layoutX="10.0" layoutY="10.0" stylesheets="@../../style.css" text="10,99">
                            <styleClass>
                               <String fx:value="col-price" />
                               <String fx:value="table-cell" />
                            </styleClass>
                         </Label>
-                        <Label layoutX="710.0" layoutY="10.0" stylesheets="@style.css" text="-">
+                        <Label layoutX="710.0" layoutY="10.0" stylesheets="@../../style.css" text="-">
                            <styleClass>
                               <String fx:value="col-sub" />
                               <String fx:value="table-cell" />
                            </styleClass>
                         </Label>
-                        <Label layoutX="610.0" layoutY="10.0" stylesheets="@style.css" text="7">
+                        <Label layoutX="610.0" layoutY="10.0" stylesheets="@../../style.css" text="7">
                            <styleClass>
                               <String fx:value="col-amount-cart" />
                               <String fx:value="table-cell" />
                            </styleClass>
                         </Label>
-                        <Label layoutX="760.0" layoutY="10.0" stylesheets="@style.css" text="+">
+                        <Label layoutX="760.0" layoutY="10.0" stylesheets="@../../style.css" text="+">
                            <styleClass>
                               <String fx:value="col-add" />
                               <String fx:value="table-cell" />
