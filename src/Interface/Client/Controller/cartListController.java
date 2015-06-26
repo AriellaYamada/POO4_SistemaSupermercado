@@ -1,16 +1,21 @@
 package Interface.Client.Controller;
 
+import Client.Connection;
 import Interface.MainInterface;
 import Structure.Product;
-import javafx.event.ActionEvent;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
+import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.VBox;
 import javafx.scene.text.Text;
 
 import java.io.IOException;
+import java.net.URL;
+import java.util.ResourceBundle;
 
 public class cartListController {
 
@@ -28,14 +33,30 @@ public class cartListController {
 	@FXML private VBox alert;
 	@FXML private Text alert_product_name;
 
+	ObservableList<Product> data = FXCollections.observableArrayList();
+
+	@FXML
+	public void initialize(URL location, ResourceBundle resources) {
+		// Configura TableView
+		c_name.setCellValueFactory(new PropertyValueFactory<>("name"));
+		c_price.setCellValueFactory(new PropertyValueFactory<>("price"));
+		c_expiration.setCellValueFactory(new PropertyValueFactory<>("expiration"));
+		c_provider.setCellValueFactory(new PropertyValueFactory<>("provider"));
+		c_amount.setCellValueFactory(new PropertyValueFactory<>("quantity"));
+
+		tv_table.setItems(data);
+	}
+
 	@FXML
 	void editAmount() {
-
+		
 	}
 
 	@FXML
 	void dismiss() {
 		alert.setVisible(false);
+		clearDialog.setVisible(false);
+		confirmDialog.setVisible(false);
 	}
 
 	public void backToMenu() {
@@ -53,13 +74,19 @@ public class cartListController {
 
 	@FXML
 	public void showConfirmDialog() {
+		confirmDialog.setVisible(true);
 	}
 
 	@FXML
 	public void confirmClear() {
+		/*for (Product p : data){
+			p.removeCart();
+		}
+		data.clear();*/
 	}
 
 	@FXML
 	public void confirmEndSale() {
+		Connection.getInstance().SendSignal("confirmEndSale");
 	}
 }

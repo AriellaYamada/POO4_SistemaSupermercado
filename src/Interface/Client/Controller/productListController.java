@@ -34,7 +34,7 @@ public class productListController implements Initializable {
 	@FXML private VBox alert;
 	@FXML private Text alert_product_name;
 
-	final ObservableList<Product> data = FXCollections.observableArrayList();
+	ObservableList<Product> data = FXCollections.observableArrayList();
 
 	@FXML
 	public void initialize(URL location, ResourceBundle resources) {
@@ -47,35 +47,16 @@ public class productListController implements Initializable {
 
 		tv_table.setItems(data);
 
-		// Requisitar a lista de produtos para o servidor
-		Connection.getInstance().SendSignal("listall");
-		//Resposta do servidor com todos os produtos
-		String response = Connection.getInstance().ReceiveSignal();
-
-		String[] products = Def.splitReg(response);
-		for (String s : products) {
-			String[] splited = Def.splitField(s);
-			data.add(new Product(splited[0], Float.parseFloat(splited[1]), "21/06/2015", "Ades", Integer.parseInt(splited[2])));
-
-			// Se o produto não estiver disponível é aqui que será incluída
-			// uma classe indicando que o produto está zerado no estoque.
-/*
-			// Configurar EXATAMENTE o que o clique do mouse vai fazer.
-			// Não basta apenas reduzir o numero. Tem que mandar reservar no servidor,
-			// pegar a resposta do servidor de volta e tratar isso.
-			add.setOnMouseClicked(c -> {
-				int am = Integer.parseInt(amount.getText());
-				amount.setText(Integer.valueOf(am--).toString());
-				//Adiciona ao carrinho
-				Cart.getInstance().AddToCart(product.getText(), Float.parseFloat(price.getText()));
-				//Subtrair a quantidade de produtos disponiveis
-			});
-*/
-		}
+		refresh();
 	}
 
 	@FXML
 	public void salesCart() {
+		try {
+			MainInterface.changeScene("Client/Model/cartList.fxml");
+		} catch (IOException e) {
+			System.err.println("Erro ao exibir tela");
+		}
 	}
 
 	@FXML
@@ -94,6 +75,10 @@ public class productListController implements Initializable {
 
 		// e chamar o método "addCart" dele
 		// p.addCart();
+
+		// Se for possível adicionar -> Ok, adicionado.
+		// Se não for possível, então:
+		//      alert.setVisible(true);
 	}
 
 	@FXML
@@ -102,5 +87,21 @@ public class productListController implements Initializable {
 	}
 
 	public void refresh() {
+		data.clear();
+		// Requisitar a lista de produtos para o servidor
+		Connection.getInstance().SendSignal("listall");
+		//Resposta do servidor com todos os produtos
+		String response = Connection.getInstance().ReceiveSignal();
+
+		String[] products = Def.splitReg(response);
+		for (String s : products) {
+			String[] splited = Def.splitField(s);
+			data.add(new Product(splited[0],
+					Float.parseFloat(splited[1]),
+					"21/06/2015",
+					"Ades",
+					Integer.parseInt(splited[2]))
+			);
+		}
 	}
 }
