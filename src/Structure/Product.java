@@ -1,6 +1,5 @@
 package Structure;
 
-import Server.cmdProcess;
 import java.util.GregorianCalendar;
 import Client.Cart;
 
@@ -34,9 +33,26 @@ public class Product {
 	public String getProvider() { return provider; }
 	public int getQuantity() { return quantity; }
 
+	public String getPriceAsStr() { return Float.toString(price); }
+	public String getExpirationAsStr() { return Def.CalendarToString(expiration); }
+	public String getQuantityAsStr() { return Integer.toString(quantity); }
 
-	public void refreshStock(int qtd) {
-		quantity = qtd;
+	private synchronized int setAmount (int amount){
+		if (amount < 0) return -1;
+
+		quantity = amount;
+		return quantity;
+	}
+
+	public synchronized int updateAmount (int amount){
+		if ((quantity + amount) < 0) return -1;
+
+		quantity += amount;
+		return quantity;
+	}
+
+	public void refreshStock(int amount) {
+		setAmount(amount);
 	}
 
 	public void addToCart() {
@@ -45,4 +61,5 @@ public class Product {
 		else
 			quantity++;
 	}
+
 }

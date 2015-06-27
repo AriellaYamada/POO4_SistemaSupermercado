@@ -1,16 +1,17 @@
 package Interface.Server.Controller;
 
-import Client.Connection;
 import Interface.MainInterface;
+import Server.Database.Products;
 import Structure.Def;
 import Structure.Product;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
-import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.control.Label;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
+import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.VBox;
 import javafx.scene.text.Text;
@@ -21,6 +22,21 @@ import java.util.ResourceBundle;
 
 public class productListController implements Initializable {
 
+	@FXML private VBox modal_edit;
+	@FXML private TextField f_edit_name;
+	@FXML private TextField f_edit_price;
+	@FXML private TextField f_edit_expiration;
+	@FXML private TextField f_edit_provider;
+	@FXML private Label l_amount_now;
+	@FXML private TextField f_edit_amount;
+
+	@FXML private VBox modal_new;
+	@FXML private TextField f_new_name;
+	@FXML private TextField f_new_price;
+	@FXML private TextField f_new_expiration;
+	@FXML private TextField f_new_provider;
+	@FXML private TextField f_new_amount;
+
 	@FXML private TableView<Product> tv_table;
 	@FXML private TableColumn<Product, String> c_name;
 	@FXML private TableColumn<Product, Float> c_price;
@@ -30,6 +46,8 @@ public class productListController implements Initializable {
 
 	@FXML private VBox alert;
 	@FXML private Text alert_product_name;
+
+	private Product selected = null;
 
 	ObservableList<Product> data = FXCollections.observableArrayList();
 
@@ -66,9 +84,9 @@ public class productListController implements Initializable {
 	}
 
 	@FXML
-	public void addCart(ActionEvent actionEvent) {
+	public void addCart() {
 		// Pegar o elemento que está selecionado no TableView
-		Product p = tv_table.getSelectionModel().getSelectedItem();
+		selected = tv_table.getSelectionModel().getSelectedItem();
 
 		// e chamar o método "addCart" dele
 		// p.addCart();
@@ -76,30 +94,55 @@ public class productListController implements Initializable {
 		// Se for possível adicionar -> Ok, adicionado.
 		// Se não for possível, então:
 		//      alert.setVisible(true);
-		p.addToCart();
+		selected.addToCart();
 	}
 
 	@FXML
-	void dismiss(ActionEvent event) {
+	void dismiss() {
 		alert.setVisible(false);
 	}
 
+	@FXML
 	public void refresh() {
 		data.clear();
-		// Requisitar a lista de produtos para o servidor
-		Connection.getInstance().SendSignal("listall");
-		//Resposta do servidor com todos os produtos
-		String response = Connection.getInstance().ReceiveSignal();
+		data.addAll(Products.getInstance().ListAll());
+	}
 
-		String[] products = Def.splitReg(response);
-		for (String s : products) {
-			String[] splited = Def.splitField(s);
-			data.add(new Product(splited[0],
-					Float.parseFloat(splited[1]),
-					"21/06/2015",
-					"Ades",
-					Integer.parseInt(splited[2]))
-			);
+	@FXML
+	public void showNew() {
+		modal_new.setVisible(true);
+	}
+
+	@FXML
+	public void showEdit() {
+		selected = tv_table.getSelectionModel().getSelectedItem();
+		f_edit_name.setText(selected.getName());
+		f_edit_price.setText(selected.getPriceAsStr());
+		f_edit_expiration.setText(selected.getExpirationAsStr());
+		f_edit_provider.setText(selected.getProvider());
+		l_amount_now.setText(selected.getQuantityAsStr());
+	}
+
+	@FXML
+	public void pdfGenerate() {
+		System.out.println("Este comando ainda não está implementado.");
+	}
+
+	@FXML
+	public void updateAmount() {
+		int now = selected.updateAmount(Integer.parseInt(f_edit_amount.getText()));
+
+		if (now < 0) Def.setError(f_edit_amount, "Esta alteração deixaria o estoque negativo.");
+		else {
+
 		}
+	}
+
+	@FXML
+	public void confirm_edit() {
+	}
+
+	@FXML
+	public void confirm_new() {
 	}
 }

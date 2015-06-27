@@ -2,6 +2,7 @@ package Interface;
 
 import Client.ClientMain;
 import Server.ServerMain;
+import Structure.Def;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
 
@@ -23,7 +24,7 @@ public class mainController {
 			ServerMain.main(str);
 		}
 		else {
-			serverPort.getStyleClass().add("red-field");
+			Def.setError(serverPort, "Este campo é obrigatório");
 		}
 	}
 
@@ -33,11 +34,11 @@ public class mainController {
 		String port = clientPort.getText();
 
 		if (port.isEmpty()){
-			clientPort.getStyleClass().add("red-field");
+			Def.setError(clientPort, "Este campo é obrigatório");
 		}
 
 		if (ip.isEmpty()){
-			clientIP.getStyleClass().add("red-field");
+			Def.setError(clientIP, "Este campo é obrigatório");
 		}
 
 		if (!port.isEmpty() && !ip.isEmpty()){

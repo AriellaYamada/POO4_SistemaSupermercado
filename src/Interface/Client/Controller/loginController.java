@@ -30,8 +30,8 @@ public class loginController {
 		String userlogin = f_userlogin.getText();
 		String userpassword = f_userpassword.getText();
 
-		if (userlogin.isEmpty()){ setError(f_userlogin, "Este campo é obrigatório"); }
-		if (userpassword.isEmpty()) { setError(f_userpassword, "Este campo é obrigatório"); }
+		if (userlogin.isEmpty()){ Def.setError(f_userlogin, "Este campo é obrigatório"); }
+		if (userpassword.isEmpty()) { Def.setError(f_userpassword, "Este campo é obrigatório"); }
 
 		if (!userlogin.isEmpty() && !userlogin.isEmpty()) {
 			String response = Client.getInstance().Login(f_userlogin.getText(), f_userpassword.getText());
@@ -44,7 +44,7 @@ public class loginController {
 			} else {
 				String[] splited = Def.splitReg(response);
 				String[] error = Def.splitField(splited[1]);
-				setError(getField(error[0]), error[1]);
+				Def.setError(getField(error[0]), error[1]);
 			}
 		}
 
@@ -82,7 +82,7 @@ public class loginController {
 			c.setTooltip(null);
 			if (c.getText().isEmpty()){
 				validateFields = false;
-				setError(c, "Este campo é obrigatório");
+				Def.setError(c, "Este campo é obrigatório");
 			}
 		}
 
@@ -91,8 +91,8 @@ public class loginController {
 
 			// Verify if "password" and "confirm password" are the same
 			if (!f_password.getText().equals(f_confirmp.getText())) {
-				setError(f_password, "As senhas digitadas não são iguais");
-				setError(f_confirmp, "As senhas digitadas não são iguais");
+				Def.setError(f_password, "As senhas digitadas não são iguais");
+				Def.setError(f_confirmp, "As senhas digitadas não são iguais");
 			} else {
 				// Send the data to server and read the answer from server
 				String answer = Client.getInstance().AddNewUser(f_name.getText(),
@@ -111,7 +111,7 @@ public class loginController {
 						TextInputControl fieldError = getField(error[0]);
 
 						// Mark the errors on screen
-						if (fieldError != null) { setError(fieldError, error[1]);
+						if (fieldError != null) { Def.setError(fieldError, error[1]);
 						}
 					}
 				} else {// If all data is ok
@@ -123,11 +123,6 @@ public class loginController {
 				}
 			}
 		}
-	}
-
-	private void setError (TextInputControl field, String str){
-		field.getStyleClass().add("red-field");
-		field.setTooltip(new Tooltip(str));
 	}
 
 	private TextInputControl getField(String name){

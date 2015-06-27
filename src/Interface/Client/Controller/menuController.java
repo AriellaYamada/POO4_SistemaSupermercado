@@ -1,5 +1,7 @@
 package Interface.Client.Controller;
 
+import Client.Client;
+import Client.Connection;
 import Interface.MainInterface;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
@@ -14,7 +16,7 @@ public class menuController {
 	void initialize(){
 		/*Isso aqui será feito quando a tela for chamada,
 		então requisite o nome do usuário ao servidor e coloque no lugar de 'pessoa' */
-		l_greetings.setText("Olá, pessoa!");
+		l_greetings.setText("Olá, " + Client.getUserName());
 	}
 
 	@FXML

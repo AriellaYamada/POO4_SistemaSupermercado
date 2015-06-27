@@ -1,5 +1,8 @@
 package Structure;
 
+import javafx.scene.control.TextInputControl;
+import javafx.scene.control.Tooltip;
+
 import java.util.Calendar;
 import java.util.GregorianCalendar;
 
@@ -32,5 +35,10 @@ public class Def {
 		return new GregorianCalendar(Integer.parseInt(split_date[2]),
 				Integer.parseInt(split_date[1])-1,
 				Integer.parseInt(split_date[0]));
+	}
+
+	public static void setError (TextInputControl field, String str){
+		field.getStyleClass().add("red-field");
+		field.setTooltip(new Tooltip(str));
 	}
 }
