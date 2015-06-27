@@ -49,7 +49,7 @@ public class cartListController {
 
 	@FXML
 	void editAmount() {
-		
+
 	}
 
 	@FXML
