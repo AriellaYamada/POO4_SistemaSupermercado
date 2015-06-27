@@ -1,6 +1,6 @@
 package Server.Database;
 
-import Server.*;
+import Structure.Def;
 import Structure.Product;
 
 public class ProductsDatabase extends Database {
@@ -14,7 +14,7 @@ public class ProductsDatabase extends Database {
 		return productsDB;
 	}
 
-	public ProductsDatabase() { OpenFile("products.csv"); }
+	private ProductsDatabase() { OpenFile("products.csv"); }
 
 	public void WriteFile() {
 		WriteFile("name","price","expiration","provider","quantity");
@@ -22,7 +22,7 @@ public class ProductsDatabase extends Database {
 		for (Product p : Products.getInstance().ListAll()) {
 			WriteFile(p.getName(),
 					Float.valueOf(p.getPrice()).toString(),
-					cmdProcess.CalendarToString(p.getExpiration()),
+					Def.CalendarToString(p.getExpiration()),
 					p.getProvider(),
 					Integer.valueOf(p.getQuantity()).toString()
 			);

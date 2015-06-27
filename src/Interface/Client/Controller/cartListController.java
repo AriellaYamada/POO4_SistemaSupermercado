@@ -33,7 +33,7 @@ public class cartListController {
 	@FXML private VBox alert;
 	@FXML private Text alert_product_name;
 
-	ObservableList<Product> data = FXCollections.observableArrayList();
+	private ObservableList<Product> data = FXCollections.observableArrayList();
 
 	@FXML
 	public void initialize(URL location, ResourceBundle resources) {

@@ -8,7 +8,7 @@ import java.util.Scanner;
 
 import static java.lang.System.out;
 
-public class Server implements Runnable {
+class Server implements Runnable {
 	private ServerSocket ss = null;
 	public Socket output = null;
 	public Scanner scan = null;
@@ -47,7 +47,7 @@ public class Server implements Runnable {
 		}
 	}
 
-	public Socket waitConnection(){
+	private Socket waitConnection(){
 		Socket conect = null;
 		try {
 			conect = ss.accept();
@@ -58,7 +58,7 @@ public class Server implements Runnable {
 	}
 
 	public void run (){
-		Socket s = null;
+		Socket s;
 		while (acceptConnections){
 			s = waitConnection();
 			if (s != null){

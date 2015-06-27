@@ -3,9 +3,6 @@ package Server;
 import Server.Database.*;
 import Structure.Def;
 
-import java.util.Calendar;
-import java.util.GregorianCalendar;
-
 public class cmdProcess {
 	private cmdProcess instance = null;
 

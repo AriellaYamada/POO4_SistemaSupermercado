@@ -56,7 +56,7 @@ public class productListController implements Initializable {
 		// Configura TableView
 		c_name.setCellValueFactory(new PropertyValueFactory<>("name"));
 		c_price.setCellValueFactory(new PropertyValueFactory<>("price"));
-		c_expiration.setCellValueFactory(new PropertyValueFactory<>("expiration"));
+		c_expiration.setCellValueFactory(new PropertyValueFactory<>("expirationAsStr"));
 		c_provider.setCellValueFactory(new PropertyValueFactory<>("provider"));
 		c_amount.setCellValueFactory(new PropertyValueFactory<>("quantity"));
 
@@ -134,15 +134,20 @@ public class productListController implements Initializable {
 
 		if (now < 0) Def.setError(f_edit_amount, "Esta alteração deixaria o estoque negativo.");
 		else {
-
+			l_amount_now.setText(selected.getQuantityAsStr());
 		}
 	}
 
 	@FXML
 	public void confirm_edit() {
+		selected.setName(f_edit_name.getText());
+		selected.setExpiration(f_edit_expiration.getText());
+		selected.setPrice(f_edit_price.getText());
+		selected.setProvider(f_edit_provider.getText());
 	}
 
 	@FXML
 	public void confirm_new() {
+
 	}
 }

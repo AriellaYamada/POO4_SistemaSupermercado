@@ -1,21 +1,19 @@
 package Structure;
 
-import Server.cmdProcess;
-
 import java.util.GregorianCalendar;
 
 public class Sale {
 
-	private String clientId;
-	private String product;
-	private int quantity;
-	private GregorianCalendar date;
+	private final String clientId;
+	private final String product;
+	private final int quantity;
+	private final GregorianCalendar date;
 
 	public Sale (String clientId, String product, int quantity, String date) {
 		this.clientId = clientId;
 		this.product = product;
 		this.quantity = quantity;
-		this.date = cmdProcess.StringToCalendar(date);
+		this.date = Def.StringToCalendar(date);
 	}
 
 	public String getClientId() { return clientId; }

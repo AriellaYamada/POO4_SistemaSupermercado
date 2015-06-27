@@ -8,11 +8,11 @@ import java.util.stream.Stream;
 public class Sales implements ListRegister{
 
 	private static Sales salesDB;
-	private List<Sale> sales;
-	private Stream<Sale> filtered;
+	private final List<Sale> sales;
+	private final Stream<Sale> filtered;
 
-	public Sales() {
-		sales = new LinkedList<Sale>();
+	private Sales() {
+		sales = new LinkedList<>();
 		filtered = sales.stream();
 	}
 

@@ -1,7 +1,6 @@
 package Interface.Client.Controller;
 
 import Client.Client;
-import Client.Connection;
 import Interface.MainInterface;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;

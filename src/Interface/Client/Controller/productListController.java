@@ -6,7 +6,6 @@ import Structure.Product;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 
-import Client.Cart;
 import Client.Connection;
 
 import javafx.event.ActionEvent;
@@ -69,7 +68,7 @@ public class productListController implements Initializable {
 	}
 
 	@FXML
-	public void addCart(ActionEvent actionEvent) {
+	public void addCart() {
 		// Pegar o elemento que está selecionado no TableView
 		Product p = tv_table.getSelectionModel().getSelectedItem();
 
@@ -83,7 +82,7 @@ public class productListController implements Initializable {
 	}
 
 	@FXML
-	void dismiss(ActionEvent event) {
+	void dismiss() {
 		alert.setVisible(false);
 	}
 

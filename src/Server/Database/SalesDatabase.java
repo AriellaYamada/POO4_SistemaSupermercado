@@ -1,6 +1,6 @@
 package Server.Database;
 
-import Server.*;
+import Structure.Def;
 import Structure.Sale;
 
 public class SalesDatabase extends Database {
@@ -14,7 +14,7 @@ public class SalesDatabase extends Database {
 		return salesDB;
 	}
 
-	public SalesDatabase() { OpenFile("sales.csv"); }
+	private SalesDatabase() { OpenFile("sales.csv"); }
 
 	public void WriteFile() {
 		WriteFile("clientID","product","quantity","date");
@@ -23,7 +23,7 @@ public class SalesDatabase extends Database {
 			WriteFile(s.getClientId(),
 					s.getProduct(),
 					Integer.valueOf(s.getQuantity()).toString(),
-					cmdProcess.CalendarToString(s.getDate())
+					Def.CalendarToString(s.getDate())
 			);
 		}
 	}

@@ -12,11 +12,7 @@ public class Product {
 	private int quantity;
 
 	public Product (String name, float price, String date, String provider, int quantity) {
-		this.name = name;
-		this.price = price;
-		this.expiration = Def.StringToCalendar(date);
-		this.provider = provider;
-		this.quantity = quantity;
+		new Product(name, price, Def.StringToCalendar(date), provider, quantity);
 	}
 
 	public Product (String name, float price, GregorianCalendar date, String provider, int quantity) {
@@ -36,6 +32,14 @@ public class Product {
 	public String getPriceAsStr() { return Float.toString(price); }
 	public String getExpirationAsStr() { return Def.CalendarToString(expiration); }
 	public String getQuantityAsStr() { return Integer.toString(quantity); }
+
+	public void setName(String value) { name = value; }
+	public void setPrice(String value) { price = Float.parseFloat(value); }
+	public void setExpiration(String value) { expiration = Def.StringToCalendar(value); }
+	public void setProvider(String value) { provider = value; }
+
+	public void setPrice(Float value) { price = value; }
+	public void setExpiration(GregorianCalendar value) { expiration = value; }
 
 	private synchronized int setAmount (int amount){
 		if (amount < 0) return -1;
