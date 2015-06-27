@@ -78,4 +78,9 @@ public class Products implements ListRegister {
 		Product p = searchProduct(name);
 		return (p.Reserve(qtd));
 	}
+
+	public synchronized void CancelReservation (String name, int qtd) {
+		Product p = searchProduct(name);
+		p.Dereserve(qtd);
+	}
 }
