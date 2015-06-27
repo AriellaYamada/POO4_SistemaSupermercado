@@ -22,7 +22,7 @@ public class ProductsDatabase extends Database {
 		for (Product p : Products.getInstance().ListAll()) {
 			WriteFile(p.getName(),
 					Float.valueOf(p.getPrice()).toString(),
-					Def.CalendarToString(p.getExpiration()),
+					p.getExpiration(),
 					p.getProvider(),
 					Integer.valueOf(p.getQuantity()).toString()
 			);

@@ -52,7 +52,7 @@ public class Cart {
 	public String AllProducts() {
 		String list = "";
 		for (Product p : products) {
-			list = p.getName() + p.getPriceAsStr() + p.getExpirationAsStr() + p.getProvider() + p.getQuantityAsStr();
+			list = p.getName() + p.getPriceAsStr() + p.getExpiration() + p.getProvider() + p.getQuantityAsStr();
 		}
 		return list;
 	}

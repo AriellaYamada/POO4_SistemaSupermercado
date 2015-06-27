@@ -84,20 +84,6 @@ public class productListController implements Initializable {
 	}
 
 	@FXML
-	public void addCart() {
-		// Pegar o elemento que está selecionado no TableView
-		selected = tv_table.getSelectionModel().getSelectedItem();
-
-		// e chamar o método "addCart" dele
-		// p.addCart();
-
-		// Se for possível adicionar -> Ok, adicionado.
-		// Se não for possível, então:
-		//      alert.setVisible(true);
-		//selected.addToCart();
-	}
-
-	@FXML
 	void dismiss() {
 		alert.setVisible(false);
 	}
@@ -119,7 +105,7 @@ public class productListController implements Initializable {
 		selected = tv_table.getSelectionModel().getSelectedItem();
 		f_edit_name.setText(selected.getName());
 		f_edit_price.setText(selected.getPriceAsStr());
-		f_edit_expiration.setText(selected.getExpirationAsStr());
+		f_edit_expiration.setText(selected.getExpiration());
 		f_edit_provider.setText(selected.getProvider());
 		l_amount_now.setText(selected.getQuantityAsStr());
 	}
@@ -135,12 +121,16 @@ public class productListController implements Initializable {
 
 		if (now < 0) Def.setError(f_edit_amount, "Esta alteração deixaria o estoque negativo.");
 		else {
-
+			l_amount_now.setText(selected.getQuantityAsStr());
 		}
 	}
 
 	@FXML
 	public void confirm_edit() {
+		selected.setName(f_edit_name.getText());
+		selected.setExpiration(f_edit_expiration.getText());
+		selected.setPrice(f_edit_price.getText());
+		selected.setProvider(f_edit_provider.getText());
 	}
 
 	@FXML
