@@ -1,6 +1,6 @@
 package Server.Database;
 
-import Server.*;
+import Structure.Def;
 import Structure.Product;
 
 public class ProductsDatabase extends Database {
@@ -22,9 +22,9 @@ public class ProductsDatabase extends Database {
 		for (Product p : Products.getInstance().ListAll()) {
 			WriteFile(p.getName(),
 					Float.valueOf(p.getPrice()).toString(),
-					cmdProcess.CalendarToString(p.getExpiration()),
+					p.getExpiration(),
 					p.getProvider(),
-					Integer.valueOf(p.getQuantity()).toString()
+					Integer.valueOf(p.getAmountReal()).toString()
 			);
 		}
 	}

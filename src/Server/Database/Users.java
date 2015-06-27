@@ -13,7 +13,7 @@ public class Users implements ListRegister {
 	private List<User> users;
 	private Stream<User> filtered;
 
-	public Users () { users = new LinkedList<User>(); }
+	public Users () { users = new LinkedList<>(); }
 
 	//Singleton
 	public static Users getInstance() {
@@ -67,5 +67,10 @@ public class Users implements ListRegister {
 		filtered = users.stream()
 				.filter(u -> u.getId().equals(id));
 		return filtered.collect(Collectors.toList()).get(0).getName();
+	}
+
+	public User SearchUser(String userid) {
+		filtered = users.stream().filter(u -> u.getId().equals(userid));
+		return filtered.collect(Collectors.toList()).get(0);
 	}
 }

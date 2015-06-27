@@ -8,11 +8,11 @@ public class Client {
 
 	private static Client client;
 
-	String signal;
+	private static String signal;
 
-	private boolean logged;
-	private String id;
-	private String name;
+	private static boolean logged;
+	private static String id;
+	private static String name;
 
 	//Singleton
 	public static Client getInstance() {
@@ -22,12 +22,17 @@ public class Client {
 		return client;
 	}
 
-	public void Connect (String ip, int port) throws IOException {
+	private Client(){
+		id = name = null;
+		logged = false;
+	}
+
+	static public void Connect (String ip, int port) throws IOException {
 		Connection.getInstance().Connect(ip, port);
 		logged = false;
 	}
 
-	public String AddNewUser (String name, String address, String tel, String email, String id, String password) {
+	static public String AddNewUser (String name, String address, String tel, String email, String id, String password) {
 
 		signal = "newuser"
 				+ Def.regSep   + name
@@ -40,14 +45,13 @@ public class Client {
 		System.out.println(signal);
 		Connection.getInstance().SendSignal(signal);
 
-		String response = Connection.getInstance().ReceiveSignal();
-		return response;
+		return Connection.getInstance().ReceiveSignal();
 	}
 
-	public String Login (String id, String password) {
+	static public String Login (String userID, String password) {
 
 		//Comando a ser enviado ao servidor
-		signal = "login" + Def.regSep + id + Def.fieldSep + password;
+		signal = "login" + Def.regSep + userID + Def.fieldSep + password;
 		Connection.getInstance().SendSignal(signal);
 
 		//Resposta recebida do servidor
@@ -56,20 +60,26 @@ public class Client {
 		//Login efetuado com sucesso
 		if (response.equals("ok")) {
 			logged = true;
-			this.id = id;
-			GetUserName();
+			id = userID;
+			name = getUserName(id);
 		}
 		return response;
 	}
 
-	public void GetUserName() {
+	static private String getUserName(String id) {
 		signal = "getname" + Def.regSep + id;
 		Connection.getInstance().SendSignal(signal);
-
-		name = Connection.getInstance().ReceiveSignal();
+		return Connection.getInstance().ReceiveSignal();
 	}
 
-	public void Logout () {
+	static public String getUserName() {
+		if (name == null) {
+			name = getUserName(id);
+		}
+		return name;
+	}
+
+	static public void Logout () {
 		logged = false;
 		id = null;
 		name = null;

@@ -1,18 +1,17 @@
-package Interface.Client.Controller;
+package Interface.Server.Controller;
 
 import Interface.MainInterface;
+import Server.Database.Products;
 import Structure.Def;
 import Structure.Product;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
-
-import Client.Connection;
-
-import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.control.Label;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
+import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.VBox;
 import javafx.scene.text.Text;
@@ -23,6 +22,21 @@ import java.util.ResourceBundle;
 
 public class productListController implements Initializable {
 
+	@FXML private VBox modal_edit;
+	@FXML private TextField f_edit_name;
+	@FXML private TextField f_edit_price;
+	@FXML private TextField f_edit_expiration;
+	@FXML private TextField f_edit_provider;
+	@FXML private Label l_amount_now;
+	@FXML private TextField f_edit_amount;
+
+	@FXML private VBox modal_new;
+	@FXML private TextField f_new_name;
+	@FXML private TextField f_new_price;
+	@FXML private TextField f_new_expiration;
+	@FXML private TextField f_new_provider;
+	@FXML private TextField f_new_amount;
+
 	@FXML private TableView<Product> tv_table;
 	@FXML private TableColumn<Product, String> c_name;
 	@FXML private TableColumn<Product, Float> c_price;
@@ -32,6 +46,8 @@ public class productListController implements Initializable {
 
 	@FXML private VBox alert;
 	@FXML private Text alert_product_name;
+
+	private Product selected = null;
 
 	ObservableList<Product> data = FXCollections.observableArrayList();
 
@@ -68,36 +84,56 @@ public class productListController implements Initializable {
 	}
 
 	@FXML
-	public void addCart() {
-		// Pegar o elemento que está selecionado no TableView
-		Product p = tv_table.getSelectionModel().getSelectedItem();
-
-		//Solicita a reserva no servidor
-		if(!p.RequestReservation(1))
-			alert.setVisible(true);
-	}
-
-	@FXML
 	void dismiss() {
 		alert.setVisible(false);
 	}
 
+	@FXML
 	public void refresh() {
 		data.clear();
-		// Requisitar a lista de produtos para o servidor
-		Connection.getInstance().SendSignal("listall");
-		//Resposta do servidor com todos os produtos
-		String response = Connection.getInstance().ReceiveSignal();
+		data.addAll(Products.getInstance().ListAll());
+	}
 
-		String[] products = Def.splitReg(response);
-		for (String s : products) {
-			String[] splited = Def.splitField(s);
-			data.add(new Product(splited[0],
-					Float.parseFloat(splited[1]),
-					splited[2],
-					splited[3],
-					Integer.parseInt(splited[2]))
-			);
+	@FXML
+	public void showNew() {
+		modal_new.setVisible(true);
+	}
+
+	@FXML
+	public void showEdit() {
+		modal_edit.setVisible(true);
+		selected = tv_table.getSelectionModel().getSelectedItem();
+		f_edit_name.setText(selected.getName());
+		f_edit_price.setText(selected.getPriceAsStr());
+		f_edit_expiration.setText(selected.getExpiration());
+		f_edit_provider.setText(selected.getProvider());
+		l_amount_now.setText(selected.getAmountRealAsStr());
+	}
+
+	@FXML
+	public void pdfGenerate() {
+		System.out.println("Este comando ainda não está implementado.");
+	}
+
+	@FXML
+	public void updateAmount() {
+		int now = selected.updateAmount(Integer.parseInt(f_edit_amount.getText()));
+
+		if (now < 0) Def.setError(f_edit_amount, "Esta alteração deixaria o estoque negativo.");
+		else {
+			l_amount_now.setText(selected.getAmountRealAsStr());
 		}
+	}
+
+	@FXML
+	public void confirm_edit() {
+		selected.setName(f_edit_name.getText());
+		selected.setExpiration(f_edit_expiration.getText());
+		selected.setPrice(f_edit_price.getText());
+		selected.setProvider(f_edit_provider.getText());
+	}
+
+	@FXML
+	public void confirm_new() {
 	}
 }

@@ -1,16 +1,13 @@
 package Interface.Client.Controller;
 
+import Client.Connection;
 import Interface.MainInterface;
 import Structure.Def;
 import Structure.Product;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
-
-import Client.Connection;
-
-import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.fxml.Initializable;
+import javafx.scene.control.Label;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
@@ -21,8 +18,12 @@ import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 
-public class productListController implements Initializable {
+public class cartListController {
 
+	@FXML public Label l_total_value;
+	@FXML public VBox alertDialog;
+	@FXML public VBox clearDialog;
+	@FXML public VBox confirmDialog;
 	@FXML private TableView<Product> tv_table;
 	@FXML private TableColumn<Product, String> c_name;
 	@FXML private TableColumn<Product, Float> c_price;
@@ -33,7 +34,7 @@ public class productListController implements Initializable {
 	@FXML private VBox alert;
 	@FXML private Text alert_product_name;
 
-	ObservableList<Product> data = FXCollections.observableArrayList();
+	private ObservableList<Product> data = FXCollections.observableArrayList();
 
 	@FXML
 	public void initialize(URL location, ResourceBundle resources) {
@@ -45,20 +46,20 @@ public class productListController implements Initializable {
 		c_amount.setCellValueFactory(new PropertyValueFactory<>("quantity"));
 
 		tv_table.setItems(data);
-
-		refresh();
 	}
 
 	@FXML
-	public void salesCart() {
-		try {
-			MainInterface.changeScene("Client/Model/cartList.fxml");
-		} catch (IOException e) {
-			System.err.println("Erro ao exibir tela");
-		}
+	void editAmount() {
+
 	}
 
 	@FXML
+	void dismiss() {
+		alert.setVisible(false);
+		clearDialog.setVisible(false);
+		confirmDialog.setVisible(false);
+	}
+
 	public void backToMenu() {
 		try {
 			MainInterface.changeScene("Client/Model/menu.fxml");
@@ -68,24 +69,31 @@ public class productListController implements Initializable {
 	}
 
 	@FXML
-	public void addCart() {
-		// Pegar o elemento que está selecionado no TableView
-		Product p = tv_table.getSelectionModel().getSelectedItem();
-
-		//Solicita a reserva no servidor
-		if(!p.RequestReservation(1))
-			alert.setVisible(true);
+	public void showClearDialog() {
+		clearDialog.setVisible(true);
 	}
 
 	@FXML
-	void dismiss() {
-		alert.setVisible(false);
+	public void showConfirmDialog() {
+		confirmDialog.setVisible(true);
 	}
 
-	public void refresh() {
+	@FXML
+	public void confirmClear() {
+	}
+
+	@FXML
+	public void confirmEndSale() {
+		Connection.getInstance().SendSignal("sell");
+		String response = Connection.getInstance().ReceiveSignal();
+	}
+
+	public void refresh(){
 		data.clear();
+
 		// Requisitar a lista de produtos para o servidor
-		Connection.getInstance().SendSignal("listall");
+		Connection.getInstance().SendSignal("listcart");
+
 		//Resposta do servidor com todos os produtos
 		String response = Connection.getInstance().ReceiveSignal();
 
@@ -93,10 +101,10 @@ public class productListController implements Initializable {
 		for (String s : products) {
 			String[] splited = Def.splitField(s);
 			data.add(new Product(splited[0],
-					Float.parseFloat(splited[1]),
-					splited[2],
-					splited[3],
-					Integer.parseInt(splited[2]))
+							Float.parseFloat(splited[1]),
+							splited[2],
+							splited[3],
+							Integer.parseInt(splited[4]))
 			);
 		}
 	}

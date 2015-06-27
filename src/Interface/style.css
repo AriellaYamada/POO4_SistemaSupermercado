@@ -38,6 +38,20 @@
 	-fx-border-insets: -2;
 }
 
+.big-btn {
+	-fx-font-size: 18;
+}
+
+.success {
+	-fx-background-color: #228B22;
+	-fx-text-fill: #FFF;
+}
+
+.red {
+	-fx-background-color: #F33;
+	-fx-text-fill: #FFF;
+}
+
 .default-field {
 	-fx-background-radius: 0;
 }
@@ -51,4 +65,9 @@
 }
 #tv_table .col-add, #tv_table .col-sub, #tv_table .col-expiration {
 	-fx-alignment: center;
+}
+
+#msgs .alert {
+	-fx-fill: #FFF;
+	-fx-font-size: 14;
 }

@@ -15,7 +15,7 @@ public class Products implements ListRegister {
 	private Stream<Product> filtered;
 
 	public Products () {
-		products = new LinkedList<Product>();
+		products = new LinkedList<>();
 	}
 
 	//Singleton
@@ -51,8 +51,7 @@ public class Products implements ListRegister {
 	}
 
 	public boolean checkProduct(String name) {
-		filtered = products.stream();
-		filtered = filtered.filter(p -> p.getName().equals(name));
+		filtered = products.stream().filter(p -> p.getName().equals(name));
 		return (filtered.count() == 0);
 	}
 
@@ -69,8 +68,10 @@ public class Products implements ListRegister {
 		String response = "";
 		for(Product p : products) {
 			response += p.getName() + Def.fieldSep
-					+ Float.valueOf(p.getPrice()).toString() + Def.fieldSep
-					+ Integer.valueOf(p.getQuantity()).toString() + Def.regSep;
+					+ p.getPriceAsStr() + Def.fieldSep
+					+ p.getExpiration() + Def.fieldSep
+					+ p.getProvider() + Def.fieldSep
+					+ p.getAmountRealAsStr() + Def.regSep;
 		}
 		return response;
 	}
