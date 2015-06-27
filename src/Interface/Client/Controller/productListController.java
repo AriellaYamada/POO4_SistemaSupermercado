@@ -74,12 +74,13 @@ public class productListController implements Initializable {
 		Product p = tv_table.getSelectionModel().getSelectedItem();
 
 		// e chamar o método "addCart" dele
-		// p.addCart();
+		if(p.AddToCart())
+			Connection.getInstance().SendSignal("reserve");
+		//PENSAR NUM JEITO DE RESERVAR PRIMEIRO NO SERVIDOR E DEPOIS LOCALMENTE
 
 		// Se for possível adicionar -> Ok, adicionado.
 		// Se não for possível, então:
 		//      alert.setVisible(true);
-		p.addToCart();
 	}
 
 	@FXML

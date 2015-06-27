@@ -20,7 +20,7 @@ public class Cart {
 		return cart;
 	}
 
-	public boolean CheckCart(Product product) {
+	public synchronized boolean CheckCart(Product product) {
 		filtered = products.stream();
 		filtered = filtered.filter(p -> p.getName().equals(product.getName()));
 		return (filtered.count() == 0);
@@ -28,7 +28,19 @@ public class Cart {
 
 	public void Add(Product product) {
 		Product newProduct = new Product(product.getName(), product.getPrice(), product.getExpiration(),
-				product.getProvider(), product.getQuantity());
+				product.getProvider(), 1);
 		products.add(newProduct);
+	}
+
+	public String ListAll() {
+		String list = "";
+		for (Product p : products) {
+			list = p.getName() + p.getPriceAsStr() + p.getExpirationAsStr() + p.getProvider() + p.getQuantityAsStr();
+		}
+		return list;
+	}
+
+	public void ClearCart () {
+		products.clear();
 	}
 }

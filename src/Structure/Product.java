@@ -2,6 +2,7 @@ package Structure;
 
 import java.util.GregorianCalendar;
 import Client.Cart;
+import Client.Client;
 
 public class Product {
 
@@ -32,7 +33,6 @@ public class Product {
 	public GregorianCalendar getExpiration() { return expiration; }
 	public String getProvider() { return provider; }
 	public int getQuantity() { return quantity; }
-
 	public String getPriceAsStr() { return Float.toString(price); }
 	public String getExpirationAsStr() { return Def.CalendarToString(expiration); }
 	public String getQuantityAsStr() { return Integer.toString(quantity); }
@@ -51,15 +51,24 @@ public class Product {
 		return quantity;
 	}
 
-	public void refreshStock(int amount) {
+	public synchronized void refreshStock(int amount) {
 		setAmount(amount);
 	}
 
-	public void addToCart() {
-		if (Cart.getInstance().CheckCart(this))
-			Cart.getInstance().Add(this);
-		else
-			quantity++;
+	public synchronized void Reserve() {
+		quantity--;
+	}
+
+	public synchronized boolean AddToCart() {
+		if (quantity>0) {
+			if (Cart.getInstance().CheckCart(this))
+				Cart.getInstance().Add(this);
+			else
+				quantity++;
+			this.Reserve();
+			return true;
+		}
+		return false;
 	}
 
 }
