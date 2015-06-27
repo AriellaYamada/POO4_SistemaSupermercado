@@ -55,17 +55,18 @@ public class cmdProcess {
 			case "listall":
 				line = Products.getInstance().AllProducts();
 				break;
-			case "search":
-				break;
-			case "startsell":
-				break;
+			//Solicita a reserva de um produto
 			case "reserve":
+				args = Def.splitField(cmd[1]);
+				if (Products.getInstance().Reserve(args[0], Integer.parseInt(args[1])))
+					line = "ok";
+				else
+					line = "fail";
 				break;
 			case "dereserve":
-				break;
-			case "cancelsell":
-				break;
-			case "confirmsell":
+				args = Def.splitField(cmd[1]);
+				Products.getInstance().CancelReservation(args[0], Integer.parseInt(args[1]));
+				line = "ok";
 				break;
 			default:
 				break;
