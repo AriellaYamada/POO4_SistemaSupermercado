@@ -14,7 +14,7 @@ public class Products implements ListRegister {
 	private List<Product> products;
 	private Stream<Product> filtered;
 
-	public Products () {
+	private Products () {
 		products = new LinkedList<>();
 	}
 

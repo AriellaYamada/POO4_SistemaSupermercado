@@ -4,9 +4,11 @@ public class CartItem {
 
 	private Product product;
 	private int reservedQtd;
+	private float curPrice;
 
 	public CartItem(Product product) {
 		this.product = product;
+		curPrice = product.getPrice();
 	}
 
 	public Product getProduct() { return product; }

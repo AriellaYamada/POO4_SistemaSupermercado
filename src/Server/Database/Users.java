@@ -13,7 +13,7 @@ public class Users implements ListRegister {
 	private List<User> users;
 	private Stream<User> filtered;
 
-	public Users () { users = new LinkedList<>(); }
+	private Users () { users = new LinkedList<>(); }
 
 	//Singleton
 	public static Users getInstance() {
