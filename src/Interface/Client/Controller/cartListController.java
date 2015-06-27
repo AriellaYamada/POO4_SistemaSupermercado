@@ -1,7 +1,9 @@
 package Interface.Client.Controller;
 
+import Client.Cart;
 import Client.Connection;
 import Interface.MainInterface;
+import Structure.Def;
 import Structure.Product;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -33,7 +35,7 @@ public class cartListController {
 	@FXML private VBox alert;
 	@FXML private Text alert_product_name;
 
-	ObservableList<Product> data = FXCollections.observableArrayList();
+	private ObservableList<Product> data = FXCollections.observableArrayList();
 
 	@FXML
 	public void initialize(URL location, ResourceBundle resources) {
@@ -79,14 +81,15 @@ public class cartListController {
 
 	@FXML
 	public void confirmClear() {
-		/*for (Product p : data){
-			p.removeCart();
-		}
-		data.clear();*/
+		for (Product p : Cart.getInstance().ListAll())
+			Connection.getInstance().SendSignal("dereserve" + Def.regSep + p.getName() + Def.fieldSep + p.getQuantityAsStr());
+		Cart.getInstance().ClearCart();
 	}
 
 	@FXML
 	public void confirmEndSale() {
 		Connection.getInstance().SendSignal("confirmEndSale");
 	}
+
+	public void refresh(){}
 }
