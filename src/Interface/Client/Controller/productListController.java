@@ -73,7 +73,7 @@ public class productListController implements Initializable {
 		Product p = tv_table.getSelectionModel().getSelectedItem();
 
 		// e chamar o método "addCart" dele
-		if(p.AddToCart())
+		if(p.AddToCart(1))
 			Connection.getInstance().SendSignal("reserve");
 		//PENSAR NUM JEITO DE RESERVAR PRIMEIRO NO SERVIDOR E DEPOIS LOCALMENTE
 

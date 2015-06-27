@@ -58,10 +58,10 @@ public class Product {
 		quantity--;
 	}
 
-	public synchronized boolean AddToCart() {
+	public synchronized boolean AddToCart(int qtd) {
 		if (quantity>0) {
 			if (Cart.getInstance().CheckCart(this))
-				Cart.getInstance().Add(this);
+				Cart.getInstance().Add(this, qtd);
 			else
 				quantity++;
 			this.Reserve();
