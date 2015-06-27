@@ -68,22 +68,21 @@ public class productListController implements Initializable {
 	}
 
 	@FXML
-	public void addCart(ActionEvent actionEvent) {
+	public void addCart() {
 		// Pegar o elemento que está selecionado no TableView
 		Product p = tv_table.getSelectionModel().getSelectedItem();
 
-		// e chamar o método "addCart" dele
-		if(p.AddToCart(1))
-			Connection.getInstance().SendSignal("reserve");
-		//PENSAR NUM JEITO DE RESERVAR PRIMEIRO NO SERVIDOR E DEPOIS LOCALMENTE
-
-		// Se for possível adicionar -> Ok, adicionado.
-		// Se não for possível, então:
-		//      alert.setVisible(true);
+		// Reservando o produto no servidor e localmente
+		//ARRUMAR AS QUANTIDADES SELECIONADAS
+		String signal = "";
+		signal = "reserve" + Def.regSep + p.getName() + Def.fieldSep + "1";
+		Connection.getInstance().SendSignal(signal);
+		if(!Connection.getInstance().ReceiveSignal().equals("ok") && !p.AddToCart(1))
+			alert.setVisible(true);
 	}
 
 	@FXML
-	void dismiss(ActionEvent event) {
+	void dismiss() {
 		alert.setVisible(false);
 	}
 

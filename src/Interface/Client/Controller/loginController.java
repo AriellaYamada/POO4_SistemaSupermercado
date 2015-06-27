@@ -96,11 +96,11 @@ public class loginController {
 			} else {
 				// Send the data to server and read the answer from server
 				String answer = Client.AddNewUser(f_name.getText(),
-																f_address.getText(),
-																f_tel.getText(),
-																f_email.getText(),
-																f_id.getText(),
-																f_password.getText());
+												  f_address.getText(),
+												  f_tel.getText(),
+												  f_email.getText(),
+												  f_id.getText(),
+												  f_password.getText());
 
 				if (!answer.equals("ok")) {  // If the answer is not ok
 					String[] splited = Def.splitReg(answer);
