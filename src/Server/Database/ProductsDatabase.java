@@ -24,7 +24,7 @@ public class ProductsDatabase extends Database {
 					Float.valueOf(p.getPrice()).toString(),
 					p.getExpiration(),
 					p.getProvider(),
-					Integer.valueOf(p.getQuantity()).toString()
+					Integer.valueOf(p.getAmountReal()).toString()
 			);
 		}
 	}

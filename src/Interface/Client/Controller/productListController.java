@@ -72,12 +72,8 @@ public class productListController implements Initializable {
 		// Pegar o elemento que está selecionado no TableView
 		Product p = tv_table.getSelectionModel().getSelectedItem();
 
-		// Reservando o produto no servidor e localmente
-		//ARRUMAR AS QUANTIDADES SELECIONADAS
-		String signal = "";
-		signal = "reserve" + Def.regSep + p.getName() + Def.fieldSep + "1";
-		Connection.getInstance().SendSignal(signal);
-		if(!Connection.getInstance().ReceiveSignal().equals("ok") && !p.AddToCart(1))
+		//Solicita a reserva no servidor
+		if(!p.RequestReservation(1))
 			alert.setVisible(true);
 	}
 
@@ -98,8 +94,8 @@ public class productListController implements Initializable {
 			String[] splited = Def.splitField(s);
 			data.add(new Product(splited[0],
 					Float.parseFloat(splited[1]),
-					"21/06/2015",
-					"Ades",
+					splited[2],
+					splited[3],
 					Integer.parseInt(splited[2]))
 			);
 		}

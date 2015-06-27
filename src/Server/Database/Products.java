@@ -68,19 +68,11 @@ public class Products implements ListRegister {
 		String response = "";
 		for(Product p : products) {
 			response += p.getName() + Def.fieldSep
-					+ Float.valueOf(p.getPrice()).toString() + Def.fieldSep
-					+ Integer.valueOf(p.getQuantity()).toString() + Def.regSep;
+					+ p.getPriceAsStr() + Def.fieldSep
+					+ p.getExpiration() + Def.fieldSep
+					+ p.getProvider() + Def.fieldSep
+					+ p.getAmountRealAsStr() + Def.regSep;
 		}
 		return response;
-	}
-
-	public synchronized boolean Reserve (String name, int qtd) {
-		Product p = searchProduct(name);
-		return (p.Reserve(qtd));
-	}
-
-	public synchronized void CancelReservation (String name, int qtd) {
-		Product p = searchProduct(name);
-		p.Dereserve(qtd);
 	}
 }

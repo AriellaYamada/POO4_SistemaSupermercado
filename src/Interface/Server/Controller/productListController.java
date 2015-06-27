@@ -107,7 +107,7 @@ public class productListController implements Initializable {
 		f_edit_price.setText(selected.getPriceAsStr());
 		f_edit_expiration.setText(selected.getExpiration());
 		f_edit_provider.setText(selected.getProvider());
-		l_amount_now.setText(selected.getQuantityAsStr());
+		l_amount_now.setText(selected.getAmountRealAsStr());
 	}
 
 	@FXML
@@ -121,7 +121,7 @@ public class productListController implements Initializable {
 
 		if (now < 0) Def.setError(f_edit_amount, "Esta alteração deixaria o estoque negativo.");
 		else {
-			l_amount_now.setText(selected.getQuantityAsStr());
+			l_amount_now.setText(selected.getAmountRealAsStr());
 		}
 	}
 

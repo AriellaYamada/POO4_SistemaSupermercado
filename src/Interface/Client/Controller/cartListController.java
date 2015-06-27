@@ -2,6 +2,7 @@ package Interface.Client.Controller;
 
 import Client.Connection;
 import Interface.MainInterface;
+import Structure.Def;
 import Structure.Product;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -83,8 +84,28 @@ public class cartListController {
 
 	@FXML
 	public void confirmEndSale() {
-		Connection.getInstance().SendSignal("confirmEndSale");
+		Connection.getInstance().SendSignal("sell");
+		String response = Connection.getInstance().ReceiveSignal();
 	}
 
-	public void refresh(){}
+	public void refresh(){
+		data.clear();
+
+		// Requisitar a lista de produtos para o servidor
+		Connection.getInstance().SendSignal("listcart");
+
+		//Resposta do servidor com todos os produtos
+		String response = Connection.getInstance().ReceiveSignal();
+
+		String[] products = Def.splitReg(response);
+		for (String s : products) {
+			String[] splited = Def.splitField(s);
+			data.add(new Product(splited[0],
+							Float.parseFloat(splited[1]),
+							splited[2],
+							splited[3],
+							Integer.parseInt(splited[4]))
+			);
+		}
+	}
 }
