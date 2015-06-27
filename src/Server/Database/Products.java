@@ -51,8 +51,7 @@ public class Products implements ListRegister {
 	}
 
 	public boolean checkProduct(String name) {
-		filtered = products.stream();
-		filtered = filtered.filter(p -> p.getName().equals(name));
+		filtered = products.stream().filter(p -> p.getName().equals(name));
 		return (filtered.count() == 0);
 	}
 
@@ -73,5 +72,10 @@ public class Products implements ListRegister {
 					+ Integer.valueOf(p.getQuantity()).toString() + Def.regSep;
 		}
 		return response;
+	}
+
+	public synchronized boolean Reserve (String name, int qtd) {
+		Product p = searchProduct(name);
+		return (p.Reserve(qtd));
 	}
 }
