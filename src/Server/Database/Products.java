@@ -15,7 +15,7 @@ public class Products implements ListRegister {
 	private Stream<Product> filtered;
 
 	public Products () {
-		products = new LinkedList<Product>();
+		products = new LinkedList<>();
 	}
 
 	//Singleton

@@ -1,10 +1,9 @@
 package Server.Database;
 
-import Server.cmdProcess;
 import Structure.Def;
-import Structure.Product;
 
 import java.io.*;
+
 import static java.lang.System.out;
 
 abstract public class Database {

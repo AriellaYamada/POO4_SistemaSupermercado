@@ -1,7 +1,5 @@
 package Structure;
 
-import Server.cmdProcess;
-
 import java.util.GregorianCalendar;
 
 public class Sale {
@@ -15,7 +13,7 @@ public class Sale {
 		this.clientId = clientId;
 		this.product = product;
 		this.quantity = quantity;
-		this.date = cmdProcess.StringToCalendar(date);
+		this.date = Def.StringToCalendar(date);
 	}
 
 	public String getClientId() { return clientId; }

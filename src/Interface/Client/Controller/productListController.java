@@ -6,7 +6,6 @@ import Structure.Product;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 
-import Client.Cart;
 import Client.Connection;
 
 import javafx.event.ActionEvent;

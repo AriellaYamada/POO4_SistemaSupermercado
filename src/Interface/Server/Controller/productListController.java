@@ -94,7 +94,7 @@ public class productListController implements Initializable {
 		// Se for possível adicionar -> Ok, adicionado.
 		// Se não for possível, então:
 		//      alert.setVisible(true);
-		selected.addToCart();
+		//selected.addToCart();
 	}
 
 	@FXML
@@ -115,6 +115,7 @@ public class productListController implements Initializable {
 
 	@FXML
 	public void showEdit() {
+		modal_edit.setVisible(true);
 		selected = tv_table.getSelectionModel().getSelectedItem();
 		f_edit_name.setText(selected.getName());
 		f_edit_price.setText(selected.getPriceAsStr());

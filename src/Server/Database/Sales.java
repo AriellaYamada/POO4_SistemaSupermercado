@@ -12,7 +12,7 @@ public class Sales implements ListRegister{
 	private Stream<Sale> filtered;
 
 	public Sales() {
-		sales = new LinkedList<Sale>();
+		sales = new LinkedList<>();
 		filtered = sales.stream();
 	}
 

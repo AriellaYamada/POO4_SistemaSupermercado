@@ -34,7 +34,7 @@ public class loginController {
 		if (userpassword.isEmpty()) { Def.setError(f_userpassword, "Este campo é obrigatório"); }
 
 		if (!userlogin.isEmpty() && !userlogin.isEmpty()) {
-			String response = Client.getInstance().Login(f_userlogin.getText(), f_userpassword.getText());
+			String response = Client.Login(f_userlogin.getText(), f_userpassword.getText());
 			if (response.equals("ok")) {
 				try {
 					MainInterface.changeScene("Client/Model/menu.fxml");
@@ -95,7 +95,7 @@ public class loginController {
 				Def.setError(f_confirmp, "As senhas digitadas não são iguais");
 			} else {
 				// Send the data to server and read the answer from server
-				String answer = Client.getInstance().AddNewUser(f_name.getText(),
+				String answer = Client.AddNewUser(f_name.getText(),
 																f_address.getText(),
 																f_tel.getText(),
 																f_email.getText(),

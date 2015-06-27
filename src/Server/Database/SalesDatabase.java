@@ -1,6 +1,6 @@
 package Server.Database;
 
-import Server.*;
+import Structure.Def;
 import Structure.Sale;
 
 public class SalesDatabase extends Database {
@@ -23,7 +23,7 @@ public class SalesDatabase extends Database {
 			WriteFile(s.getClientId(),
 					s.getProduct(),
 					Integer.valueOf(s.getQuantity()).toString(),
-					cmdProcess.CalendarToString(s.getDate())
+					Def.CalendarToString(s.getDate())
 			);
 		}
 	}

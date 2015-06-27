@@ -18,7 +18,7 @@ import com.itextpdf.text.DocumentException;
 import static java.lang.System.err;
 
 public class PDFCreator {
-
+/*
 	public void CreatePDF( String filename, List<Sale> sales ) {
 		Document doc = null;
 

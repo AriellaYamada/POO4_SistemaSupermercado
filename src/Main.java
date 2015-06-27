@@ -1,6 +1,5 @@
 import Server.Database.Products;
 import Server.Database.ProductsDatabase;
-import Server.Database.SalesDatabase;
 
 import java.io.IOException;
 

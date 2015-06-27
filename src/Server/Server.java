@@ -58,7 +58,7 @@ public class Server implements Runnable {
 	}
 
 	public void run (){
-		Socket s = null;
+		Socket s;
 		while (acceptConnections){
 			s = waitConnection();
 			if (s != null){

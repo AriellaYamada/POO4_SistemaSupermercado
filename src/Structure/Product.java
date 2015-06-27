@@ -2,7 +2,6 @@ package Structure;
 
 import java.util.GregorianCalendar;
 import Client.Cart;
-import Client.Client;
 
 public class Product {
 
