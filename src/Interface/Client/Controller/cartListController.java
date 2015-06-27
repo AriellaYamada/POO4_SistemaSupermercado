@@ -1,9 +1,7 @@
 package Interface.Client.Controller;
 
-import Client.Cart;
 import Client.Connection;
 import Interface.MainInterface;
-import Structure.Def;
 import Structure.Product;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -81,9 +79,6 @@ public class cartListController {
 
 	@FXML
 	public void confirmClear() {
-		for (Product p : Cart.getInstance().ListAll())
-			Connection.getInstance().SendSignal("dereserve" + Def.regSep + p.getName() + Def.fieldSep + p.getQuantityAsStr());
-		Cart.getInstance().ClearCart();
 	}
 
 	@FXML

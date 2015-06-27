@@ -1,7 +1,5 @@
 package Structure;
 
-import Client.Cart;
-
 public class Product {
 
 	private String name;
@@ -50,28 +48,5 @@ public class Product {
 
 	public synchronized void refreshStock(int amount) {
 		setAmount(amount);
-	}
-
-	public synchronized void Reserve() {
-		quantity--;
-	}
-
-	public synchronized boolean AddToCart(int qtd) {
-		if (quantity>0) {
-			if (Cart.getInstance().CheckCart(this))
-				Cart.getInstance().Add(this, qtd);
-			else
-				Cart.getInstance().RefreshQuantity(this, qtd);
-			return true;
-		}
-		return false;
-	}
-
-	public synchronized boolean Reserve(int qtd) {
-		return (updateAmount(-qtd) > 0);
-	}
-
-	public synchronized void Dereserve(int qtd) {
-		updateAmount(qtd);
 	}
 }
