@@ -79,6 +79,7 @@ public class productListController implements Initializable {
 		// Se for possível adicionar -> Ok, adicionado.
 		// Se não for possível, então:
 		//      alert.setVisible(true);
+		p.addToCart();
 	}
 
 	@FXML
