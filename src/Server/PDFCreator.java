@@ -1,22 +1,5 @@
 package Server;
 
-import java.io.FileOutputStream;
-
-import Structure.Sale;
-import com.itextpdf.text.Document;
-import com.itextpdf.text.PageSize;
-import com.itextpdf.text.Paragraph;
-import com.itextpdf.text.pdf.PdfWriter;
-import com.itextpdf.text.pdf.PdfPTable;
-
-
-import java.io.IOException;
-import java.util.List;
-
-import com.itextpdf.text.DocumentException;
-
-import static java.lang.System.err;
-
 public class PDFCreator {
 /*
 	public void CreatePDF( String filename, List<Sale> sales ) {
