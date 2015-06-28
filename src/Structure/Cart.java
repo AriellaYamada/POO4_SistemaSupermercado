@@ -41,8 +41,8 @@ public class Cart {
 		for (CartItem i : products) {
 			response += i.getProduct().getName() + Def.fieldSep
 					+ Float.valueOf(i.getProduct().getPrice()).toString() + Def.fieldSep
-					+ i.getProduct().getExpiration()
-					+ i.getProduct().getProvider()
+					+ i.getProduct().getExpiration() + Def.fieldSep
+					+ i.getProduct().getProvider() + Def.fieldSep
 					+ Integer.valueOf(i.getReservedQtd()).toString() + Def.regSep;
 		}
 		return response;

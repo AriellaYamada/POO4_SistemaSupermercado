@@ -7,6 +7,7 @@ import Structure.Product;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
+import javafx.fxml.Initializable;
 import javafx.scene.control.Label;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
@@ -18,7 +19,7 @@ import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 
-public class cartListController {
+public class cartListController implements Initializable {
 
 	@FXML public Label l_total_value;
 	@FXML public VBox alertDialog;
@@ -96,8 +97,11 @@ public class cartListController {
 		// Requisitar a lista de produtos para o servidor
 		Connection.getInstance().SendSignal("listcart");
 
+		System.out.println("1");
 		//Resposta do servidor com todos os produtos
 		String response = Connection.getInstance().ReceiveSignal();
+
+		System.out.println(response);
 
 		String[] products = Def.splitReg(response);
 		for (String s : products) {
