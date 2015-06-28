@@ -85,12 +85,14 @@ public class cartListController implements Initializable {
 	public void confirmClear() {
 		Connection.getInstance().SendSignal("clearcart");
 		Connection.getInstance().ReceiveSignal();
+		refresh();
+		clearDialog.setVisible(false);
 	}
 
 	@FXML
 	public void confirmEndSale() {
 		Connection.getInstance().SendSignal("sell");
-		String response = Connection.getInstance().ReceiveSignal();
+		Connection.getInstance().ReceiveSignal();
 		confirmDialog.setVisible(false);
 		refresh();
 	}

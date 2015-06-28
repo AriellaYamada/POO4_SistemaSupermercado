@@ -29,8 +29,12 @@ public class Connection {
 	}
 
 	//Método que encerra a conexão com o servidor
-	public void CloseConnectionClient () throws IOException {
-		sock.close();
+	public void CloseConnectionClient (){
+		try {
+			sock.close();
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
 	}
 
 	//Método que envia mensagem para o servidor

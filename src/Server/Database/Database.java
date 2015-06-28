@@ -12,6 +12,7 @@ abstract public class Database {
 	protected BufferedReader br = null;
 	protected FileWriter fw = null;
 	protected String path = null;
+	protected String HEADER = null;
 
 	// Abre o arquivo
 	protected void OpenFile(String filename) {
@@ -22,6 +23,7 @@ abstract public class Database {
 		if (!file.exists()){
 			try {
 				file.createNewFile();
+				WriteFile(HEADER);
 			} catch (IOException e) {
 				out.println("Erro ao criar o arquivo.");
 				e.printStackTrace();
@@ -86,8 +88,11 @@ abstract public class Database {
 	// Use como:
 	// [database].getInstance().WriteFile("str 1", "str 2", ... "str x");
 	// Ele irá escrever "str 1,str 2,...,str x'\n'" no arquivo
-	public void WriteFile(String... value) {
-		OpenWriter(false);
+
+	public void WriteFile(String... value) { WriteFile(false, value); }
+
+	public void WriteFile(boolean append, String... value) {
+		OpenWriter(append);
 		final String ENDLINE = "\n";
 
 		try {

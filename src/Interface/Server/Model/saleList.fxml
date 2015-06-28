@@ -1,0 +1,139 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.effect.*?>
+<?import javafx.scene.text.*?>
+<?import javafx.geometry.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.shape.*?>
+<?import javafx.scene.*?>
+<?import java.lang.*?>
+<?import javafx.scene.layout.*?>
+<?fxml-stylesheet href="Interface/style.css"?>
+
+<StackPane maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Interface.Server.Controller.productListController">
+   <children>
+      <VBox maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="800.0">
+         <children>
+            <HBox spacing="10.0" styleClass="title-bar" stylesheets="@../../style.css">
+               <children>
+                  <Button mnemonicParsing="false" onAction="#backToMenu" styleClass="default-btn" text="Voltar">
+                     <graphic>
+                        <Group>
+                           <children>
+                              <SVGPath content="M1536 640v-128q0 -53 -32.5 -90.5t-84.5 -37.5h-704l293 -294q38 -36 38 -90t-38 -90l-75 -76q-37 -37 -90 -37q-52 0 -91 37l-651 652q-37 37 -37 90q0 52 37 91l651 650q38 38 91 38q52 0 90 -38l75 -74q38 -38 38 -91t-38 -91l-293 -293h704q52 0 84.5 -37.5 t32.5 -90.5z" scaleX="0.008" scaleY="0.008" />
+                           </children>
+                        </Group>
+                     </graphic>
+                     <tooltip>
+                        <Tooltip text="Voltar para o menu" />
+                     </tooltip>
+                  </Button>
+                  <Button layoutX="722.0" layoutY="15.0" mnemonicParsing="false" onAction="#refresh" styleClass="default-btn" text="Atualizar">
+                     <graphic>
+                        <Group>
+                           <children>
+                              <SVGPath content="M1511 480q0 -5 -1 -7q-64 -268 -268 -434.5t-478 -166.5q-146 0 -282.5 55t-243.5 157l-129 -129q-19 -19 -45 -19t-45 19t-19 45v448q0 26 19 45t45 19h448q26 0 45 -19t19 -45t-19 -45l-137 -137q71 -66 161 -102t187 -36q134 0 250 65t186 179q11 17 53 117 q8 23 30 23h192q13 0 22.5 -9.5t9.5 -22.5zM1536 1280v-448q0 -26 -19 -45t-45 -19h-448q-26 0 -45 19t-19 45t19 45l138 138q-148 137 -349 137q-134 0 -250 -65t-186 -179q-11 -17 -53 -117q-8 -23 -30 -23h-199q-13 0 -22.5 9.5t-9.5 22.5v7q65 268 270 434.5t480 166.5 q146 0 284 -55.5t245 -156.5l130 129q19 19 45 19t45 -19t19 -45z" nodeOrientation="RIGHT_TO_LEFT" rotate="180.0" scaleX="0.01" scaleY="0.01" />
+                           </children>
+                        </Group>
+                     </graphic>
+                     <tooltip>
+                        <Tooltip text="Ir para o carrinho de compras" />
+                     </tooltip>
+                  </Button>
+                  <HBox alignment="CENTER" spacing="10.0" HBox.hgrow="ALWAYS">
+                     <children>
+                        <Group>
+                           <children>
+                              <SVGPath content="M640 0q0 -52 -38 -90t-90 -38t-90 38t-38 90t38 90t90 38t90 -38t38 -90zM1536 0q0 -52 -38 -90t-90 -38t-90 38t-38 90t38 90t90 38t90 -38t38 -90zM1664 1088v-512q0 -24 -16.5 -42.5t-40.5 -21.5l-1044 -122q13 -60 13 -70q0 -16 -24 -64h920q26 0 45 -19t19 -45 t-19 -45t-45 -19h-1024q-26 0 -45 19t-19 45q0 11 8 31.5t16 36t21.5 40t15.5 29.5l-177 823h-204q-26 0 -45 19t-19 45t19 45t45 19h256q16 0 28.5 -6.5t19.5 -15.5t13 -24.5t8 -26t5.5 -29.5t4.5 -26h1201q26 0 45 -19t19 -45z" nodeOrientation="RIGHT_TO_LEFT" rotate="180.0" scaleX="0.01" scaleY="0.01" />
+                           </children>
+                        </Group>
+                        <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Lista de Vendas" textAlignment="CENTER" HBox.hgrow="ALWAYS">
+                           <font>
+                              <Font size="18.0" />
+                           </font>
+                        </Text>
+                     </children>
+                  </HBox>
+                  <Button layoutX="722.0" layoutY="15.0" mnemonicParsing="false" onAction="#pdfGenerate" styleClass="default-btn" text="Detalhes">
+                     <graphic>
+                        <Group>
+                           <children>
+                              <SVGPath content="M1024 160v160q0 14 -9 23t-23 9h-96v512q0 14 -9 23t-23 9h-320q-14 0 -23 -9t-9 -23v-160q0 -14 9 -23t23 -9h96v-320h-96q-14 0 -23 -9t-9 -23v-160q0 -14 9 -23t23 -9h448q14 0 23 9t9 23zM896 1056v160q0 14 -9 23t-23 9h-192q-14 0 -23 -9t-9 -23v-160q0 -14 9 -23 t23 -9h192q14 0 23 9t9 23zM1536 640q0 -209 -103 -385.5t-279.5 -279.5t-385.5 -103t-385.5 103t-279.5 279.5t-103 385.5t103 385.5t279.5 279.5t385.5 103t385.5 -103t279.5 -279.5t103 -385.5z" nodeOrientation="RIGHT_TO_LEFT" rotate="180.0" scaleX="0.009" scaleY="0.009" />
+                           </children>
+                        </Group>
+                     </graphic>
+                     <tooltip>
+                        <Tooltip text="Ir para o carrinho de compras" />
+                     </tooltip>
+                  </Button>
+                  <Button layoutX="717.0" layoutY="15.0" mnemonicParsing="false" onAction="#pdfGenerate" styleClass="default-btn" text="Gerar PDF">
+                     <graphic>
+                        <Group>
+                           <children>
+                              <SVGPath content="M1468 1156q28 -28 48 -76t20 -88v-1152q0 -40 -28 -68t-68 -28h-1344q-40 0 -68 28t-28 68v1600q0 40 28 68t68 28h896q40 0 88 -20t76 -48zM1024 1400v-376h376q-10 29 -22 41l-313 313q-12 12 -41 22zM1408 -128v1024h-416q-40 0 -68 28t-28 68v416h-768v-1536h1280z M894 465q33 -26 84 -56q59 7 117 7q147 0 177 -49q16 -22 2 -52q0 -1 -1 -2l-2 -2v-1q-6 -38 -71 -38q-48 0 -115 20t-130 53q-221 -24 -392 -83q-153 -262 -242 -262q-15 0 -28 7l-24 12q-1 1 -6 5q-10 10 -6 36q9 40 56 91.5t132 96.5q14 9 23 -6q2 -2 2 -4q52 85 107 197 q68 136 104 262q-24 82 -30.5 159.5t6.5 127.5q11 40 42 40h21h1q23 0 35 -15q18 -21 9 -68q-2 -6 -4 -8q1 -3 1 -8v-30q-2 -123 -14 -192q55 -164 146 -238zM318 54q52 24 137 158q-51 -40 -87.5 -84t-49.5 -74zM716 974q-15 -42 -2 -132q1 7 7 44q0 3 7 43q1 4 4 8 q-1 1 -1 2t-0.5 1.5t-0.5 1.5q-1 22 -13 36q0 -1 -1 -2v-2zM592 313q135 54 284 81q-2 1 -13 9.5t-16 13.5q-76 67 -127 176q-27 -86 -83 -197q-30 -56 -45 -83zM1238 329q-24 24 -140 24q76 -28 124 -28q14 0 18 1q0 1 -2 3z" nodeOrientation="RIGHT_TO_LEFT" rotate="180.0" scaleX="0.009" scaleY="0.009" />
+                           </children>
+                        </Group>
+                     </graphic>
+                     <tooltip>
+                        <Tooltip text="Ir para o carrinho de compras" />
+                     </tooltip>
+                  </Button>
+               </children>
+               <padding>
+                  <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+               </padding>
+            </HBox>
+            <TableView fx:id="tv_table" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="600.0" prefWidth="800.0" stylesheets="@../../style.css" tableMenuButtonVisible="true" VBox.vgrow="ALWAYS">
+               <columns>
+                  <TableColumn fx:id="c_userid" editable="false" prefWidth="150.0" styleClass="col-price" text="Data" />
+                  <TableColumn fx:id="c_name" editable="false" prefWidth="350.0" styleClass="col-name" text="Cliente" />
+                  <TableColumn fx:id="c_email" editable="false" prefWidth="100.0" styleClass="col-amount" text="Items" />
+                  <TableColumn fx:id="c_address" editable="false" prefWidth="120.0" styleClass="col-amount" text="Valor" />
+               </columns>
+            </TableView>
+         </children>
+      </VBox>
+      <VBox fx:id="clearDialog" alignment="CENTER" style="-fx-background-color: rgba(0,0,0,0.2);">
+         <children>
+            <VBox alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" spacing="15.0" style="-fx-background-color: #444;">
+               <children>
+                  <Text fill="WHITE" layoutY="55.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Você tem certeza que quer limpar o carrinho?" textAlignment="CENTER" wrappingWidth="400.0">
+                     <font>
+                        <Font size="18.0" />
+                     </font>
+                  </Text>
+                  <HBox alignment="CENTER" spacing="20.0">
+                     <children>
+                        <Button layoutX="20.0" layoutY="278.0" mnemonicParsing="false" onAction="#dismiss" stylesheets="@../../style.css" text="Voltar">
+                           <styleClass>
+                              <String fx:value="default-btn" />
+                              <String fx:value="big-btn" />
+                           </styleClass>
+                        </Button>
+                        <Button mnemonicParsing="false" onAction="#confirmClear" stylesheets="@../../style.css" text="Limpar o carrinho">
+                           <styleClass>
+                              <String fx:value="default-btn" />
+                              <String fx:value="big-btn" />
+                              <String fx:value="red" />
+                           </styleClass>
+                        </Button>
+                     </children>
+                  </HBox>
+               </children>
+               <effect>
+                  <DropShadow blurType="TWO_PASS_BOX" />
+               </effect>
+               <opaqueInsets>
+                  <Insets />
+               </opaqueInsets>
+               <padding>
+                  <Insets bottom="30.0" left="30.0" right="30.0" top="30.0" />
+               </padding>
+               <StackPane.margin>
+                  <Insets />
+               </StackPane.margin>
+            </VBox>
+         </children>
+      </VBox>
+   </children>
+</StackPane>

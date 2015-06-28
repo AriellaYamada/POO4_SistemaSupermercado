@@ -3,6 +3,8 @@ package Server.Database;
 import Structure.CartItem;
 import Structure.Sale;
 
+import java.util.ArrayList;
+
 public class SalesDatabase extends Database {
 
 	private static SalesDatabase salesDB;
@@ -14,17 +16,32 @@ public class SalesDatabase extends Database {
 		return salesDB;
 	}
 
-	private SalesDatabase() { OpenFile("sales.csv"); }
+	private SalesDatabase() {
+		HEADER = "date,user,product,amount,price";
+		OpenFile("sales.csv");
+	}
 
-	public void WriteFile(String... value) {
-		WriteFile("date","user","product","amount","price");
+	public void WriteFile(){
+		Sales.getSales().forEach(this::WriteFile);
+	}
 
-		for (Sale sale : Sales.getInstance().getSales()) {
-			String products = "";
-			for (CartItem i : sale.getProducts()) {
-				products += i.getProduct().getName() + i.getReservedQtdAsStr() + i.getTotalAmountAsStr();
-			}
-			WriteFile(sale.getDate(), sale.getUser().getId(), products);
+	public void WriteFile(Sale sale) {
+		ArrayList<String> list = new ArrayList<>();
+
+		// Insert each sale data into list
+		list.add(sale.getDate());
+		list.add(sale.getUser().getId());
+
+		for (CartItem i : sale.getProducts()) {
+			list.add(i.getProduct().getName());
+			list.add(i.getReservedQtdAsStr());
+			list.add(i.getPriceAsStr());
 		}
+
+		// Convert List to Array
+		String[] array = new String[list.size()];
+		array = list.toArray(array);
+
+		WriteFile(true, array);
 	}
 }

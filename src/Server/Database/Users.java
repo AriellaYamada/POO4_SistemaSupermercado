@@ -10,8 +10,8 @@ import Structure.User;
 public class Users implements ListRegister {
 
 	private static Users usersDB;
-	private List<User> users;
-	private Stream<User> filtered;
+	private static List<User> users;
+	private static Stream<User> filtered;
 
 	private Users () { users = new LinkedList<>(); }
 
@@ -23,9 +23,9 @@ public class Users implements ListRegister {
 		return usersDB;
 	}
 
-	public List<User> ListAll() { return users; }
+	public static List<User> ListAll() { return users; }
 
-	public int Register (String name, String address, String tel, String email, String id, String password) {
+	public static int Register (String name, String address, String tel, String email, String id, String password) {
 		if (checkId(id)) {
 			User new_user = new User(name, address, tel, email, id, password);
 			users.add(new_user);
@@ -43,13 +43,13 @@ public class Users implements ListRegister {
 		return 1;
 	}
 
-	public boolean checkId (String id) {
+	public static boolean checkId (String id) {
 		filtered = users.stream();
 		filtered = filtered.filter(u -> u.getId().equals(id));
 		return (filtered.count() == 0);
 	}
 
-	public int Login (String id, String password) {
+	public static int Login (String id, String password) {
 		filtered = users.stream();
 		filtered = filtered.filter(u -> u.getId().equals(id));
 		//Verifica se o usuario existe
@@ -63,13 +63,13 @@ public class Users implements ListRegister {
 		return 2;
 	}
 
-	public String GetUserName(String id) {
+	public static String GetUserName(String id) {
 		filtered = users.stream()
 				.filter(u -> u.getId().equals(id));
 		return filtered.collect(Collectors.toList()).get(0).getName();
 	}
 
-	public User SearchUser(String userid) {
+	public static User SearchUser(String userid) {
 		filtered = users.stream().filter(u -> u.getId().equals(userid));
 		return filtered.collect(Collectors.toList()).get(0);
 	}

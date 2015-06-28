@@ -12,12 +12,15 @@ public class UsersDatabase extends Database {
 		return usersDB;
 	}
 
-	public UsersDatabase() { OpenFile("users.csv"); }
+	private UsersDatabase() {
+		HEADER = "name,address,telephone,email,id,password";
+		OpenFile("users.csv");
+	}
 
 	public void WriteFile() {
-		WriteFile("name","address","telephone","email","id","password");
+		WriteFile(HEADER);
 
-		for (User u : Users.getInstance().ListAll()){
+		for (User u : Users.ListAll()){
 			WriteFile(u.getName(),
 					u.getAddress(),
 					u.getTel(),
