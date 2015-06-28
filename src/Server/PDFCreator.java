@@ -80,7 +80,7 @@ public class PDFCreator {
 			cell.setVerticalAlignment(Element.ALIGN_CENTER);
 			table.addCell(cell);
 
-			cell = new PdfPCell(new Phrase("quantia"));
+			cell = new PdfPCell(new Phrase("quantidade"));
 			cell.setMinimumHeight(20);
 			cell.setHorizontalAlignment(Element.ALIGN_CENTER);
 			cell.setVerticalAlignment(Element.ALIGN_CENTER);
