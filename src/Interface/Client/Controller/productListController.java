@@ -42,7 +42,7 @@ public class productListController implements Initializable {
 		c_price.setCellValueFactory(new PropertyValueFactory<>("price"));
 		c_expiration.setCellValueFactory(new PropertyValueFactory<>("expiration"));
 		c_provider.setCellValueFactory(new PropertyValueFactory<>("provider"));
-		c_amount.setCellValueFactory(new PropertyValueFactory<>("quantity"));
+		c_amount.setCellValueFactory(new PropertyValueFactory<>("amount_virtual"));
 
 		tv_table.setItems(data);
 
@@ -73,8 +73,16 @@ public class productListController implements Initializable {
 		Product p = tv_table.getSelectionModel().getSelectedItem();
 
 		//Solicita a reserva no servidor
-		if(!p.RequestReservation(1))
+		if (!p.RequestReservation(1)) {
+			alert_product_name.setText(p.getName());
 			alert.setVisible(true);
+		}
+		// Atualiza quantidade no objeto
+		data.filtered( d -> d.getName().equals(p.getName()) ).get(0).selfRefresh();
+
+		// Atualiza a exibição da quantidade na tabela, sem desmarcar a linha e sem perder a ordenação
+		tv_table.getColumns().get(2).setVisible(false);
+		tv_table.getColumns().get(2).setVisible(true);
 	}
 
 	@FXML
@@ -82,8 +90,9 @@ public class productListController implements Initializable {
 		alert.setVisible(false);
 	}
 
+	@FXML
 	public void refresh() {
-		data.clear();
+		data.removeAll();
 		// Requisitar a lista de produtos para o servidor
 		Connection.getInstance().SendSignal("listall");
 		//Resposta do servidor com todos os produtos
