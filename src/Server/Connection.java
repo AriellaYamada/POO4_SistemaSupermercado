@@ -55,11 +55,14 @@ public class Connection implements Runnable{
 			case "newuser":
 				args = Def.splitField(cmd[1]);
 				response = Users.Register(args[0], args[1], args[2], args[3], args[4], args[5]);
-				UsersDatabase.getInstance().WriteFile();
-				if (response == 0)
+
+				if (response == 0) {
 					line = "ok";
-				else
-					line = "fail"+ Def.regSep +"f_id"+ Def.fieldSep +"Este login ja esta sendo utilizado";
+					UsersDatabase.getInstance().WriteFile();
+				}
+				else {
+					line = "fail" + Def.regSep + "f_id" + Def.fieldSep + "Este login ja esta sendo utilizado";
+				}
 				break;
 			//Efetuar login
 			case "login":
