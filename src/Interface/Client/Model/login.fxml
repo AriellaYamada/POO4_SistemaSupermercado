@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import java.lang.*?>
 <?import javafx.scene.shape.*?>
 <?import javafx.scene.*?>
 <?import javafx.geometry.*?>
@@ -25,9 +26,9 @@
                </VBox.margin>
             </Text>
             <Label layoutX="80.0" layoutY="132.0" text="ID:" />
-            <TextField fx:id="f_userlogin" layoutX="80.0" layoutY="154.0" styleClass="default-field" />
+            <TextField fx:id="f_userlogin" layoutX="80.0" layoutY="154.0" styleClass="default-field" text="teste123" />
             <Label layoutX="80.0" layoutY="190.0" text="Senha:" />
-            <PasswordField fx:id="f_userpassword" layoutX="80.0" layoutY="212.0" styleClass="default-field" />
+            <PasswordField fx:id="f_userpassword" layoutX="80.0" layoutY="212.0" styleClass="default-field" text="123" />
             <Button layoutX="133.0" layoutY="260.0" mnemonicParsing="false" onAction="#handleSendLogin" prefWidth="100.0" styleClass="default-btn" text="Entrar">
                <VBox.margin>
                   <Insets top="80.0" />

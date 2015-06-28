@@ -1,6 +1,5 @@
 package Server.Database;
 
-import Structure.Def;
 import Structure.Product;
 
 public class ProductsDatabase extends Database {
@@ -24,7 +23,7 @@ public class ProductsDatabase extends Database {
 					Float.valueOf(p.getPrice()).toString(),
 					p.getExpiration(),
 					p.getProvider(),
-					Integer.valueOf(p.getAmountReal()).toString()
+					Integer.valueOf(p.getAmount_real()).toString()
 			);
 		}
 	}
