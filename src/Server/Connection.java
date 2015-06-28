@@ -53,13 +53,7 @@ public class Connection implements Runnable{
 		switch (cmd[0]){
 			//Cadastro de novo usuario
 			case "newuser":
-				args = Def.splitField(cmd[1]);
-				response = Users.Register(args[0], args[1], args[2], args[3], args[4], args[5]);
-				UsersDatabase.getInstance().WriteFile();
-				if (response == 0)
-					line = "ok";
-				else
-					line = "fail"+ Def.regSep +"f_id"+ Def.fieldSep +"Este login ja esta sendo utilizado";
+				line = newUser(line, cmd, response);
 				break;
 			//Efetuar login
 			case "login":
@@ -133,6 +127,18 @@ public class Connection implements Runnable{
 			default:
 				break;
 		}
+		return line;
+	}
+
+	private String newUser(String line, String[] cmd, int response ) {
+		String[] args = Def.splitField(cmd[1]);
+		response = Users.Register(args[0], args[1], args[2], args[3], args[4], args[5]);
+		UsersDatabase.getInstance().WriteFile();
+		if (response == 0)
+			line = "ok";
+		else
+			line = "fail"+ Def.regSep +"f_id"+ Def.fieldSep +"Este login ja esta sendo utilizado";
+
 		return line;
 	}
 }
