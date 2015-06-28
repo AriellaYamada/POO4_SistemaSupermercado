@@ -13,7 +13,8 @@ public class CartItem {
 
 	public Product getProduct() { return product; }
 	public int getReservedQtd() { return reservedQtd; }
-	public float getTotalAmount() { return (reservedQtd * curPrice); }
+	public String getReservedQtdAsStr() { return Integer.valueOf(reservedQtd).toString(); }
+	public String getTotalAmountAsStr() { return Float.valueOf(reservedQtd * curPrice).toString(); }
 
 	public boolean AddToCart(Cart cart) {
 		if(product.Reserve(1)) {
