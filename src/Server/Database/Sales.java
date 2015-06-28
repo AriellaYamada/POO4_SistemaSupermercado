@@ -24,6 +24,6 @@ public class Sales {
 
 	public static void AddSale(Sale sale) {
 		sales.add(sale);
-		SalesDatabase.getInstance().WriteFile(sale);
+		//SalesDatabase.getInstance().WriteFile(sale);
 	}
 }
