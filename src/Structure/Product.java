@@ -22,8 +22,8 @@ public class Product {
 	public String getName() { return name; }
 	public float getPrice() { return price; }
 	public String getProvider() { return provider; }
-	public int getAmountReal() { return amount_real; }
-	public int getAmountVirtual() { return amount_virtual; }
+	public int getAmount_real() { return amount_real; }
+	public int getAmount_virtual() { return amount_virtual; }
 	public String getExpiration() { return expiration; }
 
 	public String getPriceAsStr() { return Float.toString(price); }

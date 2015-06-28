@@ -43,9 +43,11 @@ public class cartListController {
 		c_price.setCellValueFactory(new PropertyValueFactory<>("price"));
 		c_expiration.setCellValueFactory(new PropertyValueFactory<>("expiration"));
 		c_provider.setCellValueFactory(new PropertyValueFactory<>("provider"));
-		c_amount.setCellValueFactory(new PropertyValueFactory<>("quantity"));
+		c_amount.setCellValueFactory(new PropertyValueFactory<>("Amount_virtual"));
 
 		tv_table.setItems(data);
+
+		refresh();
 	}
 
 	@FXML
