@@ -96,7 +96,7 @@ public class productListController implements Initializable {
 					Float.parseFloat(splited[1]),
 					splited[2],
 					splited[3],
-					Integer.parseInt(splited[2]))
+					Integer.parseInt(splited[4]))
 			);
 		}
 	}

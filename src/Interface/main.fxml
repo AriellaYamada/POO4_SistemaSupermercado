@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import java.lang.*?>
 <?import javafx.scene.shape.*?>
 <?import javafx.scene.*?>
 <?import javafx.scene.text.*?>
@@ -9,7 +10,7 @@
 
 <HBox prefHeight="600.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Interface.mainController">
    <children>
-      <VBox alignment="TOP_CENTER" prefHeight="600.0" prefWidth="400.0" styleClass="border-black" stylesheets="@style.css">
+      <VBox alignment="TOP_CENTER" prefHeight="600.0" prefWidth="400.0" styleClass="border-black" stylesheets="@style.css" HBox.hgrow="ALWAYS">
          <children>
             <Group>
                <children>
@@ -29,7 +30,7 @@
                   <Insets top="5.0" />
                </VBox.margin>
             </Label>
-            <TextField fx:id="serverPort" maxWidth="200.0" prefWidth="200.0" styleClass="default-field">
+            <TextField fx:id="serverPort" maxWidth="200.0" prefWidth="200.0" styleClass="default-field" text="12345">
                <VBox.margin>
                   <Insets bottom="82.0" top="5.0" />
                </VBox.margin>
@@ -46,7 +47,7 @@
             <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
          </padding>
       </VBox>
-      <VBox alignment="TOP_CENTER" layoutX="10.0" layoutY="10.0" prefHeight="600.0" prefWidth="400.0" styleClass="border-black" stylesheets="@style.css">
+      <VBox alignment="TOP_CENTER" layoutX="10.0" layoutY="10.0" prefHeight="600.0" prefWidth="400.0" styleClass="border-black" stylesheets="@style.css" HBox.hgrow="ALWAYS">
          <children>
             <Group>
                <children>
@@ -66,7 +67,7 @@
                   <Insets top="5.0" />
                </VBox.margin>
             </Label>
-            <TextField fx:id="clientIP" maxWidth="200.0" prefWidth="200.0" styleClass="default-field">
+            <TextField fx:id="clientIP" maxWidth="200.0" prefWidth="200.0" styleClass="default-field" text="127.0.0.1">
                <VBox.margin>
                   <Insets bottom="15.0" top="5.0" />
                </VBox.margin>
@@ -76,7 +77,7 @@
                   <Insets top="5.0" />
                </VBox.margin>
             </Label>
-            <TextField fx:id="clientPort" maxWidth="200.0" prefWidth="200.0" styleClass="default-field">
+            <TextField fx:id="clientPort" maxWidth="200.0" prefWidth="200.0" styleClass="default-field" text="12345">
                <VBox.margin>
                   <Insets bottom="15.0" top="5.0" />
                </VBox.margin>
