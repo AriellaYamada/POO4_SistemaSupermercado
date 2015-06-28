@@ -76,4 +76,10 @@ public class Product {
 	public synchronized void CancelReservation(int qtd) {
 		amount_virtual += qtd;
 	}
+
+	public void selfRefresh() {
+		Connection.getInstance().SendSignal("selfrefresh" + Def.regSep + this.name);
+		String answer = Connection.getInstance().ReceiveSignal();
+		amount_real = amount_virtual = Integer.parseInt(answer);
+	}
 }

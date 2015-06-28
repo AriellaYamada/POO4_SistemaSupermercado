@@ -71,7 +71,7 @@ public class Products implements ListRegister {
 					+ p.getPriceAsStr() + Def.fieldSep
 					+ p.getExpiration() + Def.fieldSep
 					+ p.getProvider() + Def.fieldSep
-					+ p.getAmountRealAsStr() + Def.regSep;
+					+ p.getAmountVirtualAsStr() + Def.regSep;
 		}
 		return response;
 	}

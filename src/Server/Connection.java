@@ -120,7 +120,9 @@ public class Connection implements Runnable{
 			case "clearcart" :
 				cart.ClearCart();
 				break;
-
+			case "selfrefresh":
+				line = Products.getInstance().searchProduct(cmd[1]).getAmountVirtualAsStr();
+				break;
 			default:
 				break;
 		}
