@@ -15,6 +15,8 @@ public class CartItem {
 	public int getReservedQtd() { return reservedQtd; }
 	public String getReservedQtdAsStr() { return Integer.toString(reservedQtd); }
 	public String getPriceAsStr() { return Float.toString(curPrice); }
+	public float getTotalPrice() { return reservedQtd * curPrice; }
+	public String getTotalPriceAsStr() { return Float.toString(getTotalPrice()); }
 
 	public boolean AddToCart(Cart cart) {
 		if(product.Reserve(1)) {

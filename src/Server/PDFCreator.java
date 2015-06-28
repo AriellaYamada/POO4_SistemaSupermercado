@@ -1,66 +1,169 @@
 package Server;
 
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+
+import Structure.CartItem;
+import Structure.Def;
+import Structure.Sale;
+import com.itextpdf.text.*;
+import com.itextpdf.text.pdf.PdfPCell;
+import com.itextpdf.text.pdf.PdfWriter;
+import com.itextpdf.text.pdf.PdfPTable;
+
+
+import java.io.IOException;
+import java.util.List;
+
+import static java.lang.System.clearProperty;
+import static java.lang.System.err;
+
 public class PDFCreator {
-/*
+
+	Document doc;
+
+	public PDFCreator() {
+		this.doc = null;
+	}
+
 	public void CreatePDF( String filename, List<Sale> sales ) {
-		Document doc = null;
+
+		doc = new Document(PageSize.A4, 70, 42, 56, 56);
+		//A4 595 pts
+		//margens: esq 2,5  dir 1,5 cima 2  baixo 2
 
 		try {
-
-			doc = new Document(PageSize.A4, 70, 42, 56, 56);
-			//margens: esq 2,5  dir 1,5 cima 2  baixo 2
-
 			PdfWriter.getInstance(doc, new FileOutputStream(filename + ".pdf"));
 
 			doc.open();
 
-			doc.add(CreateSalesTable(sales));
+			CreateSalesTable(sales);
 
-		} catch(DocumentException de) {
-			err.println(de.getMessage());
+		} catch (DocumentException e) {
+			e.printStackTrace();
+		} catch (FileNotFoundException e) {
+			e.printStackTrace();
 		}
-		catch(IOException ioe) {
-			err.println(ioe.getMessage());
-		}
+
 		doc.close();
 	}
 
-	private PdfPTable CreateSalesTable( List<Sale> sales ) {
+	private void CreateSalesTable(List <Sale> sales) throws DocumentException {
 
-		PdfPTable table = new PdfPTable(4); //4 colunas
+		PdfPTable table = new PdfPTable(2);
+		table.setSpacingBefore(10);
+		table.setSpacingAfter(20);
+
+		PdfPCell cell;
 
 		for (Sale s : sales ) {
 
-			table.addCell(s.getClientId());
+			cell = new PdfPCell(new Phrase(s.getDate()));
+			cell.setMinimumHeight(20);
+			cell.setBorder(Rectangle.NO_BORDER);
+			cell.setHorizontalAlignment(Element.ALIGN_LEFT);
+			cell.setVerticalAlignment(Element.ALIGN_CENTER);
+			table.addCell(cell);
 
-			table.addCell(s.getProduct());
+			cell = new PdfPCell(new Phrase(s.getUser().getName()));
+			cell.setMinimumHeight(20);
+			cell.setBorder(Rectangle.NO_BORDER);
+			cell.setHorizontalAlignment(Element.ALIGN_RIGHT);
+			cell.setVerticalAlignment(Element.ALIGN_CENTER);
+			table.addCell(cell);
 
-			table.addCell(Integer.valueOf(s.getQuantity()).toString());
+			doc.add(table);
 
-			table.addCell(cmdProcess.CalendarToString(s.getDate()));
+			try {
+				doc.add(CreateProductsTable(s.getProducts()));
+			} catch (DocumentException e) {
+				e.printStackTrace();
+			}
+
+			Paragraph p = new Paragraph("preço total");
+			p.setAlignment(Element.ALIGN_RIGHT);
+			doc.add(p);
+		}
+
+	}
+	private PdfPTable CreateProductsTable( List<CartItem> products ) throws DocumentException {
+
+		doc.add(CreateHeaderProductsTable());
+
+		PdfPTable table = new PdfPTable(4); //4 colunas
+		table.setTotalWidth(new float[]{ 183, 100, 100, 100 });
+		table.setLockedWidth(true);
+		PdfPCell cell;
+
+		table.setSpacingBefore(0);
+		table.setSpacingAfter(20);
+
+		for (CartItem ci : products ) {
+
+
+			cell = new PdfPCell(new Phrase(ci.getProduct().getName()));
+			cell.setMinimumHeight(20);
+			cell.setHorizontalAlignment(Element.ALIGN_JUSTIFIED);
+			cell.setVerticalAlignment(Element.ALIGN_CENTER);
+			table.addCell(cell);
+
+			cell = new PdfPCell(new Phrase(ci.getReservedQtdAsStr()));
+			cell.setMinimumHeight(20);
+			cell.setHorizontalAlignment(Element.ALIGN_CENTER);
+			cell.setVerticalAlignment(Element.ALIGN_CENTER);
+			table.addCell(cell);
+
+			cell = new PdfPCell(new Phrase(ci.getPriceAsStr()));
+			cell.setMinimumHeight(20);
+			cell.setHorizontalAlignment(Element.ALIGN_RIGHT);
+			cell.setVerticalAlignment(Element.ALIGN_CENTER);
+			table.addCell(cell);
+
+			cell = new PdfPCell(new Phrase(ci.getTotalPriceAsStr()));
+			cell.setMinimumHeight(20);
+			cell.setHorizontalAlignment(Element.ALIGN_RIGHT);
+			cell.setVerticalAlignment(Element.ALIGN_CENTER);
+			table.addCell(cell);
+
 		}
 
 		return table;
 	}
-	/*public static PdfPTable createFirstTable() {
-		// a table with three columns
-		PdfPTable table = new PdfPTable(3);
-		// the cell object
-		PdfPCell cell;
-		// we add a cell with colspan 3
-		cell = new PdfPCell(new Phrase("Cell with colspan 3"));
-		cell.setColspan(3);
-		table.addCell(cell);
-		// now we add a cell with rowspan 2
-		cell = new PdfPCell(new Phrase("Cell with rowspan 2"));
-		cell.setRowspan(2);
-		table.addCell(cell);
-		// we add the four remaining cells with addCell()
-		table.addCell("row 1; cell 1");
-		table.addCell("row 1; cell 2");
-		table.addCell("row 2; cell 1");
-		table.addCell("row 2; cell 2");
-		return table;
-	}*/
-}
 
+	private PdfPTable CreateHeaderProductsTable() throws DocumentException {
+
+		PdfPTable table = new PdfPTable(4); //4 colunas
+		table.setTotalWidth(new float[]{ 183, 100, 100, 100 });
+		table.setLockedWidth(true);
+		PdfPCell cell;
+
+		table.setSpacingBefore(10);
+		table.setSpacingAfter(0);
+
+		cell = new PdfPCell(new Phrase("Product"));
+		cell.setMinimumHeight(20);
+		cell.setHorizontalAlignment(Element.ALIGN_CENTER);
+		cell.setVerticalAlignment(Element.ALIGN_CENTER);
+		table.addCell(cell);
+
+		cell = new PdfPCell(new Phrase("Quantity"));
+		cell.setMinimumHeight(20);
+		cell.setHorizontalAlignment(Element.ALIGN_CENTER);
+		cell.setVerticalAlignment(Element.ALIGN_CENTER);
+		table.addCell(cell);
+
+		cell = new PdfPCell(new Phrase("Unity Price"));
+		cell.setMinimumHeight(20);
+		cell.setHorizontalAlignment(Element.ALIGN_CENTER);
+		cell.setVerticalAlignment(Element.ALIGN_CENTER);
+		table.addCell(cell);
+
+		cell = new PdfPCell(new Phrase("Total Price"));
+		cell.setMinimumHeight(20);
+		cell.setHorizontalAlignment(Element.ALIGN_CENTER);
+		cell.setVerticalAlignment(Element.ALIGN_CENTER);
+		table.addCell(cell);
+
+		return table;
+	}
+}
