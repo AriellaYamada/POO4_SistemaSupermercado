@@ -116,6 +116,10 @@ public class Connection implements Runnable{
 				cart.Finalize();
 				line = "ok";
 				break;
+			case "clearcart" :
+				cart.ClearCart();
+				break;
+
 			default:
 				break;
 		}

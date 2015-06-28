@@ -83,12 +83,16 @@ public class cartListController implements Initializable {
 
 	@FXML
 	public void confirmClear() {
+		Connection.getInstance().SendSignal("clearcart");
+		Connection.getInstance().ReceiveSignal();
 	}
 
 	@FXML
 	public void confirmEndSale() {
 		Connection.getInstance().SendSignal("sell");
 		String response = Connection.getInstance().ReceiveSignal();
+		confirmDialog.setVisible(false);
+		refresh();
 	}
 
 	public void refresh(){
@@ -100,15 +104,17 @@ public class cartListController implements Initializable {
 		//Resposta do servidor com todos os produtos
 		String response = Connection.getInstance().ReceiveSignal();
 
-		String[] products = Def.splitReg(response);
-		for (String s : products) {
-			String[] splited = Def.splitField(s);
-			data.add(new Product(splited[0],
-							Float.parseFloat(splited[1]),
-							splited[2],
-							splited[3],
-							Integer.parseInt(splited[4]))
-			);
+		if (!response.equals("")) {
+			String[] products = Def.splitReg(response);
+			for (String s : products) {
+				String[] splited = Def.splitField(s);
+				data.add(new Product(splited[0],
+								Float.parseFloat(splited[1]),
+								splited[2],
+								splited[3],
+								Integer.parseInt(splited[4]))
+				);
+			}
 		}
 	}
 }
