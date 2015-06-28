@@ -21,6 +21,8 @@ public class Sales {
 		return salesDB;
 	}
 
+	public List<Sale> getSales() { return sales; }
+
 	public void AddSale(Sale sale) {
 		sales.add(sale);
 	}
