@@ -52,7 +52,7 @@ public class Connection implements Runnable{
 			//Cadastro de novo usuario
 			case "newuser":
 				args = Def.splitField(cmd[1]);
-				response = Users.getInstance().Register(args[0], args[1], args[2], args[3], args[4], args[5]);
+				response = Users.Register(args[0], args[1], args[2], args[3], args[4], args[5]);
 				UsersDatabase.getInstance().WriteFile();
 				if (response == 0)
 					line = "ok";
@@ -62,7 +62,7 @@ public class Connection implements Runnable{
 			//Efetuar login
 			case "login":
 				args = Def.splitField(cmd[1]);
-				response = Users.getInstance().Login(args[0], args[1]);
+				response = Users.Login(args[0], args[1]);
 				//Se o login foi efetuado corretamente
 				if (response == 0)
 					line = "ok";
@@ -75,11 +75,11 @@ public class Connection implements Runnable{
 				break;
 			//Busca o nome do usuario logado
 			case "getname":
-				line = Users.getInstance().GetUserName(cmd[1]);
+				line = Users.GetUserName(cmd[1]);
 				break;
 			//Busca todos os produtos cadastrados no sistema
 			case "listall":
-				line = Products.getInstance().AllProducts();
+				line = Products.AllProducts();
 				break;
 			//Solicita a reserva de um produto
 			case "reserve":
@@ -87,7 +87,7 @@ public class Connection implements Runnable{
 				args = Def.splitField(cmd[1]);
 				boolean errorFlag;
 				if (cart.CheckCart(args[0])) {
-					item = new CartItem(Products.getInstance().searchProduct(args[0]));
+					item = new CartItem(Products.searchProduct(args[0]));
 					errorFlag = item.AddToCart(cart);
 				} else {
 					item = cart.searchItem(args[0]);
@@ -114,16 +114,15 @@ public class Connection implements Runnable{
 				break;
 			case "sell":
 				Sale sale = new Sale(user, cart.ListAll());
-				Sales.getInstance().AddSale(sale);
+				Sales.AddSale(sale);
 				cart.Finalize();
-				SalesDatabase.getInstance().WriteFile();
 				line = "ok";
 				break;
 			case "clearcart" :
 				cart.ClearCart();
 				break;
 			case "selfrefresh":
-				line = Products.getInstance().searchProduct(cmd[1]).getAmountVirtualAsStr();
+				line = Products.searchProduct(cmd[1]).getAmountVirtualAsStr();
 				break;
 			default:
 				break;

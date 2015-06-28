@@ -8,7 +8,7 @@ import java.util.List;
 public class Sales {
 
 	private static Sales salesDB;
-	private List<Sale> sales;
+	private static List<Sale> sales;
 
 	private Sales() { sales = new LinkedList<>(); }
 
@@ -20,9 +20,10 @@ public class Sales {
 		return salesDB;
 	}
 
-	public List<Sale> getSales() { return sales; }
+	public static List<Sale> getSales() { return sales; }
 
-	public void AddSale(Sale sale) {
+	public static void AddSale(Sale sale) {
 		sales.add(sale);
+		SalesDatabase.getInstance().WriteFile(sale);
 	}
 }

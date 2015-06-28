@@ -13,7 +13,7 @@ public class ProductsDatabase extends Database {
 		return productsDB;
 	}
 
-	public ProductsDatabase() {
+	private ProductsDatabase() {
 		HEADER = "name,price,expiration,provider,quantity";
 		OpenFile("products.csv");
 	}

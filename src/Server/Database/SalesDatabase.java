@@ -22,7 +22,7 @@ public class SalesDatabase extends Database {
 	}
 
 	public void WriteFile(){
-		Sales.getInstance().getSales().forEach(this::WriteFile);
+		Sales.getSales().forEach(this::WriteFile);
 	}
 
 	public void WriteFile(Sale sale) {

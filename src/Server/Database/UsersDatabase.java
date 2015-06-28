@@ -12,7 +12,7 @@ public class UsersDatabase extends Database {
 		return usersDB;
 	}
 
-	public UsersDatabase() {
+	private UsersDatabase() {
 		HEADER = "name,address,telephone,email,id,password";
 		OpenFile("users.csv");
 	}
@@ -20,7 +20,7 @@ public class UsersDatabase extends Database {
 	public void WriteFile() {
 		WriteFile(HEADER);
 
-		for (User u : Users.getInstance().ListAll()){
+		for (User u : Users.ListAll()){
 			WriteFile(u.getName(),
 					u.getAddress(),
 					u.getTel(),
