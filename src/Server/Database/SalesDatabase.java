@@ -18,7 +18,6 @@ public class SalesDatabase extends Database {
 	private SalesDatabase() { OpenFile("sales.csv"); }
 
 	public void WriteFile() {
-
 		WriteFile("date","user","product","amount","price");
 
 		for (Sale sale : Sales.getInstance().getSales()) {

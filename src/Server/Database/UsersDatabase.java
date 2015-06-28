@@ -12,7 +12,7 @@ public class UsersDatabase extends Database {
 		return usersDB;
 	}
 
-	public UsersDatabase() { OpenFile("users.csv"); }
+	private UsersDatabase() { OpenFile("users.csv"); }
 
 	public void WriteFile() {
 		WriteFile("name","address","telephone","email","id","password");

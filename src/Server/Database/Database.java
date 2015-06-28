@@ -1,17 +1,16 @@
 package Server.Database;
 
 import Structure.Def;
-
 import java.io.*;
 
 import static java.lang.System.out;
 
-abstract public class Database {
+abstract class Database {
 
-	protected File file = null;
-	protected BufferedReader br = null;
-	protected FileWriter fw = null;
-	protected String path = null;
+	private File file = null;
+	private BufferedReader br = null;
+	private FileWriter fw = null;
+	private String path = null;
 
 	// Abre o arquivo
 	protected void OpenFile(String filename) {
@@ -30,7 +29,7 @@ abstract public class Database {
 	}
 
 	// Abre o Buffered Reader
-	protected void OpenReader() {
+	private void OpenReader() {
 		try {
 			br = new BufferedReader(new FileReader(file));
 		} catch (FileNotFoundException e) {
@@ -40,9 +39,9 @@ abstract public class Database {
 	}
 
 	// Abre o File Writer
-	protected void OpenWriter(boolean append) {
+	private void OpenWriter() {
 		try {
-			fw = new FileWriter(file, append);
+			fw = new FileWriter(file, false);
 		} catch (IOException e) {
 			out.println("Erro ao criar o File Writer.");
 			e.printStackTrace();
@@ -87,7 +86,7 @@ abstract public class Database {
 	// [database].getInstance().WriteFile("str 1", "str 2", ... "str x");
 	// Ele irá escrever "str 1,str 2,...,str x'\n'" no arquivo
 	public void WriteFile(String... value) {
-		OpenWriter(false);
+		OpenWriter();
 		final String ENDLINE = "\n";
 
 		try {

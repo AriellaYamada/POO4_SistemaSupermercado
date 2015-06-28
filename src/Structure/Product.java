@@ -36,7 +36,6 @@ public class Product {
 	public void setExpiration(String value) { expiration = value; }
 	public void setProvider(String value) { provider = value; }
 
-
 	private synchronized int setAmount (int amount){
 		if (amount < 0) return -1;
 

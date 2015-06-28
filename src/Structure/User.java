@@ -6,7 +6,7 @@ public class User {
 	private String address;
 	private String tel;
 	private String email;
-	private String id;
+	private final String id;
 	private String password;
 
 	public User (String name, String address, String tel, String email, String id, String password) {

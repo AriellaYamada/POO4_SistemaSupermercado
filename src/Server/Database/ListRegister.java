@@ -1,5 +1,5 @@
 package Server.Database;
 
-public interface ListRegister {
+interface ListRegister {
 	int Register(String... value);
 }

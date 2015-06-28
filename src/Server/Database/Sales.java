@@ -5,13 +5,19 @@ import Structure.Sale;
 
 import java.util.LinkedList;
 import java.util.List;
+import java.util.stream.Stream;
 
 public class Sales {
 
 	private static Sales salesDB;
-	private List<Sale> sales;
+	private final List<Sale> sales;
+	private final Stream<Sale> filtered;
 
-	private Sales() { sales = new LinkedList<>(); }
+	private Sales() {
+		sales = new LinkedList<>();
+		filtered = sales.stream();
+	}
+
 
 	//Singleton
 	public static Sales getInstance() {

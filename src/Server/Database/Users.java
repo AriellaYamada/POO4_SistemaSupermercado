@@ -10,7 +10,7 @@ import Structure.User;
 public class Users implements ListRegister {
 
 	private static Users usersDB;
-	private List<User> users;
+	private final List<User> users;
 	private Stream<User> filtered;
 
 	private Users () { users = new LinkedList<>(); }
@@ -43,7 +43,7 @@ public class Users implements ListRegister {
 		return 1;
 	}
 
-	public boolean checkId (String id) {
+	private boolean checkId (String id) {
 		filtered = users.stream();
 		filtered = filtered.filter(u -> u.getId().equals(id));
 		return (filtered.count() == 0);

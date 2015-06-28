@@ -10,10 +10,10 @@ import java.util.Scanner;
 
 import static java.lang.System.out;
 
-public class Connection implements Runnable{
+class Connection implements Runnable{
 	private Socket sock = null;
-	public Scanner scan = null;
-	public PrintWriter pw = null;
+	private Scanner scan = null;
+	private PrintWriter pw = null;
 
 	private User user = null;
 	private Cart cart = null;
