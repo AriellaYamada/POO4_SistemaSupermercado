@@ -97,11 +97,8 @@ public class cartListController implements Initializable {
 		// Requisitar a lista de produtos para o servidor
 		Connection.getInstance().SendSignal("listcart");
 
-		System.out.println("1");
 		//Resposta do servidor com todos os produtos
 		String response = Connection.getInstance().ReceiveSignal();
-
-		System.out.println(response);
 
 		String[] products = Def.splitReg(response);
 		for (String s : products) {

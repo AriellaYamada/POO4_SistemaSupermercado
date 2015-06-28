@@ -14,10 +14,18 @@ public class CartItem {
 	public Product getProduct() { return product; }
 	public int getReservedQtd() { return reservedQtd; }
 
-	public boolean AddToCart(Cart cart, int qtd) {
-		if(product.Reserve(qtd)) {
-			reservedQtd += qtd;
+	public boolean AddToCart(Cart cart) {
+		if(product.Reserve(1)) {
+			reservedQtd ++;
 			cart.AddProduct(this);
+			return true;
+		}
+		return false;
+	}
+
+	public boolean RefreshQuantity(int qtd) {
+		if (product.Reserve(qtd)) {
+			reservedQtd += qtd;
 			return true;
 		}
 		return false;

@@ -88,16 +88,18 @@ public class Connection implements Runnable{
 			case "reserve":
 				CartItem item;
 				args = Def.splitField(cmd[1]);
+				boolean errorFlag;
 				if (cart.CheckCart(args[0])) {
 					item = new CartItem(Products.getInstance().searchProduct(args[0]));
+					errorFlag = item.AddToCart(cart);
 				} else {
 					item = cart.searchItem(args[0]);
+					errorFlag = item.RefreshQuantity(Integer.parseInt(args[1]));
 				}
-				if(item.AddToCart(cart, Integer.parseInt(args[1])))
+				if(errorFlag)
 					line = "ok";
 				else
 					line = "fail";
-
 				break;
 			case "dereserve":
 				args = Def.splitField(cmd[1]);
