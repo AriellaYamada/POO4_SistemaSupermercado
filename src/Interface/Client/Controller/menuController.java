@@ -38,7 +38,8 @@ public class menuController {
 
 	@FXML
 	void logOut() {
-
+		Client.Logout();
+		System.exit(0);
 	}
 }
 

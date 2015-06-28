@@ -17,6 +17,7 @@ public class Connection implements Runnable{
 
 	private User user = null;
 	private Cart cart = null;
+	private boolean connected;
 
 	//Estabelece conexao com o cliente
 	Connection(Socket s){
@@ -33,8 +34,9 @@ public class Connection implements Runnable{
 	//Thread que espera comando do cliente
 	public void run(){
 		cart = new Cart();
+		connected = true;
 
-		while (scan.hasNextLine()){
+		while (scan.hasNextLine() && connected){
 			String line = scan.nextLine();
 			String result = process(line);
 			pw.println(result);
@@ -123,6 +125,10 @@ public class Connection implements Runnable{
 				break;
 			case "selfrefresh":
 				line = Products.searchProduct(cmd[1]).getAmountVirtualAsStr();
+				break;
+			case "logout":
+				connected = false;
+				line = "";
 				break;
 			default:
 				break;
