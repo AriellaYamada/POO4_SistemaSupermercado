@@ -1,6 +1,5 @@
 package Server.Database;
 
-import Structure.Def;
 import Structure.Sale;
 
 import java.util.LinkedList;

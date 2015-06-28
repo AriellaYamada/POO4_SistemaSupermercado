@@ -26,7 +26,7 @@ public class Products implements ListRegister {
 		return productsDB;
 	}
 
-	public List<Product> ListAll() { return products; }
+	public static List<Product> ListAll() { return products; }
 
 	public static int Register(String name, float price, String expiration, String provider, int quantity) {
 

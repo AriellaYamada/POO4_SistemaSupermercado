@@ -84,7 +84,7 @@ public class productListController implements Initializable {
 	@FXML
 	public void refresh() {
 		data.clear();
-		data.addAll(Products.getInstance().ListAll());
+		data.addAll(Products.ListAll());
 	}
 
 	@FXML
