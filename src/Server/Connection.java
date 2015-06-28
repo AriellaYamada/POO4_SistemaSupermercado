@@ -97,11 +97,14 @@ public class Connection implements Runnable{
 		String answer;
 		String[] args = Def.splitField(cmd);
 		int response = Users.Register(args[0], args[1], args[2], args[3], args[4], args[5]);
-		UsersDatabase.getInstance().WriteFile();
-		if (response == 0)
+
+		if (response == 0) {
 			answer = "ok";
-		else
-			answer = "fail"+ Def.regSep +"f_id"+ Def.fieldSep +"Este login ja esta sendo utilizado";
+			UsersDatabase.getInstance().WriteFile();
+		}
+		else {
+			answer = "fail" + Def.regSep + "f_id" + Def.fieldSep + "Este login ja esta sendo utilizado";
+		}
 
 		return answer;
 	}

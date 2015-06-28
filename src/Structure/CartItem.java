@@ -12,8 +12,10 @@ public class CartItem {
 	}
 
 	public Product getProduct() { return product; }
+	public String getProductName() { return product.getName(); }
 	public int getReservedQtd() { return reservedQtd; }
 	public String getReservedQtdAsStr() { return Integer.toString(reservedQtd); }
+	public float getPrice() { return curPrice; }
 	public String getPriceAsStr() { return Float.toString(curPrice); }
 	public float getTotalPrice() { return reservedQtd * curPrice; }
 	public String getTotalPriceAsStr() { return Float.toString(getTotalPrice()); }

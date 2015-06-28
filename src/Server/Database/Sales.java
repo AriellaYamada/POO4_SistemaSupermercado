@@ -5,7 +5,7 @@ import Structure.Sale;
 import java.util.LinkedList;
 import java.util.List;
 
-public class Sales {
+public class Sales implements ListRegister{
 
 	private static Sales salesDB;
 	private static List<Sale> sales;
@@ -21,6 +21,10 @@ public class Sales {
 	}
 
 	public static List<Sale> getSales() { return sales; }
+
+	public int Register(String... value){
+		return 0;
+	}
 
 	public static void AddSale(Sale sale) {
 		sales.add(sale);

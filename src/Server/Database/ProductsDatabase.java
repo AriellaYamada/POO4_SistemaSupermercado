@@ -19,7 +19,7 @@ public class ProductsDatabase extends Database {
 	}
 
 	public void WriteFile() {
-		WriteFile(HEADER);
+		WriteFile(false,HEADER);
 
 		for (Product p : Products.ListAll()) {
 			WriteFile(p.getName(),

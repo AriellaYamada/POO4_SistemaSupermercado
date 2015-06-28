@@ -89,7 +89,7 @@ abstract public class Database {
 	// [database].getInstance().WriteFile("str 1", "str 2", ... "str x");
 	// Ele irá escrever "str 1,str 2,...,str x'\n'" no arquivo
 
-	public void WriteFile(String... value) { WriteFile(false, value); }
+	public void WriteFile(String... value) { WriteFile(true, value); }
 
 	public void WriteFile(boolean append, String... value) {
 		OpenWriter(append);
@@ -103,7 +103,7 @@ abstract public class Database {
 			}
 			fw.append(ENDLINE);
 			fw.flush();
-			CloseFile();
+			//CloseFile();
 		} catch (IOException e){
 			System.err.println("Erro na escrita do arquivo.");
 			e.printStackTrace();
