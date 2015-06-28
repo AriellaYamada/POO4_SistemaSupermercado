@@ -1,20 +1,50 @@
 package Server;
 
+import java.io.FileOutputStream;
+
+import Structure.Sale;
+import com.itextpdf.text.*;
+import com.itextpdf.text.pdf.PdfPCell;
+import com.itextpdf.text.pdf.PdfWriter;
+import com.itextpdf.text.pdf.PdfPTable;
+
+
+import java.io.IOException;
+import java.util.List;
+
+import static java.lang.System.err;
+
 public class PDFCreator {
-/*
+
 	public void CreatePDF( String filename, List<Sale> sales ) {
 		Document doc = null;
 
 		try {
 
 			doc = new Document(PageSize.A4, 70, 42, 56, 56);
+			//A4 595 pts
 			//margens: esq 2,5  dir 1,5 cima 2  baixo 2
 
 			PdfWriter.getInstance(doc, new FileOutputStream(filename + ".pdf"));
 
 			doc.open();
 
-			doc.add(CreateSalesTable(sales));
+			try {
+				Paragraph para = new Paragraph("alguma coisa 1");
+				doc.add(para);
+
+				doc.add(CreateSalesTable(sales));
+			}catch (DocumentException de) {
+				err.println(de.getMessage());
+			}
+			try {
+				Paragraph para = new Paragraph("alguma coisa 2");
+				doc.add(para);
+				doc.add(CreateSalesTable(sales));
+			}catch (DocumentException de) {
+				err.println(de.getMessage());
+			}
+
 
 		} catch(DocumentException de) {
 			err.println(de.getMessage());
@@ -25,42 +55,44 @@ public class PDFCreator {
 		doc.close();
 	}
 
-	private PdfPTable CreateSalesTable( List<Sale> sales ) {
+	private PdfPTable CreateSalesTable( List<Sale> sales ) throws DocumentException{
 
 		PdfPTable table = new PdfPTable(4); //4 colunas
+		table.setTotalWidth(new float[]{ 183, 100, 100, 100 });
+		table.setLockedWidth(true);
+		PdfPCell cell;
+
+		table.setSpacingBefore(10);
+		table.setSpacingAfter(20);
+
 
 		for (Sale s : sales ) {
 
-			table.addCell(s.getClientId());
+			cell = new PdfPCell(new Phrase(s.getUser().getName()));
+			cell.setMinimumHeight(20);
+			cell.setHorizontalAlignment(Element.ALIGN_JUSTIFIED);
+			cell.setVerticalAlignment(Element.ALIGN_CENTER);
+			table.addCell(cell);
 
-			table.addCell(s.getProduct());
+			cell = new PdfPCell(new Phrase("produto"));
+			cell.setMinimumHeight(20);
+			cell.setHorizontalAlignment(Element.ALIGN_JUSTIFIED);
+			cell.setVerticalAlignment(Element.ALIGN_CENTER);
+			table.addCell(cell);
 
-			table.addCell(Integer.valueOf(s.getQuantity()).toString());
+			cell = new PdfPCell(new Phrase("quantia"));
+			cell.setMinimumHeight(20);
+			cell.setHorizontalAlignment(Element.ALIGN_CENTER);
+			cell.setVerticalAlignment(Element.ALIGN_CENTER);
+			table.addCell(cell);
 
-			table.addCell(cmdProcess.CalendarToString(s.getDate()));
+			cell = new PdfPCell(new Phrase(s.getDate()));
+			cell.setMinimumHeight(20);
+			cell.setHorizontalAlignment(Element.ALIGN_CENTER);
+			cell.setVerticalAlignment(Element.ALIGN_CENTER);
+			table.addCell(cell);
 		}
 
 		return table;
 	}
-	/*public static PdfPTable createFirstTable() {
-		// a table with three columns
-		PdfPTable table = new PdfPTable(3);
-		// the cell object
-		PdfPCell cell;
-		// we add a cell with colspan 3
-		cell = new PdfPCell(new Phrase("Cell with colspan 3"));
-		cell.setColspan(3);
-		table.addCell(cell);
-		// now we add a cell with rowspan 2
-		cell = new PdfPCell(new Phrase("Cell with rowspan 2"));
-		cell.setRowspan(2);
-		table.addCell(cell);
-		// we add the four remaining cells with addCell()
-		table.addCell("row 1; cell 1");
-		table.addCell("row 1; cell 2");
-		table.addCell("row 2; cell 1");
-		table.addCell("row 2; cell 2");
-		return table;
-	}*/
 }
-
