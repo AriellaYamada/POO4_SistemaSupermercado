@@ -58,7 +58,7 @@ public class cartListController implements Initializable {
 
 	@FXML
 	void dismiss() {
-		alert.setVisible(false);
+		alertDialog.setVisible(false);
 		clearDialog.setVisible(false);
 		confirmDialog.setVisible(false);
 	}
