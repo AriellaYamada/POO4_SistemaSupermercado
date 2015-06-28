@@ -44,7 +44,7 @@ public class cartListController implements Initializable {
 		c_price.setCellValueFactory(new PropertyValueFactory<>("price"));
 		c_expiration.setCellValueFactory(new PropertyValueFactory<>("expiration"));
 		c_provider.setCellValueFactory(new PropertyValueFactory<>("provider"));
-		c_amount.setCellValueFactory(new PropertyValueFactory<>("Amount_virtual"));
+		c_amount.setCellValueFactory(new PropertyValueFactory<>("amount_virtual"));
 
 		tv_table.setItems(data);
 
