@@ -114,7 +114,7 @@ public class Connection implements Runnable{
 				Sale sale = new Sale(user, cart.ListAll());
 				Sales.getInstance().AddSale(sale);
 				cart.Finalize();
-				SalesDatabase.getInstance().WriteFile();
+				//SalesDatabase.getInstance().WriteFile();
 				line = "ok";
 				break;
 			case "clearcart" :
