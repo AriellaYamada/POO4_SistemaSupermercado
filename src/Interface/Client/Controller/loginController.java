@@ -47,8 +47,6 @@ public class loginController {
 				Def.setError(getField(error[0]), error[1]);
 			}
 		}
-
-
 	}
 
 	@FXML
