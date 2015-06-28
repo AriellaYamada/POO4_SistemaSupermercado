@@ -66,18 +66,9 @@ public class productListController implements Initializable {
 	}
 
 	@FXML
-	public void salesCart() {
-		try {
-			MainInterface.changeScene("Client/Model/cartList.fxml");
-		} catch (IOException e) {
-			System.err.println("Erro ao exibir tela");
-		}
-	}
-
-	@FXML
 	public void backToMenu() {
 		try {
-			MainInterface.changeScene("Client/Model/menu.fxml");
+			MainInterface.changeScene("Server/Model/menu.fxml");
 		} catch (IOException e) {
 			System.err.println("Erro ao exibir tela");
 		}
@@ -86,6 +77,8 @@ public class productListController implements Initializable {
 	@FXML
 	void dismiss() {
 		alert.setVisible(false);
+		modal_edit.setVisible(false);
+		modal_new.setVisible(false);
 	}
 
 	@FXML
@@ -131,9 +124,18 @@ public class productListController implements Initializable {
 		selected.setExpiration(f_edit_expiration.getText());
 		selected.setPrice(f_edit_price.getText());
 		selected.setProvider(f_edit_provider.getText());
+		modal_edit.setVisible(false);
 	}
 
 	@FXML
 	public void confirm_new() {
+		Products.getInstance().Register(f_new_name.getText(),
+				f_new_price.getText(),
+				f_new_expiration.getText(),
+				f_new_provider.getText(),
+				f_new_amount.getText()
+		);
+
+		modal_new.setVisible(false);
 	}
 }

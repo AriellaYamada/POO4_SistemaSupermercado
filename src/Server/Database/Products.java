@@ -11,8 +11,8 @@ import java.util.stream.Stream;
 public class Products implements ListRegister {
 
 	private static Products productsDB;
-	private List<Product> products;
-	private Stream<Product> filtered;
+	private static List<Product> products;
+	private static Stream<Product> filtered;
 
 	private Products () {
 		products = new LinkedList<>();
@@ -28,7 +28,7 @@ public class Products implements ListRegister {
 
 	public List<Product> ListAll() { return products; }
 
-	public int Register(String name, float price, String expiration, String provider, int quantity) {
+	public static int Register(String name, float price, String expiration, String provider, int quantity) {
 
 		if(checkProduct(name)) {
 			Product new_product = new Product(name, price, expiration, provider, quantity);
@@ -50,12 +50,12 @@ public class Products implements ListRegister {
 		return 1;
 	}
 
-	public boolean checkProduct(String name) {
+	public static boolean checkProduct(String name) {
 		filtered = products.stream().filter(p -> p.getName().equals(name));
 		return (filtered.count() == 0);
 	}
 
-	public Product searchProduct(String productName) {
+	public static Product searchProduct(String productName) {
 
 		filtered = products.stream();
 		filtered = filtered.filter(p -> p.getName().equals(productName));
@@ -64,7 +64,7 @@ public class Products implements ListRegister {
 		return collector.get(0);
 	}
 
-	public String AllProducts(){
+	public static String AllProducts(){
 		String response = "";
 		for(Product p : products) {
 			response += p.getName() + Def.fieldSep

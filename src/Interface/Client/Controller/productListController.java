@@ -81,8 +81,11 @@ public class productListController implements Initializable {
 		data.filtered( d -> d.getName().equals(p.getName()) ).get(0).selfRefresh();
 
 		// Atualiza a exibição da quantidade na tabela, sem desmarcar a linha e sem perder a ordenação
-		tv_table.getColumns().get(2).setVisible(false);
-		tv_table.getColumns().get(2).setVisible(true);
+		TableColumn<Product, ?> column = tv_table.getColumns().get(2);
+		if (column.isVisible()) {
+			column.setVisible(false);
+			column.setVisible(true);
+		}
 	}
 
 	@FXML
