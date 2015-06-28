@@ -53,11 +53,11 @@ public class Connection implements Runnable{
 		switch (cmd[0]){
 			//Cadastro de novo usuario
 			case "newuser":
-				line = newUser(cmd, response);
+				line = newUser(cmd);
 				break;
 			//Efetuar login
 			case "login":
-				line = login(cmd, response);
+				line = login(cmd);
 				break;
 			//Busca o nome do usuario logado
 			case "getname":
@@ -69,10 +69,10 @@ public class Connection implements Runnable{
 				break;
 			//Solicita a reserva de um produto
 			case "reserve":
-				line = reserve(cmd, response);
+				line = reserve(cmd);
 				break;
 			case "dereserve":
-				line = dereserve(cmd, response);
+				line = dereserve(cmd);
 				break;
 			case "listcart":
 				line = cart.ListAllAsStr();
@@ -99,8 +99,9 @@ public class Connection implements Runnable{
 		return line;
 	}
 
-	private String newUser(String[] cmd, int response ) {
+	private String newUser(String[] cmd) {
 		String line;
+		int response = -2;
 		String[] args = Def.splitField(cmd[1]);
 		response = Users.Register(args[0], args[1], args[2], args[3], args[4], args[5]);
 
@@ -114,8 +115,9 @@ public class Connection implements Runnable{
 		return line;
 	}
 
-	private String login( String[] cmd, int response ){
+	private String login(String[] cmd){
 		String line;
+		int response = -2;
 		String[] args = Def.splitField(cmd[1]);
 		response = Users.Login(args[0], args[1]);
 
@@ -132,7 +134,7 @@ public class Connection implements Runnable{
 		return line;
 	}
 
-	private String reserve( String[] cmd, int response ) {
+	private String reserve(String[] cmd) {
 		String line;
 		CartItem item;
 		String[] args = Def.splitField(cmd[1]);
@@ -153,7 +155,7 @@ public class Connection implements Runnable{
 		return line;
 	}
 
-	private String dereserve(String[] cmd, int response) {
+	private String dereserve(String[] cmd) {
 		String line;
 		CartItem item;
 		String[] args = Def.splitField(cmd[1]);
