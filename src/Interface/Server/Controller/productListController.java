@@ -42,7 +42,8 @@ public class productListController implements Initializable {
 	@FXML private TableColumn<Product, Float> c_price;
 	@FXML private TableColumn<Product, String> c_expiration;
 	@FXML private TableColumn<Product, String> c_provider;
-	@FXML private TableColumn<Product, Integer> c_amount;
+	@FXML private TableColumn<Product, Integer> c_amount_real;
+	@FXML private TableColumn<Product, Integer> c_amount_virtual;
 
 	@FXML private VBox alert;
 	@FXML private Text alert_product_name;
@@ -58,7 +59,8 @@ public class productListController implements Initializable {
 		c_price.setCellValueFactory(new PropertyValueFactory<>("price"));
 		c_expiration.setCellValueFactory(new PropertyValueFactory<>("expiration"));
 		c_provider.setCellValueFactory(new PropertyValueFactory<>("provider"));
-		c_amount.setCellValueFactory(new PropertyValueFactory<>("quantity"));
+		c_amount_real.setCellValueFactory(new PropertyValueFactory<>("amount_real"));
+		c_amount_virtual.setCellValueFactory(new PropertyValueFactory<>("amount_virtual"));
 
 		tv_table.setItems(data);
 
@@ -135,7 +137,7 @@ public class productListController implements Initializable {
 				f_new_provider.getText(),
 				f_new_amount.getText()
 		);
-
+		refresh();
 		modal_new.setVisible(false);
 	}
 }
