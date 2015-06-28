@@ -1,6 +1,7 @@
 package Interface.Server.Controller;
 
 import Interface.MainInterface;
+import Structure.CartItem;
 import Structure.Sale;
 import Structure.User;
 import javafx.collections.FXCollections;
@@ -25,7 +26,7 @@ public class saleListController implements Initializable{
 	@FXML private TableView<Sale> tv_table;
 	@FXML private TableColumn<Sale, String> c_date;
 	@FXML private TableColumn<Sale, String> c_name;
-	@FXML private TableColumn<Sale, String> c_items;
+	@FXML private TableColumn<Sale, CartItem> c_items;
 	@FXML private TableColumn<Sale, String> c_item_name;
 	@FXML private TableColumn<Sale, Integer> c_item_amount;
 	@FXML private TableColumn<Sale, Float> c_item_price_unit;
@@ -43,14 +44,14 @@ public class saleListController implements Initializable{
 
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
-		c_date.setCellValueFactory(new PropertyValueFactory<>("date"));
+		/*c_date.setCellValueFactory(new PropertyValueFactory<>("date"));
 		c_name.setCellValueFactory(new PropertyValueFactory<>("user.name"));
 		c_items.setCellValueFactory(new PropertyValueFactory<>("user.name"));
 		c_item_name.setCellValueFactory(new PropertyValueFactory<>("user.name"));
 		c_item_amount.setCellValueFactory(new PropertyValueFactory<>("user.name"));
 		c_item_price_unit.setCellValueFactory(new PropertyValueFactory<>("user.name"));
 		c_item_price_total.setCellValueFactory(new PropertyValueFactory<>("user.name"));
-		c_total_price.setCellValueFactory(new PropertyValueFactory<>("user.name"));
+		c_total_price.setCellValueFactory(new PropertyValueFactory<>("user.name"));*/
 	}
 
 	@FXML
@@ -74,6 +75,16 @@ public class saleListController implements Initializable{
 
 	@FXML
 	void confirm_edit(ActionEvent event) {
+
+	}
+
+	@FXML
+	void dismiss(ActionEvent event) {
+
+	}
+
+	@FXML
+	void confirmClear(ActionEvent event) {
 
 	}
 }
