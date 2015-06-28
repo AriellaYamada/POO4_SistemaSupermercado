@@ -96,13 +96,13 @@ public class productListController implements Initializable {
 
 	@FXML
 	public void showEdit() {
-		modal_edit.setVisible(true);
 		selected = tv_table.getSelectionModel().getSelectedItem();
 		f_edit_name.setText(selected.getName());
 		f_edit_price.setText(selected.getPriceAsStr());
 		f_edit_expiration.setText(selected.getExpiration());
 		f_edit_provider.setText(selected.getProvider());
 		l_amount_now.setText(selected.getAmountRealAsStr());
+		modal_edit.setVisible(true);
 	}
 
 	@FXML

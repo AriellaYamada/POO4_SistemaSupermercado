@@ -18,7 +18,7 @@ public class UsersDatabase extends Database {
 	}
 
 	public void WriteFile() {
-		WriteFile(HEADER);
+		WriteFile(false,HEADER);
 
 		for (User u : Users.ListAll()){
 			WriteFile(u.getName(),
