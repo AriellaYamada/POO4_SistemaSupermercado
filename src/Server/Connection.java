@@ -39,6 +39,8 @@ public class Connection implements Runnable{
 			String result = process(line);
 			pw.println(result);
 		}
+
+		cart.ClearCart();
 	}
 
 	//Processa o comando recebido do cliente

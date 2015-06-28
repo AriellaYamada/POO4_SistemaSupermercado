@@ -92,7 +92,7 @@ public class productListController implements Initializable {
 
 	@FXML
 	public void refresh() {
-		data.removeAll();
+		data.clear();
 		// Requisitar a lista de produtos para o servidor
 		Connection.getInstance().SendSignal("listall");
 		//Resposta do servidor com todos os produtos
