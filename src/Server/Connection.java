@@ -51,38 +51,18 @@ public class Connection implements Runnable{
 		String[] args;
 		int response = -2;
 		switch (cmd[0]){
-			//Cadastro de novo usuario
-			case "newuser":
-				args = Def.splitField(cmd[1]);
-				response = Users.Register(args[0], args[1], args[2], args[3], args[4], args[5]);
-				UsersDatabase.getInstance().WriteFile();
-				if (response == 0)
-					line = "ok";
-				else
-					line = "fail"+ Def.regSep +"f_id"+ Def.fieldSep +"Este login ja esta sendo utilizado";
-				break;
-			//Efetuar login
-			case "login":
-				args = Def.splitField(cmd[1]);
-				response = Users.Login(args[0], args[1]);
-				//Se o login foi efetuado corretamente
-				if (response == 0)
-					line = "ok";
-					//Caso o usuario nao seja encontrado
-				else if (response == 1)
-					line = "fail"+ Def.regSep +"f_userlogin"+ Def.fieldSep +"Usuario nao encontrado";
-					//Caso a senha digitada for incorreta
-				else
-					line = "fail"+ Def.regSep +"f_userpassword"+ Def.fieldSep +"Senha incorreta";
-				break;
-			//Busca o nome do usuario logado
-			case "getname":
-				line = Users.GetUserName(cmd[1]);
-				break;
-			//Busca todos os produtos cadastrados no sistema
-			case "listall":
-				line = Products.AllProducts();
-				break;
+			case "newuser": //Cadastro de novo usuario
+				return newuser(cmd[1]);
+
+			case "login":   //Efetuar login
+				return login(cmd[1]);
+
+			case "getname": //Busca o nome do usuario logado
+				return Users.GetUserName(cmd[1]);
+
+			case "listall": //Busca todos os produtos cadastrados no sistema
+				return Products.AllProducts();
+
 			//Solicita a reserva de um produto
 			case "reserve":
 				CartItem item;
@@ -134,5 +114,35 @@ public class Connection implements Runnable{
 				break;
 		}
 		return line;
+	}
+
+	String newuser(String cmd) {
+		String answer;
+		String[] args = Def.splitField(cmd);
+		int response = Users.Register(args[0], args[1], args[2], args[3], args[4], args[5]);
+		UsersDatabase.getInstance().WriteFile();
+		if (response == 0)
+			answer = "ok";
+		else
+			answer = "fail"+ Def.regSep +"f_id"+ Def.fieldSep +"Este login ja esta sendo utilizado";
+
+		return answer;
+	}
+
+	String login(String cmd) {
+		String answer;
+		String[] args = Def.splitField(cmd);
+		int response = Users.Login(args[0], args[1]);
+
+		if (response == 0)  //Se o login foi efetuado corretamente
+			answer = "ok";
+
+		else if (response == 1) //Caso o usuario nao seja encontrado
+			answer = "fail"+ Def.regSep +"f_userlogin"+ Def.fieldSep +"Usuario nao encontrado";
+
+		else    //Caso a senha digitada for incorreta
+			answer = "fail"+ Def.regSep +"f_userpassword"+ Def.fieldSep +"Senha incorreta";
+
+		return answer;
 	}
 }
