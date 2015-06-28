@@ -75,7 +75,7 @@ public class PDFCreator {
 				e.printStackTrace();
 			}
 
-			Paragraph p = new Paragraph("preço total");
+			Paragraph p = new Paragraph("Total Price: " + s.getTotalPriceAsStr());
 			p.setAlignment(Element.ALIGN_RIGHT);
 			doc.add(p);
 		}
