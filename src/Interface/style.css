@@ -63,11 +63,6 @@
 #tv_table .col-amount, #tv_table .col-price {
 	-fx-alignment: center-right;
 }
-#tv_table .col-add, #tv_table .col-sub, #tv_table .col-expiration {
+#tv_table .col-expiration {
 	-fx-alignment: center;
-}
-
-#msgs .alert {
-	-fx-fill: #FFF;
-	-fx-font-size: 14;
 }

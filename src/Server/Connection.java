@@ -1,12 +1,7 @@
 package Server;
 
-import Server.Database.Products;
-import Server.Database.Users;
-import Server.Database.UsersDatabase;
-import Structure.Cart;
-import Structure.CartItem;
-import Structure.Def;
-import Structure.User;
+import Server.Database.*;
+import Structure.*;
 
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -15,10 +10,10 @@ import java.util.Scanner;
 
 import static java.lang.System.out;
 
-public class Connection implements Runnable{
+class Connection implements Runnable{
 	private Socket sock = null;
-	public Scanner scan = null;
-	public PrintWriter pw = null;
+	private Scanner scan = null;
+	private PrintWriter pw = null;
 
 	private User user = null;
 	private Cart cart = null;
@@ -88,16 +83,18 @@ public class Connection implements Runnable{
 			case "reserve":
 				CartItem item;
 				args = Def.splitField(cmd[1]);
+				boolean errorFlag;
 				if (cart.CheckCart(args[0])) {
 					item = new CartItem(Products.getInstance().searchProduct(args[0]));
+					errorFlag = item.AddToCart(cart);
 				} else {
 					item = cart.searchItem(args[0]);
+					errorFlag = item.RefreshQuantity(Integer.parseInt(args[1]));
 				}
-				if(item.AddToCart(cart, Integer.parseInt(args[1])))
+				if(errorFlag)
 					line = "ok";
 				else
 					line = "fail";
-
 				break;
 			case "dereserve":
 				args = Def.splitField(cmd[1]);
@@ -114,8 +111,16 @@ public class Connection implements Runnable{
 				line = cart.ListAllAsStr();
 				break;
 			case "sell":
-
+				Sale sale = new Sale(user, cart.ListAll());
+				Sales.getInstance().AddSale(sale);
+				cart.Finalize();
+				//SalesDatabase.getInstance().WriteFile();
+				line = "ok";
 				break;
+			case "clearcart" :
+				cart.ClearCart();
+				break;
+
 			default:
 				break;
 		}

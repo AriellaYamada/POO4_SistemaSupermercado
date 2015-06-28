@@ -1,5 +1,6 @@
 package Server.Database;
 
+import Structure.Def;
 import Structure.Product;
 
 public class ProductsDatabase extends Database {
@@ -13,7 +14,7 @@ public class ProductsDatabase extends Database {
 		return productsDB;
 	}
 
-	public ProductsDatabase() { OpenFile("products.csv"); }
+	private ProductsDatabase() { OpenFile("products.csv"); }
 
 	public void WriteFile() {
 		WriteFile("name","price","expiration","provider","quantity");

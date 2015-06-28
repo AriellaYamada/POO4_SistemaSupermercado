@@ -36,7 +36,6 @@ public class Product {
 	public void setExpiration(String value) { expiration = value; }
 	public void setProvider(String value) { provider = value; }
 
-
 	private synchronized int setAmount (int amount){
 		if (amount < 0) return -1;
 
@@ -67,6 +66,10 @@ public class Product {
 			return true;
 		}
 		return false;
+	}
+
+	public synchronized void Sell(int qtd){
+		amount_real -= qtd;
 	}
 
 	public synchronized void CancelReservation(int qtd) {

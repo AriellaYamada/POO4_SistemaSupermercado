@@ -11,10 +11,10 @@ import java.util.stream.Stream;
 public class Products implements ListRegister {
 
 	private static Products productsDB;
-	private List<Product> products;
+	private final List<Product> products;
 	private Stream<Product> filtered;
 
-	public Products () {
+	private Products () {
 		products = new LinkedList<>();
 	}
 

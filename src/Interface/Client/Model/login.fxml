@@ -1,13 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import java.lang.*?>
-<?import javafx.scene.shape.*?>
-<?import javafx.scene.*?>
 <?import javafx.geometry.*?>
-<?import javafx.scene.text.*?>
 <?import javafx.scene.control.*?>
+<?import javafx.scene.Group?>
 <?import javafx.scene.layout.*?>
-
+<?import javafx.scene.shape.SVGPath?>
+<?import javafx.scene.text.*?>
 <HBox prefHeight="600.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Interface.Client.Controller.loginController">
    <children>
       <VBox alignment="TOP_CENTER" prefWidth="250.0" spacing="5.0" styleClass="border-black" stylesheets="@../../style.css">

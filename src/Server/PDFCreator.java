@@ -1,5 +1,23 @@
 package Server;
 
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+
+import Structure.Def;
+import Structure.Sale;
+import com.itextpdf.text.Document;
+import com.itextpdf.text.PageSize;
+import com.itextpdf.text.pdf.PdfWriter;
+import com.itextpdf.text.pdf.PdfPTable;
+
+
+import java.io.IOException;
+import java.util.List;
+
+import com.itextpdf.text.DocumentException;
+
+import static java.lang.System.err;
+
 public class PDFCreator {
 /*
 	public void CreatePDF( String filename, List<Sale> sales ) {
@@ -16,12 +34,12 @@ public class PDFCreator {
 
 			doc.add(CreateSalesTable(sales));
 
+		}catch(FileNotFoundException ioe) {
+			err.println(ioe.getMessage());
 		} catch(DocumentException de) {
 			err.println(de.getMessage());
 		}
-		catch(IOException ioe) {
-			err.println(ioe.getMessage());
-		}
+
 		doc.close();
 	}
 
@@ -37,7 +55,7 @@ public class PDFCreator {
 
 			table.addCell(Integer.valueOf(s.getQuantity()).toString());
 
-			table.addCell(cmdProcess.CalendarToString(s.getDate()));
+			table.addCell(Def.CalendarToString(s.getDate()));
 		}
 
 		return table;
