@@ -1,12 +1,7 @@
 package Server;
 
-import Server.Database.Products;
-import Server.Database.Users;
-import Server.Database.UsersDatabase;
-import Structure.Cart;
-import Structure.CartItem;
-import Structure.Def;
-import Structure.User;
+import Server.Database.*;
+import Structure.*;
 
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -116,7 +111,10 @@ public class Connection implements Runnable{
 				line = cart.ListAllAsStr();
 				break;
 			case "sell":
-
+				Sale sale = new Sale(user, cart.ListAll());
+				Sales.getInstance().AddSale(sale);
+				cart.Finalize();
+				line = "ok";
 				break;
 			default:
 				break;

@@ -13,6 +13,7 @@ public class CartItem {
 
 	public Product getProduct() { return product; }
 	public int getReservedQtd() { return reservedQtd; }
+	public float getTotalAmount() { return (reservedQtd * curPrice); }
 
 	public boolean AddToCart(Cart cart) {
 		if(product.Reserve(1)) {

@@ -69,6 +69,10 @@ public class Product {
 		return false;
 	}
 
+	public synchronized void Sell(int qtd){
+		amount_real -= qtd;
+	}
+
 	public synchronized void CancelReservation(int qtd) {
 		amount_virtual += qtd;
 	}

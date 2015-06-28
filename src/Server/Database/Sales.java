@@ -20,4 +20,8 @@ public class Sales {
 		}
 		return salesDB;
 	}
+
+	public void AddSale(Sale sale) {
+		sales.add(sale);
+	}
 }
