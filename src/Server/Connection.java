@@ -53,21 +53,11 @@ public class Connection implements Runnable{
 		switch (cmd[0]){
 			//Cadastro de novo usuario
 			case "newuser":
-				line = newUser(line, cmd, response);
+				line = newUser(cmd, response);
 				break;
 			//Efetuar login
 			case "login":
-				args = Def.splitField(cmd[1]);
-				response = Users.Login(args[0], args[1]);
-				//Se o login foi efetuado corretamente
-				if (response == 0)
-					line = "ok";
-					//Caso o usuario nao seja encontrado
-				else if (response == 1)
-					line = "fail"+ Def.regSep +"f_userlogin"+ Def.fieldSep +"Usuario nao encontrado";
-					//Caso a senha digitada for incorreta
-				else
-					line = "fail"+ Def.regSep +"f_userpassword"+ Def.fieldSep +"Senha incorreta";
+				line = login(cmd, response);
 				break;
 			//Busca o nome do usuario logado
 			case "getname":
@@ -79,31 +69,10 @@ public class Connection implements Runnable{
 				break;
 			//Solicita a reserva de um produto
 			case "reserve":
-				CartItem item;
-				args = Def.splitField(cmd[1]);
-				boolean errorFlag;
-				if (cart.CheckCart(args[0])) {
-					item = new CartItem(Products.searchProduct(args[0]));
-					errorFlag = item.AddToCart(cart);
-				} else {
-					item = cart.searchItem(args[0]);
-					errorFlag = item.RefreshQuantity(Integer.parseInt(args[1]));
-				}
-				if(errorFlag)
-					line = "ok";
-				else
-					line = "fail";
+				line = reserve(cmd, response);
 				break;
 			case "dereserve":
-				args = Def.splitField(cmd[1]);
-				//Encontra o produto no carrinho
-				item = cart.searchItem(args[0]);
-				//Remove a quantidade desejava da reserva
-				item.RemoveFromCart(Integer.parseInt(args[1]));
-				//Verifica se ainda há algum produto daquele tipo cadastrado
-				if (item.getReservedQtd() == 0)
-					cart.RemoveProduct(item);
-				line = "ok";
+				line = dereserve(cmd, response);
 				break;
 			case "listcart":
 				line = cart.ListAllAsStr();
@@ -130,14 +99,74 @@ public class Connection implements Runnable{
 		return line;
 	}
 
-	private String newUser(String line, String[] cmd, int response ) {
+	private String newUser(String[] cmd, int response ) {
+		String line;
 		String[] args = Def.splitField(cmd[1]);
 		response = Users.Register(args[0], args[1], args[2], args[3], args[4], args[5]);
+
 		UsersDatabase.getInstance().WriteFile();
+
 		if (response == 0)
 			line = "ok";
 		else
 			line = "fail"+ Def.regSep +"f_id"+ Def.fieldSep +"Este login ja esta sendo utilizado";
+
+		return line;
+	}
+
+	private String login( String[] cmd, int response ){
+		String line;
+		String[] args = Def.splitField(cmd[1]);
+		response = Users.Login(args[0], args[1]);
+
+		//Se o login foi efetuado corretamente
+		if (response == 0)
+			line = "ok";
+		//Caso o usuario nao seja encontrado
+		else if (response == 1)
+			line = "fail"+ Def.regSep +"f_userlogin"+ Def.fieldSep +"Usuario nao encontrado";
+		//Caso a senha digitada for incorreta
+		else
+			line = "fail"+ Def.regSep +"f_userpassword"+ Def.fieldSep +"Senha incorreta";
+
+		return line;
+	}
+
+	private String reserve( String[] cmd, int response ) {
+		String line;
+		CartItem item;
+		String[] args = Def.splitField(cmd[1]);
+		boolean errorFlag;
+
+		if (cart.CheckCart(args[0])) {
+			item = new CartItem(Products.searchProduct(args[0]));
+			errorFlag = item.AddToCart(cart);
+		} else {
+			item = cart.searchItem(args[0]);
+			errorFlag = item.RefreshQuantity(Integer.parseInt(args[1]));
+		}
+		if(errorFlag)
+			line = "ok";
+		else
+			line = "fail";
+
+		return line;
+	}
+
+	private String dereserve(String[] cmd, int response) {
+		String line;
+		CartItem item;
+		String[] args = Def.splitField(cmd[1]);
+
+		//Encontra o produto no carrinho
+		item = cart.searchItem(args[0]);
+		//Remove a quantidade desejava da reserva
+		item.RemoveFromCart(Integer.parseInt(args[1]));
+
+		//Verifica se ainda há algum produto daquele tipo cadastrado
+		if (item.getReservedQtd() == 0)
+			cart.RemoveProduct(item);
+		line = "ok";
 
 		return line;
 	}
