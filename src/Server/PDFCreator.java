@@ -4,19 +4,14 @@ import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 
 import Structure.CartItem;
-import Structure.Def;
 import Structure.Sale;
 import com.itextpdf.text.*;
 import com.itextpdf.text.pdf.PdfPCell;
 import com.itextpdf.text.pdf.PdfWriter;
 import com.itextpdf.text.pdf.PdfPTable;
 
-
-import java.io.IOException;
 import java.util.List;
 
-import static java.lang.System.clearProperty;
-import static java.lang.System.err;
 
 public class PDFCreator {
 
