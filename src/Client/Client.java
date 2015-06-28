@@ -80,6 +80,7 @@ public class Client {
 	}
 
 	static public void Logout () {
+		Connection.getInstance().CloseConnectionClient();
 		logged = false;
 		id = null;
 		name = null;
