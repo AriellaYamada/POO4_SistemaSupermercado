@@ -48,6 +48,13 @@ public class Cart {
 		return response;
 	}
 
+	public void Finalize() {
+		for(CartItem item : products) {
+			item.getProduct().Sell(item.getReservedQtd());
+		}
+		products.clear();
+	}
+
 	public void ClearCart(){
 		for(CartItem i : products) {
 			i.RemoveFromCart(i.getReservedQtd());
