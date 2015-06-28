@@ -18,4 +18,16 @@ public class Sale {
 	public User getUser() { return user; }
 	public List<CartItem> getProducts() { return products; }
 	public String getDate() { return date; }
+
+	public int getNumberItems() {
+		int nItems = 0;
+		for (CartItem i : products) nItems += i.getReservedQtd();
+		return nItems;
+	}
+
+	public float getTotalPrice() {
+		Float total = 0f;
+		for (CartItem i : products) total += i.getTotalPrice();
+		return total;
+	}
 }
