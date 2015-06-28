@@ -14,6 +14,11 @@ public class menuController {
 	}
 
 	public void listClients() {
+		try {
+			MainInterface.changeScene("Server/Model/userList.fxml");
+		} catch (IOException e) {
+			System.out.println("Erro ao abrir a tela");
+		}
 	}
 
 	public void listSell() {
