@@ -29,13 +29,16 @@
             <TextField fx:id="f_userlogin" layoutX="80.0" layoutY="154.0" styleClass="default-field" text="teste123" />
             <Label layoutX="80.0" layoutY="190.0" text="Senha:" />
             <PasswordField fx:id="f_userpassword" layoutX="80.0" layoutY="212.0" styleClass="default-field" text="123" />
-            <Button layoutX="133.0" layoutY="260.0" mnemonicParsing="false" onAction="#handleSendLogin" prefWidth="100.0" styleClass="default-btn" text="Entrar">
+            <Button layoutX="133.0" layoutY="260.0" mnemonicParsing="false" onAction="#handleSendLogin" styleClass="default-btn" text="Entrar">
                <VBox.margin>
                   <Insets top="80.0" />
                </VBox.margin>
                <font>
                   <Font size="16.0" />
                </font>
+               <padding>
+                  <Insets bottom="10.0" left="20.0" right="20.0" top="10.0" />
+               </padding>
             </Button>
          </children>
          <HBox.margin>
@@ -147,15 +150,21 @@
             </HBox>
             <HBox alignment="CENTER" layoutX="170.0" layoutY="413.0" prefHeight="25.0" prefWidth="269.0" spacing="50.0">
                <children>
-                  <Button layoutX="170.0" layoutY="413.0" mnemonicParsing="false" onAction="#handleCleanBtn" prefWidth="100.0" styleClass="default-btn" text="Limpar">
+                  <Button layoutX="170.0" layoutY="413.0" mnemonicParsing="false" onAction="#handleCleanBtn" styleClass="default-btn" text="Limpar">
                      <font>
                         <Font size="16.0" />
                      </font>
+                     <padding>
+                        <Insets bottom="10.0" left="20.0" right="20.0" top="10.0" />
+                     </padding>
                   </Button>
-                  <Button layoutX="255.0" layoutY="413.0" mnemonicParsing="false" onAction="#handleAddUserBtn" prefWidth="100.0" styleClass="default-btn" text="Cadastrar">
+                  <Button layoutX="255.0" layoutY="413.0" mnemonicParsing="false" onAction="#handleAddUserBtn" styleClass="default-btn" text="Cadastrar">
                      <font>
                         <Font size="16.0" />
                      </font>
+                     <padding>
+                        <Insets bottom="10.0" left="20.0" right="20.0" top="10.0" />
+                     </padding>
                   </Button>
                </children>
                <VBox.margin>
