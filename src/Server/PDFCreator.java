@@ -15,13 +15,11 @@ import java.util.List;
 
 public class PDFCreator {
 
-	Document doc;
+	private static Document doc = null;
 
-	public PDFCreator() {
-		this.doc = null;
-	}
+	private PDFCreator() {}
 
-	public void CreatePDF( String filename, List<Sale> sales ) {
+	public static void CreatePDF( String filename, List<Sale> sales ) {
 
 		doc = new Document(PageSize.A4, 70, 42, 56, 56);
 		//A4 595 pts
@@ -43,9 +41,7 @@ public class PDFCreator {
 		doc.close();
 	}
 
-	private void CreateSalesTable(List <Sale> sales) throws DocumentException {
-
-		PdfPCell cell;
+	private static void CreateSalesTable(List <Sale> sales) throws DocumentException {
 
 		for (Sale s : sales ) {
 
@@ -79,7 +75,7 @@ public class PDFCreator {
 	}
 
 	//Escreve a tabela de produtos
-	private PdfPTable CreateProductsTable( List<CartItem> products ) throws DocumentException {
+	private static PdfPTable CreateProductsTable( List<CartItem> products ) throws DocumentException {
 
 		doc.add(CreateHeaderProductsTable());
 
@@ -110,7 +106,7 @@ public class PDFCreator {
 	}
 
 	//Escreve o cabeçalho da tabela de produtos
-	private PdfPTable CreateHeaderProductsTable() throws DocumentException {
+	private static PdfPTable CreateHeaderProductsTable() throws DocumentException {
 
 		PdfPTable table = new PdfPTable(4); //4 colunas
 		table.setTotalWidth(new float[]{ 183, 100, 100, 100 });
@@ -127,15 +123,15 @@ public class PDFCreator {
 		return table;
 	}
 
-	private PdfPCell newCell(String str) {
+	private static PdfPCell newCell(String str) {
 		return newCell(str, Element.ALIGN_CENTER, true);
 	}
 
-	private PdfPCell newCell(String str, int horizontal) {
+	private static PdfPCell newCell(String str, int horizontal) {
 		return newCell(str, horizontal, true);
 	}
 
-	private PdfPCell newCell(String str, int horizontal, boolean border ) {
+	private static PdfPCell newCell(String str, int horizontal, boolean border ) {
 		PdfPCell cell = new PdfPCell(new Phrase(str));
 		cell.setMinimumHeight(20);
 		cell.setHorizontalAlignment(horizontal);

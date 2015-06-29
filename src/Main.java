@@ -51,11 +51,11 @@ public class Main {
 
 		Sales sales = Sales.getInstance();
 
-		sales.Register(user1, c1.ListAll());
-		sales.Register(user2, c2.ListAll());
+		sales.Register(user1, c1);
+		sales.Register(user2, c2);
 
-		PDFCreator p = new PDFCreator();
-		p.CreatePDF("2015fevereiro", sales.getSales());
+
+		PDFCreator.CreatePDF("2015fevereiro", sales.getSales());
 		*/
 	}
 }
