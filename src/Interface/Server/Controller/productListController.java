@@ -8,17 +8,14 @@ import Structure.Product;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
-import javafx.fxml.Initializable;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.VBox;
-import javafx.scene.text.Text;
 
-import java.io.IOException;
-import java.net.URL;
-import java.util.ResourceBundle;
+import static Structure.Def.FieldType.*;
+import static Structure.Def.validateField;
 
-public class productListController implements Initializable {
+public class productListController {
 
 	@FXML private VBox modal_edit;
 	@FXML private TextField f_edit_name;
@@ -43,14 +40,12 @@ public class productListController implements Initializable {
 	@FXML private TableColumn<Product, Integer> c_amount_real;
 	@FXML private TableColumn<Product, Integer> c_amount_virtual;
 
-	@FXML private Text alert_product_name;
-
 	private Product selected = null;
 
 	ObservableList<Product> data = FXCollections.observableArrayList();
 
 	@FXML
-	public void initialize(URL location, ResourceBundle resources) {
+	public void initialize() {
 		// Configura TableView
 		f_edit_name.setDisable(true);
 
@@ -68,11 +63,7 @@ public class productListController implements Initializable {
 
 	@FXML
 	public void backToMenu() {
-		try {
-			MainInterface.changeScene("Server/Model/menu.fxml");
-		} catch (IOException e) {
-			System.err.println("Erro ao exibir tela");
-		}
+		MainInterface.changeSceneWE("Server/Model/menu.fxml");
 	}
 
 	@FXML
@@ -89,13 +80,16 @@ public class productListController implements Initializable {
 
 	@FXML
 	public void showNew() {
-		clearField(f_new_name, f_new_price, f_new_expiration.getEditor(), f_new_provider, f_new_amount);
+		Def.clearField(f_new_name, f_new_price, f_new_expiration.getEditor(), f_new_provider, f_new_amount);
+		Def.clearErrorStyle(f_new_name, f_new_price, f_new_expiration.getEditor(), f_new_provider, f_new_amount);
 		modal_new.setVisible(true);
 	}
 
 	@FXML
 	public void showEdit() {
+		Def.clearErrorStyle(f_edit_name, f_edit_price, f_edit_expiration.getEditor(), f_edit_provider);
 		selected = tv_table.getSelectionModel().getSelectedItem();
+
 		f_edit_name.setText(selected.getName());
 		f_edit_price.setText(selected.getPriceAsStr());
 		f_edit_expiration.getEditor().setText(selected.getExpiration());
@@ -111,39 +105,59 @@ public class productListController implements Initializable {
 
 	@FXML
 	public void updateAmount() {
-		int now = selected.updateAmount(Integer.parseInt(f_edit_amount.getText()));
+		boolean valid = validateField(f_edit_amount, INTEGER_NON_ZERO);
+		if (valid) {
+			int now = selected.updateAmount(Integer.parseInt(f_edit_amount.getText()));
 
-		if (now < 0) Def.setError(f_edit_amount, "Esta alteração deixaria o estoque negativo.");
-		else {
-			l_amount_now.setText(selected.getAmountRealAsStr());
+			if (now < 0) Def.setError(f_edit_amount, "Esta alteração deixaria o estoque negativo.");
+			else {
+				l_amount_now.setText(selected.getAmountRealAsStr());
+			}
 		}
 	}
 
 	@FXML
 	public void confirm_edit() {
-		selected.setExpiration(f_edit_expiration.getEditor().getText());
-		selected.setPrice(f_edit_price.getText());
-		selected.setProvider(f_edit_provider.getText());
-		ProductsDatabase.getInstance().WriteFile();
-		modal_edit.setVisible(false);
+		Def.clearErrorStyle(f_edit_expiration.getEditor(), f_edit_price, f_edit_provider);
+
+		boolean valid  = validateField(f_edit_expiration.getEditor(), DATE);
+		valid = valid && validateField(f_edit_price, PRICE);
+		valid = valid && validateField(f_edit_provider, TEXT);
+
+		if (valid) {
+			selected.setExpiration(f_edit_expiration.getEditor().getText());
+			selected.setPrice(f_edit_price.getText());
+			selected.setProvider(f_edit_provider.getText());
+
+			ProductsDatabase.getInstance().WriteFile();
+
+			modal_edit.setVisible(false);
+		}
 	}
 
 	@FXML
 	public void confirm_new() {
-		if (Products.checkProduct(f_new_name.getText())) {
-			Products.getInstance().Register(f_new_name.getText(),
-					Float.parseFloat(f_new_price.getText()),
-					f_new_expiration.getEditor().getText(),
-					f_new_provider.getText(),
-					Integer.parseInt(f_new_amount.getText())
-			);
-			refresh();
-			modal_new.setVisible(false);
-		}
-		else Def.setError(f_new_name, "Já existe um produto com este nome.");
-	}
+		Def.clearErrorStyle(f_new_name, f_new_price, f_new_expiration.getEditor(), f_new_provider, f_new_amount);
 
-	void clearField(TextInputControl... control){
-		for (TextInputControl c : control) c.clear();
+		boolean valid  = validateField(f_new_name, TEXT);
+		valid = valid && validateField(f_new_price, PRICE);
+		valid = valid && validateField(f_new_expiration.getEditor(), DATE);
+		valid = valid && validateField(f_new_provider, TEXT);
+		valid = valid && validateField(f_new_amount, INTEGER_POSITIVE);
+
+		if (valid){
+			if (!Products.checkProduct(f_new_name.getText())) {
+				Def.setError(f_new_name, "Já existe um produto com este nome.");
+			} else {
+				Products.getInstance().Register(f_new_name.getText(),
+						Float.parseFloat(f_new_price.getText()),
+						f_new_expiration.getEditor().getText(),
+						f_new_provider.getText(),
+						Integer.parseInt(f_new_amount.getText())
+				);
+				refresh();
+				modal_new.setVisible(false);
+			}
+		}
 	}
 }

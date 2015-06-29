@@ -1,27 +1,19 @@
 package Interface.Client.Controller;
 
+import Client.Connection;
 import Interface.MainInterface;
 import Structure.Def;
 import Structure.Product;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
-
-import Client.Connection;
-
-import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.fxml.Initializable;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.VBox;
 import javafx.scene.text.Text;
 
-import java.io.IOException;
-import java.net.URL;
-import java.util.ResourceBundle;
-
-public class productListController implements Initializable {
+public class productListController {
 
 	@FXML private TableView<Product> tv_table;
 	@FXML private TableColumn<Product, String> c_name;
@@ -36,7 +28,7 @@ public class productListController implements Initializable {
 	ObservableList<Product> data = FXCollections.observableArrayList();
 
 	@FXML
-	public void initialize(URL location, ResourceBundle resources) {
+	public void initialize() {
 		// Configura TableView
 		c_name.setCellValueFactory(new PropertyValueFactory<>("name"));
 		c_price.setCellValueFactory(new PropertyValueFactory<>("price"));
@@ -51,20 +43,12 @@ public class productListController implements Initializable {
 
 	@FXML
 	public void salesCart() {
-		try {
-			MainInterface.changeScene("Client/Model/cartList.fxml");
-		} catch (IOException e) {
-			System.err.println("Erro ao exibir tela");
-		}
+		MainInterface.changeSceneWE("Client/Model/cartList.fxml");
 	}
 
 	@FXML
 	public void backToMenu() {
-		try {
-			MainInterface.changeScene("Client/Model/menu.fxml");
-		} catch (IOException e) {
-			System.err.println("Erro ao exibir tela");
-		}
+		MainInterface.changeSceneWE("Client/Model/menu.fxml");
 	}
 
 	@FXML

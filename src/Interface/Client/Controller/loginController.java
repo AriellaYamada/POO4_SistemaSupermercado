@@ -4,11 +4,12 @@ import Client.Client;
 import Interface.MainInterface;
 import Structure.Def;
 import javafx.fxml.FXML;
-import javafx.scene.control.*;
+import javafx.scene.control.TextArea;
+import javafx.scene.control.TextField;
+import javafx.scene.control.TextInputControl;
 
-import java.io.IOException;
-import java.util.LinkedList;
-import java.util.List;
+import static Structure.Def.FieldType.*;
+import static Structure.Def.validateField;
 
 public class loginController {
 	@FXML private TextField f_userlogin;
@@ -24,24 +25,17 @@ public class loginController {
 
 	@FXML
 	public void handleSendLogin() {
-		f_userlogin.getStyleClass().remove("red-field");
-		f_userpassword.getStyleClass().remove("red-field");
+		Def.clearErrorStyle(f_userlogin, f_userpassword);
 
-		String userlogin = f_userlogin.getText();
-		String userpassword = f_userpassword.getText();
+		boolean valid  = validateField(f_userlogin, TEXT);
+		valid = valid && validateField(f_userpassword, TEXT);
 
-		if (userlogin.isEmpty()){ Def.setError(f_userlogin, "Este campo é obrigatório"); }
-		if (userpassword.isEmpty()) { Def.setError(f_userpassword, "Este campo é obrigatório"); }
-
-		if (!userlogin.isEmpty() && !userlogin.isEmpty()) {
+		if (valid) {    // Try to Login
 			String response = Client.Login(f_userlogin.getText(), f_userpassword.getText());
-			if (response.equals("ok")) {
-				try {
-					MainInterface.changeScene("Client/Model/menu.fxml");
-				} catch (IOException e) {
-					System.err.println("Erro ao carregar a tela");
-				}
-			} else {
+
+			if (response.equals("ok")) {    // if success, go to Main Page
+				MainInterface.changeSceneWE("Client/Model/menu.fxml");
+			} else {    // If fail, set error
 				String[] splited = Def.splitReg(response);
 				String[] error = Def.splitField(splited[1]);
 				Def.setError(getField(error[0]), error[1]);
@@ -51,41 +45,26 @@ public class loginController {
 
 	@FXML
 	public void handleCleanBtn() {
-		f_name.clear();
-		f_address.clear();
-		f_tel.clear();
-		f_email.clear();
-		f_id.clear();
-		f_password.clear();
-		f_confirmp.clear();
+		Def.clearErrorStyle(f_name, f_address, f_tel, f_email, f_id, f_password, f_confirmp);
+		Def.clearField(f_name, f_address, f_tel, f_email, f_id, f_password, f_confirmp);
 	}
 
 	@FXML
 	public void handleAddUserBtn() {
-		boolean validateFields = true;
-
-		// Creates a list with all fields
-		List<TextInputControl> controls = new LinkedList<>();
-		controls.add(f_name);
-		controls.add(f_address);
-		controls.add(f_tel);
-		controls.add(f_email);
-		controls.add(f_id);
-		controls.add(f_password);
-		controls.add(f_confirmp);
-
 		// Reset field style then check if its not empty
-		for (TextInputControl c : controls){
-			c.getStyleClass().remove("red-field");
-			c.setTooltip(null);
-			if (c.getText().isEmpty()){
-				validateFields = false;
-				Def.setError(c, "Este campo é obrigatório");
-			}
-		}
+		Def.clearErrorStyle(f_name, f_address, f_tel, f_email, f_id, f_password, f_confirmp);
+
+		boolean valid  = validateField(f_name,      TEXT);
+		valid = valid && validateField(f_address, TEXT);
+		valid = valid && validateField(f_tel, TEXT);
+		valid = valid && validateField(f_email, EMAIL);
+		valid = valid && validateField(f_id, TEXT);
+		valid = valid && validateField(f_password,  TEXT);
+		valid = valid && validateField(f_confirmp,  TEXT);
+
 
 		// If all fields have some text...
-		if (validateFields) {
+		if (valid) {
 
 			// Verify if "password" and "confirm password" are the same
 			if (!f_password.getText().equals(f_confirmp.getText())) {
@@ -103,7 +82,7 @@ public class loginController {
 				if (!answer.equals("ok")) {  // If the answer is not ok
 					String[] splited = Def.splitReg(answer);
 
-					// Ignores the first item of the array (probally a "fail")
+					// Ignores the first item of the array (probably a "fail")
 					for (int i = 1; i < splited.length; i++){
 						String[] error = Def.splitField(splited[i]);
 						TextInputControl fieldError = getField(error[0]);
@@ -113,7 +92,10 @@ public class loginController {
 						}
 					}
 				} else {// If all data is ok
+					f_userlogin.setText(f_id.getText());
+					f_userpassword.setText(f_password.getText());
 					handleCleanBtn();
+					handleSendLogin();
 				}
 			}
 		}

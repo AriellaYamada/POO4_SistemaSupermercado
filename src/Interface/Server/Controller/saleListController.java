@@ -13,8 +13,6 @@ import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.VBox;
 
-import java.io.IOException;
-
 public class saleListController {
 
 	@FXML private TableView<Sale> tv_table;
@@ -56,11 +54,7 @@ public class saleListController {
 
 	@FXML
 	void backToMenu() {
-		try {
-			MainInterface.changeScene("Server/Model/menu.fxml");
-		} catch (IOException e) {
-			System.out.println("Erro ao exibir a tela");
-		}
+		MainInterface.changeSceneWE("Server/Model/menu.fxml");
 	}
 
 	@FXML

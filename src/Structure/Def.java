@@ -44,6 +44,17 @@ public class Def {
 		field.setTooltip(new Tooltip(str));
 	}
 
+	public static void clearErrorStyle (TextInputControl... controls){
+		for (TextInputControl c : controls) {
+			c.getStyleClass().remove("red-field");
+			c.setTooltip(null);
+		}
+	}
+
+	public static void clearField(TextInputControl... control){
+		for (TextInputControl c : control) c.clear();
+	}
+
 	public enum FieldType {
 		TEXT,
 		INTEGER,
@@ -60,9 +71,16 @@ public class Def {
 		FLOAT_NEGATIVE_NON_ZERO,
 		DATE,
 		PRICE,
+		IP,
+		EMAIL,
 	}
 
 	public static String validate (String text, FieldType TYPE) {
+		return validate(text, TYPE, true);
+	}
+
+	public static String validate (String text, FieldType TYPE, boolean required) {
+		if (required) if (text.isEmpty()) return "Este campo é obrigatório";
 		if (text.contains(",")) return "Este campo contém um caractere inválido (vírgula)";
 
 		Integer i;
@@ -180,6 +198,20 @@ public class Def {
 		}
 
 		return true;
+	}
+
+	public static boolean validateField(TextInputControl field, FieldType TYPE){
+		return validateField(field, TYPE, true);
+	}
+
+	public static boolean validateField(TextInputControl field, FieldType TYPE, boolean required){
+		String text = field.getText();
+		String valid = validate(text, TYPE, required);
+
+		if (valid.equals("ok")) return true;
+
+		setError(field, valid);
+		return false;
 	}
 
 }
