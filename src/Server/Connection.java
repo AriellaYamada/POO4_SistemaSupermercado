@@ -162,8 +162,7 @@ public class Connection implements Runnable{
 	}
 
 	private String sell() {
-		Sales.Register(user, cart.ListAll());
-		cart.Finalize();
+		Sales.Register(user, cart);
 
 		return "ok";
 	}
