@@ -15,7 +15,7 @@ public class Connection implements Runnable{
 	public Scanner scan = null;
 	public PrintWriter pw = null;
 
-	private User user = null;
+	private User user;
 	private Cart cart = null;
 	private boolean connected;
 
@@ -114,8 +114,10 @@ public class Connection implements Runnable{
 		String[] args = Def.splitField(cmd);
 		int response = Users.Login(args[0], args[1]);
 
-		if (response == 0)  //Se o login foi efetuado corretamente
+		if (response == 0) {   //Se o login foi efetuado corretamente
+			user = Users.SearchUser(args[0]);
 			answer = "ok";
+		}
 
 		else if (response == 1) //Caso o usuario nao seja encontrado
 			answer = "fail"+ Def.regSep +"f_userlogin"+ Def.fieldSep +"Usuario nao encontrado";
@@ -127,7 +129,6 @@ public class Connection implements Runnable{
 	}
 
 	private String reserve(String cmd) {
-		String answer;
 		CartItem item;
 		String[] args = Def.splitField(cmd);
 		boolean errorFlag;
@@ -140,16 +141,11 @@ public class Connection implements Runnable{
 			errorFlag = item.RefreshQuantity(Integer.parseInt(args[1]));
 		}
 
-		if(errorFlag)
-			answer = "ok";
-		else
-			answer = "fail";
-
-		return answer;
+		if(errorFlag) return "ok";
+		return "fail";
 	}
 
 	private String dereserve(String cmd) {
-		String answer;
 		CartItem item;
 		String[] args = Def.splitField(cmd);
 
@@ -162,27 +158,18 @@ public class Connection implements Runnable{
 		if (item.getReservedQtd() == 0)
 			cart.RemoveProduct(item);
 
-		answer = "ok";
-
-		return answer;
+		return "ok";
 	}
 
 	private String sell() {
-		String answer;
-		Sale sale = new Sale(user, cart.ListAll());
-		Sales.AddSale(sale);
-		cart.Finalize();
-		answer = "ok";
+		Sales.Register(user, cart);
 
-		return answer;
+		return "ok";
 	}
 
 	private String logout() {
-		String answer;
-
 		connected = false;
-		answer = "";
 
-		return answer;
+		return "ok";
 	}
 }

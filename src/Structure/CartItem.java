@@ -1,5 +1,7 @@
 package Structure;
 
+import Server.Database.Products;
+
 public class CartItem {
 
 	private Product product;
@@ -9,6 +11,12 @@ public class CartItem {
 	public CartItem(Product product) {
 		this.product = product;
 		curPrice = product.getPrice();
+	}
+
+	public CartItem(String name, String amount, String price) {
+		product = Products.searchProduct(name);
+		reservedQtd = Integer.parseInt(amount);
+		curPrice = Float.parseFloat(price);
 	}
 
 	public Product getProduct() { return product; }
