@@ -38,4 +38,6 @@ public class Sale {
 		for (CartItem i : products) total += i.getTotalPrice();
 		return total;
 	}
+
+	public String getTotalPriceAsStr() { return Float.toString(getTotalPrice()); }
 }
