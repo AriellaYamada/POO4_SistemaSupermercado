@@ -4,7 +4,7 @@ import Client.Connection;
 
 public class Product {
 
-	private static String name;
+	private final String name;
 	private Float price;
 	private String expiration;
 	private String provider;
@@ -30,7 +30,6 @@ public class Product {
 	public String getAmountRealAsStr() { return Integer.toString(amount_real); }
 	public String getAmountVirtualAsStr() { return Integer.toString(amount_virtual); }
 
-	public void setName(String value) { name = value; }
 	public void setPrice(String value) { price = Float.parseFloat(value); }
 	public void setPrice(Float value) { price = value; }
 	public void setExpiration(String value) { expiration = value; }
