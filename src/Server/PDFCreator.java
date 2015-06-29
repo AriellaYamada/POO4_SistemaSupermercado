@@ -67,7 +67,7 @@ public class PDFCreator {
 			}
 
 			//Escreve o preço total da compra
-			Paragraph p = new Paragraph("Preço Total: " + s.getTotalPriceAsStr());
+			Paragraph p = new Paragraph("Preço Total: R$ " + s.getTotalPriceAsStr());
 			p.setAlignment(Element.ALIGN_RIGHT);
 			doc.add(p);
 		}

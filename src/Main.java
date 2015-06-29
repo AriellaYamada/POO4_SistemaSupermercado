@@ -26,7 +26,7 @@ public class Main {
 			ClientMain.main(null);
 		}*/
 
-		/*
+/*
 		// Teste para criação do PDF
 		User user1 = new User("Xossé", "rua x", "12345678", "emeio@emeio", "xosse", "datsenha");
 		User user2 = new User("Maria", "rua y", "23456789", "maria@emeio", "maryjane", "senha123");
@@ -56,6 +56,6 @@ public class Main {
 
 
 		PDFCreator.CreatePDF("2015fevereiro", sales.getSales());
-		*/
+*/
 	}
 }
