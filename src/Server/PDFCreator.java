@@ -97,7 +97,7 @@ public class PDFCreator {
 			table.addCell(newCell(ci.getProduct().getName(), Element.ALIGN_JUSTIFIED));
 
 			//Escreve quantidade do produto
-			table.addCell(newCell(ci.getReservedQtdAsStr(), Element.ALIGN_CENTER));
+			table.addCell(newCell(ci.getReservedQtdAsStr());
 
 			//Escreve preço unitário do produto
 			table.addCell(newCell(ci.getPriceAsStr(), Element.ALIGN_RIGHT));
@@ -119,13 +119,18 @@ public class PDFCreator {
 		table.setSpacingBefore(5);
 		table.setSpacingAfter(0);
 
-		table.addCell(newCell("Produto", Element.ALIGN_CENTER));
-		table.addCell(newCell("Quantidade", Element.ALIGN_CENTER));
-		table.addCell(newCell("Preço Unitário", Element.ALIGN_CENTER));
-		table.addCell(newCell("Preço Total", Element.ALIGN_CENTER));
+		table.addCell(newCell("Produto"));
+		table.addCell(newCell("Quantidade"));
+		table.addCell(newCell("Preço Unitário"));
+		table.addCell(newCell("Preço Total"));
 
 		return table;
 	}
+
+	private PdfPCell newCell(String str) {
+		return newCell(str, Element.ALIGN_CENTER, true);
+	}
+
 	private PdfPCell newCell(String str, int horizontal) {
 		return newCell(str, horizontal, true);
 	}
