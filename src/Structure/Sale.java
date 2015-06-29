@@ -5,15 +5,22 @@ import java.util.List;
 
 public class Sale {
 
-	private User user;
-	private List<CartItem> products;
-	private String date;
+	private final User user;
+	private final List<CartItem> products;
+	private final String date;
 
-	public Sale(User user, List<CartItem> products) {
+	public Sale(String date, User user, List<CartItem> products) {
 		this.user = user;
 		this.products = products;
-		this.date = Def.CalendarToString(new GregorianCalendar());
+		this.date = date;
 	}
+
+	public Sale(User user, List<CartItem> products) {
+		this.date = Def.CalendarToString(new GregorianCalendar());
+		this.user = user;
+		this.products = products;
+	}
+
 
 	public User getUser() { return user; }
 	public List<CartItem> getProducts() { return products; }
