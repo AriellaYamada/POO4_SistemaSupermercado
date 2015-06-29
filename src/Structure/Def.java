@@ -1,5 +1,6 @@
 package Structure;
 
+import javafx.scene.control.Control;
 import javafx.scene.control.TextInputControl;
 import javafx.scene.control.Tooltip;
 
@@ -39,7 +40,7 @@ public class Def {
 				Integer.parseInt(split_date[0]));
 	}
 
-	public static void setError (TextInputControl field, String str){
+	public static void setError (Control field, String str){
 		field.getStyleClass().add("red-field");
 		field.setTooltip(new Tooltip(str));
 	}

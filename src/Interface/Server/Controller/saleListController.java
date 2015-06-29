@@ -2,16 +2,20 @@ package Interface.Server.Controller;
 
 import Interface.MainInterface;
 import Server.Database.Sales;
+import Server.PDFCreator;
 import Structure.CartItem;
+import Structure.Def;
 import Structure.Sale;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
-import javafx.scene.control.Label;
-import javafx.scene.control.TableColumn;
-import javafx.scene.control.TableView;
+import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.VBox;
+
+import java.util.Comparator;
+import java.util.List;
+import java.util.stream.Collectors;
 
 public class saleListController {
 
@@ -33,8 +37,16 @@ public class saleListController {
 	@FXML private TableColumn<CartItem, Float> c_item_price_total;
 	@FXML private Label l_total_price;
 
+	public VBox modal_pdf;
+	@FXML private DatePicker f_day;
+	@FXML private ComboBox<Integer> f_month;
+	@FXML private ComboBox<Integer> f_year;
+
 	ObservableList<Sale> data = FXCollections.observableArrayList();
 	ObservableList<CartItem> items = FXCollections.observableArrayList();
+
+	ObservableList<Integer> months = FXCollections.observableArrayList();
+	ObservableList<Integer> years = FXCollections.observableArrayList();
 
 	public void initialize() {
 		c_name.setCellValueFactory(new PropertyValueFactory<>("userId"));
@@ -48,6 +60,9 @@ public class saleListController {
 
 		tv_table.setItems(data);
 		tv_item.setItems(items);
+
+		f_month.setItems(months);
+		f_year.setItems(years);
 
 		refresh();
 	}
@@ -77,12 +92,70 @@ public class saleListController {
 
 	@FXML
 	void pdfGenerate() {
+		data.stream()
+				.map(Sale::getYear)
+				.distinct()
+				.sorted()
+				.forEach(years::add);
 
+		f_month.setDisable(true);
+
+		modal_pdf.setVisible(true);
 	}
 
 	@FXML
 	void dismiss() {
 		modal_details.setVisible(false);
+		modal_pdf.setVisible(false);
 	}
 
+	@FXML
+	public void genPdfDay() {
+		Def.clearErrorStyle(f_day.getEditor());
+		Def.validateField(f_day.getEditor(), Def.FieldType.DATE);
+
+		final String date = f_day.getEditor().getText();
+		List<Sale> list = data.stream()
+							.filter(s -> s.getDate().equals(date))
+							.collect(Collectors.toList());
+
+		String[] splited = date.split("/");
+		String filename = "Vendas_" + splited[2] + "-" + splited[1] + "-" + splited[0];
+
+		PDFCreator.CreatePDF(filename, list);
+	}
+
+	@FXML
+	public void genPdfMonthYear() {
+		final int month = f_month.getSelectionModel().getSelectedItem();
+		final int year = f_year.getSelectionModel().getSelectedItem();
+
+		List<Sale> list = data.stream()
+				.filter(s -> s.getYear() == year)
+				.filter(s -> s.getMonth() == month)
+				.sorted(Comparator.comparing(Sale::getDay))
+				.collect(Collectors.toList());
+
+		String filename = "Vendas_" + year + "-" + month;
+
+
+		PDFCreator.CreatePDF(filename, list);
+
+	}
+
+	@FXML
+	public void filterMonths() {
+		final int year = f_year.getSelectionModel().getSelectedItem();
+
+		months.clear();
+
+		data.stream()
+				.filter(s -> s.getYear() == year)
+				.map(Sale::getMonth)
+				.distinct()
+				.sorted()
+				.forEach(months::add);
+
+		f_month.setDisable(false);
+	}
 }
