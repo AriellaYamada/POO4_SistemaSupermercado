@@ -2,6 +2,7 @@ package Interface.Server.Controller;
 
 import Interface.MainInterface;
 import Server.Database.Products;
+import Server.Database.ProductsDatabase;
 import Structure.Def;
 import Structure.Product;
 import javafx.collections.FXCollections;
@@ -42,7 +43,6 @@ public class productListController implements Initializable {
 	@FXML private TableColumn<Product, Integer> c_amount_real;
 	@FXML private TableColumn<Product, Integer> c_amount_virtual;
 
-	@FXML private VBox alert;
 	@FXML private Text alert_product_name;
 
 	private Product selected = null;
@@ -77,7 +77,6 @@ public class productListController implements Initializable {
 
 	@FXML
 	void dismiss() {
-		alert.setVisible(false);
 		modal_edit.setVisible(false);
 		modal_new.setVisible(false);
 	}
@@ -90,6 +89,7 @@ public class productListController implements Initializable {
 
 	@FXML
 	public void showNew() {
+		clearField(f_new_name, f_new_price, f_new_expiration.getEditor(), f_new_provider, f_new_amount);
 		modal_new.setVisible(true);
 	}
 
@@ -124,6 +124,7 @@ public class productListController implements Initializable {
 		selected.setExpiration(f_edit_expiration.getEditor().getText());
 		selected.setPrice(f_edit_price.getText());
 		selected.setProvider(f_edit_provider.getText());
+		ProductsDatabase.getInstance().WriteFile();
 		modal_edit.setVisible(false);
 	}
 
@@ -131,14 +132,18 @@ public class productListController implements Initializable {
 	public void confirm_new() {
 		if (Products.checkProduct(f_new_name.getText())) {
 			Products.getInstance().Register(f_new_name.getText(),
-					f_new_price.getText(),
+					Float.parseFloat(f_new_price.getText()),
 					f_new_expiration.getEditor().getText(),
 					f_new_provider.getText(),
-					f_new_amount.getText()
+					Integer.parseInt(f_new_amount.getText())
 			);
 			refresh();
 			modal_new.setVisible(false);
 		}
 		else Def.setError(f_new_name, "Já existe um produto com este nome.");
+	}
+
+	void clearField(TextInputControl... control){
+		for (TextInputControl c : control) c.clear();
 	}
 }
