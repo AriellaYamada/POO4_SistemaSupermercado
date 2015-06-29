@@ -2,6 +2,7 @@ package Interface.Server.Controller;
 
 import Interface.MainInterface;
 import Server.Database.Sales;
+import Server.PDFCreator;
 import Structure.CartItem;
 import Structure.Def;
 import Structure.Sale;
@@ -13,7 +14,6 @@ import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.VBox;
 
 import java.util.Comparator;
-import java.util.LinkedList;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -39,8 +39,8 @@ public class saleListController {
 
 	public VBox modal_pdf;
 	@FXML private DatePicker f_day;
-	@FXML private ChoiceBox<Integer> f_month;
-	@FXML private ChoiceBox<Integer> f_year;
+	@FXML private ComboBox<Integer> f_month;
+	@FXML private ComboBox<Integer> f_year;
 
 	ObservableList<Sale> data = FXCollections.observableArrayList();
 	ObservableList<CartItem> items = FXCollections.observableArrayList();
@@ -98,11 +98,7 @@ public class saleListController {
 				.sorted()
 				.forEach(years::add);
 
-		data.stream()
-				.map(Sale::getMonth)
-				.distinct()
-				.sorted()
-				.forEach(months::add);
+		f_month.setDisable(true);
 
 		modal_pdf.setVisible(true);
 	}
@@ -124,9 +120,9 @@ public class saleListController {
 							.collect(Collectors.toList());
 
 		String[] splited = date.split("/");
-		String namefile = "Vendas_" + splited[2] + "-" + splited[1] + "-" + splited[0];
+		String filename = "Vendas_" + splited[2] + "-" + splited[1] + "-" + splited[0];
 
-		// call pdf generator
+		PDFCreator.CreatePDF(filename, list);
 	}
 
 	@FXML
@@ -140,6 +136,26 @@ public class saleListController {
 				.sorted(Comparator.comparing(Sale::getDay))
 				.collect(Collectors.toList());
 
-		String namefile = "Vendas_" + year + "-" + month;
+		String filename = "Vendas_" + year + "-" + month;
+
+
+		PDFCreator.CreatePDF(filename, list);
+
+	}
+
+	@FXML
+	public void filterMonths() {
+		final int year = f_year.getSelectionModel().getSelectedItem();
+
+		months.clear();
+
+		data.stream()
+				.filter(s -> s.getYear() == year)
+				.map(Sale::getMonth)
+				.distinct()
+				.sorted()
+				.forEach(months::add);
+
+		f_month.setDisable(false);
 	}
 }

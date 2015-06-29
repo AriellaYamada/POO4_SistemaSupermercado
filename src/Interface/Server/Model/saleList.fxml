@@ -204,8 +204,8 @@
                         <Button maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#genPdfMonthYear" styleClass="default-btn" stylesheets="@../../style.css" text="Relatório deste mês/ano" GridPane.columnIndex="1" GridPane.rowIndex="1" />
                         <HBox alignment="CENTER" spacing="10.0" GridPane.rowIndex="1">
                            <children>
-                              <ChoiceBox fx:id="f_month" maxWidth="1.7976931348623157E308" prefWidth="150.0" styleClass="default-field" stylesheets="@../../style.css" HBox.hgrow="ALWAYS" />
-                              <ChoiceBox fx:id="f_year" layoutX="10.0" layoutY="10.0" maxWidth="1.7976931348623157E308" prefWidth="150.0" styleClass="default-field" stylesheets="@../../style.css" HBox.hgrow="ALWAYS" />
+                              <ComboBox fx:id="f_year" maxWidth="1.7976931348623157E308" onAction="#filterMonths" prefWidth="150.0" promptText="Ano" styleClass="default-field" stylesheets="@../../style.css" HBox.hgrow="ALWAYS" />
+                              <ComboBox fx:id="f_month" layoutX="246.0" layoutY="13.0" maxWidth="1.7976931348623157E308" prefWidth="150.0" promptText="Mês" styleClass="default-field" stylesheets="@../../style.css" HBox.hgrow="ALWAYS" />
                            </children>
                         </HBox>
                      </children>
