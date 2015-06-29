@@ -109,5 +109,10 @@ public class cartListController {
 				);
 			}
 		}
+		Float value = 0f;
+		for (Product p : data)
+			value += p.getPrice()*p.getAmount_virtual();
+
+		l_total_value.setText(String.format("%.2f", value));
 	}
 }

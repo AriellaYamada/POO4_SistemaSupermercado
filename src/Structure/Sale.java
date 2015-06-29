@@ -53,5 +53,5 @@ public class Sale {
 		return Integer.parseInt(splited[0]);
 	}
 
-	public String getTotalPriceAsStr() { return Float.toString(getTotalPrice()); }
+	public String getTotalPriceAsStr() { return String.format("%.2f", getTotalPrice()); }
 }
