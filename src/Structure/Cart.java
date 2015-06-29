@@ -52,7 +52,7 @@ public class Cart {
 		for(CartItem item : products) {
 			item.getProduct().Sell(item.getReservedQtd());
 		}
-		products.clear();
+		products = new LinkedList<>();
 	}
 
 	public void ClearCart(){
