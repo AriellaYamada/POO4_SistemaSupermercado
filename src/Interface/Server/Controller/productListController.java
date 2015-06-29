@@ -8,10 +8,7 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
-import javafx.scene.control.Label;
-import javafx.scene.control.TableColumn;
-import javafx.scene.control.TableView;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.VBox;
 import javafx.scene.text.Text;
@@ -25,7 +22,7 @@ public class productListController implements Initializable {
 	@FXML private VBox modal_edit;
 	@FXML private TextField f_edit_name;
 	@FXML private TextField f_edit_price;
-	@FXML private TextField f_edit_expiration;
+	@FXML private DatePicker f_edit_expiration;
 	@FXML private TextField f_edit_provider;
 	@FXML private Label l_amount_now;
 	@FXML private TextField f_edit_amount;
@@ -33,7 +30,7 @@ public class productListController implements Initializable {
 	@FXML private VBox modal_new;
 	@FXML private TextField f_new_name;
 	@FXML private TextField f_new_price;
-	@FXML private TextField f_new_expiration;
+	@FXML private DatePicker f_new_expiration;
 	@FXML private TextField f_new_provider;
 	@FXML private TextField f_new_amount;
 
@@ -101,7 +98,7 @@ public class productListController implements Initializable {
 		selected = tv_table.getSelectionModel().getSelectedItem();
 		f_edit_name.setText(selected.getName());
 		f_edit_price.setText(selected.getPriceAsStr());
-		f_edit_expiration.setText(selected.getExpiration());
+		f_edit_expiration.getEditor().setText(selected.getExpiration());
 		f_edit_provider.setText(selected.getProvider());
 		l_amount_now.setText(selected.getAmountRealAsStr());
 		modal_edit.setVisible(true);
@@ -124,7 +121,7 @@ public class productListController implements Initializable {
 
 	@FXML
 	public void confirm_edit() {
-		selected.setExpiration(f_edit_expiration.getText());
+		selected.setExpiration(f_edit_expiration.getEditor().getText());
 		selected.setPrice(f_edit_price.getText());
 		selected.setProvider(f_edit_provider.getText());
 		modal_edit.setVisible(false);
@@ -135,7 +132,7 @@ public class productListController implements Initializable {
 		if (Products.checkProduct(f_new_name.getText())) {
 			Products.getInstance().Register(f_new_name.getText(),
 					f_new_price.getText(),
-					f_new_expiration.getText(),
+					f_new_expiration.getEditor().getText(),
 					f_new_provider.getText(),
 					f_new_amount.getText()
 			);
