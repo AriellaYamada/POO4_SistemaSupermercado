@@ -39,7 +39,7 @@ public class saleListController {
 	ObservableList<CartItem> items = FXCollections.observableArrayList();
 
 	public void initialize() {
-		c_name.setCellValueFactory(new PropertyValueFactory<>("user"));
+		c_name.setCellValueFactory(new PropertyValueFactory<>("userId"));
 		c_date.setCellValueFactory(new PropertyValueFactory<>("date"));
 		c_items.setCellValueFactory(new PropertyValueFactory<>("numberItems"));
 		c_total_price.setCellValueFactory(new PropertyValueFactory<>("totalPrice"));

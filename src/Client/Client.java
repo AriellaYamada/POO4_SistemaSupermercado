@@ -41,8 +41,7 @@ public class Client {
 				+ Def.fieldSep + email
 				+ Def.fieldSep + id
 				+ Def.fieldSep + password;
-
-		System.out.println(signal);
+		
 		Connection.getInstance().SendSignal(signal);
 
 		return Connection.getInstance().ReceiveSignal();

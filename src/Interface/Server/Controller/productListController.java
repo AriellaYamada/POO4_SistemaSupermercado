@@ -132,13 +132,16 @@ public class productListController implements Initializable {
 
 	@FXML
 	public void confirm_new() {
-		Products.getInstance().Register(f_new_name.getText(),
-				f_new_price.getText(),
-				f_new_expiration.getText(),
-				f_new_provider.getText(),
-				f_new_amount.getText()
-		);
-		refresh();
-		modal_new.setVisible(false);
+		if (Products.checkProduct(f_new_name.getText())) {
+			Products.getInstance().Register(f_new_name.getText(),
+					f_new_price.getText(),
+					f_new_expiration.getText(),
+					f_new_provider.getText(),
+					f_new_amount.getText()
+			);
+			refresh();
+			modal_new.setVisible(false);
+		}
+		else Def.setError(f_new_name, "Já existe um produto com este nome.");
 	}
 }

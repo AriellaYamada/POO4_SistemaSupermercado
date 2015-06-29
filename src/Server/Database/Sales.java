@@ -1,5 +1,6 @@
 package Server.Database;
 
+import Structure.Cart;
 import Structure.CartItem;
 import Structure.Sale;
 import Structure.User;
@@ -37,9 +38,12 @@ public class Sales implements ListRegister{
 		return 0;
 	}
 
-	public static void Register(User user, List<CartItem> products) {
-		Sale sale = new Sale(user, products);
+	public static void Register(User user, Cart cart) {
+		Sale sale = new Sale(user, cart.ListAll());
 		sales.add(sale);
+
 		SalesDatabase.getInstance().WriteFile(sale);
+		cart.Finalize();
+		ProductsDatabase.getInstance().WriteFile();
 	}
 }

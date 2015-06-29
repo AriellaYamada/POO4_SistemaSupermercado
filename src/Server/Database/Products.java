@@ -24,9 +24,11 @@ public class Products implements ListRegister {
 		return productsDB;
 	}
 
-	public static List<Product> ListAll() { return products; }
+	public static List<Product> ListAll() {
+		return products;
+	}
 
-	public static int Register(String name, float price, String expiration, String provider, int quantity) {
+	public int Register(String name, float price, String expiration, String provider, int quantity) {
 
 		if(checkProduct(name)) {
 			Product new_product = new Product(name, price, expiration, provider, quantity);
@@ -44,7 +46,6 @@ public class Products implements ListRegister {
 					value[2], value[3], Integer.parseInt(value[4]));
 
 			products.add(new_product);
-			ProductsDatabase.getInstance().WriteFile();
 			return 0;
 		}
 		return 1;
