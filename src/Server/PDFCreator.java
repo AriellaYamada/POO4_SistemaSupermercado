@@ -97,7 +97,7 @@ public class PDFCreator {
 			table.addCell(newCell(ci.getProduct().getName(), Element.ALIGN_JUSTIFIED));
 
 			//Escreve quantidade do produto
-			table.addCell(newCell(ci.getReservedQtdAsStr());
+			table.addCell(newCell(ci.getReservedQtdAsStr()));
 
 			//Escreve preço unitário do produto
 			table.addCell(newCell(ci.getPriceAsStr(), Element.ALIGN_RIGHT));
