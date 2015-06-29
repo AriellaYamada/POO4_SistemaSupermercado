@@ -49,13 +49,10 @@ public class Main {
 		ci3.AddToCart(c2);
 		ci4.AddToCart(c2);
 
-		Sale sale1 = new Sale(user1, c1.ListAll());
-		Sale sale2 = new Sale(user2, c2.ListAll());
-
 		Sales sales = Sales.getInstance();
 
-		sales.AddSale(sale1);
-		sales.AddSale(sale2);
+		sales.Register(user1, c1.ListAll());
+		sales.Register(user2, c2.ListAll());
 
 		PDFCreator p = new PDFCreator();
 		p.CreatePDF("2015fevereiro", sales.getSales());
