@@ -130,7 +130,7 @@
                     </rowConstraints>
                      <children>
                         <Label style="-fx-text-fill: #fff;" text="Nome" />
-                        <TextField fx:id="f_edit_name" styleClass="default-field" stylesheets="@../../style.css" GridPane.columnIndex="1" />
+                        <TextField fx:id="f_edit_name" disable="true" styleClass="default-field" stylesheets="@../../style.css" GridPane.columnIndex="1" />
                         <Label layoutX="180.0" layoutY="17.0" style="-fx-text-fill: #fff;" text="Preço" GridPane.rowIndex="1" />
                         <TextField fx:id="f_edit_price" styleClass="default-field" stylesheets="@../../style.css" GridPane.columnIndex="1" GridPane.rowIndex="1" />
                         <Label layoutX="183.0" layoutY="57.0" style="-fx-text-fill: #fff;" text="Validade" GridPane.rowIndex="2" />
