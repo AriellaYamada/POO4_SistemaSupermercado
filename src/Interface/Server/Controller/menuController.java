@@ -30,5 +30,6 @@ public class menuController {
 	}
 
 	public void shutdownServer() {
+		System.exit(0);
 	}
 }
