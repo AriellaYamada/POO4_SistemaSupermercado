@@ -23,7 +23,7 @@ public class menuController {
 
 	public void listSell() {
 		try {
-			MainInterface.changeScene("Servidor/Model/saleList.fxml");
+			MainInterface.changeScene("Server/Model/saleList.fxml");
 		} catch (IOException e) {
 			System.out.println("Erro ao abrir a tela");
 		}

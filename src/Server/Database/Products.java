@@ -31,6 +31,7 @@ public class Products implements ListRegister {
 		if(checkProduct(name)) {
 			Product new_product = new Product(name, price, expiration, provider, quantity);
 			products.add(new_product);
+			ProductsDatabase.getInstance().WriteFile();
 			return 0;
 		}
 		return 1;
@@ -43,6 +44,7 @@ public class Products implements ListRegister {
 					value[2], value[3], Integer.parseInt(value[4]));
 
 			products.add(new_product);
+			ProductsDatabase.getInstance().WriteFile();
 			return 0;
 		}
 		return 1;

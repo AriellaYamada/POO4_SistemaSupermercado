@@ -43,7 +43,6 @@ public class saleListController {
 		c_date.setCellValueFactory(new PropertyValueFactory<>("date"));
 		c_items.setCellValueFactory(new PropertyValueFactory<>("numberItems"));
 		c_total_price.setCellValueFactory(new PropertyValueFactory<>("totalPrice"));
-
 		c_item_name.setCellValueFactory(new PropertyValueFactory<>("productName"));
 		c_item_amount.setCellValueFactory(new PropertyValueFactory<>("reservedQtd"));
 		c_item_price_unit.setCellValueFactory(new PropertyValueFactory<>("price"));

@@ -55,6 +55,8 @@ public class productListController implements Initializable {
 	@FXML
 	public void initialize(URL location, ResourceBundle resources) {
 		// Configura TableView
+		f_edit_name.setDisable(true);
+
 		c_name.setCellValueFactory(new PropertyValueFactory<>("name"));
 		c_price.setCellValueFactory(new PropertyValueFactory<>("price"));
 		c_expiration.setCellValueFactory(new PropertyValueFactory<>("expiration"));
@@ -122,7 +124,6 @@ public class productListController implements Initializable {
 
 	@FXML
 	public void confirm_edit() {
-		selected.setName(f_edit_name.getText());
 		selected.setExpiration(f_edit_expiration.getText());
 		selected.setPrice(f_edit_price.getText());
 		selected.setProvider(f_edit_provider.getText());

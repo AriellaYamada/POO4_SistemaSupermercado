@@ -4,7 +4,7 @@ import Client.Connection;
 
 public class Product {
 
-	private String name;
+	private static String name;
 	private Float price;
 	private String expiration;
 	private String provider;
@@ -48,6 +48,7 @@ public class Product {
 		if ((amount_real + amount) < 0) return -1;
 
 		amount_real += amount;
+		amount_virtual += amount;
 		return amount_real;
 	}
 
