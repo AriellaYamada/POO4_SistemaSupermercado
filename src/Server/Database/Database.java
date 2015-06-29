@@ -91,7 +91,7 @@ abstract public class Database {
 
 	public void WriteFile(String... value) { WriteFile(true, value); }
 
-	public void WriteFile(boolean append, String... value) {
+	public synchronized void WriteFile(boolean append, String... value) {
 		OpenWriter(append);
 		final String ENDLINE = "\n";
 
