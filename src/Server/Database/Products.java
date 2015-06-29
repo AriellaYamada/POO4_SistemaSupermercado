@@ -26,7 +26,7 @@ public class Products implements ListRegister {
 
 	public static List<Product> ListAll() { return products; }
 
-	public static int Register(String name, float price, String expiration, String provider, int quantity) {
+	public int Register(String name, float price, String expiration, String provider, int quantity) {
 
 		if(checkProduct(name)) {
 			Product new_product = new Product(name, price, expiration, provider, quantity);
