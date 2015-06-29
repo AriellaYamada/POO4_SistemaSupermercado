@@ -57,20 +57,10 @@ public class PDFCreator {
 			table.setSpacingAfter(0);
 
 			//Escreve a data
-			cell = new PdfPCell(new Phrase(s.getDate()));
-			cell.setMinimumHeight(20);
-			cell.setBorder(Rectangle.NO_BORDER);
-			cell.setHorizontalAlignment(Element.ALIGN_LEFT);
-			cell.setVerticalAlignment(Element.ALIGN_CENTER);
-			table.addCell(cell);
+			table.addCell(newCell(s.getDate(), Element.ALIGN_LEFT, false));
 
 			//Escreve o usuário
-			cell = new PdfPCell(new Phrase(s.getUser().getName()));
-			cell.setMinimumHeight(20);
-			cell.setBorder(Rectangle.NO_BORDER);
-			cell.setHorizontalAlignment(Element.ALIGN_RIGHT);
-			cell.setVerticalAlignment(Element.ALIGN_CENTER);
-			table.addCell(cell);
+			table.addCell(newCell(s.getUser().getName(), Element.ALIGN_RIGHT, false));
 
 			doc.add(table);
 
@@ -96,7 +86,6 @@ public class PDFCreator {
 		PdfPTable table = new PdfPTable(4); //4 colunas
 		table.setTotalWidth(new float[]{ 183, 100, 100, 100 });
 		table.setLockedWidth(true);
-		PdfPCell cell;
 
 		table.setSpacingBefore(0);
 		table.setSpacingAfter(5);
@@ -105,32 +94,16 @@ public class PDFCreator {
 		for (CartItem ci : products ) {
 
 			//Escreve nome do produto
-			cell = new PdfPCell(new Phrase(ci.getProduct().getName()));
-			cell.setMinimumHeight(20);
-			cell.setHorizontalAlignment(Element.ALIGN_JUSTIFIED);
-			cell.setVerticalAlignment(Element.ALIGN_CENTER);
-			table.addCell(cell);
+			table.addCell(newCell(ci.getProduct().getName(), Element.ALIGN_JUSTIFIED));
 
 			//Escreve quantidade do produto
-			cell = new PdfPCell(new Phrase(ci.getReservedQtdAsStr()));
-			cell.setMinimumHeight(20);
-			cell.setHorizontalAlignment(Element.ALIGN_CENTER);
-			cell.setVerticalAlignment(Element.ALIGN_CENTER);
-			table.addCell(cell);
+			table.addCell(newCell(ci.getReservedQtdAsStr(), Element.ALIGN_CENTER));
 
 			//Escreve preço unitário do produto
-			cell = new PdfPCell(new Phrase(ci.getPriceAsStr()));
-			cell.setMinimumHeight(20);
-			cell.setHorizontalAlignment(Element.ALIGN_RIGHT);
-			cell.setVerticalAlignment(Element.ALIGN_CENTER);
-			table.addCell(cell);
+			table.addCell(newCell(ci.getPriceAsStr(), Element.ALIGN_RIGHT));
 
 			//Escreve preço total do produto
-			cell = new PdfPCell(new Phrase(ci.getTotalPriceAsStr()));
-			cell.setMinimumHeight(20);
-			cell.setHorizontalAlignment(Element.ALIGN_RIGHT);
-			cell.setVerticalAlignment(Element.ALIGN_CENTER);
-			table.addCell(cell);
+			table.addCell(newCell(ci.getTotalPriceAsStr(), Element.ALIGN_RIGHT));
 		}
 
 		return table;
@@ -142,35 +115,29 @@ public class PDFCreator {
 		PdfPTable table = new PdfPTable(4); //4 colunas
 		table.setTotalWidth(new float[]{ 183, 100, 100, 100 });
 		table.setLockedWidth(true);
-		PdfPCell cell;
 
 		table.setSpacingBefore(5);
 		table.setSpacingAfter(0);
 
-		cell = new PdfPCell(new Phrase("Produto"));
-		cell.setMinimumHeight(20);
-		cell.setHorizontalAlignment(Element.ALIGN_CENTER);
-		cell.setVerticalAlignment(Element.ALIGN_CENTER);
-		table.addCell(cell);
-
-		cell = new PdfPCell(new Phrase("Quantidade"));
-		cell.setMinimumHeight(20);
-		cell.setHorizontalAlignment(Element.ALIGN_CENTER);
-		cell.setVerticalAlignment(Element.ALIGN_CENTER);
-		table.addCell(cell);
-
-		cell = new PdfPCell(new Phrase("Preço Unitário"));
-		cell.setMinimumHeight(20);
-		cell.setHorizontalAlignment(Element.ALIGN_CENTER);
-		cell.setVerticalAlignment(Element.ALIGN_CENTER);
-		table.addCell(cell);
-
-		cell = new PdfPCell(new Phrase("Preço Total"));
-		cell.setMinimumHeight(20);
-		cell.setHorizontalAlignment(Element.ALIGN_CENTER);
-		cell.setVerticalAlignment(Element.ALIGN_CENTER);
-		table.addCell(cell);
+		table.addCell(newCell("Produto", Element.ALIGN_CENTER));
+		table.addCell(newCell("Quantidade", Element.ALIGN_CENTER));
+		table.addCell(newCell("Preço Unitário", Element.ALIGN_CENTER));
+		table.addCell(newCell("Preço Total", Element.ALIGN_CENTER));
 
 		return table;
+	}
+	private PdfPCell newCell(String str, int horizontal) {
+		return newCell(str, horizontal, true);
+	}
+
+	private PdfPCell newCell(String str, int horizontal, boolean border ) {
+		PdfPCell cell = new PdfPCell(new Phrase(str));
+		cell.setMinimumHeight(20);
+		cell.setHorizontalAlignment(horizontal);
+		cell.setVerticalAlignment(Element.ALIGN_CENTER);
+
+		if( !border ) cell.setBorder(Rectangle.NO_BORDER);
+
+		return cell;
 	}
 }
