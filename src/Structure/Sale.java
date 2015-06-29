@@ -23,6 +23,7 @@ public class Sale {
 
 
 	public User getUser() { return user; }
+	public String getUserId() { return user.getId(); }
 	public List<CartItem> getProducts() { return products; }
 	public String getDate() { return date; }
 

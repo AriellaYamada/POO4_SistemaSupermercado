@@ -44,7 +44,6 @@ public class Products implements ListRegister {
 					value[2], value[3], Integer.parseInt(value[4]));
 
 			products.add(new_product);
-			ProductsDatabase.getInstance().WriteFile();
 			return 0;
 		}
 		return 1;
