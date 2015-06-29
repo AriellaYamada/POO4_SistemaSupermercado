@@ -22,6 +22,7 @@ public class ProductsDatabase extends Database {
 		WriteFile(false,HEADER);
 
 		for (Product p : Products.ListAll()) {
+			System.out.println(p.getName());
 			WriteFile(p.getName(),
 					Float.valueOf(p.getPrice()).toString(),
 					p.getExpiration(),
