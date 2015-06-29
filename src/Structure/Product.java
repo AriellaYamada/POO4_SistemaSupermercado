@@ -4,7 +4,7 @@ import Client.Connection;
 
 public class Product {
 
-	private String name;
+	private final String name;
 	private Float price;
 	private String expiration;
 	private String provider;
@@ -30,7 +30,6 @@ public class Product {
 	public String getAmountRealAsStr() { return Integer.toString(amount_real); }
 	public String getAmountVirtualAsStr() { return Integer.toString(amount_virtual); }
 
-	public void setName(String value) { name = value; }
 	public void setPrice(String value) { price = Float.parseFloat(value); }
 	public void setPrice(Float value) { price = value; }
 	public void setExpiration(String value) { expiration = value; }
@@ -48,6 +47,7 @@ public class Product {
 		if ((amount_real + amount) < 0) return -1;
 
 		amount_real += amount;
+		amount_virtual += amount;
 		return amount_real;
 	}
 
@@ -69,7 +69,17 @@ public class Product {
 		return false;
 	}
 
+	public synchronized void Sell(int qtd){
+		amount_real -= qtd;
+	}
+
 	public synchronized void CancelReservation(int qtd) {
 		amount_virtual += qtd;
+	}
+
+	public void selfRefresh() {
+		Connection.getInstance().SendSignal("selfrefresh" + Def.regSep + this.name);
+		String answer = Connection.getInstance().ReceiveSignal();
+		amount_real = amount_virtual = Integer.parseInt(answer);
 	}
 }

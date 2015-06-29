@@ -47,8 +47,6 @@ public class loginController {
 				Def.setError(getField(error[0]), error[1]);
 			}
 		}
-
-
 	}
 
 	@FXML
@@ -115,11 +113,7 @@ public class loginController {
 						}
 					}
 				} else {// If all data is ok
-					try {
-						MainInterface.changeScene("Client/Model/menu.fxml");
-					} catch (IOException e) {
-						System.err.println("Erro ao exibir a tela");
-					}
+					handleCleanBtn();
 				}
 			}
 		}

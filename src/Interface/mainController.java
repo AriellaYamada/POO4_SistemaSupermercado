@@ -21,6 +21,11 @@ public class mainController {
 		if (!port.isEmpty()) {
 			String[] str = new String[1];
 			str[0] = port;
+			try {
+				MainInterface.changeScene("Server/Model/menu.fxml");
+			} catch (IOException e) {
+				e.printStackTrace();
+			}
 			ServerMain.main(str);
 		}
 		else {

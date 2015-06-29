@@ -41,8 +41,7 @@ public class Client {
 				+ Def.fieldSep + email
 				+ Def.fieldSep + id
 				+ Def.fieldSep + password;
-
-		System.out.println(signal);
+		
 		Connection.getInstance().SendSignal(signal);
 
 		return Connection.getInstance().ReceiveSignal();
@@ -80,8 +79,12 @@ public class Client {
 	}
 
 	static public void Logout () {
+		Connection.getInstance().SendSignal("logout");
+		Connection.getInstance().ReceiveSignal();
+		Connection.getInstance().CloseConnectionClient();
 		logged = false;
 		id = null;
 		name = null;
+		System.exit(0);
 	}
 }

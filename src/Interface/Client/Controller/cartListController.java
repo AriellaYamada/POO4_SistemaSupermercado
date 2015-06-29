@@ -7,6 +7,7 @@ import Structure.Product;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
+import javafx.fxml.Initializable;
 import javafx.scene.control.Label;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
@@ -18,7 +19,7 @@ import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 
-public class cartListController {
+public class cartListController implements Initializable {
 
 	@FXML public Label l_total_value;
 	@FXML public VBox alertDialog;
@@ -43,7 +44,7 @@ public class cartListController {
 		c_price.setCellValueFactory(new PropertyValueFactory<>("price"));
 		c_expiration.setCellValueFactory(new PropertyValueFactory<>("expiration"));
 		c_provider.setCellValueFactory(new PropertyValueFactory<>("provider"));
-		c_amount.setCellValueFactory(new PropertyValueFactory<>("Amount_virtual"));
+		c_amount.setCellValueFactory(new PropertyValueFactory<>("amount_virtual"));
 
 		tv_table.setItems(data);
 
@@ -57,7 +58,7 @@ public class cartListController {
 
 	@FXML
 	void dismiss() {
-		alert.setVisible(false);
+		alertDialog.setVisible(false);
 		clearDialog.setVisible(false);
 		confirmDialog.setVisible(false);
 	}
@@ -82,12 +83,18 @@ public class cartListController {
 
 	@FXML
 	public void confirmClear() {
+		Connection.getInstance().SendSignal("clearcart");
+		Connection.getInstance().ReceiveSignal();
+		refresh();
+		clearDialog.setVisible(false);
 	}
 
 	@FXML
 	public void confirmEndSale() {
 		Connection.getInstance().SendSignal("sell");
-		String response = Connection.getInstance().ReceiveSignal();
+		Connection.getInstance().ReceiveSignal();
+		confirmDialog.setVisible(false);
+		refresh();
 	}
 
 	public void refresh(){
@@ -99,15 +106,17 @@ public class cartListController {
 		//Resposta do servidor com todos os produtos
 		String response = Connection.getInstance().ReceiveSignal();
 
-		String[] products = Def.splitReg(response);
-		for (String s : products) {
-			String[] splited = Def.splitField(s);
-			data.add(new Product(splited[0],
-							Float.parseFloat(splited[1]),
-							splited[2],
-							splited[3],
-							Integer.parseInt(splited[4]))
-			);
+		if (!response.equals("")) {
+			String[] products = Def.splitReg(response);
+			for (String s : products) {
+				String[] splited = Def.splitField(s);
+				data.add(new Product(splited[0],
+								Float.parseFloat(splited[1]),
+								splited[2],
+								splited[3],
+								Integer.parseInt(splited[4]))
+				);
+			}
 		}
 	}
 }

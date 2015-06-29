@@ -13,12 +13,16 @@ public class ProductsDatabase extends Database {
 		return productsDB;
 	}
 
-	public ProductsDatabase() { OpenFile("products.csv"); }
+	private ProductsDatabase() {
+		HEADER = "name,price,expiration,provider,quantity";
+		OpenFile("products.csv");
+	}
 
 	public void WriteFile() {
-		WriteFile("name","price","expiration","provider","quantity");
+		WriteFile(false,HEADER);
 
-		for (Product p : Products.getInstance().ListAll()) {
+		for (Product p : Products.ListAll()) {
+			System.out.println(p.getName());
 			WriteFile(p.getName(),
 					Float.valueOf(p.getPrice()).toString(),
 					p.getExpiration(),

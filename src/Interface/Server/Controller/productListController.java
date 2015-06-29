@@ -42,7 +42,8 @@ public class productListController implements Initializable {
 	@FXML private TableColumn<Product, Float> c_price;
 	@FXML private TableColumn<Product, String> c_expiration;
 	@FXML private TableColumn<Product, String> c_provider;
-	@FXML private TableColumn<Product, Integer> c_amount;
+	@FXML private TableColumn<Product, Integer> c_amount_real;
+	@FXML private TableColumn<Product, Integer> c_amount_virtual;
 
 	@FXML private VBox alert;
 	@FXML private Text alert_product_name;
@@ -54,11 +55,14 @@ public class productListController implements Initializable {
 	@FXML
 	public void initialize(URL location, ResourceBundle resources) {
 		// Configura TableView
+		f_edit_name.setDisable(true);
+
 		c_name.setCellValueFactory(new PropertyValueFactory<>("name"));
 		c_price.setCellValueFactory(new PropertyValueFactory<>("price"));
 		c_expiration.setCellValueFactory(new PropertyValueFactory<>("expiration"));
 		c_provider.setCellValueFactory(new PropertyValueFactory<>("provider"));
-		c_amount.setCellValueFactory(new PropertyValueFactory<>("quantity"));
+		c_amount_real.setCellValueFactory(new PropertyValueFactory<>("amount_real"));
+		c_amount_virtual.setCellValueFactory(new PropertyValueFactory<>("amount_virtual"));
 
 		tv_table.setItems(data);
 
@@ -66,18 +70,9 @@ public class productListController implements Initializable {
 	}
 
 	@FXML
-	public void salesCart() {
-		try {
-			MainInterface.changeScene("Client/Model/cartList.fxml");
-		} catch (IOException e) {
-			System.err.println("Erro ao exibir tela");
-		}
-	}
-
-	@FXML
 	public void backToMenu() {
 		try {
-			MainInterface.changeScene("Client/Model/menu.fxml");
+			MainInterface.changeScene("Server/Model/menu.fxml");
 		} catch (IOException e) {
 			System.err.println("Erro ao exibir tela");
 		}
@@ -86,12 +81,14 @@ public class productListController implements Initializable {
 	@FXML
 	void dismiss() {
 		alert.setVisible(false);
+		modal_edit.setVisible(false);
+		modal_new.setVisible(false);
 	}
 
 	@FXML
 	public void refresh() {
 		data.clear();
-		data.addAll(Products.getInstance().ListAll());
+		data.addAll(Products.ListAll());
 	}
 
 	@FXML
@@ -101,13 +98,13 @@ public class productListController implements Initializable {
 
 	@FXML
 	public void showEdit() {
-		modal_edit.setVisible(true);
 		selected = tv_table.getSelectionModel().getSelectedItem();
 		f_edit_name.setText(selected.getName());
 		f_edit_price.setText(selected.getPriceAsStr());
 		f_edit_expiration.setText(selected.getExpiration());
 		f_edit_provider.setText(selected.getProvider());
 		l_amount_now.setText(selected.getAmountRealAsStr());
+		modal_edit.setVisible(true);
 	}
 
 	@FXML
@@ -127,13 +124,24 @@ public class productListController implements Initializable {
 
 	@FXML
 	public void confirm_edit() {
-		selected.setName(f_edit_name.getText());
 		selected.setExpiration(f_edit_expiration.getText());
 		selected.setPrice(f_edit_price.getText());
 		selected.setProvider(f_edit_provider.getText());
+		modal_edit.setVisible(false);
 	}
 
 	@FXML
 	public void confirm_new() {
+		if (Products.checkProduct(f_new_name.getText())) {
+			Products.getInstance().Register(f_new_name.getText(),
+					f_new_price.getText(),
+					f_new_expiration.getText(),
+					f_new_provider.getText(),
+					f_new_amount.getText()
+			);
+			refresh();
+			modal_new.setVisible(false);
+		}
+		else Def.setError(f_new_name, "Já existe um produto com este nome.");
 	}
 }
