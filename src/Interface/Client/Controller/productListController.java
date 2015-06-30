@@ -38,6 +38,10 @@ public class productListController {
 
 		tv_table.setItems(data);
 
+		tv_table.setOnMouseClicked(event -> {
+			if (event.getClickCount() == 2) addCart();
+		});
+
 		refresh();
 	}
 

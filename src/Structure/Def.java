@@ -84,79 +84,79 @@ public class Def {
 	}
 
 	public static String validate (String text, FieldType TYPE, boolean required) {
-		if (required) if (text.isEmpty()) return "Este campo È obrigatÛrio";
-		if (text.contains(",")) return "Este campo contÈm um caractere inv·lido (vÌrgula)";
+		if (required) if (text.isEmpty()) return "Este campo √© obrigat√≥rio";
+		if (text.contains(",")) return "Este campo cont√©m um caractere inv√°lido (v√≠rgula)";
 
 		Integer i;
 		Float f;
 
 		switch (TYPE){
 			case INTEGER:
-				if (checkInteger(text) == null) return "Este campo n„o È um inteiro v·lido";
+				if (checkInteger(text) == null) return "Este campo n√£o √© um inteiro v√°lido";
 				return "ok";
 
 			case INTEGER_POSITIVE:
 				i = checkInteger(text);
-				if (i == null) return "Este campo n„o È um inteiro v·lido";
+				if (i == null) return "Este campo n√£o √© um inteiro v√°lido";
 				if (i < 0) return "Este campo precisa ser positivo ou zero";
 				return "ok";
 
 			case INTEGER_NEGATIVE:
 				i = checkInteger(text);
-				if (i == null) return "Este campo n„o È um inteiro v·lido";
+				if (i == null) return "Este campo n√£o √© um inteiro v√°lido";
 				if (i > 0) return "Este campo precisa ser negativo ou zero";
 				return "ok";
 
 			case INTEGER_NON_ZERO:
 				i = checkInteger(text);
-				if (i == null) return "Este campo n„o È um inteiro v·lido";
+				if (i == null) return "Este campo n√£o √© um inteiro v√°lido";
 				if (i == 0) return "Este campo precisa ser diferente de zero";
 				return "ok";
 
 			case INTEGER_POSITIVE_NON_ZERO:
 				i = checkInteger(text);
-				if (i == null) return "Este campo n„o È um inteiro v·lido";
-				if (i <= 0) return "Este campo precisa ser positivo n„o-zero";
+				if (i == null) return "Este campo n√£o √© um inteiro v√°lido";
+				if (i <= 0) return "Este campo precisa ser positivo n√£o-zero";
 				return "ok";
 
 			case INTEGER_NEGATIVE_NON_ZERO:
 				i = checkInteger(text);
-				if (i == null) return "Este campo n„o È um inteiro v·lido";
-				if (i >= 0) return "Este campo precisa ser negativo n„o-zero";
+				if (i == null) return "Este campo n√£o √© um inteiro v√°lido";
+				if (i >= 0) return "Este campo precisa ser negativo n√£o-zero";
 				return "ok";
 
 			case FLOAT:
-				if (checkFloat(text) == null) return "Este campo n„o È um float v·lido";
+				if (checkFloat(text) == null) return "Este campo n√£o √© um float v√°lido";
 				return "ok";
 
 			case FLOAT_POSITIVE:
 				f = checkFloat(text);
-				if (f == null) return "Este campo n„o È um float v·lido";
+				if (f == null) return "Este campo n√£o √© um float v√°lido";
 				if (f < 0) return "Este campo precisa ser positivo ou zero";
 				return "ok";
 
 			case FLOAT_NEGATIVE:
 				f = checkFloat(text);
-				if (f == null) return "Este campo n„o È um float v·lido";
+				if (f == null) return "Este campo n√£o √© um float v√°lido";
 				if (f > 0) return "Este campo precisa ser negativo ou zero";
 				return "ok";
 
 			case FLOAT_NON_ZERO:
 				f = checkFloat(text);
-				if (f == null) return "Este campo n„o È um float v·lido";
+				if (f == null) return "Este campo n√£o √© um float v√°lido";
 				if (f == 0) return "Este campo precisa ser diferente de zero";
 				return "ok";
 
 			case FLOAT_POSITIVE_NON_ZERO:
 				f = checkFloat(text);
-				if (f == null) return "Este campo n„o È um float v·lido";
-				if (f <= 0) return "Este campo precisa ser positivo n„o-zero";
+				if (f == null) return "Este campo n√£o √© um float v√°lido";
+				if (f <= 0) return "Este campo precisa ser positivo n√£o-zero";
 				return "ok";
 
 			case FLOAT_NEGATIVE_NON_ZERO:
 				f = checkFloat(text);
-				if (f == null) return "Este campo n„o È um float v·lido";
-				if (f >= 0) return "Este campo precisa ser negativo n„o-zero";
+				if (f == null) return "Este campo n√£o √© um float v√°lido";
+				if (f >= 0) return "Este campo precisa ser negativo n√£o-zero";
 				return "ok";
 
 			case DATE:
@@ -165,9 +165,9 @@ public class Def {
 
 			case PRICE:
 				f = checkFloat(text);
-				if (f == null) return "PreÁo inv·lido";
-				if (f <= 0) return "O preÁo precisa ser positivo n„o-zero";
-				if (!checkDecimals(text, 2)) return "O preÁo sÛ pode ter 2 casas decimais";
+				if (f == null) return "Pre√ßo inv√°lido";
+				if (f <= 0) return "O pre√ßo precisa ser positivo n√£o-zero";
+				if (!checkDecimals(text, 2)) return "O pre√ßo s√≥ pode ter 2 casas decimais";
 				return "ok";
 
 		}
@@ -229,7 +229,7 @@ public class Def {
 		months.add(0, null);
 		months.add(1, "Janeiro");
 		months.add(2, "Fevereiro");
-		months.add(3, "MarÁo");
+		months.add(3, "Mar√ßo");
 		months.add(4, "Abril");
 		months.add(5, "Maio");
 		months.add(6, "Junho");

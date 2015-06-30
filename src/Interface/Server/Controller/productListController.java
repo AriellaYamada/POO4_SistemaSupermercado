@@ -34,7 +34,7 @@ public class productListController {
 
 	@FXML private TableView<Product> tv_table;
 	@FXML private TableColumn<Product, String> c_name;
-	@FXML private TableColumn<Product, Float> c_price;
+	@FXML private TableColumn<Product, String> c_price;
 	@FXML private TableColumn<Product, String> c_expiration;
 	@FXML private TableColumn<Product, String> c_provider;
 	@FXML private TableColumn<Product, Integer> c_amount_real;
@@ -47,16 +47,18 @@ public class productListController {
 	@FXML
 	public void initialize() {
 		// Configura TableView
-		f_edit_name.setDisable(true);
-
 		c_name.setCellValueFactory(new PropertyValueFactory<>("name"));
-		c_price.setCellValueFactory(new PropertyValueFactory<>("price"));
+		c_price.setCellValueFactory(new PropertyValueFactory<>("priceAsStr"));
 		c_expiration.setCellValueFactory(new PropertyValueFactory<>("expiration"));
 		c_provider.setCellValueFactory(new PropertyValueFactory<>("provider"));
 		c_amount_real.setCellValueFactory(new PropertyValueFactory<>("amount_real"));
 		c_amount_virtual.setCellValueFactory(new PropertyValueFactory<>("amount_virtual"));
 
 		tv_table.setItems(data);
+
+		tv_table.setOnMouseClicked(event -> {
+			if (event.getClickCount() == 2) showEdit();
+		});
 
 		refresh();
 	}
@@ -87,8 +89,10 @@ public class productListController {
 
 	@FXML
 	public void showEdit() {
-		Def.clearErrorStyle(f_edit_name, f_edit_price, f_edit_expiration.getEditor(), f_edit_provider);
 		selected = tv_table.getSelectionModel().getSelectedItem();
+		if (selected == null) return;
+
+		Def.clearErrorStyle(f_edit_name, f_edit_price, f_edit_expiration.getEditor(), f_edit_provider);
 
 		f_edit_name.setText(selected.getName());
 		f_edit_price.setText(selected.getPriceAsStr());

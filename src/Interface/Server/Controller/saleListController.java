@@ -53,17 +53,22 @@ public class saleListController {
 		c_name.setCellValueFactory(new PropertyValueFactory<>("userId"));
 		c_date.setCellValueFactory(new PropertyValueFactory<>("date"));
 		c_items.setCellValueFactory(new PropertyValueFactory<>("numberItems"));
-		c_total_price.setCellValueFactory(new PropertyValueFactory<>("totalPrice"));
+		c_total_price.setCellValueFactory(new PropertyValueFactory<>("totalPriceAsStr"));
+
 		c_item_name.setCellValueFactory(new PropertyValueFactory<>("productName"));
 		c_item_amount.setCellValueFactory(new PropertyValueFactory<>("reservedQtd"));
-		c_item_price_unit.setCellValueFactory(new PropertyValueFactory<>("price"));
-		c_item_price_total.setCellValueFactory(new PropertyValueFactory<>("totalPrice"));
+		c_item_price_unit.setCellValueFactory(new PropertyValueFactory<>("priceAsStr"));
+		c_item_price_total.setCellValueFactory(new PropertyValueFactory<>("totalPriceAsStr"));
 
 		tv_table.setItems(data);
 		tv_item.setItems(items);
 
 		f_month.setItems(months);
 		f_year.setItems(years);
+
+		tv_table.setOnMouseClicked(event -> {
+			if (event.getClickCount() == 2) detail();
+		});
 
 		refresh();
 	}
@@ -81,12 +86,14 @@ public class saleListController {
 
 	@FXML
 	void detail() {
-		items.clear();
 		Sale selected = tv_table.getSelectionModel().getSelectedItem();
+		if (selected == null) return;
+
+		items.clear();
 		l_name.setText(selected.getUser().getName());
 		l_date.setText(selected.getDate());
 		items.addAll(selected.getProducts());
-		l_total_price.setText(Float.toString(selected.getTotalPrice()));
+		l_total_price.setText(selected.getTotalPriceAsStr());
 
 		modal_details.setVisible(true);
 	}
