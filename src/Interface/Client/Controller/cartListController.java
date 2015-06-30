@@ -64,12 +64,14 @@ public class cartListController {
 
 	@FXML
 	public void showClearDialog() {
-		clearDialog.setVisible(true);
+		if (!data.isEmpty())
+			clearDialog.setVisible(true);
 	}
 
 	@FXML
 	public void showConfirmDialog() {
-		confirmDialog.setVisible(true);
+		if (!data.isEmpty())
+			confirmDialog.setVisible(true);
 	}
 
 	@FXML
@@ -91,13 +93,15 @@ public class cartListController {
 	public void refresh(){
 		data.clear();
 
+		Float value = 0f;
+
 		// Requisitar a lista de produtos para o servidor
 		Connection.getInstance().SendSignal("listcart");
 
 		//Resposta do servidor com todos os produtos
 		String response = Connection.getInstance().ReceiveSignal();
 
-		if (!response.equals("")) {
+		if (!response.isEmpty()) {
 			String[] products = Def.splitReg(response);
 			for (String s : products) {
 				String[] splited = Def.splitField(s);
@@ -108,10 +112,10 @@ public class cartListController {
 								Integer.parseInt(splited[4]))
 				);
 			}
+
+			for (Product p : data)
+				value += p.getPrice()*p.getAmount_virtual();
 		}
-		Float value = 0f;
-		for (Product p : data)
-			value += p.getPrice()*p.getAmount_virtual();
 
 		l_total_value.setText(String.format("%.2f", value));
 	}

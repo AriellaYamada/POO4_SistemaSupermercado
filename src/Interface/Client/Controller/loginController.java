@@ -55,10 +55,10 @@ public class loginController {
 		Def.clearErrorStyle(f_name, f_address, f_tel, f_email, f_id, f_password, f_confirmp);
 
 		boolean valid  = validateField(f_name,      TEXT);
-		valid = valid && validateField(f_address, TEXT);
-		valid = valid && validateField(f_tel, TEXT);
-		valid = valid && validateField(f_email, EMAIL);
-		valid = valid && validateField(f_id, TEXT);
+		valid = valid && validateField(f_address,   TEXT);
+		valid = valid && validateField(f_tel,       TEXT);
+		valid = valid && validateField(f_email,     EMAIL);
+		valid = valid && validateField(f_id,        TEXT);
 		valid = valid && validateField(f_password,  TEXT);
 		valid = valid && validateField(f_confirmp,  TEXT);
 

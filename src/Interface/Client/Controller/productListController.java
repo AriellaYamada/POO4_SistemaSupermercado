@@ -56,6 +56,8 @@ public class productListController {
 		// Pegar o elemento que está selecionado no TableView
 		Product p = tv_table.getSelectionModel().getSelectedItem();
 
+		if (p == null) return;
+
 		//Solicita a reserva no servidor
 		if (!p.RequestReservation(1)) {
 			alert_product_name.setText(p.getName());
@@ -85,15 +87,17 @@ public class productListController {
 		//Resposta do servidor com todos os produtos
 		String response = Connection.getInstance().ReceiveSignal();
 
-		String[] products = Def.splitReg(response);
-		for (String s : products) {
-			String[] splited = Def.splitField(s);
-			data.add(new Product(splited[0],
-					Float.parseFloat(splited[1]),
-					splited[2],
-					splited[3],
-					Integer.parseInt(splited[4]))
-			);
+		if (!response.isEmpty()) {
+			String[] products = Def.splitReg(response);
+			for (String s : products) {
+				String[] splited = Def.splitField(s);
+				data.add(new Product(splited[0],
+								Float.parseFloat(splited[1]),
+								splited[2],
+								splited[3],
+								Integer.parseInt(splited[4]))
+				);
+			}
 		}
 	}
 }

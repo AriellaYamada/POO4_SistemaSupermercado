@@ -69,10 +69,10 @@ public class Products implements ListRegister {
 		String response = "";
 		for(Product p : products) {
 			response += p.getName() + Def.fieldSep
-					+ p.getPriceAsStr() + Def.fieldSep
+					+ p.getPrice() + Def.fieldSep
 					+ p.getExpiration() + Def.fieldSep
 					+ p.getProvider() + Def.fieldSep
-					+ p.getAmountVirtualAsStr() + Def.regSep;
+					+ p.getAmount_virtual() + Def.regSep;
 		}
 		return response;
 	}
