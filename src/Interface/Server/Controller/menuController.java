@@ -2,31 +2,17 @@ package Interface.Server.Controller;
 
 import Interface.MainInterface;
 
-import java.io.IOException;
-
 public class menuController {
 	public void listProducts() {
-		try {
-			MainInterface.changeScene("Server/Model/productList.fxml");
-		} catch (IOException e) {
-			System.err.println("Erro ao exibir tela");
-		}
+		MainInterface.changeSceneWE("Server/Model/productList.fxml");
 	}
 
 	public void listClients() {
-		try {
-			MainInterface.changeScene("Server/Model/userList.fxml");
-		} catch (IOException e) {
-			System.out.println("Erro ao abrir a tela");
-		}
+		MainInterface.changeSceneWE("Server/Model/userList.fxml");
 	}
 
 	public void listSell() {
-		try {
-			MainInterface.changeScene("Server/Model/saleList.fxml");
-		} catch (IOException e) {
-			System.out.println("Erro ao abrir a tela");
-		}
+		MainInterface.changeSceneWE("Server/Model/saleList.fxml");
 	}
 
 	public void shutdownServer() {

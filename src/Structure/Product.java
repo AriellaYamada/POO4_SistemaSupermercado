@@ -26,7 +26,7 @@ public class Product {
 	public int getAmount_virtual() { return amount_virtual; }
 	public String getExpiration() { return expiration; }
 
-	public String getPriceAsStr() { return Float.toString(price); }
+	public String getPriceAsStr() { return String.format("%.2f", price); }
 	public String getAmountRealAsStr() { return Integer.toString(amount_real); }
 	public String getAmountVirtualAsStr() { return Integer.toString(amount_virtual); }
 

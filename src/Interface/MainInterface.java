@@ -23,6 +23,15 @@ public class MainInterface extends Application {
 		launch(args);
 	}
 
+	// Same as changeScene, Without Exception
+	public static void changeSceneWE(String file){
+		try {
+			changeScene(file);
+		} catch (IOException e) {
+			System.out.println("Erro ao abrir a tela");
+		}
+	}
+
 	public static void changeScene(String file) throws IOException{
 		Parent root = FXMLLoader.load(MainInterface.class.getResource(file));
 		stg.setScene(new Scene(root));

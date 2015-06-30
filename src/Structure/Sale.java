@@ -39,5 +39,19 @@ public class Sale {
 		return total;
 	}
 
-	public String getTotalPriceAsStr() { return Float.toString(getTotalPrice()); }
+	public int getYear(){
+		String[] splited = date.split("/");
+		return Integer.parseInt(splited[2]);
+	}
+	public int getMonth(){
+		String[] splited = date.split("/");
+		return Integer.parseInt(splited[1]);
+	}
+
+	public int getDay(){
+		String[] splited = date.split("/");
+		return Integer.parseInt(splited[0]);
+	}
+
+	public String getTotalPriceAsStr() { return String.format("%.2f", getTotalPrice()); }
 }

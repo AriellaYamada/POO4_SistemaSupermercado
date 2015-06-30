@@ -130,11 +130,11 @@
                     </rowConstraints>
                      <children>
                         <Label style="-fx-text-fill: #fff;" text="Nome" />
-                        <TextField fx:id="f_edit_name" styleClass="default-field" stylesheets="@../../style.css" GridPane.columnIndex="1" />
+                        <TextField fx:id="f_edit_name" disable="true" styleClass="default-field" stylesheets="@../../style.css" GridPane.columnIndex="1" />
                         <Label layoutX="180.0" layoutY="17.0" style="-fx-text-fill: #fff;" text="Preço" GridPane.rowIndex="1" />
                         <TextField fx:id="f_edit_price" styleClass="default-field" stylesheets="@../../style.css" GridPane.columnIndex="1" GridPane.rowIndex="1" />
                         <Label layoutX="183.0" layoutY="57.0" style="-fx-text-fill: #fff;" text="Validade" GridPane.rowIndex="2" />
-                        <TextField fx:id="f_edit_expiration" styleClass="default-field" stylesheets="@../../style.css" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+                        <DatePicker fx:id="f_edit_expiration" maxWidth="1.7976931348623157E308" styleClass="default-field" stylesheets="@../../style.css" GridPane.columnIndex="1" GridPane.rowIndex="2" />
                         <Label layoutX="167.0" layoutY="97.0" style="-fx-text-fill: #fff;" text="Fornecedor" GridPane.rowIndex="3" />
                         <TextField fx:id="f_edit_provider" styleClass="default-field" stylesheets="@../../style.css" GridPane.columnIndex="1" GridPane.rowIndex="3" />
                         <Label layoutX="152.0" layoutY="137.0" style="-fx-text-fill: #fff;" text="Quantidade" GridPane.rowIndex="4" />
@@ -212,11 +212,11 @@
                         <Label layoutX="180.0" layoutY="17.0" style="-fx-text-fill: #fff;" text="Preço" GridPane.rowIndex="1" />
                         <TextField fx:id="f_new_price" styleClass="default-field" stylesheets="@../../style.css" GridPane.columnIndex="1" GridPane.rowIndex="1" />
                         <Label layoutX="183.0" layoutY="57.0" style="-fx-text-fill: #fff;" text="Validade" GridPane.rowIndex="2" />
-                        <TextField fx:id="f_new_expiration" styleClass="default-field" stylesheets="@../../style.css" GridPane.columnIndex="1" GridPane.rowIndex="2" />
-                        <Label layoutX="167.0" layoutY="97.0" style="-fx-text-fill: #fff;" text="Fornecedor" GridPane.rowIndex="3" />
+                        <DatePicker fx:id="f_new_expiration" maxWidth="1.7976931348623157E308" styleClass="default-field" stylesheets="@../../style.css" GridPane.columnIndex="1" GridPane.hgrow="ALWAYS" GridPane.rowIndex="2" />
+                        <Label style="-fx-text-fill: #fff;" text="Fornecedor" GridPane.rowIndex="3" />
                         <TextField fx:id="f_new_provider" styleClass="default-field" stylesheets="@../../style.css" GridPane.columnIndex="1" GridPane.rowIndex="3" />
-                        <Label layoutX="152.0" layoutY="137.0" style="-fx-text-fill: #fff;" text="Quantidade" GridPane.rowIndex="4" />
-                        <TextField fx:id="f_new_amount" styleClass="default-field" stylesheets="@../../style.css" GridPane.columnIndex="1" GridPane.rowIndex="4" HBox.hgrow="ALWAYS" />
+                        <Label style="-fx-text-fill: #fff;" text="Quantidade" GridPane.rowIndex="4" />
+                        <TextField fx:id="f_new_amount" styleClass="default-field" stylesheets="@../../style.css" GridPane.columnIndex="1" GridPane.rowIndex="4" />
                      </children>
                      <columnConstraints>
                         <ColumnConstraints halignment="RIGHT" hgrow="SOMETIMES" maxWidth="-Infinity" minWidth="10.0" prefWidth="90.0" />

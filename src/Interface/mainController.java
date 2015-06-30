@@ -16,51 +16,39 @@ public class mainController {
 
 	@FXML
 	public void connectAsServer() {
-		String port = serverPort.getText();
+		Def.clearErrorStyle(serverPort);
 
-		if (!port.isEmpty()) {
+		boolean valid = Def.validateField(serverPort, Def.FieldType.INTEGER_POSITIVE_NON_ZERO);
+
+		if (valid){ // Start Server
 			String[] str = new String[1];
-			str[0] = port;
-			try {
-				MainInterface.changeScene("Server/Model/menu.fxml");
-			} catch (IOException e) {
-				e.printStackTrace();
-			}
+			str[0] = serverPort.getText();
+			MainInterface.changeSceneWE("Server/Model/menu.fxml");
 			ServerMain.main(str);
-		}
-		else {
-			Def.setError(serverPort, "Este campo é obrigatório");
 		}
 	}
 
 	@FXML
 	public void connectAsClient() {
-		String ip = clientIP.getText();
-		String port = clientPort.getText();
+		Def.clearErrorStyle(clientIP, clientPort);
 
-		if (port.isEmpty()){
-			Def.setError(clientPort, "Este campo é obrigatório");
-		}
+		boolean valid;
+		valid = Def.validateField(clientIP, Def.FieldType.IP);
+		valid = valid && Def.validateField(clientPort, Def.FieldType.INTEGER_POSITIVE_NON_ZERO);
 
-		if (ip.isEmpty()){
-			Def.setError(clientIP, "Este campo é obrigatório");
-		}
-
-		if (!port.isEmpty() && !ip.isEmpty()){
+		if (valid) {    // Try to connect Server
 			String[] str = new String[2];
-			str[0] = ip;
-			str[1] = port;
+			str[0] = clientIP.getText();
+			str[1] = clientPort.getText();
+
+			MainInterface.changeSceneWE("waitingConnection.fxml");
 			try {
-				MainInterface.changeScene("waitingConnection.fxml");
 				ClientMain.main(str);
-				MainInterface.changeScene("Client/Model/login.fxml");
+				MainInterface.changeSceneWE("Client/Model/login.fxml");
 			} catch (IOException e) {
-				try {
-					MainInterface.changeScene("main.fxml");
-				} catch (IOException e1) {
-					System.err.println("Erro ao exibir tela");
-				}
+				System.out.println("Não foi possível conectar ao servidor");
 			}
+
 		}
 	}
 }

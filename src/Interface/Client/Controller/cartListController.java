@@ -7,7 +7,6 @@ import Structure.Product;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
-import javafx.fxml.Initializable;
 import javafx.scene.control.Label;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
@@ -15,11 +14,7 @@ import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.VBox;
 import javafx.scene.text.Text;
 
-import java.io.IOException;
-import java.net.URL;
-import java.util.ResourceBundle;
-
-public class cartListController implements Initializable {
+public class cartListController {
 
 	@FXML public Label l_total_value;
 	@FXML public VBox alertDialog;
@@ -38,7 +33,7 @@ public class cartListController implements Initializable {
 	private ObservableList<Product> data = FXCollections.observableArrayList();
 
 	@FXML
-	public void initialize(URL location, ResourceBundle resources) {
+	public void initialize() {
 		// Configura TableView
 		c_name.setCellValueFactory(new PropertyValueFactory<>("name"));
 		c_price.setCellValueFactory(new PropertyValueFactory<>("price"));
@@ -64,21 +59,19 @@ public class cartListController implements Initializable {
 	}
 
 	public void backToMenu() {
-		try {
-			MainInterface.changeScene("Client/Model/menu.fxml");
-		} catch (IOException e) {
-			System.err.println("Erro ao exibir tela");
-		}
+		MainInterface.changeSceneWE("Client/Model/menu.fxml");
 	}
 
 	@FXML
 	public void showClearDialog() {
-		clearDialog.setVisible(true);
+		if (!data.isEmpty())
+			clearDialog.setVisible(true);
 	}
 
 	@FXML
 	public void showConfirmDialog() {
-		confirmDialog.setVisible(true);
+		if (!data.isEmpty())
+			confirmDialog.setVisible(true);
 	}
 
 	@FXML
@@ -100,13 +93,15 @@ public class cartListController implements Initializable {
 	public void refresh(){
 		data.clear();
 
+		Float value = 0f;
+
 		// Requisitar a lista de produtos para o servidor
 		Connection.getInstance().SendSignal("listcart");
 
 		//Resposta do servidor com todos os produtos
 		String response = Connection.getInstance().ReceiveSignal();
 
-		if (!response.equals("")) {
+		if (!response.isEmpty()) {
 			String[] products = Def.splitReg(response);
 			for (String s : products) {
 				String[] splited = Def.splitField(s);
@@ -117,6 +112,11 @@ public class cartListController implements Initializable {
 								Integer.parseInt(splited[4]))
 				);
 			}
+
+			for (Product p : data)
+				value += p.getPrice()*p.getAmount_virtual();
 		}
+
+		l_total_value.setText(String.format("%.2f", value));
 	}
 }

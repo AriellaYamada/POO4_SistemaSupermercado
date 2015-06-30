@@ -23,7 +23,9 @@ public class Sales implements ListRegister{
 		return salesDB;
 	}
 
-	public static List<Sale> getSales() { return sales; }
+	public static List<Sale> getSales() {
+		return sales;
+	}
 
 	public int Register(String... value){
 		User user = Users.SearchUser(value[1]);

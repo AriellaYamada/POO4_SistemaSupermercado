@@ -1,27 +1,19 @@
 package Interface.Client.Controller;
 
+import Client.Connection;
 import Interface.MainInterface;
 import Structure.Def;
 import Structure.Product;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
-
-import Client.Connection;
-
-import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.fxml.Initializable;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.VBox;
 import javafx.scene.text.Text;
 
-import java.io.IOException;
-import java.net.URL;
-import java.util.ResourceBundle;
-
-public class productListController implements Initializable {
+public class productListController {
 
 	@FXML private TableView<Product> tv_table;
 	@FXML private TableColumn<Product, String> c_name;
@@ -36,7 +28,7 @@ public class productListController implements Initializable {
 	ObservableList<Product> data = FXCollections.observableArrayList();
 
 	@FXML
-	public void initialize(URL location, ResourceBundle resources) {
+	public void initialize() {
 		// Configura TableView
 		c_name.setCellValueFactory(new PropertyValueFactory<>("name"));
 		c_price.setCellValueFactory(new PropertyValueFactory<>("price"));
@@ -46,31 +38,29 @@ public class productListController implements Initializable {
 
 		tv_table.setItems(data);
 
+		tv_table.setOnMouseClicked(event -> {
+			if (event.getClickCount() == 2) addCart();
+		});
+
 		refresh();
 	}
 
 	@FXML
 	public void salesCart() {
-		try {
-			MainInterface.changeScene("Client/Model/cartList.fxml");
-		} catch (IOException e) {
-			System.err.println("Erro ao exibir tela");
-		}
+		MainInterface.changeSceneWE("Client/Model/cartList.fxml");
 	}
 
 	@FXML
 	public void backToMenu() {
-		try {
-			MainInterface.changeScene("Client/Model/menu.fxml");
-		} catch (IOException e) {
-			System.err.println("Erro ao exibir tela");
-		}
+		MainInterface.changeSceneWE("Client/Model/menu.fxml");
 	}
 
 	@FXML
 	public void addCart() {
 		// Pegar o elemento que está selecionado no TableView
 		Product p = tv_table.getSelectionModel().getSelectedItem();
+
+		if (p == null) return;
 
 		//Solicita a reserva no servidor
 		if (!p.RequestReservation(1)) {
@@ -101,15 +91,17 @@ public class productListController implements Initializable {
 		//Resposta do servidor com todos os produtos
 		String response = Connection.getInstance().ReceiveSignal();
 
-		String[] products = Def.splitReg(response);
-		for (String s : products) {
-			String[] splited = Def.splitField(s);
-			data.add(new Product(splited[0],
-					Float.parseFloat(splited[1]),
-					splited[2],
-					splited[3],
-					Integer.parseInt(splited[4]))
-			);
+		if (!response.isEmpty()) {
+			String[] products = Def.splitReg(response);
+			for (String s : products) {
+				String[] splited = Def.splitField(s);
+				data.add(new Product(splited[0],
+								Float.parseFloat(splited[1]),
+								splited[2],
+								splited[3],
+								Integer.parseInt(splited[4]))
+				);
+			}
 		}
 	}
 }
