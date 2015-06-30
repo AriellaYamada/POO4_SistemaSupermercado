@@ -6,7 +6,7 @@ public class CartItem {
 
 	private Product product;
 	private int reservedQtd;
-	private float curPrice;
+	private double curPrice;
 
 	public CartItem(Product product) {
 		this.product = product;
@@ -23,9 +23,9 @@ public class CartItem {
 	public String getProductName() { return product.getName(); }
 	public int getReservedQtd() { return reservedQtd; }
 	public String getReservedQtdAsStr() { return Integer.toString(reservedQtd); }
-	public float getPrice() { return curPrice; }
+	public double getPrice() { return curPrice; }
 	public String getPriceAsStr() { return String.format("%.2f", curPrice); }
-	public float getTotalPrice() { return reservedQtd * curPrice; }
+	public double getTotalPrice() { return reservedQtd * curPrice; }
 	public String getTotalPriceAsStr() { return String.format("%.2f", getTotalPrice()); }
 
 	public boolean AddToCart(Cart cart) {

@@ -1,11 +1,12 @@
 package Interface.Server.Controller;
 
+import Def.Month;
 import Interface.MainInterface;
 import Server.Database.Sales;
 import Server.PDFCreator;
 import Structure.CartItem;
-import Structure.Def;
 import Structure.Sale;
+import Def.Validation;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
@@ -14,7 +15,6 @@ import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.VBox;
 
 import java.util.Comparator;
-import java.util.LinkedList;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -123,8 +123,8 @@ public class saleListController {
 
 	@FXML
 	public void genPdfDay() {
-		Def.clearErrorStyle(f_day.getEditor());
-		Def.validateField(f_day.getEditor(), Def.FieldType.DATE);
+		Validation.clearErrorStyle(f_day.getEditor());
+		Validation.validateField(f_day.getEditor(), Validation.FieldType.DATE);
 
 		String[] splited = f_day.getEditor().getText().split("/");
 		String filename = "Vendas_" + splited[2] + "-" + splited[1] + "-" + splited[0];
@@ -145,7 +145,7 @@ public class saleListController {
 	@FXML
 	public void genPdfMonthYear() {
 		String monthStr = f_month.getValue();
-		int month = Def.monthToInt(monthStr);
+		int month = Month.monthToInt(monthStr);
 		int year = f_year.getValue();
 
 		List<Sale> list = data.stream()
@@ -174,7 +174,7 @@ public class saleListController {
 					.map(Sale::getMonth)
 					.distinct()
 					.sorted()
-					.forEach(d -> months.add(Def.intToMonth(d)));
+					.forEach(d -> months.add(Month.intToMonth(d)));
 
 			f_month.setDisable(false);
 		}

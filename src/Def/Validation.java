@@ -1,4 +1,4 @@
-package Structure;
+package Def;
 
 import javafx.scene.control.Control;
 import javafx.scene.control.TextInputControl;
@@ -6,42 +6,10 @@ import javafx.scene.control.Tooltip;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
-import java.util.Calendar;
-import java.util.GregorianCalendar;
-import java.util.LinkedList;
-import java.util.List;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
-public class Def {
-	public static final String regSep = "!";    // Register separator
-	public static final String fieldSep = "&";  // Field separator
-	public static final String comma = ",";     // Comma separator
-	public static final List<String> months = new LinkedList<>();
-
-	public static String[] splitReg(String str){
-		return str.split(regSep);
-	}
-
-	public static String[] splitField(String str){
-		return str.split(fieldSep);
-	}
-
-	public static String[] splitComma(String str){
-		return str.split(comma);
-	}
-
-	public static String CalendarToString (GregorianCalendar date) {
-		return date.get(Calendar.DAY_OF_MONTH) + "/"
-				+(date.get(Calendar.MONTH)+1) + "/"
-				+date.get(Calendar.YEAR);
-	}
-
-	public static GregorianCalendar StringToCalendar (String date) {
-		String[] split_date = date.split("/");
-
-		return new GregorianCalendar(Integer.parseInt(split_date[2]),
-				Integer.parseInt(split_date[1])-1,
-				Integer.parseInt(split_date[0]));
-	}
+public class Validation {
 
 	public static void setError (Control field, String str){
 		field.getStyleClass().add("red-field");
@@ -170,6 +138,8 @@ public class Def {
 				if (!checkDecimals(text, 2)) return "O preço só pode ter 2 casas decimais";
 				return "ok";
 
+			case EMAIL:
+				break;
 		}
 
 		return "ok";
@@ -224,32 +194,13 @@ public class Def {
 		setError(field, valid);
 		return false;
 	}
+	/*
+	Pattern emailPattern = Pattern.compile("[a-zA-Z0-9[!#$%&'()*+,/\-_\\"]]+@[a-zA-Z0-9[!#$%&'()*+,/\-_\"]]+\.[a-zA-Z0-9[!#$%&'()*+,/\-_\"\.]]+");
 
-	private static void initializeMonthsList () {
-		months.add(0, null);
-		months.add(1, "Janeiro");
-		months.add(2, "Fevereiro");
-		months.add(3, "Março");
-		months.add(4, "Abril");
-		months.add(5, "Maio");
-		months.add(6, "Junho");
-		months.add(7, "Julho");
-		months.add(8, "Agosto");
-		months.add(9, "Setembro");
-		months.add(10, "Outubro");
-		months.add(11, "Novembro");
-		months.add(12, "Dezembro");
-	}
+	public static boolean isValidEmail(String email) {
 
-	public static String intToMonth (int n) {
-		if (n < 1 || n > 12) return null;
-		if (months.isEmpty()) initializeMonthsList();
-		return months.get(n);
-	}
+		Matcher m = emailPattern.matcher(email); return !m.matches();
 
-	public static int monthToInt (String m) {
-		if (months.isEmpty()) initializeMonthsList();
-		return months.indexOf(m);
-	}
+	}*/
 
 }

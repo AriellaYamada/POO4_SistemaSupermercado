@@ -1,5 +1,7 @@
 package Structure;
 
+import Def.Split;
+
 import java.util.LinkedList;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -39,11 +41,11 @@ public class Cart {
 	public String ListAllAsStr() {
 		String response = "";
 		for (CartItem i : products) {
-			response += i.getProduct().getName() + Def.fieldSep
-					+ i.getProduct().getPrice() + Def.fieldSep
-					+ i.getProduct().getExpiration() + Def.fieldSep
-					+ i.getProduct().getProvider() + Def.fieldSep
-					+ i.getReservedQtd() + Def.regSep;
+			response += i.getProduct().getName() + Split.fieldSep
+					+ i.getProduct().getPrice() + Split.fieldSep
+					+ i.getProduct().getExpiration() + Split.fieldSep
+					+ i.getProduct().getProvider() + Split.fieldSep
+					+ i.getReservedQtd() + Split.regSep;
 		}
 		return response;
 	}

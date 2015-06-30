@@ -2,7 +2,7 @@ package Interface.Client.Controller;
 
 import Client.Connection;
 import Interface.MainInterface;
-import Structure.Def;
+import Def.Split;
 import Structure.Product;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -92,9 +92,9 @@ public class productListController {
 		String response = Connection.getInstance().ReceiveSignal();
 
 		if (!response.isEmpty()) {
-			String[] products = Def.splitReg(response);
+			String[] products = Split.splitReg(response);
 			for (String s : products) {
-				String[] splited = Def.splitField(s);
+				String[] splited = Split.splitField(s);
 				data.add(new Product(splited[0],
 								Float.parseFloat(splited[1]),
 								splited[2],

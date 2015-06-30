@@ -1,5 +1,7 @@
 package Structure;
 
+import Server.Database.Sales;
+
 import java.util.GregorianCalendar;
 import java.util.List;
 
@@ -16,7 +18,7 @@ public class Sale {
 	}
 
 	public Sale(User user, List<CartItem> products) {
-		this.date = Def.CalendarToString(new GregorianCalendar());
+		this.date = Sales.CalendarToString(new GregorianCalendar());
 		this.user = user;
 		this.products = products;
 	}
@@ -33,8 +35,8 @@ public class Sale {
 		return nItems;
 	}
 
-	public float getTotalPrice() {
-		Float total = 0f;
+	public double getTotalPrice() {
+		double total = 0f;
 		for (CartItem i : products) total += i.getTotalPrice();
 		return total;
 	}

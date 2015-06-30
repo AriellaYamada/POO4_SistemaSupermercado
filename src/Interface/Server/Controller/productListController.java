@@ -3,7 +3,9 @@ package Interface.Server.Controller;
 import Interface.MainInterface;
 import Server.Database.Products;
 import Server.Database.ProductsDatabase;
-import Structure.Def;
+import Def.Validation;
+import static Def.Validation.FieldType.*;
+import static Def.Validation.validateField;
 import Structure.Product;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -12,8 +14,6 @@ import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.VBox;
 
-import static Structure.Def.FieldType.*;
-import static Structure.Def.validateField;
 
 public class productListController {
 
@@ -82,8 +82,8 @@ public class productListController {
 
 	@FXML
 	public void showNew() {
-		Def.clearField(f_new_name, f_new_price, f_new_expiration.getEditor(), f_new_provider, f_new_amount);
-		Def.clearErrorStyle(f_new_name, f_new_price, f_new_expiration.getEditor(), f_new_provider, f_new_amount);
+		Validation.clearField(f_new_name, f_new_price, f_new_expiration.getEditor(), f_new_provider, f_new_amount);
+		Validation.clearErrorStyle(f_new_name, f_new_price, f_new_expiration.getEditor(), f_new_provider, f_new_amount);
 		modal_new.setVisible(true);
 	}
 
@@ -92,7 +92,7 @@ public class productListController {
 		selected = tv_table.getSelectionModel().getSelectedItem();
 		if (selected == null) return;
 
-		Def.clearErrorStyle(f_edit_name, f_edit_price, f_edit_expiration.getEditor(), f_edit_provider);
+		Validation.clearErrorStyle(f_edit_name, f_edit_price, f_edit_expiration.getEditor(), f_edit_provider);
 
 		f_edit_name.setText(selected.getName());
 		f_edit_price.setText(selected.getPriceAsStr());
@@ -113,7 +113,7 @@ public class productListController {
 		if (valid) {
 			int now = selected.updateAmount(Integer.parseInt(f_edit_amount.getText()));
 
-			if (now < 0) Def.setError(f_edit_amount, "Esta alteração deixaria o estoque negativo.");
+			if (now < 0) Validation.setError(f_edit_amount, "Esta alteração deixaria o estoque negativo.");
 			else {
 				l_amount_now.setText(selected.getAmountRealAsStr());
 			}
@@ -122,7 +122,7 @@ public class productListController {
 
 	@FXML
 	public void confirm_edit() {
-		Def.clearErrorStyle(f_edit_expiration.getEditor(), f_edit_price, f_edit_provider);
+		Validation.clearErrorStyle(f_edit_expiration.getEditor(), f_edit_price, f_edit_provider);
 
 		boolean valid  = validateField(f_edit_expiration.getEditor(), DATE);
 		valid = valid && validateField(f_edit_price, PRICE);
@@ -141,7 +141,7 @@ public class productListController {
 
 	@FXML
 	public void confirm_new() {
-		Def.clearErrorStyle(f_new_name, f_new_price, f_new_expiration.getEditor(), f_new_provider, f_new_amount);
+		Validation.clearErrorStyle(f_new_name, f_new_price, f_new_expiration.getEditor(), f_new_provider, f_new_amount);
 
 		boolean valid  = validateField(f_new_name, TEXT);
 		valid = valid && validateField(f_new_price, PRICE);
@@ -151,7 +151,7 @@ public class productListController {
 
 		if (valid){
 			if (!Products.checkProduct(f_new_name.getText())) {
-				Def.setError(f_new_name, "Já existe um produto com este nome.");
+				Validation.setError(f_new_name, "Já existe um produto com este nome.");
 			} else {
 				Products.getInstance().Register(f_new_name.getText(),
 						Float.parseFloat(f_new_price.getText()),

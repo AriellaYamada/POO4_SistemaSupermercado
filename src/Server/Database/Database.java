@@ -1,6 +1,6 @@
 package Server.Database;
 
-import Structure.Def;
+import Def.Split;
 
 import java.io.*;
 
@@ -76,7 +76,7 @@ abstract public class Database {
 		try {
 			br.readLine();
 			while ((line = br.readLine()) != null) {
-				String[] splited = Def.splitComma(line);
+				String[] splited = Split.splitComma(line);
 				db.Register(splited);
 			}
 		} catch (IOException e) {
@@ -98,7 +98,7 @@ abstract public class Database {
 		try {
 			fw.append(value[0]);
 			for (int i = 1; i < value.length; i++){
-				fw.append(Def.comma);
+				fw.append(Split.comma);
 				fw.append(value[i]);
 			}
 			fw.append(ENDLINE);

@@ -1,6 +1,6 @@
 package Server.Database;
 
-import Structure.Def;
+import Def.Split;
 import Structure.Product;
 
 import java.util.LinkedList;
@@ -68,11 +68,11 @@ public class Products implements ListRegister {
 	public static String AllProducts(){
 		String response = "";
 		for(Product p : products) {
-			response += p.getName() + Def.fieldSep
-					+ p.getPrice() + Def.fieldSep
-					+ p.getExpiration() + Def.fieldSep
-					+ p.getProvider() + Def.fieldSep
-					+ p.getAmount_virtual() + Def.regSep;
+			response += p.getName() + Split.fieldSep
+					+ p.getPrice() + Split.fieldSep
+					+ p.getExpiration() + Split.fieldSep
+					+ p.getProvider() + Split.fieldSep
+					+ p.getAmount_virtual() + Split.regSep;
 		}
 		return response;
 	}

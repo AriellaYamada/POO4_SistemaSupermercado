@@ -1,5 +1,6 @@
 package Server;
 
+import Def.Split;
 import Server.Database.*;
 import Structure.*;
 
@@ -47,7 +48,7 @@ public class Connection implements Runnable{
 
 	//Processa o comando recebido do cliente
 	public String process (String line){
-		String[] cmd = Def.splitReg(line);
+		String[] cmd = Split.splitReg(line);
 
 		switch (cmd[0]){
 			case "newuser": //Cadastro de novo usuario
@@ -95,7 +96,7 @@ public class Connection implements Runnable{
 
 	private String newuser(String cmd) {
 		String answer;
-		String[] args = Def.splitField(cmd);
+		String[] args = Split.splitField(cmd);
 		int response = Users.Register(args[0], args[1], args[2], args[3], args[4], args[5]);
 
 		if (response == 0) {
@@ -103,7 +104,7 @@ public class Connection implements Runnable{
 			UsersDatabase.getInstance().WriteFile();
 		}
 		else {
-			answer = "fail" + Def.regSep + "f_id" + Def.fieldSep + "Este login ja esta sendo utilizado";
+			answer = "fail" + Split.regSep + "f_id" + Split.fieldSep + "Este login ja esta sendo utilizado";
 		}
 
 		return answer;
@@ -111,7 +112,7 @@ public class Connection implements Runnable{
 
 	private String login(String cmd) {
 		String answer;
-		String[] args = Def.splitField(cmd);
+		String[] args = Split.splitField(cmd);
 		int response = Users.Login(args[0], args[1]);
 
 		if (response == 0) {   //Se o login foi efetuado corretamente
@@ -120,17 +121,17 @@ public class Connection implements Runnable{
 		}
 
 		else if (response == 1) //Caso o usuario nao seja encontrado
-			answer = "fail"+ Def.regSep +"f_userlogin"+ Def.fieldSep +"Usuario nao encontrado";
+			answer = "fail"+ Split.regSep +"f_userlogin"+ Split.fieldSep +"Usuario nao encontrado";
 
 		else    //Caso a senha digitada for incorreta
-			answer = "fail"+ Def.regSep +"f_userpassword"+ Def.fieldSep +"Senha incorreta";
+			answer = "fail"+ Split.regSep +"f_userpassword"+ Split.fieldSep +"Senha incorreta";
 
 		return answer;
 	}
 
 	private String reserve(String cmd) {
 		CartItem item;
-		String[] args = Def.splitField(cmd);
+		String[] args = Split.splitField(cmd);
 		boolean errorFlag;
 
 		if (cart.CheckCart(args[0])) {
@@ -147,7 +148,7 @@ public class Connection implements Runnable{
 
 	private String dereserve(String cmd) {
 		CartItem item;
-		String[] args = Def.splitField(cmd);
+		String[] args = Split.splitField(cmd);
 
 		//Encontra o produto no carrinho
 		item = cart.searchItem(args[0]);

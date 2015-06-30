@@ -1,11 +1,12 @@
 package Structure;
 
 import Client.Connection;
+import Def.Split;
 
 public class Product {
 
 	private final String name;
-	private Float price;
+	private double price;
 	private String expiration;
 	private String provider;
 	private int amount_real;
@@ -20,7 +21,7 @@ public class Product {
 	}
 
 	public String getName() { return name; }
-	public float getPrice() { return price; }
+	public double getPrice() { return price; }
 	public String getProvider() { return provider; }
 	public int getAmount_real() { return amount_real; }
 	public int getAmount_virtual() { return amount_virtual; }
@@ -56,7 +57,7 @@ public class Product {
 	}
 
 	public boolean RequestReservation(int qtd) {
-		String signal = "reserve" + Def.regSep + name + Def.fieldSep + Integer.toString(qtd);
+		String signal = "reserve" + Split.regSep + name + Split.fieldSep + Integer.toString(qtd);
 		Connection.getInstance().SendSignal(signal);
 		return Connection.getInstance().ReceiveSignal().equals("ok");
 	}
@@ -78,7 +79,7 @@ public class Product {
 	}
 
 	public void selfRefresh() {
-		Connection.getInstance().SendSignal("selfrefresh" + Def.regSep + this.name);
+		Connection.getInstance().SendSignal("selfrefresh" + Split.regSep + this.name);
 		String answer = Connection.getInstance().ReceiveSignal();
 		amount_real = amount_virtual = Integer.parseInt(answer);
 	}

@@ -5,6 +5,8 @@ import Structure.CartItem;
 import Structure.Sale;
 import Structure.User;
 
+import java.util.Calendar;
+import java.util.GregorianCalendar;
 import java.util.LinkedList;
 import java.util.List;
 
@@ -25,6 +27,12 @@ public class Sales implements ListRegister{
 
 	public static List<Sale> getSales() {
 		return sales;
+	}
+
+	public static String CalendarToString (GregorianCalendar date) {
+		return date.get(Calendar.DAY_OF_MONTH) + "/"
+				+(date.get(Calendar.MONTH)+1) + "/"
+				+date.get(Calendar.YEAR);
 	}
 
 	public int Register(String... value){

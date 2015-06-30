@@ -2,7 +2,7 @@ package Interface;
 
 import Client.ClientMain;
 import Server.ServerMain;
-import Structure.Def;
+import Def.Validation;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
 
@@ -16,9 +16,9 @@ public class mainController {
 
 	@FXML
 	public void connectAsServer() {
-		Def.clearErrorStyle(serverPort);
+		Validation.clearErrorStyle(serverPort);
 
-		boolean valid = Def.validateField(serverPort, Def.FieldType.INTEGER_POSITIVE_NON_ZERO);
+		boolean valid = Validation.validateField(serverPort, Validation.FieldType.INTEGER_POSITIVE_NON_ZERO);
 
 		if (valid){ // Start Server
 			String[] str = new String[1];
@@ -30,11 +30,11 @@ public class mainController {
 
 	@FXML
 	public void connectAsClient() {
-		Def.clearErrorStyle(clientIP, clientPort);
+		Validation.clearErrorStyle(clientIP, clientPort);
 
 		boolean valid;
-		valid = Def.validateField(clientIP, Def.FieldType.IP);
-		valid = valid && Def.validateField(clientPort, Def.FieldType.INTEGER_POSITIVE_NON_ZERO);
+		valid = Validation.validateField(clientIP, Validation.FieldType.IP);
+		valid = valid && Validation.validateField(clientPort, Validation.FieldType.INTEGER_POSITIVE_NON_ZERO);
 
 		if (valid) {    // Try to connect Server
 			String[] str = new String[2];
