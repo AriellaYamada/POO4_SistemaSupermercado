@@ -8,11 +8,14 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.GregorianCalendar;
+import java.util.LinkedList;
+import java.util.List;
 
 public class Def {
 	public static final String regSep = "!";    // Register separator
 	public static final String fieldSep = "&";  // Field separator
 	public static final String comma = ",";     // Comma separator
+	public static final List<String> months = new LinkedList<>();
 
 	public static String[] splitReg(String str){
 		return str.split(regSep);
@@ -213,6 +216,32 @@ public class Def {
 
 		setError(field, valid);
 		return false;
+	}
+
+	private static void initializeMonthsList () {
+		months.add(1, "Janeiro");
+		months.add(2, "Fevereiro");
+		months.add(3, "Março");
+		months.add(4, "Abril");
+		months.add(5, "Maio");
+		months.add(6, "Junho");
+		months.add(7, "Julho");
+		months.add(8, "Agosto");
+		months.add(9, "Setembro");
+		months.add(10, "Outubro");
+		months.add(11, "Novembro");
+		months.add(12, "Dezembro");
+	}
+
+	public static String intToMonth (int n) {
+		if (n < 1 || n > 12) return null;
+		if (months.isEmpty()) initializeMonthsList();
+		return months.get(n);
+	}
+
+	public static Integer monthToInt (String m) {
+		if (months.isEmpty()) initializeMonthsList();
+		return months.indexOf(m);
 	}
 
 }

@@ -14,6 +14,7 @@ import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.VBox;
 
 import java.util.Comparator;
+import java.util.LinkedList;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -92,6 +93,10 @@ public class saleListController {
 
 	@FXML
 	void pdfGenerate() {
+		f_month.getSelectionModel().clearSelection();
+		f_year.getSelectionModel().clearSelection();
+		years.clear();
+
 		data.stream()
 				.map(Sale::getYear)
 				.distinct()
@@ -114,21 +119,26 @@ public class saleListController {
 		Def.clearErrorStyle(f_day.getEditor());
 		Def.validateField(f_day.getEditor(), Def.FieldType.DATE);
 
-		final String date = f_day.getEditor().getText();
+		String[] splited = f_day.getEditor().getText().split("/");
+		String filename = "Vendas_" + splited[2] + "-" + splited[1] + "-" + splited[0];
+
+		if (splited[1].startsWith("0")) splited[1] = splited[1].substring(1);
+
+		final String date = String.format("%s/%s/%s", splited[0], splited[1], splited[2]);
+
+		System.out.println(date);
 		List<Sale> list = data.stream()
 							.filter(s -> s.getDate().equals(date))
-							.collect(Collectors.toList());
+				.collect(Collectors.toList());
 
-		String[] splited = date.split("/");
-		String filename = "Vendas_" + splited[2] + "-" + splited[1] + "-" + splited[0];
 
 		PDFCreator.CreatePDF(filename, list);
 	}
 
 	@FXML
 	public void genPdfMonthYear() {
-		final int month = f_month.getSelectionModel().getSelectedItem();
-		final int year = f_year.getSelectionModel().getSelectedItem();
+		int month = f_month.getValue();
+		int year = f_year.getValue();
 
 		List<Sale> list = data.stream()
 				.filter(s -> s.getYear() == year)
@@ -136,7 +146,7 @@ public class saleListController {
 				.sorted(Comparator.comparing(Sale::getDay))
 				.collect(Collectors.toList());
 
-		String filename = "Vendas_" + year + "-" + month;
+		String filename = "Vendas_" + year + "-" + String.format("%02d", month);
 
 
 		PDFCreator.CreatePDF(filename, list);
@@ -145,17 +155,22 @@ public class saleListController {
 
 	@FXML
 	public void filterMonths() {
-		final int year = f_year.getSelectionModel().getSelectedItem();
+		Integer year = f_year.getValue();
 
-		months.clear();
+		if (year != null) {
 
-		data.stream()
-				.filter(s -> s.getYear() == year)
-				.map(Sale::getMonth)
-				.distinct()
-				.sorted()
-				.forEach(months::add);
+			months.clear();
 
-		f_month.setDisable(false);
+			data.stream()
+					.filter(s -> s.getYear() == year)
+					.map(Sale::getMonth)
+					.distinct()
+					.sorted()
+					.forEach(months::add);
+
+			f_month.setDisable(false);
+		}
 	}
+
+
 }
