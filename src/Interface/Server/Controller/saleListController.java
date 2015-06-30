@@ -40,13 +40,13 @@ public class saleListController {
 
 	public VBox modal_pdf;
 	@FXML private DatePicker f_day;
-	@FXML private ComboBox<Integer> f_month;
+	@FXML private ComboBox<String> f_month;
 	@FXML private ComboBox<Integer> f_year;
 
 	ObservableList<Sale> data = FXCollections.observableArrayList();
 	ObservableList<CartItem> items = FXCollections.observableArrayList();
 
-	ObservableList<Integer> months = FXCollections.observableArrayList();
+	ObservableList<String> months = FXCollections.observableArrayList();
 	ObservableList<Integer> years = FXCollections.observableArrayList();
 
 	public void initialize() {
@@ -137,7 +137,8 @@ public class saleListController {
 
 	@FXML
 	public void genPdfMonthYear() {
-		int month = f_month.getValue();
+		String monthStr = f_month.getValue();
+		int month = Def.monthToInt(monthStr);
 		int year = f_year.getValue();
 
 		List<Sale> list = data.stream()
@@ -166,7 +167,7 @@ public class saleListController {
 					.map(Sale::getMonth)
 					.distinct()
 					.sorted()
-					.forEach(months::add);
+					.forEach(d -> months.add(Def.intToMonth(d)));
 
 			f_month.setDisable(false);
 		}

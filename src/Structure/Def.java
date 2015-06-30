@@ -219,6 +219,7 @@ public class Def {
 	}
 
 	private static void initializeMonthsList () {
+		months.add(0, null);
 		months.add(1, "Janeiro");
 		months.add(2, "Fevereiro");
 		months.add(3, "Março");
@@ -239,7 +240,7 @@ public class Def {
 		return months.get(n);
 	}
 
-	public static Integer monthToInt (String m) {
+	public static int monthToInt (String m) {
 		if (months.isEmpty()) initializeMonthsList();
 		return months.indexOf(m);
 	}
