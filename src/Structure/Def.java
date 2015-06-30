@@ -167,7 +167,7 @@ public class Def {
 				f = checkFloat(text);
 				if (f == null) return "Preço inválido";
 				if (f <= 0) return "O preço precisa ser positivo não-zero";
-				if (f%0.001f != 0) return "O preço só pode ter 2 casas decimais";
+				if (!checkDecimals(text, 2)) return "O preço só pode ter 2 casas decimais";
 				return "ok";
 
 		}
@@ -202,6 +202,13 @@ public class Def {
 		}
 
 		return true;
+	}
+
+	private static boolean checkDecimals (String text, int decimals){
+		if (!text.contains(".")) return true;
+
+		String dec = text.substring(text.indexOf(".") + 1);
+		return dec.length() <= decimals;
 	}
 
 	public static boolean validateField(TextInputControl field, FieldType TYPE){
