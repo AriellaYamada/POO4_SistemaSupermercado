@@ -23,10 +23,10 @@ public class ProductsDatabase extends Database {
 
 		for (Product p : Products.ListAll()) {
 			WriteFile(p.getName(),
-					Float.valueOf(p.getPrice()).toString(),
+					Float.toString(p.getPrice()),
 					p.getExpiration(),
 					p.getProvider(),
-					Integer.valueOf(p.getAmount_real()).toString()
+					p.getAmountRealAsStr()
 			);
 		}
 	}

@@ -35,7 +35,7 @@ public class SalesDatabase extends Database {
 		for (CartItem i : sale.getProducts()) {
 			list.add(i.getProduct().getName());
 			list.add(i.getReservedQtdAsStr());
-			list.add(i.getPriceAsStr());
+			list.add(Float.toString(i.getPrice()));
 		}
 
 		// Convert List to Array
