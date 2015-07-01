@@ -1,5 +1,6 @@
 package Server;
 
+import Def.Split;
 import Server.Database.*;
 import Structure.*;
 
@@ -47,7 +48,7 @@ public class Connection implements Runnable{
 
 	//Processa o comando recebido do cliente
 	public String process (String line){
-		String[] cmd = Def.splitReg(line);
+		String[] cmd = Split.splitReg(line);
 
 		switch (cmd[0]){
 			case "newuser": //Cadastro de novo usuario
@@ -62,29 +63,32 @@ public class Connection implements Runnable{
 			case "listall": //Busca todos os produtos cadastrados no sistema
 				return Products.AllProducts();
 
-			//Solicita a reserva de um produto
-			case "reserve":
+			case "reserve": //Solicita a reserva de um produto
 				return reserve(cmd[1]);
 
-			case "dereserve":
+			case "dereserve": //Cancela a reserva de um produto
 				return dereserve(cmd[1]);
 
-			case "listcart":
+			case "listcart": //Lista todos os itens no carrinho do cliente
 				line = cart.ListAllAsStr();
 				break;
 
-			case "sell":
+			case "sell": //Solicita a compra de um produto
 				return sell();
 
-			case "clearcart" :
+			case "clearcart" : //Limpeza do carrinho
 				cart.ClearCart();
 				break;
 
-			case "selfrefresh":
+			case "selfrefresh": //Atualizacao da lista de produtos
 				line = Products.searchProduct(cmd[1]).getAmountVirtualAsStr();
 				break;
+			case "selfrefreshcart":
+				CartItem i = cart.searchItem(cmd[1]);
+				line = i.getReservedQtdAsStr() + Split.fieldSep + i.getProduct().getAmountRealAsStr();
+				break;
 
-			case "logout":
+			case "logout": //Saida do sistema
 				return logout();
 
 			default:
@@ -93,25 +97,31 @@ public class Connection implements Runnable{
 		return line;
 	}
 
+	//Realiza o cadastro do cliente
 	private String newuser(String cmd) {
 		String answer;
-		String[] args = Def.splitField(cmd);
+		String[] args = Split.splitField(cmd);
 		int response = Users.Register(args[0], args[1], args[2], args[3], args[4], args[5]);
 
+		//Verifica se for possivel realizar o cadastro
 		if (response == 0) {
+			//Resposta enviada para a aplicacao de cliente
 			answer = "ok";
+			//Atualiza o arquivo de registros de clientes
 			UsersDatabase.getInstance().WriteFile();
 		}
 		else {
-			answer = "fail" + Def.regSep + "f_id" + Def.fieldSep + "Este login ja esta sendo utilizado";
+			//Mensagem de erro enviada ao cliente, caso o cadastro nao seja possivel
+			answer = "fail" + Split.regSep + "f_id" + Split.fieldSep + "Este login ja esta sendo utilizado";
 		}
 
 		return answer;
 	}
 
+	//Verifica se o login pode ser realizado
 	private String login(String cmd) {
 		String answer;
-		String[] args = Def.splitField(cmd);
+		String[] args = Split.splitField(cmd);
 		int response = Users.Login(args[0], args[1]);
 
 		if (response == 0) {   //Se o login foi efetuado corretamente
@@ -120,23 +130,27 @@ public class Connection implements Runnable{
 		}
 
 		else if (response == 1) //Caso o usuario nao seja encontrado
-			answer = "fail"+ Def.regSep +"f_userlogin"+ Def.fieldSep +"Usuario nao encontrado";
+			answer = "fail"+ Split.regSep +"f_userlogin"+ Split.fieldSep +"Usuario nao encontrado";
 
 		else    //Caso a senha digitada for incorreta
-			answer = "fail"+ Def.regSep +"f_userpassword"+ Def.fieldSep +"Senha incorreta";
+			answer = "fail"+ Split.regSep +"f_userpassword"+ Split.fieldSep +"Senha incorreta";
 
 		return answer;
 	}
 
+	//Reserva o produto solicitado
 	private String reserve(String cmd) {
 		CartItem item;
-		String[] args = Def.splitField(cmd);
+		String[] args = Split.splitField(cmd);
 		boolean errorFlag;
 
+		//Verifica se o produto ja esta no carrinho
 		if (cart.CheckCart(args[0])) {
+			//Adiciona caso nao esteja
 			item = new CartItem(Products.searchProduct(args[0]));
 			errorFlag = item.AddToCart(cart);
 		} else {
+			//Atualiza a quantidade caso ja esteja
 			item = cart.searchItem(args[0]);
 			errorFlag = item.RefreshQuantity(Integer.parseInt(args[1]));
 		}
@@ -145,9 +159,10 @@ public class Connection implements Runnable{
 		return "fail";
 	}
 
+	//Cancela a reserva de um produto
 	private String dereserve(String cmd) {
 		CartItem item;
-		String[] args = Def.splitField(cmd);
+		String[] args = Split.splitField(cmd);
 
 		//Encontra o produto no carrinho
 		item = cart.searchItem(args[0]);
@@ -161,12 +176,14 @@ public class Connection implements Runnable{
 		return "ok";
 	}
 
+	//Cadastra a venda
 	private String sell() {
 		Sales.Register(user, cart);
 
 		return "ok";
 	}
 
+	//Realiza a finalizacao da thread do cliente
 	private String logout() {
 		connected = false;
 

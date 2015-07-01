@@ -13,20 +13,22 @@ public class ProductsDatabase extends Database {
 		return productsDB;
 	}
 
+	//Abertura do arquivo .csv caso ainda nao tenha sido criado
 	private ProductsDatabase() {
 		HEADER = "name,price,expiration,provider,quantity";
 		OpenFile("products.csv");
 	}
 
+	//Escreve no arquivo todos os registros de produtos
 	public void WriteFile() {
 		WriteFile(false,HEADER);
 
 		for (Product p : Products.ListAll()) {
 			WriteFile(p.getName(),
-					Float.valueOf(p.getPrice()).toString(),
+					Double.toString((p.getPrice())),
 					p.getExpiration(),
 					p.getProvider(),
-					Integer.valueOf(p.getAmount_real()).toString()
+					Integer.toString((p.getAmount_real()))
 			);
 		}
 	}

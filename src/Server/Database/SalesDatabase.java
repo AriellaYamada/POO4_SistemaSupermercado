@@ -25,6 +25,7 @@ public class SalesDatabase extends Database {
 		Sales.getSales().forEach(this::WriteFile);
 	}
 
+	//Escreve no fim do arquivo .csv a venda efetuada
 	public void WriteFile(Sale sale) {
 		ArrayList<String> list = new ArrayList<>();
 
@@ -35,7 +36,7 @@ public class SalesDatabase extends Database {
 		for (CartItem i : sale.getProducts()) {
 			list.add(i.getProduct().getName());
 			list.add(i.getReservedQtdAsStr());
-			list.add(i.getPriceAsStr());
+			list.add(Double.toString(i.getPrice()));
 		}
 
 		// Convert List to Array

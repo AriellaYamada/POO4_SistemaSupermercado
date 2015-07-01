@@ -2,7 +2,7 @@ package Interface.Client.Controller;
 
 import Client.Connection;
 import Interface.MainInterface;
-import Structure.Def;
+import Def.Split;
 import Structure.Product;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -17,7 +17,7 @@ public class productListController {
 
 	@FXML private TableView<Product> tv_table;
 	@FXML private TableColumn<Product, String> c_name;
-	@FXML private TableColumn<Product, Float> c_price;
+	@FXML private TableColumn<Product, Double> c_price;
 	@FXML private TableColumn<Product, String> c_expiration;
 	@FXML private TableColumn<Product, String> c_provider;
 	@FXML private TableColumn<Product, Integer> c_amount;
@@ -31,7 +31,7 @@ public class productListController {
 	public void initialize() {
 		// Configura TableView
 		c_name.setCellValueFactory(new PropertyValueFactory<>("name"));
-		c_price.setCellValueFactory(new PropertyValueFactory<>("price"));
+		c_price.setCellValueFactory(new PropertyValueFactory<>("priceAsStr"));
 		c_expiration.setCellValueFactory(new PropertyValueFactory<>("expiration"));
 		c_provider.setCellValueFactory(new PropertyValueFactory<>("provider"));
 		c_amount.setCellValueFactory(new PropertyValueFactory<>("amount_virtual"));
@@ -45,16 +45,19 @@ public class productListController {
 		refresh();
 	}
 
+	//Direciona para o carrinho
 	@FXML
 	public void salesCart() {
 		MainInterface.changeSceneWE("Client/Model/cartList.fxml");
 	}
 
+	//Volta para o menu principal
 	@FXML
 	public void backToMenu() {
 		MainInterface.changeSceneWE("Client/Model/menu.fxml");
 	}
 
+	//Adiciona um produto selecionado da tabela ao carrinho do cliente
 	@FXML
 	public void addCart() {
 		// Pegar o elemento que está selecionado no TableView
@@ -92,11 +95,11 @@ public class productListController {
 		String response = Connection.getInstance().ReceiveSignal();
 
 		if (!response.isEmpty()) {
-			String[] products = Def.splitReg(response);
+			String[] products = Split.splitReg(response);
 			for (String s : products) {
-				String[] splited = Def.splitField(s);
+				String[] splited = Split.splitField(s);
 				data.add(new Product(splited[0],
-								Float.parseFloat(splited[1]),
+								Double.parseDouble(splited[1]),
 								splited[2],
 								splited[3],
 								Integer.parseInt(splited[4]))
