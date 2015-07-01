@@ -26,9 +26,9 @@
                </VBox.margin>
             </Text>
             <Label layoutX="80.0" layoutY="132.0" text="ID:" />
-            <TextField fx:id="f_userlogin" layoutX="80.0" layoutY="154.0" styleClass="default-field" text="teste123" />
+            <TextField fx:id="f_userlogin" layoutX="80.0" layoutY="154.0" styleClass="default-field" />
             <Label layoutX="80.0" layoutY="190.0" text="Senha:" />
-            <PasswordField fx:id="f_userpassword" layoutX="80.0" layoutY="212.0" styleClass="default-field" text="123" />
+            <PasswordField fx:id="f_userpassword" layoutX="80.0" layoutY="212.0" styleClass="default-field" />
             <Button layoutX="133.0" layoutY="260.0" mnemonicParsing="false" onAction="#handleSendLogin" styleClass="default-btn" text="Entrar">
                <VBox.margin>
                   <Insets top="80.0" />

@@ -30,7 +30,7 @@
                   <Insets top="5.0" />
                </VBox.margin>
             </Label>
-            <TextField fx:id="serverPort" maxWidth="200.0" prefWidth="200.0" styleClass="default-field" text="12345">
+            <TextField fx:id="serverPort" maxWidth="200.0" prefWidth="200.0" styleClass="default-field">
                <VBox.margin>
                   <Insets bottom="82.0" top="5.0" />
                </VBox.margin>
@@ -67,7 +67,7 @@
                   <Insets top="5.0" />
                </VBox.margin>
             </Label>
-            <TextField fx:id="clientIP" maxWidth="200.0" prefWidth="200.0" styleClass="default-field" text="127.0.0.1">
+            <TextField fx:id="clientIP" maxWidth="200.0" prefWidth="200.0" styleClass="default-field">
                <VBox.margin>
                   <Insets bottom="15.0" top="5.0" />
                </VBox.margin>
@@ -77,7 +77,7 @@
                   <Insets top="5.0" />
                </VBox.margin>
             </Label>
-            <TextField fx:id="clientPort" maxWidth="200.0" prefWidth="200.0" styleClass="default-field" text="12345">
+            <TextField fx:id="clientPort" maxWidth="200.0" prefWidth="200.0" styleClass="default-field">
                <VBox.margin>
                   <Insets bottom="15.0" top="5.0" />
                </VBox.margin>
