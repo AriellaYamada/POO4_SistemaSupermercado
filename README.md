@@ -12,7 +12,7 @@
 - [ ] README
 - [ ] .jar
 - [ ] Tela de editar qtd no carrinho
-- [ ] COMENTAR O CODIGO
+- [x] COMENTAR O CODIGO
 - [ ] Fazer busca
 - [x] Separar o def em mais classes
 - [ ] Tirar textos nos models
