@@ -1,13 +1,13 @@
 # Sistema Supermercado
 
 ## TODO
-- [ ] Validar se os campos preenchidos pelo usuário contém vírgulas (por ser um arquivo CSV é importante que o valor do campo NÃO tenha vírgulas). Opção 1: Não permitir vírgulas. Opção 2: Exibir como vírgulas para o usuário, porém gravar com algum outro caractere.
+- [x] Validar se os campos preenchidos pelo usuário contém vírgulas (por ser um arquivo CSV é importante que o valor do campo NÃO tenha vírgulas). Opção 1: Não permitir vírgulas. Opção 2: Exibir como vírgulas para o usuário, porém gravar com algum outro caractere.
 - [x] Na aplicação cliente, fazer com que o "usuário" seja um singleton.
 - [x] Ao fazer login, o servidor deve retornar PELO MENOS o nome do usuário também. Ele será incluído no "menu.fxml". Já está indicado onde deve ser colocado o nome no arquivo "menuController.java"
 - [ ] Validar email
 - [x] Transformar endereço para 1 linha
-- [ ] Trocar float por double
-- [ ] Deslogar do sistema (cliente)
+- [x] Trocar float por double
+- [x] Deslogar do sistema (cliente)
 - [ ] Tela do fornecedor
 - [ ] README
 - [ ] .jar
