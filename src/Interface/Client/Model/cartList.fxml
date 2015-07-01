@@ -276,7 +276,7 @@
                               </Group>
                            </graphic>
                         </Button>
-                        <Label fx:id="l_product_amount" minWidth="50.0" text="Label" textAlignment="CENTER" textFill="WHITE">
+                        <Label fx:id="l_product_amount" alignment="CENTER" minWidth="50.0" text="L" textAlignment="CENTER" textFill="WHITE">
                            <font>
                               <Font size="18.0" />
                            </font>

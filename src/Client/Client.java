@@ -85,8 +85,6 @@ public class Client {
 	static public void Logout () {
 		//Envia o comando de logout
 		Connection.getInstance().SendSignal("logout");
-		//Aguarda uma resposta
-		Connection.getInstance().ReceiveSignal();
 		//Fecha a conexao do socket
 		Connection.getInstance().CloseConnectionClient();
 		logged = false;

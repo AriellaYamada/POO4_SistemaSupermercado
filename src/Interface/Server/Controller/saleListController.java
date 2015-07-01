@@ -144,13 +144,12 @@ public class saleListController {
 
 		final String date = String.format("%s/%s/%s", splited[0], splited[1], splited[2]);
 
-		System.out.println(date);
 		List<Sale> list = data.stream()
-							.filter(s -> s.getDate().equals(date))
+				.filter(s -> s.getDate().equals(date))
 				.collect(Collectors.toList());
 
-
-		PDFCreator.CreatePDF(filename, list);
+		if (list.isEmpty()) Def.Validation.setError(f_day.getEditor(), "Não existe vendas neste dia.");
+		else PDFCreator.CreatePDF(filename, list);
 	}
 
 	//Gera o PDF do mês e ano solicitado
