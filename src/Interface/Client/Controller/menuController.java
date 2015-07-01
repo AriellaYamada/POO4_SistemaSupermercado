@@ -27,7 +27,7 @@ public class menuController {
 		MainInterface.changeSceneWE("Client/Model/cartList.fxml");
 	}
 
-	//Realiza o logout no systema
+	//Realiza o logout no sistema
 	@FXML
 	void logOut() {
 		Client.Logout();

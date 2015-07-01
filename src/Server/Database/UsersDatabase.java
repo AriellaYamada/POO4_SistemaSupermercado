@@ -29,7 +29,7 @@ public class UsersDatabase extends Database {
 					u.getTel(),
 					u.getEmail(),
 					u.getId(),
-					u.getPassword()
+					Integer.toString(u.getPassword())
 			);
 		}
 	}
