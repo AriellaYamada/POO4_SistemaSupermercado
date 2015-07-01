@@ -246,7 +246,7 @@
             </VBox>
          </children>
       </VBox>
-      <VBox fx:id="changeAmoutDialog" alignment="CENTER" layoutX="10.0" layoutY="10.0" style="-fx-background-color: rgba(0,0,0,0.2);">
+      <VBox fx:id="changeAmoutDialog" alignment="CENTER" layoutX="10.0" layoutY="10.0" style="-fx-background-color: rgba(0,0,0,0.2);" visible="false">
          <children>
             <VBox alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" spacing="15.0" style="-fx-background-color: #444;">
                <children>
