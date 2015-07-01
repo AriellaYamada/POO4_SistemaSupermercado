@@ -2,6 +2,7 @@ package Interface.Server.Controller;
 
 import Interface.MainInterface;
 import Server.Database.Users;
+import Server.PDFCreator.UsersCreator;
 import Structure.User;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -49,6 +50,9 @@ public class userListController {
 
 	@FXML
 	void pdfGenerate() {
+
+		if(!Users.ListAll().isEmpty())
+			UsersCreator.CreatePDFUser(Users.ListAll());
 
 	}
 

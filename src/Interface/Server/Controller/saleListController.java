@@ -3,7 +3,7 @@ package Interface.Server.Controller;
 import Def.Month;
 import Interface.MainInterface;
 import Server.Database.Sales;
-import Server.PDFCreator;
+import Server.PDFCreator.SalesCreator;
 import Structure.CartItem;
 import Structure.Sale;
 import Def.Validation;
@@ -150,7 +150,7 @@ public class saleListController {
 				.collect(Collectors.toList());
 
 
-		PDFCreator.CreatePDF(filename, list);
+		SalesCreator.CreatePDFSales(filename, list);
 	}
 
 	//Gera o PDF do mês e ano solicitado
@@ -169,7 +169,7 @@ public class saleListController {
 		String filename = "Vendas_" + year + "-" + String.format("%02d", month);
 
 
-		PDFCreator.CreatePDF(filename, list);
+		SalesCreator.CreatePDFSales(filename, list);
 
 	}
 
