@@ -1,6 +1,7 @@
 package Interface.Server.Controller;
 
 import Interface.MainInterface;
+import javafx.event.ActionEvent;
 
 public class menuController {
 
@@ -22,5 +23,9 @@ public class menuController {
 	//Encerra o programa
 	public void shutdownServer() {
 		System.exit(0);
+	}
+
+	public void listProvider() {
+		MainInterface.changeSceneWE("Server/Model/providerList.fxml");
 	}
 }
