@@ -8,8 +8,8 @@ import java.util.List;
 public class Split {
 
 	//Definição dos caracteres separadores de campos e registros
-	public static final String regSep = "!";    // Register separator
-	public static final String fieldSep = "&";  // Field separator
+	public static final String regSep = "~";    // Register separator
+	public static final String fieldSep = "`";  // Field separator
 	public static final String comma = ",";     // Comma separator
 
 	public static String[] splitReg(String str){
