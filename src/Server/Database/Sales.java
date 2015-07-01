@@ -25,16 +25,19 @@ public class Sales implements ListRegister{
 		return salesDB;
 	}
 
+	//Lista de todas as vendas efetuadas
 	public static List<Sale> getSales() {
 		return sales;
 	}
 
+	//Converte a data em string
 	public static String CalendarToString (GregorianCalendar date) {
 		return date.get(Calendar.DAY_OF_MONTH) + "/"
 				+(date.get(Calendar.MONTH)+1) + "/"
 				+date.get(Calendar.YEAR);
 	}
 
+	//Cadastra uma venda a partir da leitura do .csv (apenas strings)
 	public int Register(String... value){
 		User user = Users.SearchUser(value[1]);
 		List<CartItem> products = new LinkedList<>();
@@ -48,10 +51,12 @@ public class Sales implements ListRegister{
 		return 0;
 	}
 
+	//Cadastra uma venda pela interface
 	public static void Register(User user, Cart cart) {
 		Sale sale = new Sale(user, cart.ListAll());
 		sales.add(sale);
 
+		//Atualiza os arquivos .csv
 		SalesDatabase.getInstance().WriteFile(sale);
 		cart.Finalize();
 		ProductsDatabase.getInstance().WriteFile();

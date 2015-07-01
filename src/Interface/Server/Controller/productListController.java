@@ -63,23 +63,27 @@ public class productListController {
 		refresh();
 	}
 
+	//Volta ao menu principal
 	@FXML
 	public void backToMenu() {
 		MainInterface.changeSceneWE("Server/Model/menu.fxml");
 	}
 
+	//Cancela o cadastro de um produto ou a sua edicao
 	@FXML
 	void dismiss() {
 		modal_edit.setVisible(false);
 		modal_new.setVisible(false);
 	}
 
+	//Atualiza a lista de produtos
 	@FXML
 	public void refresh() {
 		data.clear();
 		data.addAll(Products.ListAll());
 	}
 
+	//Abre a tela de cadastro de um novo produto
 	@FXML
 	public void showNew() {
 		Validation.clearField(f_new_name, f_new_price, f_new_expiration.getEditor(), f_new_provider, f_new_amount);
@@ -87,6 +91,7 @@ public class productListController {
 		modal_new.setVisible(true);
 	}
 
+	//Abre a tela de edicao de um produto
 	@FXML
 	public void showEdit() {
 		selected = tv_table.getSelectionModel().getSelectedItem();
@@ -94,6 +99,7 @@ public class productListController {
 
 		Validation.clearErrorStyle(f_edit_name, f_edit_price, f_edit_expiration.getEditor(), f_edit_provider);
 
+		//Os campos recebem os atuais valores do produto que deseja ser alterado
 		f_edit_name.setText(selected.getName());
 		f_edit_price.setText(selected.getPriceAsStr());
 		f_edit_expiration.getEditor().setText(selected.getExpiration());
@@ -102,17 +108,22 @@ public class productListController {
 		modal_edit.setVisible(true);
 	}
 
+	//Geracao de relatorio
 	@FXML
 	public void pdfGenerate() {
 		System.out.println("Este comando ainda não está implementado.");
 	}
 
+	//Atualiza a quantidade de produtos
 	@FXML
 	public void updateAmount() {
+		//Valida o campo
 		boolean valid = validateField(f_edit_amount, INTEGER_NON_ZERO);
 		if (valid) {
+			//Atualiza no banco de dados
 			int now = selected.updateAmount(Integer.parseInt(f_edit_amount.getText()));
 
+			//Tratamento de erros
 			if (now < 0) Validation.setError(f_edit_amount, "Esta alteração deixaria o estoque negativo.");
 			else {
 				l_amount_now.setText(selected.getAmountRealAsStr());
@@ -120,29 +131,35 @@ public class productListController {
 		}
 	}
 
+	//Confirmacao de edicao de um produto
 	@FXML
 	public void confirm_edit() {
 		Validation.clearErrorStyle(f_edit_expiration.getEditor(), f_edit_price, f_edit_provider);
 
+		//Validacao dos campos
 		boolean valid  = validateField(f_edit_expiration.getEditor(), DATE);
 		valid = valid && validateField(f_edit_price, PRICE);
 		valid = valid && validateField(f_edit_provider, TEXT);
 
 		if (valid) {
+			//Realiza as alteracoes no banco de dados
 			selected.setExpiration(f_edit_expiration.getEditor().getText());
 			selected.setPrice(f_edit_price.getText());
 			selected.setProvider(f_edit_provider.getText());
 
+			//Reescrita do .csv
 			ProductsDatabase.getInstance().WriteFile();
 
 			modal_edit.setVisible(false);
 		}
 	}
 
+	//Confirmacao de cadastro de um novo produto
 	@FXML
 	public void confirm_new() {
 		Validation.clearErrorStyle(f_new_name, f_new_price, f_new_expiration.getEditor(), f_new_provider, f_new_amount);
 
+		//Validacao dos campos
 		boolean valid  = validateField(f_new_name, TEXT);
 		valid = valid && validateField(f_new_price, PRICE);
 		valid = valid && validateField(f_new_expiration.getEditor(), DATE);
@@ -150,9 +167,11 @@ public class productListController {
 		valid = valid && validateField(f_new_amount, INTEGER_POSITIVE);
 
 		if (valid){
+			//Verifica se o produto ja esta cadastrado no banco de dados
 			if (!Products.checkProduct(f_new_name.getText())) {
 				Validation.setError(f_new_name, "Já existe um produto com este nome.");
 			} else {
+				//Cadastra o produto no sistema
 				Products.getInstance().Register(f_new_name.getText(),
 						Double.parseDouble(f_new_price.getText()),
 						f_new_expiration.getEditor().getText(),

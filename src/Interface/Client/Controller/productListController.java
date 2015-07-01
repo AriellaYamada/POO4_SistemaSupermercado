@@ -45,16 +45,19 @@ public class productListController {
 		refresh();
 	}
 
+	//Direciona para o carrinho
 	@FXML
 	public void salesCart() {
 		MainInterface.changeSceneWE("Client/Model/cartList.fxml");
 	}
 
+	//Volta para o menu principal
 	@FXML
 	public void backToMenu() {
 		MainInterface.changeSceneWE("Client/Model/menu.fxml");
 	}
 
+	//Adiciona um produto selecionado da tabela ao carrinho do cliente
 	@FXML
 	public void addCart() {
 		// Pegar o elemento que está selecionado no TableView

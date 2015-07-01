@@ -67,6 +67,7 @@ public class Client {
 		return response;
 	}
 
+	//Solicita um username no servidor a partir do id do usuario
 	static private String getUserName(String id) {
 		signal = "getname" + Split.regSep + id;
 		Connection.getInstance().SendSignal(signal);
@@ -80,13 +81,18 @@ public class Client {
 		return name;
 	}
 
+	//Realiza o logout no servidor
 	static public void Logout () {
+		//Envia o comando de logout
 		Connection.getInstance().SendSignal("logout");
+		//Aguarda uma resposta
 		Connection.getInstance().ReceiveSignal();
+		//Fecha a conexao do socket
 		Connection.getInstance().CloseConnectionClient();
 		logged = false;
 		id = null;
 		name = null;
+		//Finaliza a aplicação
 		System.exit(0);
 	}
 }

@@ -63,29 +63,28 @@ public class Connection implements Runnable{
 			case "listall": //Busca todos os produtos cadastrados no sistema
 				return Products.AllProducts();
 
-			//Solicita a reserva de um produto
-			case "reserve":
+			case "reserve": //Solicita a reserva de um produto
 				return reserve(cmd[1]);
 
-			case "dereserve":
+			case "dereserve": //Cancela a reserva de um produto
 				return dereserve(cmd[1]);
 
-			case "listcart":
+			case "listcart": //Lista todos os itens no carrinho do cliente
 				line = cart.ListAllAsStr();
 				break;
 
-			case "sell":
+			case "sell": //Solicita a compra de um produto
 				return sell();
 
-			case "clearcart" :
+			case "clearcart" : //Limpeza do carrinho
 				cart.ClearCart();
 				break;
 
-			case "selfrefresh":
+			case "selfrefresh": //Atualizacao da lista de produtos
 				line = Products.searchProduct(cmd[1]).getAmountVirtualAsStr();
 				break;
 
-			case "logout":
+			case "logout": //Saida do sistema
 				return logout();
 
 			default:
@@ -94,22 +93,28 @@ public class Connection implements Runnable{
 		return line;
 	}
 
+	//Realiza o cadastro do cliente
 	private String newuser(String cmd) {
 		String answer;
 		String[] args = Split.splitField(cmd);
 		int response = Users.Register(args[0], args[1], args[2], args[3], args[4], args[5]);
 
+		//Verifica se for possivel realizar o cadastro
 		if (response == 0) {
+			//Resposta enviada para a aplicacao de cliente
 			answer = "ok";
+			//Atualiza o arquivo de registros de clientes
 			UsersDatabase.getInstance().WriteFile();
 		}
 		else {
+			//Mensagem de erro enviada ao cliente, caso o cadastro nao seja possivel
 			answer = "fail" + Split.regSep + "f_id" + Split.fieldSep + "Este login ja esta sendo utilizado";
 		}
 
 		return answer;
 	}
 
+	//Verifica se o login pode ser realizado
 	private String login(String cmd) {
 		String answer;
 		String[] args = Split.splitField(cmd);
@@ -129,15 +134,19 @@ public class Connection implements Runnable{
 		return answer;
 	}
 
+	//Reserva o produto solicitado
 	private String reserve(String cmd) {
 		CartItem item;
 		String[] args = Split.splitField(cmd);
 		boolean errorFlag;
 
+		//Verifica se o produto ja esta no carrinho
 		if (cart.CheckCart(args[0])) {
+			//Adiciona caso nao esteja
 			item = new CartItem(Products.searchProduct(args[0]));
 			errorFlag = item.AddToCart(cart);
 		} else {
+			//Atualiza a quantidade caso ja esteja
 			item = cart.searchItem(args[0]);
 			errorFlag = item.RefreshQuantity(Integer.parseInt(args[1]));
 		}
@@ -146,6 +155,7 @@ public class Connection implements Runnable{
 		return "fail";
 	}
 
+	//Cancela a reserva de um produto
 	private String dereserve(String cmd) {
 		CartItem item;
 		String[] args = Split.splitField(cmd);
@@ -162,12 +172,14 @@ public class Connection implements Runnable{
 		return "ok";
 	}
 
+	//Cadastra a venda
 	private String sell() {
 		Sales.Register(user, cart);
 
 		return "ok";
 	}
 
+	//Realiza a finalizacao da thread do cliente
 	private String logout() {
 		connected = false;
 

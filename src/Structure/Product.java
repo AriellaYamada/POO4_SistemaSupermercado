@@ -52,16 +52,14 @@ public class Product {
 		return amount_real;
 	}
 
-	public synchronized void refreshStock(int amount) {
-		setAmount(amount);
-	}
-
+	//Solicita ao servidor a reserva do produto
 	public boolean RequestReservation(int qtd) {
 		String signal = "reserve" + Split.regSep + name + Split.fieldSep + Integer.toString(qtd);
 		Connection.getInstance().SendSignal(signal);
 		return Connection.getInstance().ReceiveSignal().equals("ok");
 	}
 
+	//Reserva o produto
 	public synchronized boolean Reserve(int qtd) {
 		if (amount_virtual >= qtd) {
 			amount_virtual -= qtd;
@@ -70,10 +68,12 @@ public class Product {
 		return false;
 	}
 
+	//Realiza a venda do prouduto
 	public synchronized void Sell(int qtd){
 		amount_real -= qtd;
 	}
 
+	//Cancela a reserva
 	public synchronized void CancelReservation(int qtd) {
 		amount_virtual += qtd;
 	}

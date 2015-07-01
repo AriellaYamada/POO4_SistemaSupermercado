@@ -34,11 +34,13 @@ public class userListController {
 		refresh();
 	}
 
+	//Volta ao menu principal
 	@FXML
 	void backToMenu() {
 		MainInterface.changeSceneWE("Server/Model/menu.fxml");
 	}
 
+	//Atualiza a lista de usuarios cadastrados
 	@FXML
 	void refresh() {
 		data.clear();

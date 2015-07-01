@@ -51,6 +51,7 @@ public class cartListController {
 
 	}
 
+	//Configuracao dos botoes de cancelar nas 'janelas'
 	@FXML
 	void dismiss() {
 		alertDialog.setVisible(false);
@@ -58,22 +59,26 @@ public class cartListController {
 		confirmDialog.setVisible(false);
 	}
 
+	//Configuracao do botao de voltar
 	public void backToMenu() {
 		MainInterface.changeSceneWE("Client/Model/menu.fxml");
 	}
 
+	//Confirmacao de limpeza do carrinho
 	@FXML
 	public void showClearDialog() {
 		if (!data.isEmpty())
 			clearDialog.setVisible(true);
 	}
 
+	//Confirmacao de solicitacao de compra
 	@FXML
 	public void showConfirmDialog() {
 		if (!data.isEmpty())
 			confirmDialog.setVisible(true);
 	}
 
+	//Solicita a limpeza do carrinho no servidor
 	@FXML
 	public void confirmClear() {
 		Connection.getInstance().SendSignal("clearcart");
@@ -82,6 +87,7 @@ public class cartListController {
 		clearDialog.setVisible(false);
 	}
 
+	//Solicitacao da compra no servidor
 	@FXML
 	public void confirmEndSale() {
 		Connection.getInstance().SendSignal("sell");
@@ -90,6 +96,7 @@ public class cartListController {
 		refresh();
 	}
 
+	//Atualizacao do carrinho
 	public void refresh(){
 		data.clear();
 

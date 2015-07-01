@@ -28,6 +28,7 @@ public class CartItem {
 	public double getTotalPrice() { return reservedQtd * curPrice; }
 	public String getTotalPriceAsStr() { return String.format("%.2f", getTotalPrice()); }
 
+	//Adiciona o produto ao carrinho
 	public boolean AddToCart(Cart cart) {
 		if(product.Reserve(1)) {
 			reservedQtd ++;
@@ -37,6 +38,7 @@ public class CartItem {
 		return false;
 	}
 
+	//Atualiza a quantidade solicitada
 	public boolean RefreshQuantity(int qtd) {
 		if (product.Reserve(qtd)) {
 			reservedQtd += qtd;
@@ -45,6 +47,7 @@ public class CartItem {
 		return false;
 	}
 
+	//Remove do carrinho
 	public void RemoveFromCart(int qtd) {
 		product.CancelReservation(qtd);
 		reservedQtd -= qtd;

@@ -25,6 +25,7 @@ public class SalesDatabase extends Database {
 		Sales.getSales().forEach(this::WriteFile);
 	}
 
+	//Escreve no fim do arquivo .csv a venda efetuada
 	public void WriteFile(Sale sale) {
 		ArrayList<String> list = new ArrayList<>();
 

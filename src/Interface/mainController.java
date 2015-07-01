@@ -14,10 +14,12 @@ public class mainController {
 	@FXML private TextField clientPort;
 	@FXML private TextField serverPort;
 
+	//Inicializa a aplicacao como servidor
 	@FXML
 	public void connectAsServer() {
 		Validation.clearErrorStyle(serverPort);
 
+		//Validacao da porta
 		boolean valid = Validation.validateField(serverPort, Validation.FieldType.INTEGER_POSITIVE_NON_ZERO);
 
 		if (valid){ // Start Server
@@ -28,10 +30,12 @@ public class mainController {
 		}
 	}
 
+	//Inicializa a aplicacao como cliente
 	@FXML
 	public void connectAsClient() {
 		Validation.clearErrorStyle(clientIP, clientPort);
 
+		//Validacao dos campos de ip e porta
 		boolean valid;
 		valid = Validation.validateField(clientIP, Validation.FieldType.IP);
 		valid = valid && Validation.validateField(clientPort, Validation.FieldType.INTEGER_POSITIVE_NON_ZERO);

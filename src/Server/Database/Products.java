@@ -24,10 +24,12 @@ public class Products implements ListRegister {
 		return productsDB;
 	}
 
+	//Listagem de todos os produtos cadastrados no sistema
 	public static List<Product> ListAll() {
 		return products;
 	}
 
+	//Cadastro de produto a partir dos campos
 	public int Register(String name, double price, String expiration, String provider, int quantity) {
 
 		if(checkProduct(name)) {
@@ -39,6 +41,7 @@ public class Products implements ListRegister {
 		return 1;
 	}
 
+	//Cadastro de produto quando lido do arquivo .csv (recebe apenas strings)
 	public int Register(String... value) {
 
 		if(checkProduct(value[0])) {
@@ -51,11 +54,13 @@ public class Products implements ListRegister {
 		return 1;
 	}
 
+	//Verifica se o produto ja foi cadastrado no sistema
 	public static boolean checkProduct(String name) {
 		filtered = products.stream().filter(p -> p.getName().equals(name));
 		return (filtered.count() == 0);
 	}
 
+	//Busca um produto pelo nome
 	public static Product searchProduct(String productName) {
 
 		filtered = products.stream();
@@ -65,6 +70,7 @@ public class Products implements ListRegister {
 		return collector.get(0);
 	}
 
+	//Lista todos os produtos cadastrados como string para envio para a aplicacao cliente
 	public static String AllProducts(){
 		String response = "";
 		for(Product p : products) {

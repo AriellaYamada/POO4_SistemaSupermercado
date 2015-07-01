@@ -23,6 +23,7 @@ public class loginController {
 	@FXML private TextField f_confirmp;
 
 
+	//Realizacao do login no servidor
 	@FXML
 	public void handleSendLogin() {
 		Validation.clearErrorStyle(f_userlogin, f_userpassword);
@@ -43,12 +44,14 @@ public class loginController {
 		}
 	}
 
+	//Limpeza dos campos
 	@FXML
 	public void handleCleanBtn() {
 		Validation.clearErrorStyle(f_name, f_address, f_tel, f_email, f_id, f_password, f_confirmp);
 		Validation.clearField(f_name, f_address, f_tel, f_email, f_id, f_password, f_confirmp);
 	}
 
+	//Cadastra um usuario no sistema
 	@FXML
 	public void handleAddUserBtn() {
 		// Reset field style then check if its not empty
