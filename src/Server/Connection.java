@@ -83,6 +83,10 @@ public class Connection implements Runnable{
 			case "selfrefresh": //Atualizacao da lista de produtos
 				line = Products.searchProduct(cmd[1]).getAmountVirtualAsStr();
 				break;
+			case "selfrefreshcart":
+				CartItem i = cart.searchItem(cmd[1]);
+				line = i.getReservedQtdAsStr() + Split.fieldSep + i.getProduct().getAmountRealAsStr();
+				break;
 
 			case "logout": //Saida do sistema
 				return logout();

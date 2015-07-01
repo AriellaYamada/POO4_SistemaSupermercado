@@ -6,6 +6,7 @@ import Def.Split;
 import Structure.Product;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import javafx.scene.control.TableColumn;
@@ -17,9 +18,13 @@ import javafx.scene.text.Text;
 public class cartListController {
 
 	@FXML public Label l_total_value;
+
 	@FXML public VBox alertDialog;
 	@FXML public VBox clearDialog;
 	@FXML public VBox confirmDialog;
+	@FXML public VBox changeAmoutDialog;
+	@FXML public Label l_product_amount;
+
 	@FXML private TableView<Product> tv_table;
 	@FXML private TableColumn<Product, String> c_name;
 	@FXML private TableColumn<Product, Double> c_price;
@@ -32,6 +37,8 @@ public class cartListController {
 
 	private ObservableList<Product> data = FXCollections.observableArrayList();
 
+	private Product p;
+
 	@FXML
 	public void initialize() {
 		// Configura TableView
@@ -42,6 +49,10 @@ public class cartListController {
 		c_amount.setCellValueFactory(new PropertyValueFactory<>("amount_virtual"));
 
 		tv_table.setItems(data);
+
+		tv_table.setOnMouseClicked(event -> {
+			if (event.getClickCount() == 2) showChangeAmountDialog();
+		});
 
 		refresh();
 	}
@@ -57,6 +68,8 @@ public class cartListController {
 		alertDialog.setVisible(false);
 		clearDialog.setVisible(false);
 		confirmDialog.setVisible(false);
+		changeAmoutDialog.setVisible(false);
+		refresh();
 	}
 
 	//Configuracao do botao de voltar
@@ -125,5 +138,41 @@ public class cartListController {
 		}
 
 		l_total_value.setText(String.format("%.2f", value));
+	}
+
+	@FXML
+	public void showChangeAmountDialog() {
+		p = tv_table.getSelectionModel().getSelectedItem();
+		l_product_amount.setText(p.getAmountVirtualAsStr());
+		if(!data.isEmpty())
+			changeAmoutDialog.setVisible(true);
+	}
+
+	@FXML
+	public void removeOneCart() {
+		String signal = "dereserve" + Split.regSep + p.getName() + Split.fieldSep + "1";
+		Connection.getInstance().SendSignal(signal);
+		if (Connection.getInstance().ReceiveSignal().equals("ok"))
+			p.selfRefreshCart();
+		l_product_amount.setText(p.getAmountVirtualAsStr());
+
+	}
+
+	@FXML
+	public void addOneCart() {
+		String signal = "reserve" + Split.regSep + p.getName() + Split.fieldSep + "1";
+		Connection.getInstance().SendSignal(signal);
+		if (Connection.getInstance().ReceiveSignal().equals("ok"))
+			p.selfRefreshCart();
+		l_product_amount.setText(p.getAmountVirtualAsStr());
+	}
+
+	@FXML
+	public void removAllCart() {
+		String signal = "dereserve" + Split.regSep + p.getName() + Split.fieldSep + p.getAmountVirtualAsStr();
+		Connection.getInstance().SendSignal(signal);
+		if (Connection.getInstance().ReceiveSignal().equals("ok"))
+			dismiss();
+		refresh();
 	}
 }

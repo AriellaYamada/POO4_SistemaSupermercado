@@ -85,4 +85,12 @@ public class Product {
 		String answer = Connection.getInstance().ReceiveSignal();
 		amount_real = amount_virtual = Integer.parseInt(answer);
 	}
+
+	public void selfRefreshCart() {
+		Connection.getInstance().SendSignal("selfrefreshcart" + Split.regSep + this.name);
+		String answer = Connection.getInstance().ReceiveSignal();
+		String[] values = answer.split(Split.fieldSep);
+		amount_virtual = Integer.parseInt(values[0]);
+		amount_real = Integer.parseInt(values[1]);
+	}
 }
