@@ -1,4 +1,4 @@
-package Structure;
+package Def;
 
 import javafx.scene.control.Control;
 import javafx.scene.control.TextInputControl;
@@ -6,42 +6,10 @@ import javafx.scene.control.Tooltip;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
-import java.util.Calendar;
-import java.util.GregorianCalendar;
-import java.util.LinkedList;
-import java.util.List;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
-public class Def {
-	public static final String regSep = "!";    // Register separator
-	public static final String fieldSep = "&";  // Field separator
-	public static final String comma = ",";     // Comma separator
-	public static final List<String> months = new LinkedList<>();
-
-	public static String[] splitReg(String str){
-		return str.split(regSep);
-	}
-
-	public static String[] splitField(String str){
-		return str.split(fieldSep);
-	}
-
-	public static String[] splitComma(String str){
-		return str.split(comma);
-	}
-
-	public static String CalendarToString (GregorianCalendar date) {
-		return date.get(Calendar.DAY_OF_MONTH) + "/"
-				+(date.get(Calendar.MONTH)+1) + "/"
-				+date.get(Calendar.YEAR);
-	}
-
-	public static GregorianCalendar StringToCalendar (String date) {
-		String[] split_date = date.split("/");
-
-		return new GregorianCalendar(Integer.parseInt(split_date[2]),
-				Integer.parseInt(split_date[1])-1,
-				Integer.parseInt(split_date[0]));
-	}
+public class Validation {
 
 	public static void setError (Control field, String str){
 		field.getStyleClass().add("red-field");
@@ -67,12 +35,12 @@ public class Def {
 		INTEGER_NON_ZERO,
 		INTEGER_POSITIVE_NON_ZERO,
 		INTEGER_NEGATIVE_NON_ZERO,
-		FLOAT,
-		FLOAT_POSITIVE,
-		FLOAT_NEGATIVE,
-		FLOAT_NON_ZERO,
-		FLOAT_POSITIVE_NON_ZERO,
-		FLOAT_NEGATIVE_NON_ZERO,
+		DOUBLE,
+		DOUBLE_POSITIVE,
+		DOUBLE_NEGATIVE,
+		DOUBLE_NON_ZERO,
+		DOUBLE_POSITIVE_NON_ZERO,
+		DOUBLE_NEGATIVE_NON_ZERO,
 		DATE,
 		PRICE,
 		IP,
@@ -88,7 +56,7 @@ public class Def {
 		if (text.contains(",")) return "Este campo contém um caractere inválido (vírgula)";
 
 		Integer i;
-		Float f;
+		Double d;
 
 		switch (TYPE){
 			case INTEGER:
@@ -125,38 +93,38 @@ public class Def {
 				if (i >= 0) return "Este campo precisa ser negativo não-zero";
 				return "ok";
 
-			case FLOAT:
-				if (checkFloat(text) == null) return "Este campo não é um float válido";
+			case DOUBLE:
+				if (checkDouble(text) == null) return "Este campo não é um double válido";
 				return "ok";
 
-			case FLOAT_POSITIVE:
-				f = checkFloat(text);
-				if (f == null) return "Este campo não é um float válido";
-				if (f < 0) return "Este campo precisa ser positivo ou zero";
+			case DOUBLE_POSITIVE:
+				d = checkDouble(text);
+				if (d == null) return "Este campo não é um double válido";
+				if (d < 0) return "Este campo precisa ser positivo ou zero";
 				return "ok";
 
-			case FLOAT_NEGATIVE:
-				f = checkFloat(text);
-				if (f == null) return "Este campo não é um float válido";
-				if (f > 0) return "Este campo precisa ser negativo ou zero";
+			case DOUBLE_NEGATIVE:
+				d = checkDouble(text);
+				if (d == null) return "Este campo não é um double válido";
+				if (d > 0) return "Este campo precisa ser negativo ou zero";
 				return "ok";
 
-			case FLOAT_NON_ZERO:
-				f = checkFloat(text);
-				if (f == null) return "Este campo não é um float válido";
-				if (f == 0) return "Este campo precisa ser diferente de zero";
+			case DOUBLE_NON_ZERO:
+				d = checkDouble(text);
+				if (d == null) return "Este campo não é um double válido";
+				if (d == 0) return "Este campo precisa ser diferente de zero";
 				return "ok";
 
-			case FLOAT_POSITIVE_NON_ZERO:
-				f = checkFloat(text);
-				if (f == null) return "Este campo não é um float válido";
-				if (f <= 0) return "Este campo precisa ser positivo não-zero";
+			case DOUBLE_POSITIVE_NON_ZERO:
+				d = checkDouble(text);
+				if (d == null) return "Este campo não é um double válido";
+				if (d <= 0) return "Este campo precisa ser positivo não-zero";
 				return "ok";
 
-			case FLOAT_NEGATIVE_NON_ZERO:
-				f = checkFloat(text);
-				if (f == null) return "Este campo não é um float válido";
-				if (f >= 0) return "Este campo precisa ser negativo não-zero";
+			case DOUBLE_NEGATIVE_NON_ZERO:
+				d = checkDouble(text);
+				if (d == null) return "Este campo não é um double válido";
+				if (d >= 0) return "Este campo precisa ser negativo não-zero";
 				return "ok";
 
 			case DATE:
@@ -164,12 +132,16 @@ public class Def {
 				return "ok";
 
 			case PRICE:
-				f = checkFloat(text);
-				if (f == null) return "Preço inválido";
-				if (f <= 0) return "O preço precisa ser positivo não-zero";
+				d = checkDouble(text);
+				if (d == null) return "Preço inválido";
+				if (d <= 0) return "O preço precisa ser positivo não-zero";
 				if (!checkDecimals(text, 2)) return "O preço só pode ter 2 casas decimais";
 				return "ok";
 
+			case EMAIL:
+				if (checkEmail(text))
+					return "ok";
+				else return "Email inválido";
 		}
 
 		return "ok";
@@ -183,9 +155,9 @@ public class Def {
 		}
 	}
 
-	private static Float checkFloat(String text){
+	private static Double checkDouble(String text){
 		try {
-			return Float.parseFloat(text);
+			return Double.parseDouble(text);
 		} catch (NumberFormatException e) {
 			return null;
 		}
@@ -225,31 +197,13 @@ public class Def {
 		return false;
 	}
 
-	private static void initializeMonthsList () {
-		months.add(0, null);
-		months.add(1, "Janeiro");
-		months.add(2, "Fevereiro");
-		months.add(3, "Março");
-		months.add(4, "Abril");
-		months.add(5, "Maio");
-		months.add(6, "Junho");
-		months.add(7, "Julho");
-		months.add(8, "Agosto");
-		months.add(9, "Setembro");
-		months.add(10, "Outubro");
-		months.add(11, "Novembro");
-		months.add(12, "Dezembro");
-	}
+	public static boolean checkEmail(String email) {
+		if ((email == null) || (email.trim().length() == 0))
+			return false;
 
-	public static String intToMonth (int n) {
-		if (n < 1 || n > 12) return null;
-		if (months.isEmpty()) initializeMonthsList();
-		return months.get(n);
+		String emailPattern = "\\b(^[_A-Za-z0-9-]+(\\.[_A-Za-z0-9-]+)*@([A-Za-z0-9-])+(\\.[A-Za-z0-9-]+)*((\\.[A-Za-z0-9]{2,})|(\\.[A-Za-z0-9]{2,}\\.[A-Za-z0-9]{2,}))$)\\b";
+		Pattern pattern = Pattern.compile(emailPattern, Pattern.CASE_INSENSITIVE);
+		Matcher matcher = pattern.matcher(email);
+		return matcher.matches();
 	}
-
-	public static int monthToInt (String m) {
-		if (months.isEmpty()) initializeMonthsList();
-		return months.indexOf(m);
-	}
-
 }

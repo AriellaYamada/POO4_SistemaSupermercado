@@ -1,6 +1,6 @@
 package Client;
 
-import Structure.Def;
+import Def.Split;
 
 import java.io.IOException;
 
@@ -27,20 +27,22 @@ public class Client {
 		logged = false;
 	}
 
+	//Estabelece conexao com a aplicacao servidor
 	static public void Connect (String ip, int port) throws IOException {
 		Connection.getInstance().Connect(ip, port);
-		logged = false;
+		logged = true;
 	}
 
+	//Comando para solicitar a criacao de um novo usuario no sistema
 	static public String AddNewUser (String name, String address, String tel, String email, String id, String password) {
 
 		signal = "newuser"
-				+ Def.regSep   + name
-				+ Def.fieldSep + address
-				+ Def.fieldSep + tel
-				+ Def.fieldSep + email
-				+ Def.fieldSep + id
-				+ Def.fieldSep + password;
+				+ Split.regSep   + name
+				+ Split.fieldSep + address
+				+ Split.fieldSep + tel
+				+ Split.fieldSep + email
+				+ Split.fieldSep + id
+				+ Split.fieldSep + password;
 		
 		Connection.getInstance().SendSignal(signal);
 
@@ -50,7 +52,7 @@ public class Client {
 	static public String Login (String userID, String password) {
 
 		//Comando a ser enviado ao servidor
-		signal = "login" + Def.regSep + userID + Def.fieldSep + password;
+		signal = "login" + Split.regSep + userID + Split.fieldSep + password;
 		Connection.getInstance().SendSignal(signal);
 
 		//Resposta recebida do servidor
@@ -65,8 +67,9 @@ public class Client {
 		return response;
 	}
 
+	//Solicita um username no servidor a partir do id do usuario
 	static private String getUserName(String id) {
-		signal = "getname" + Def.regSep + id;
+		signal = "getname" + Split.regSep + id;
 		Connection.getInstance().SendSignal(signal);
 		return Connection.getInstance().ReceiveSignal();
 	}
@@ -78,13 +81,18 @@ public class Client {
 		return name;
 	}
 
+	//Realiza o logout no servidor
 	static public void Logout () {
+		//Envia o comando de logout
 		Connection.getInstance().SendSignal("logout");
+		//Aguarda uma resposta
 		Connection.getInstance().ReceiveSignal();
+		//Fecha a conexao do socket
 		Connection.getInstance().CloseConnectionClient();
 		logged = false;
 		id = null;
 		name = null;
+		//Finaliza a aplicação
 		System.exit(0);
 	}
 }

@@ -1,5 +1,7 @@
 package Structure;
 
+import Server.Database.Sales;
+
 import java.util.GregorianCalendar;
 import java.util.List;
 
@@ -16,7 +18,7 @@ public class Sale {
 	}
 
 	public Sale(User user, List<CartItem> products) {
-		this.date = Def.CalendarToString(new GregorianCalendar());
+		this.date = Sales.CalendarToString(new GregorianCalendar());
 		this.user = user;
 		this.products = products;
 	}
@@ -33,25 +35,31 @@ public class Sale {
 		return nItems;
 	}
 
-	public float getTotalPrice() {
-		Float total = 0f;
+	//Calcula o preco total da compra
+	public double getTotalPrice() {
+		double total = 0f;
 		for (CartItem i : products) total += i.getTotalPrice();
 		return total;
 	}
 
+	//Busca o ano da compra
 	public int getYear(){
 		String[] splited = date.split("/");
 		return Integer.parseInt(splited[2]);
 	}
+
+	//Busca o mês da compra
 	public int getMonth(){
 		String[] splited = date.split("/");
 		return Integer.parseInt(splited[1]);
 	}
 
+	//Busca o dia da compra
 	public int getDay(){
 		String[] splited = date.split("/");
 		return Integer.parseInt(splited[0]);
 	}
 
+	//Retorna o preço total da compra como string
 	public String getTotalPriceAsStr() { return String.format("%.2f", getTotalPrice()); }
 }

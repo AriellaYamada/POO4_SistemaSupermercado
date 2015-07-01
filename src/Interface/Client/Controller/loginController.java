@@ -2,20 +2,20 @@ package Interface.Client.Controller;
 
 import Client.Client;
 import Interface.MainInterface;
-import Structure.Def;
+import Def.Split;
+import Def.Validation;
 import javafx.fxml.FXML;
-import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 import javafx.scene.control.TextInputControl;
 
-import static Structure.Def.FieldType.*;
-import static Structure.Def.validateField;
+import static Def.Validation.FieldType.*;
+import static Def.Validation.validateField;
 
 public class loginController {
 	@FXML private TextField f_userlogin;
 	@FXML private TextField f_userpassword;
 	@FXML private TextField f_name;
-	@FXML private TextArea f_address;
+	@FXML private TextField f_address;
 	@FXML private TextField f_tel;
 	@FXML private TextField f_email;
 	@FXML private TextField f_id;
@@ -23,9 +23,10 @@ public class loginController {
 	@FXML private TextField f_confirmp;
 
 
+	//Realizacao do login no servidor
 	@FXML
 	public void handleSendLogin() {
-		Def.clearErrorStyle(f_userlogin, f_userpassword);
+		Validation.clearErrorStyle(f_userlogin, f_userpassword);
 
 		boolean valid  = validateField(f_userlogin, TEXT);
 		valid = valid && validateField(f_userpassword, TEXT);
@@ -36,23 +37,25 @@ public class loginController {
 			if (response.equals("ok")) {    // if success, go to Main Page
 				MainInterface.changeSceneWE("Client/Model/menu.fxml");
 			} else {    // If fail, set error
-				String[] splited = Def.splitReg(response);
-				String[] error = Def.splitField(splited[1]);
-				Def.setError(getField(error[0]), error[1]);
+				String[] splited = Split.splitReg(response);
+				String[] error = Split.splitField(splited[1]);
+				Validation.setError(getField(error[0]), error[1]);
 			}
 		}
 	}
 
+	//Limpeza dos campos
 	@FXML
 	public void handleCleanBtn() {
-		Def.clearErrorStyle(f_name, f_address, f_tel, f_email, f_id, f_password, f_confirmp);
-		Def.clearField(f_name, f_address, f_tel, f_email, f_id, f_password, f_confirmp);
+		Validation.clearErrorStyle(f_name, f_address, f_tel, f_email, f_id, f_password, f_confirmp);
+		Validation.clearField(f_name, f_address, f_tel, f_email, f_id, f_password, f_confirmp);
 	}
 
+	//Cadastra um usuario no sistema
 	@FXML
 	public void handleAddUserBtn() {
 		// Reset field style then check if its not empty
-		Def.clearErrorStyle(f_name, f_address, f_tel, f_email, f_id, f_password, f_confirmp);
+		Validation.clearErrorStyle(f_name, f_address, f_tel, f_email, f_id, f_password, f_confirmp);
 
 		boolean valid  = validateField(f_name,      TEXT);
 		valid = valid && validateField(f_address,   TEXT);
@@ -68,8 +71,8 @@ public class loginController {
 
 			// Verify if "password" and "confirm password" are the same
 			if (!f_password.getText().equals(f_confirmp.getText())) {
-				Def.setError(f_password, "As senhas digitadas não são iguais");
-				Def.setError(f_confirmp, "As senhas digitadas não são iguais");
+				Validation.setError(f_password, "As senhas digitadas não são iguais");
+				Validation.setError(f_confirmp, "As senhas digitadas não são iguais");
 			} else {
 				// Send the data to server and read the answer from server
 				String answer = Client.AddNewUser(f_name.getText(),
@@ -80,15 +83,15 @@ public class loginController {
 												  f_password.getText());
 
 				if (!answer.equals("ok")) {  // If the answer is not ok
-					String[] splited = Def.splitReg(answer);
+					String[] splited = Split.splitReg(answer);
 
 					// Ignores the first item of the array (probably a "fail")
 					for (int i = 1; i < splited.length; i++){
-						String[] error = Def.splitField(splited[i]);
+						String[] error = Split.splitField(splited[i]);
 						TextInputControl fieldError = getField(error[0]);
 
 						// Mark the errors on screen
-						if (fieldError != null) { Def.setError(fieldError, error[1]);
+						if (fieldError != null) { Validation.setError(fieldError, error[1]);
 						}
 					}
 				} else {// If all data is ok
