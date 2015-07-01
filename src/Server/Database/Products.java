@@ -28,7 +28,7 @@ public class Products implements ListRegister {
 		return products;
 	}
 
-	public int Register(String name, float price, String expiration, String provider, int quantity) {
+	public int Register(String name, double price, String expiration, String provider, int quantity) {
 
 		if(checkProduct(name)) {
 			Product new_product = new Product(name, price, expiration, provider, quantity);
@@ -42,7 +42,7 @@ public class Products implements ListRegister {
 	public int Register(String... value) {
 
 		if(checkProduct(value[0])) {
-			Product new_product = new Product(value[0], Float.parseFloat(value[1]),
+			Product new_product = new Product(value[0], Double.parseDouble(value[1]),
 					value[2], value[3], Integer.parseInt(value[4]));
 
 			products.add(new_product);

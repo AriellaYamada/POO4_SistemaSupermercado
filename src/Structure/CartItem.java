@@ -16,7 +16,7 @@ public class CartItem {
 	public CartItem(String name, String amount, String price) {
 		product = Products.searchProduct(name);
 		reservedQtd = Integer.parseInt(amount);
-		curPrice = Float.parseFloat(price);
+		curPrice = Double.parseDouble(price);
 	}
 
 	public Product getProduct() { return product; }

@@ -154,7 +154,7 @@ public class productListController {
 				Validation.setError(f_new_name, "Já existe um produto com este nome.");
 			} else {
 				Products.getInstance().Register(f_new_name.getText(),
-						Float.parseFloat(f_new_price.getText()),
+						Double.parseDouble(f_new_price.getText()),
 						f_new_expiration.getEditor().getText(),
 						f_new_provider.getText(),
 						Integer.parseInt(f_new_amount.getText())

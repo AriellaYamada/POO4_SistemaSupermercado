@@ -24,7 +24,7 @@ public class saleListController {
 	@FXML private TableColumn<Sale, String> c_name;
 	@FXML private TableColumn<Sale, String> c_date;
 	@FXML private TableColumn<Sale, Integer> c_items;
-	@FXML private TableColumn<Sale, Float> c_total_price;
+	@FXML private TableColumn<Sale, Double> c_total_price;
 
 	@FXML private VBox modal_details;
 
@@ -34,8 +34,8 @@ public class saleListController {
 	@FXML private TableView<CartItem> tv_item;
 	@FXML private TableColumn<CartItem, String> c_item_name;
 	@FXML private TableColumn<CartItem, Integer> c_item_amount;
-	@FXML private TableColumn<CartItem, Float> c_item_price_unit;
-	@FXML private TableColumn<CartItem, Float> c_item_price_total;
+	@FXML private TableColumn<CartItem, Double> c_item_price_unit;
+	@FXML private TableColumn<CartItem, Double> c_item_price_total;
 	@FXML private Label l_total_price;
 
 	public VBox modal_pdf;

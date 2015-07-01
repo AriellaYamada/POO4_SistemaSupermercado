@@ -94,36 +94,36 @@ public class Validation {
 				return "ok";
 
 			case DOUBLE:
-				if (checkDouble(text) == null) return "Este campo não é um float válido";
+				if (checkDouble(text) == null) return "Este campo não é um double válido";
 				return "ok";
 
 			case DOUBLE_POSITIVE:
 				d = checkDouble(text);
-				if (d == null) return "Este campo não é um float válido";
+				if (d == null) return "Este campo não é um double válido";
 				if (d < 0) return "Este campo precisa ser positivo ou zero";
 				return "ok";
 
 			case DOUBLE_NEGATIVE:
 				d = checkDouble(text);
-				if (d == null) return "Este campo não é um float válido";
+				if (d == null) return "Este campo não é um double válido";
 				if (d > 0) return "Este campo precisa ser negativo ou zero";
 				return "ok";
 
 			case DOUBLE_NON_ZERO:
 				d = checkDouble(text);
-				if (d == null) return "Este campo não é um float válido";
+				if (d == null) return "Este campo não é um double válido";
 				if (d == 0) return "Este campo precisa ser diferente de zero";
 				return "ok";
 
 			case DOUBLE_POSITIVE_NON_ZERO:
 				d = checkDouble(text);
-				if (d == null) return "Este campo não é um float válido";
+				if (d == null) return "Este campo não é um double válido";
 				if (d <= 0) return "Este campo precisa ser positivo não-zero";
 				return "ok";
 
 			case DOUBLE_NEGATIVE_NON_ZERO:
 				d = checkDouble(text);
-				if (d == null) return "Este campo não é um float válido";
+				if (d == null) return "Este campo não é um double válido";
 				if (d >= 0) return "Este campo precisa ser negativo não-zero";
 				return "ok";
 

@@ -22,7 +22,7 @@ public class cartListController {
 	@FXML public VBox confirmDialog;
 	@FXML private TableView<Product> tv_table;
 	@FXML private TableColumn<Product, String> c_name;
-	@FXML private TableColumn<Product, Float> c_price;
+	@FXML private TableColumn<Product, Double> c_price;
 	@FXML private TableColumn<Product, String> c_expiration;
 	@FXML private TableColumn<Product, String> c_provider;
 	@FXML private TableColumn<Product, Integer> c_amount;
@@ -106,7 +106,7 @@ public class cartListController {
 			for (String s : products) {
 				String[] splited = Split.splitField(s);
 				data.add(new Product(splited[0],
-								Float.parseFloat(splited[1]),
+								Double.parseDouble(splited[1]),
 								splited[2],
 								splited[3],
 								Integer.parseInt(splited[4]))
