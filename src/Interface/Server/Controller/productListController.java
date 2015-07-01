@@ -115,7 +115,7 @@ public class productListController {
 	public void pdfGenerate() {
 
 		if(!Products.ListAll().isEmpty())
-			ProductsCreator.CreatePDFProducts(Products.ListAll());
+			ProductsCreator.CreatePDF(Products.ListAll());
 	}
 
 	//Atualiza a quantidade de produtos

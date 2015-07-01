@@ -149,7 +149,7 @@ public class saleListController {
 				.collect(Collectors.toList());
 
 		if (list.isEmpty()) Def.Validation.setError(f_day.getEditor(), "Não existe vendas neste dia.");
-		else SalesCreator.CreatePDFSales(filename, list);
+		else SalesCreator.CreatePDF(filename, list);
 	}
 
 	//Gera o PDF do mês e ano solicitado
@@ -168,7 +168,7 @@ public class saleListController {
 		String filename = "Vendas_" + year + "-" + String.format("%02d", month);
 
 
-		SalesCreator.CreatePDFSales(filename, list);
+		SalesCreator.CreatePDF(filename, list);
 
 	}
 

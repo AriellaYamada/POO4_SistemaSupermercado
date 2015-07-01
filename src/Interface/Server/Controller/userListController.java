@@ -52,7 +52,7 @@ public class userListController {
 	void pdfGenerate() {
 
 		if(!Users.ListAll().isEmpty())
-			UsersCreator.CreatePDFUser(Users.ListAll());
+			UsersCreator.CreatePDF(Users.ListAll());
 
 	}
 

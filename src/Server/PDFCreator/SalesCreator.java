@@ -14,7 +14,7 @@ public class SalesCreator {
 
 	private static Document docSales = null;
 
-	public static void CreatePDFSales(String filename, List<Sale> sales) {
+	public static void CreatePDF(String filename, List<Sale> sales) {
 
 		docSales = new Document(PageSize.A4, 70, 42, 56, 56);
 		//A4 595 pts
@@ -25,7 +25,7 @@ public class SalesCreator {
 
 			docSales.open();
 
-			CreateSalesTable(sales);
+			CreateTable(sales);
 
 		} catch (DocumentException e) {
 			e.printStackTrace();
@@ -36,7 +36,7 @@ public class SalesCreator {
 		docSales.close();
 	}
 
-	private static void CreateSalesTable(List <Sale> sales) throws DocumentException {
+	private static void CreateTable(List<Sale> sales) throws DocumentException {
 
 		for (Sale s : sales ) {
 
@@ -56,7 +56,7 @@ public class SalesCreator {
 			docSales.add(table);
 
 			try {
-				docSales.add(CreateSalesProductsTable(s.getProducts()));
+				docSales.add(CreateSubTable(s.getProducts()));
 			} catch (DocumentException e) {
 				e.printStackTrace();
 			}
@@ -69,9 +69,9 @@ public class SalesCreator {
 	}
 
 	//Escreve a tabela de produtos
-	private static PdfPTable CreateSalesProductsTable(List<CartItem> products) throws DocumentException {
+	private static PdfPTable CreateSubTable(List<CartItem> products) throws DocumentException {
 
-		docSales.add(CreateHeaderSalesProductsTable());
+		docSales.add(CreateHeaderSubTable());
 
 		PdfPTable table = new PdfPTable(4); //4 colunas
 		table.setTotalWidth(new float[]{ 183, 100, 100, 100 });
@@ -100,7 +100,7 @@ public class SalesCreator {
 	}
 
 	//Escreve o cabeçalho da tabela de produtos
-	private static PdfPTable CreateHeaderSalesProductsTable() throws DocumentException {
+	private static PdfPTable CreateHeaderSubTable() throws DocumentException {
 
 		PdfPTable table = new PdfPTable(4); //4 colunas
 		table.setTotalWidth(new float[]{ 183, 100, 100, 100 });
