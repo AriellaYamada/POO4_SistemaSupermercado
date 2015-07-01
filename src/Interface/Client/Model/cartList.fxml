@@ -246,7 +246,7 @@
             </VBox>
          </children>
       </VBox>
-      <VBox fx:id="changeAmoutDialog" alignment="CENTER" layoutX="10.0" layoutY="10.0" style="-fx-background-color: rgba(0,0,0,0.2);" visible="false">
+      <VBox fx:id="changeAmoutDialog" alignment="CENTER" layoutX="10.0" layoutY="10.0" style="-fx-background-color: rgba(0,0,0,0.2);">
          <children>
             <VBox alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" spacing="15.0" style="-fx-background-color: #444;">
                <children>
@@ -276,7 +276,7 @@
                               </Group>
                            </graphic>
                         </Button>
-                        <Label fx:id="l_product_amount" minWidth="50.0" text="Label" textAlignment="CENTER" textFill="WHITE">
+                        <Label fx:id="l_product_amount" alignment="CENTER" minWidth="50.0" text="L" textAlignment="CENTER" textFill="WHITE">
                            <font>
                               <Font size="18.0" />
                            </font>
