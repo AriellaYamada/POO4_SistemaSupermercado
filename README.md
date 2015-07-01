@@ -9,7 +9,7 @@
 - [x] Trocar float por double
 - [x] Deslogar do sistema (cliente)
 - [ ] Tela do fornecedor
-- [ ] README
+- [x] README
 - [ ] .jar
 - [ ] Tela de editar qtd no carrinho
 - [x] COMENTAR O CODIGO
