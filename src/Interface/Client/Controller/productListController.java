@@ -31,7 +31,7 @@ public class productListController {
 	public void initialize() {
 		// Configura TableView
 		c_name.setCellValueFactory(new PropertyValueFactory<>("name"));
-		c_price.setCellValueFactory(new PropertyValueFactory<>("price"));
+		c_price.setCellValueFactory(new PropertyValueFactory<>("priceAsStr"));
 		c_expiration.setCellValueFactory(new PropertyValueFactory<>("expiration"));
 		c_provider.setCellValueFactory(new PropertyValueFactory<>("provider"));
 		c_amount.setCellValueFactory(new PropertyValueFactory<>("amount_virtual"));
