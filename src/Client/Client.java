@@ -27,11 +27,13 @@ public class Client {
 		logged = false;
 	}
 
+	//Estabelece conexao com a aplicacao servidor
 	static public void Connect (String ip, int port) throws IOException {
 		Connection.getInstance().Connect(ip, port);
-		logged = false;
+		logged = true;
 	}
 
+	//Comando para solicitar a criacao de um novo usuario no sistema
 	static public String AddNewUser (String name, String address, String tel, String email, String id, String password) {
 
 		signal = "newuser"
