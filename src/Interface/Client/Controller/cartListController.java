@@ -150,12 +150,15 @@ public class cartListController {
 
 	@FXML
 	public void removeOneCart() {
-		String signal = "dereserve" + Split.regSep + p.getName() + Split.fieldSep + "1";
-		Connection.getInstance().SendSignal(signal);
-		if (Connection.getInstance().ReceiveSignal().equals("ok"))
-			p.selfRefreshCart();
-		l_product_amount.setText(p.getAmountVirtualAsStr());
-
+		if (Integer.parseInt(l_product_amount.getText()) > 1) {
+			String signal = "dereserve" + Split.regSep + p.getName() + Split.fieldSep + "1";
+			Connection.getInstance().SendSignal(signal);
+			if (Connection.getInstance().ReceiveSignal().equals("ok"))
+				p.selfRefreshCart();
+			l_product_amount.setText(p.getAmountVirtualAsStr());
+		} else {
+			removAllCart();
+		}
 	}
 
 	@FXML
