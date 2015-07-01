@@ -10,7 +10,7 @@
 - [x] Deslogar do sistema (cliente)
 - [ ] Tela do fornecedor
 - [x] README
-- [ ] .jar
+- [x] .jar
 - [ ] Tela de editar qtd no carrinho
 - [x] COMENTAR O CODIGO
 - [ ] Fazer busca
