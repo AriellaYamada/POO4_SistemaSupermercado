@@ -24,6 +24,7 @@ public class cartListController {
 	@FXML public VBox confirmDialog;
 	@FXML public VBox changeAmoutDialog;
 	@FXML public Label l_product_amount;
+	@FXML public Text t_product_name;
 
 	@FXML private TableView<Product> tv_table;
 	@FXML private TableColumn<Product, String> c_name;
@@ -143,6 +144,7 @@ public class cartListController {
 	@FXML
 	public void showChangeAmountDialog() {
 		p = tv_table.getSelectionModel().getSelectedItem();
+		t_product_name.setText(p.getName());
 		l_product_amount.setText(p.getAmountVirtualAsStr());
 		if(!data.isEmpty())
 			changeAmoutDialog.setVisible(true);
