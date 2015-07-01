@@ -16,7 +16,7 @@ public class ProductsCreator {
 
 	private static Document docProducts = null;
 
-	public static void CreatePDFProducts(List<Product> products) {
+	public static void CreatePDF(List<Product> products) {
 
 		docProducts = new Document(PageSize.A4, 70, 42, 56, 56);
 		//A4 595 pts
@@ -27,7 +27,7 @@ public class ProductsCreator {
 
 			docProducts.open();
 
-			docProducts.add(CreateProductsTable(products));
+			docProducts.add(CreateTable(products));
 
 		} catch (DocumentException e) {
 			e.printStackTrace();
@@ -39,9 +39,9 @@ public class ProductsCreator {
 	}
 
 	//Escreve a tabela de produtos
-	private static PdfPTable CreateProductsTable(List<Product> products) throws DocumentException {
+	private static PdfPTable CreateTable(List<Product> products) throws DocumentException {
 
-		docProducts.add(CreateHeaderProductsTable());
+		docProducts.add(CreateHeaderTable());
 
 		PdfPTable table = new PdfPTable(4); //4 colunas
 		table.setTotalWidth(new float[]{ 193, 80, 80, 130 });
@@ -70,7 +70,7 @@ public class ProductsCreator {
 	}
 
 	//Escreve o cabeçalho da tabela de produtos
-	private static PdfPTable CreateHeaderProductsTable() throws DocumentException {
+	private static PdfPTable CreateHeaderTable() throws DocumentException {
 
 		PdfPTable table = new PdfPTable(4); //4 colunas
 		table.setTotalWidth(new float[]{ 193, 80, 80, 130 });

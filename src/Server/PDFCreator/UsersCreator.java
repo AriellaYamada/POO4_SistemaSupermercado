@@ -16,7 +16,7 @@ public class UsersCreator {
 
 	private static Document docUser = null;
 
-	public static void CreatePDFUser( List<User> users ) {
+	public static void CreatePDF(List<User> users) {
 
 		docUser = new Document(PageSize.A4, 70, 42, 56, 56);
 		//A4 595 pts
@@ -27,7 +27,7 @@ public class UsersCreator {
 
 			docUser.open();
 
-			docUser.add(CreateUsersTable(users));
+			docUser.add(CreateTable(users));
 
 		} catch (DocumentException e) {
 			e.printStackTrace();
@@ -39,9 +39,9 @@ public class UsersCreator {
 	}
 
 	//Escreve a tabela de usuários
-	private static PdfPTable CreateUsersTable( List<User> users ) throws DocumentException {
+	private static PdfPTable CreateTable(List<User> users) throws DocumentException {
 
-		docUser.add(CreateHeaderUsersTable());
+		docUser.add(CreateTable());
 
 		PdfPTable table = new PdfPTable(4); //4 colunas
 		table.setTotalWidth(new float[]{ 183, 100, 80, 120 });
@@ -70,7 +70,7 @@ public class UsersCreator {
 	}
 
 	//Escreve o cabeçalho da tabela de usuários
-	private static PdfPTable CreateHeaderUsersTable() throws DocumentException {
+	private static PdfPTable CreateTable() throws DocumentException {
 
 		PdfPTable table = new PdfPTable(4); //4 colunas
 		table.setTotalWidth(new float[]{ 183, 100, 80, 120 });
