@@ -99,11 +99,12 @@ public class productListController {
 		selected = tv_table.getSelectionModel().getSelectedItem();
 		if (selected == null) return;
 
+		f_edit_amount.clear();
 		Validation.clearErrorStyle(f_edit_name, f_edit_price, f_edit_expiration.getEditor(), f_edit_provider);
 
 		//Os campos recebem os atuais valores do produto que deseja ser alterado
 		f_edit_name.setText(selected.getName());
-		f_edit_price.setText(selected.getPriceAsStr());
+		f_edit_price.setText(Double.toString(selected.getPrice()));
 		f_edit_expiration.getEditor().setText(selected.getExpiration());
 		f_edit_provider.setText(selected.getProvider());
 		l_amount_now.setText(selected.getAmountRealAsStr());
@@ -131,6 +132,7 @@ public class productListController {
 			if (now < 0) Validation.setError(f_edit_amount, "Esta alteração deixaria o estoque negativo.");
 			else {
 				l_amount_now.setText(selected.getAmountRealAsStr());
+				f_edit_amount.clear();
 			}
 		}
 	}
