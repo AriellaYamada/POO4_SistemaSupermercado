@@ -37,7 +37,7 @@
                         </Group>
                      </graphic>
                      <tooltip>
-                        <Tooltip text="Ir para o carrinho de compras" />
+                        <Tooltip text="Atualizar a lista" />
                      </tooltip>
                   </Button>
                   <HBox alignment="CENTER" spacing="10.0" HBox.hgrow="ALWAYS">

@@ -36,9 +36,6 @@
                            </children>
                         </Group>
                      </graphic>
-                     <tooltip>
-                        <Tooltip text="Ir para o carrinho de compras" />
-                     </tooltip>
                   </Button>
                   <HBox alignment="CENTER" spacing="10.0" HBox.hgrow="ALWAYS">
                      <children>
@@ -62,9 +59,6 @@
                            </children>
                         </Group>
                      </graphic>
-                     <tooltip>
-                        <Tooltip text="Incluir no carrinho o produto selecionado" />
-                     </tooltip>
                   </Button>
                   <Button layoutX="15.0" layoutY="15.0" mnemonicParsing="false" onAction="#showEdit" styleClass="default-btn" text="Editar">
                      <graphic>
@@ -74,9 +68,6 @@
                            </children>
                         </Group>
                      </graphic>
-                     <tooltip>
-                        <Tooltip text="Incluir no carrinho o produto selecionado" />
-                     </tooltip>
                   </Button>
                   <Button layoutX="722.0" layoutY="15.0" mnemonicParsing="false" onAction="#pdfGenerate" styleClass="default-btn" text="Gerar PDF">
                      <graphic>
@@ -86,9 +77,6 @@
                            </children>
                         </Group>
                      </graphic>
-                     <tooltip>
-                        <Tooltip text="Ir para o carrinho de compras" />
-                     </tooltip>
                   </Button>
                </children>
                <padding>

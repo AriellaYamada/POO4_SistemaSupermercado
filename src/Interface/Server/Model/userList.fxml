@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import java.lang.*?>
 <?import javafx.scene.text.*?>
 <?import javafx.geometry.*?>
 <?import javafx.scene.control.*?>
@@ -34,9 +35,6 @@
                            </children>
                         </Group>
                      </graphic>
-                     <tooltip>
-                        <Tooltip text="Ir para o carrinho de compras" />
-                     </tooltip>
                   </Button>
                   <HBox alignment="CENTER" spacing="10.0" HBox.hgrow="ALWAYS">
                      <children>
@@ -60,9 +58,6 @@
                            </children>
                         </Group>
                      </graphic>
-                     <tooltip>
-                        <Tooltip text="Ir para o carrinho de compras" />
-                     </tooltip>
                   </Button>
                </children>
                <padding>

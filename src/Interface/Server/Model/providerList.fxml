@@ -50,9 +50,6 @@
                            </children>
                         </Group>
                      </graphic>
-                     <tooltip>
-                        <Tooltip text="Ir para o carrinho de compras" />
-                     </tooltip>
                   </Button>
                </children>
                <padding>
