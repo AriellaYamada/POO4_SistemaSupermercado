@@ -52,6 +52,8 @@ public class Product {
 		return amount_real;
 	}
 
+	public synchronized void refreshStock(int amount) { setAmount(amount); }
+
 	//Solicita ao servidor a reserva do produto
 	public boolean RequestReservation(int qtd) {
 		String signal = "reserve" + Split.regSep + name + Split.fieldSep + Integer.toString(qtd);
