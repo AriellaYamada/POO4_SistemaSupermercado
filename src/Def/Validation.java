@@ -35,12 +35,12 @@ public class Validation {
 		INTEGER_NON_ZERO,
 		INTEGER_POSITIVE_NON_ZERO,
 		INTEGER_NEGATIVE_NON_ZERO,
-		FLOAT,
-		FLOAT_POSITIVE,
-		FLOAT_NEGATIVE,
-		FLOAT_NON_ZERO,
-		FLOAT_POSITIVE_NON_ZERO,
-		FLOAT_NEGATIVE_NON_ZERO,
+		DOUBLE,
+		DOUBLE_POSITIVE,
+		DOUBLE_NEGATIVE,
+		DOUBLE_NON_ZERO,
+		DOUBLE_POSITIVE_NON_ZERO,
+		DOUBLE_NEGATIVE_NON_ZERO,
 		DATE,
 		PRICE,
 		IP,
@@ -56,7 +56,7 @@ public class Validation {
 		if (text.contains(",")) return "Este campo contém um caractere inválido (vírgula)";
 
 		Integer i;
-		Float f;
+		Double d;
 
 		switch (TYPE){
 			case INTEGER:
@@ -93,38 +93,38 @@ public class Validation {
 				if (i >= 0) return "Este campo precisa ser negativo não-zero";
 				return "ok";
 
-			case FLOAT:
-				if (checkFloat(text) == null) return "Este campo não é um float válido";
+			case DOUBLE:
+				if (checkDouble(text) == null) return "Este campo não é um float válido";
 				return "ok";
 
-			case FLOAT_POSITIVE:
-				f = checkFloat(text);
-				if (f == null) return "Este campo não é um float válido";
-				if (f < 0) return "Este campo precisa ser positivo ou zero";
+			case DOUBLE_POSITIVE:
+				d = checkDouble(text);
+				if (d == null) return "Este campo não é um float válido";
+				if (d < 0) return "Este campo precisa ser positivo ou zero";
 				return "ok";
 
-			case FLOAT_NEGATIVE:
-				f = checkFloat(text);
-				if (f == null) return "Este campo não é um float válido";
-				if (f > 0) return "Este campo precisa ser negativo ou zero";
+			case DOUBLE_NEGATIVE:
+				d = checkDouble(text);
+				if (d == null) return "Este campo não é um float válido";
+				if (d > 0) return "Este campo precisa ser negativo ou zero";
 				return "ok";
 
-			case FLOAT_NON_ZERO:
-				f = checkFloat(text);
-				if (f == null) return "Este campo não é um float válido";
-				if (f == 0) return "Este campo precisa ser diferente de zero";
+			case DOUBLE_NON_ZERO:
+				d = checkDouble(text);
+				if (d == null) return "Este campo não é um float válido";
+				if (d == 0) return "Este campo precisa ser diferente de zero";
 				return "ok";
 
-			case FLOAT_POSITIVE_NON_ZERO:
-				f = checkFloat(text);
-				if (f == null) return "Este campo não é um float válido";
-				if (f <= 0) return "Este campo precisa ser positivo não-zero";
+			case DOUBLE_POSITIVE_NON_ZERO:
+				d = checkDouble(text);
+				if (d == null) return "Este campo não é um float válido";
+				if (d <= 0) return "Este campo precisa ser positivo não-zero";
 				return "ok";
 
-			case FLOAT_NEGATIVE_NON_ZERO:
-				f = checkFloat(text);
-				if (f == null) return "Este campo não é um float válido";
-				if (f >= 0) return "Este campo precisa ser negativo não-zero";
+			case DOUBLE_NEGATIVE_NON_ZERO:
+				d = checkDouble(text);
+				if (d == null) return "Este campo não é um float válido";
+				if (d >= 0) return "Este campo precisa ser negativo não-zero";
 				return "ok";
 
 			case DATE:
@@ -132,9 +132,9 @@ public class Validation {
 				return "ok";
 
 			case PRICE:
-				f = checkFloat(text);
-				if (f == null) return "Preço inválido";
-				if (f <= 0) return "O preço precisa ser positivo não-zero";
+				d = checkDouble(text);
+				if (d == null) return "Preço inválido";
+				if (d <= 0) return "O preço precisa ser positivo não-zero";
 				if (!checkDecimals(text, 2)) return "O preço só pode ter 2 casas decimais";
 				return "ok";
 
@@ -153,9 +153,9 @@ public class Validation {
 		}
 	}
 
-	private static Float checkFloat(String text){
+	private static Double checkDouble(String text){
 		try {
-			return Float.parseFloat(text);
+			return Double.parseDouble(text);
 		} catch (NumberFormatException e) {
 			return null;
 		}
