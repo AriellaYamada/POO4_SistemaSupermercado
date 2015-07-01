@@ -38,6 +38,15 @@
                         </Text>
                      </children>
                   </HBox>
+                  <Button layoutX="602.0" layoutY="15.0" mnemonicParsing="false" onAction="#showChangeAmountDialog" styleClass="default-btn" text="Editar Qtd">
+                     <graphic>
+                        <Group>
+                           <children>
+                              <SVGPath content="M1280 576v128q0 26 -19 45t-45 19h-320v320q0 26 -19 45t-45 19h-128q-26 0 -45 -19t-19 -45v-320h-320q-26 0 -45 -19t-19 -45v-128q0 -26 19 -45t45 -19h320v-320q0 -26 19 -45t45 -19h128q26 0 45 19t19 45v320h320q26 0 45 19t19 45zM1536 1120v-960 q0 -119 -84.5 -203.5t-203.5 -84.5h-960q-119 0 -203.5 84.5t-84.5 203.5v960q0 119 84.5 203.5t203.5 84.5h960q119 0 203.5 -84.5t84.5 -203.5z" scaleX="0.01" scaleY="0.01" />
+                           </children>
+                        </Group>
+                     </graphic>
+                  </Button>
                   <Button layoutX="15.0" layoutY="15.0" mnemonicParsing="false" onAction="#showClearDialog" styleClass="default-btn" text="Limpar">
                      <graphic>
                         <Group>
@@ -221,6 +230,96 @@
                         </Button>
                      </children>
                   </HBox>
+               </children>
+               <effect>
+                  <DropShadow blurType="TWO_PASS_BOX" />
+               </effect>
+               <opaqueInsets>
+                  <Insets />
+               </opaqueInsets>
+               <padding>
+                  <Insets bottom="30.0" left="30.0" right="30.0" top="30.0" />
+               </padding>
+               <StackPane.margin>
+                  <Insets />
+               </StackPane.margin>
+            </VBox>
+         </children>
+      </VBox>
+      <VBox fx:id="changeAmoutDialog" alignment="CENTER" layoutX="10.0" layoutY="10.0" style="-fx-background-color: rgba(0,0,0,0.2);" visible="false">
+         <children>
+            <VBox alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" spacing="15.0" style="-fx-background-color: #444;">
+               <children>
+                  <Text fill="WHITE" layoutX="40.0" layoutY="125.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Alterar quantidade" textAlignment="CENTER" wrappingWidth="400.0">
+                     <font>
+                        <Font size="36.0" />
+                     </font>
+                  </Text>
+                  <Text fx:id="t_product_name" fill="WHITE" layoutY="55.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Nome do Produto" textAlignment="CENTER" wrappingWidth="400.0">
+                     <font>
+                        <Font size="18.0" />
+                     </font>
+                  </Text>
+                  <HBox alignment="CENTER" layoutX="40.0" layoutY="252.0" spacing="20.0">
+                     <children>
+                        <Button mnemonicParsing="false" onAction="#removeOneCart" stylesheets="@../../style.css">
+                           <styleClass>
+                              <String fx:value="default-btn" />
+                              <String fx:value="big-btn" />
+                              <String fx:value="red" />
+                           </styleClass>
+                           <graphic>
+                              <Group scaleX="0.5" scaleY="0.5">
+                                 <children>
+                                    <SVGPath content="M1216 576v128q0 26 -19 45t-45 19h-768q-26 0 -45 -19t-19 -45v-128q0 -26 19 -45t45 -19h768q26 0 45 19t19 45zM1536 640q0 -209 -103 -385.5t-279.5 -279.5t-385.5 -103t-385.5 103t-279.5 279.5t-103 385.5t103 385.5t279.5 279.5t385.5 103t385.5 -103t279.5 -279.5 t103 -385.5z" fill="WHITE" rotate="180.0" scaleX="0.03" scaleY="0.03" strokeLineCap="ROUND" strokeLineJoin="ROUND" strokeType="OUTSIDE" strokeWidth="125.0" />
+                                 </children>
+                              </Group>
+                           </graphic>
+                        </Button>
+                        <Label fx:id="l_product_amount" minWidth="50.0" text="Label" textAlignment="CENTER" textFill="WHITE">
+                           <font>
+                              <Font size="18.0" />
+                           </font>
+                        </Label>
+                        <Button layoutX="20.0" layoutY="278.0" mnemonicParsing="false" onAction="#addOneCart" stylesheets="@../../style.css">
+                           <styleClass>
+                              <String fx:value="default-btn" />
+                              <String fx:value="big-btn" />
+                              <String fx:value="success" />
+                           </styleClass>
+                           <graphic>
+                              <Group scaleX="0.5" scaleY="0.5">
+                                 <children>
+                                    <SVGPath content="M1216 576v128q0 26 -19 45t-45 19h-256v256q0 26 -19 45t-45 19h-128q-26 0 -45 -19t-19 -45v-256h-256q-26 0 -45 -19t-19 -45v-128q0 -26 19 -45t45 -19h256v-256q0 -26 19 -45t45 -19h128q26 0 45 19t19 45v256h256q26 0 45 19t19 45zM1536 640q0 -209 -103 -385.5 t-279.5 -279.5t-385.5 -103t-385.5 103t-279.5 279.5t-103 385.5t103 385.5t279.5 279.5t385.5 103t385.5 -103t279.5 -279.5t103 -385.5z" fill="WHITE" rotate="180.0" scaleX="0.03" scaleY="0.03" strokeLineCap="ROUND" strokeLineJoin="ROUND" strokeType="OUTSIDE" strokeWidth="125.0" />
+                                 </children>
+                              </Group>
+                           </graphic>
+                        </Button>
+                     </children>
+                  </HBox>
+                  <VBox alignment="CENTER" spacing="20.0">
+                     <children>
+                        <Button mnemonicParsing="false" onAction="#removAllCart" stylesheets="@../../style.css" text="Retirar do carrinho">
+                           <graphic>
+                              <Group>
+                                 <children>
+                                    <SVGPath content="M512 800v-576q0 -14 -9 -23t-23 -9h-64q-14 0 -23 9t-9 23v576q0 14 9 23t23 9h64q14 0 23 -9t9 -23zM768 800v-576q0 -14 -9 -23t-23 -9h-64q-14 0 -23 9t-9 23v576q0 14 9 23t23 9h64q14 0 23 -9t9 -23zM1024 800v-576q0 -14 -9 -23t-23 -9h-64q-14 0 -23 9t-9 23v576 q0 14 9 23t23 9h64q14 0 23 -9t9 -23zM1152 76v948h-896v-948q0 -22 7 -40.5t14.5 -27t10.5 -8.5h832q3 0 10.5 8.5t14.5 27t7 40.5zM480 1152h448l-48 117q-7 9 -17 11h-317q-10 -2 -17 -11zM1408 1120v-64q0 -14 -9 -23t-23 -9h-96v-948q0 -83 -47 -143.5t-113 -60.5h-832 q-66 0 -113 58.5t-47 141.5v952h-96q-14 0 -23 9t-9 23v64q0 14 9 23t23 9h309l70 167q15 37 54 63t79 26h320q40 0 79 -26t54 -63l70 -167h309q14 0 23 -9t9 -23z" fill="WHITE" rotate="180.0" scaleX="0.01" scaleY="0.01" />
+                                 </children>
+                              </Group>
+                           </graphic>
+                           <styleClass>
+                              <String fx:value="default-btn" />
+                              <String fx:value="red" />
+                           </styleClass>
+                        </Button>
+                        <Button layoutX="20.0" layoutY="278.0" mnemonicParsing="false" onAction="#dismiss" stylesheets="@../../style.css" text="Voltar">
+                           <styleClass>
+                              <String fx:value="default-btn" />
+                              <String fx:value="big-btn" />
+                           </styleClass>
+                        </Button>
+                     </children>
+                  </VBox>
                </children>
                <effect>
                   <DropShadow blurType="TWO_PASS_BOX" />
