@@ -139,6 +139,9 @@ public class Validation {
 				return "ok";
 
 			case EMAIL:
+				/*if (checkEmail(text))
+					return "ok";
+				else return "Email inválido";*/
 				break;
 		}
 
@@ -194,13 +197,14 @@ public class Validation {
 		setError(field, valid);
 		return false;
 	}
-	/*
-	Pattern emailPattern = Pattern.compile("[a-zA-Z0-9[!#$%&'()*+,/\-_\\"]]+@[a-zA-Z0-9[!#$%&'()*+,/\-_\"]]+\.[a-zA-Z0-9[!#$%&'()*+,/\-_\"\.]]+");
 
-	public static boolean isValidEmail(String email) {
+	public static boolean checkEmail(String email) {
+		if ((email == null) || (email.trim().length() == 0))
+			return false;
 
-		Matcher m = emailPattern.matcher(email); return !m.matches();
-
-	}*/
-
+		String emailPattern = "\\b(^[_A-Za-z0-9-]+(\\.[_A-Za-z0-9-]+)*@([A-Za-z0-9-])+(\\.[A-Za-z0-9-]+)*((\\.[A-Za-z0-9]{2,})|(\\.[A-Za-z0-9]{2,}\\.[A-Za-z0-9]{2,}))$)\\b";
+		Pattern pattern = Pattern.compile(emailPattern, Pattern.CASE_INSENSITIVE);
+		Matcher matcher = pattern.matcher(email);
+		return matcher.matches();
+	}
 }
