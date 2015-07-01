@@ -32,7 +32,7 @@ public class loginController {
 		valid = valid && validateField(f_userpassword, TEXT);
 
 		if (valid) {    // Try to Login
-			String response = Client.Login(f_userlogin.getText(), f_userpassword.getText());
+			String response = Client.Login(f_userlogin.getText(), Integer.toString(f_userpassword.getText().hashCode()));
 
 			if (response.equals("ok")) {    // if success, go to Main Page
 				MainInterface.changeSceneWE("Client/Model/menu.fxml");
@@ -80,7 +80,7 @@ public class loginController {
 												  f_tel.getText(),
 												  f_email.getText(),
 												  f_id.getText(),
-												  f_password.getText());
+						Integer.toString(f_password.getText().hashCode()));
 
 				if (!answer.equals("ok")) {  // If the answer is not ok
 					String[] splited = Split.splitReg(answer);

@@ -27,7 +27,7 @@ public class Users implements ListRegister {
 	public static List<User> ListAll() { return users; }
 
 	//Cadastro de cliente a partir da interface
-	public static int Register (String name, String address, String tel, String email, String id, String password) {
+	public static int Register (String name, String address, String tel, String email, String id, int password) {
 		if (checkId(id)) {
 			User new_user = new User(name, address, tel, email, id, password);
 			users.add(new_user);
@@ -39,7 +39,7 @@ public class Users implements ListRegister {
 	//Cadastro de usuarios a partir da leitura do .csv
 	public int Register (String... value) {
 		if (checkId(value[4])) {
-			User new_user = new User(value[0], value[1], value[2], value[3], value[4], value[5]);
+			User new_user = new User(value[0], value[1], value[2], value[3], value[4], Integer.parseInt(value[5]));
 			users.add(new_user);
 			return 0;
 		}
@@ -54,7 +54,7 @@ public class Users implements ListRegister {
 	}
 
 	//Verifica o login e senha digitados no login
-	public static int Login (String id, String password) {
+	public static int Login (String id, int password) {
 		filtered = users.stream();
 		filtered = filtered.filter(u -> u.getId().equals(id));
 		//Verifica se o usuario existe
@@ -63,7 +63,7 @@ public class Users implements ListRegister {
 		filtered = users.stream()
 				.filter(u -> u.getId().equals(id));
 		//Verifica se a senha digitada é a correta
-		if (filtered.collect(Collectors.toList()).get(0).getPassword().equals(password))
+		if (filtered.collect(Collectors.toList()).get(0).getPassword() == password)
 			return 0;
 		return 2;
 	}

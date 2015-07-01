@@ -101,7 +101,7 @@ public class Connection implements Runnable{
 	private String newuser(String cmd) {
 		String answer;
 		String[] args = Split.splitField(cmd);
-		int response = Users.Register(args[0], args[1], args[2], args[3], args[4], args[5]);
+		int response = Users.Register(args[0], args[1], args[2], args[3], args[4], Integer.parseInt(args[5]));
 
 		//Verifica se for possivel realizar o cadastro
 		if (response == 0) {
@@ -122,7 +122,7 @@ public class Connection implements Runnable{
 	private String login(String cmd) {
 		String answer;
 		String[] args = Split.splitField(cmd);
-		int response = Users.Login(args[0], args[1]);
+		int response = Users.Login(args[0], Integer.parseInt(args[1]));
 
 		if (response == 0) {   //Se o login foi efetuado corretamente
 			user = Users.SearchUser(args[0]);
