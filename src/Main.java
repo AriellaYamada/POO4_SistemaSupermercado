@@ -1,8 +1,5 @@
 import Server.Database.Products;
 import Server.Database.ProductsDatabase;
-import Server.Database.Sales;
-import Server.PDFCreator;
-import Structure.*;
 
 import java.io.IOException;
 
@@ -55,7 +52,7 @@ public class Main {
 		sales.Register(user2, c2);
 
 
-		PDFCreator.CreatePDF("2015fevereiro", sales.getSales());
+		Server.BasicCreator.BasicCreator.CreatePDFSales("2015fevereiro", sales.getSales());
 */
 	}
 }

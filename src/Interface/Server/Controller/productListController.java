@@ -6,6 +6,8 @@ import Server.Database.ProductsDatabase;
 import Def.Validation;
 import static Def.Validation.FieldType.*;
 import static Def.Validation.validateField;
+
+import Server.PDFCreator.ProductsCreator;
 import Structure.Product;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -111,7 +113,9 @@ public class productListController {
 	//Geracao de relatorio
 	@FXML
 	public void pdfGenerate() {
-		System.out.println("Este comando ainda não está implementado.");
+
+		if(!Products.ListAll().isEmpty())
+			ProductsCreator.CreatePDFProducts(Products.ListAll());
 	}
 
 	//Atualiza a quantidade de produtos
