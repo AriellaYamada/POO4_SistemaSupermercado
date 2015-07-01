@@ -139,10 +139,9 @@ public class Validation {
 				return "ok";
 
 			case EMAIL:
-				/*if (checkEmail(text))
+				if (checkEmail(text))
 					return "ok";
-				else return "Email inválido";*/
-				break;
+				else return "Email inválido";
 		}
 
 		return "ok";
